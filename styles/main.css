@@ -1,0 +1,399 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* BRAND TOKENS */
+:root {
+  --brand-blue: #1C2A39;
+  --brand-ocean: #4A90E2;
+  --brand-orange: #FF6D2E;
+  --brand-light: #F5F7FA;
+  --brand-surface: #FFFFFF;
+  --brand-grid: #E7EDF5;
+  --brand-cream: #FDF7F4;
+}
+
+/* Smooth scrolling for anchor links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* TYPOGRAPHY */
+body {
+  @apply font-sans text-gray-800;
+}
+
+/* HEADINGS */
+h1, h2, h3, h4 {
+  @apply font-semibold tracking-tight;
+}
+
+/* SECTION SPACING */
+.section {
+  @apply py-24 md:py-32;
+}
+
+/* CARD */
+.card {
+  @apply bg-white rounded-xl shadow-lg p-8 border border-gray-100;
+}
+
+/* BLUEPRINT BACKGROUND */
+.blueprint {
+  background-image: url('/patterns/blueprint-grid.svg');
+  background-size: 48px 48px;
+  opacity: 0.6;
+}
+
+/* CTA GRADIENT */
+.cta-gradient {
+  background: linear-gradient(135deg, var(--brand-blue), #0f1924);
+}
+
+/* GLOBAL LIST STYLES - Mall Electro */
+ul {
+  @apply list-disc ms-6 space-y-2 text-gray-700;
+}
+
+ol {
+  @apply list-decimal ms-6 space-y-2 text-gray-700;
+}
+
+ul ul,
+ol ol,
+ul ol,
+ol ul {
+  @apply ms-4 mt-2;
+}
+
+/* Accent bullet for engineering sections */
+ul > li::marker {
+  color: var(--brand-orange); /* #FF6D2E */
+}
+
+ol > li::marker {
+  color: var(--brand-blue); /* #1C2A39 */
+}
+
+/* Tighten line-height inside lists */
+ul li,
+ol li {
+  @apply leading-relaxed;
+}
+
+/* Default (dark sections, blueprint backgrounds) */
+.glow-wipe {
+  background: rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(1px);
+  backdrop-filter: blur(1px);
+  transform: skewY(6deg);
+}
+
+/* LIGHT MODE: Inherit softer effect on bright backgrounds */
+
+.bg-white .glow-wipe,
+.bg-brand-light .glow-wipe,
+.bg-[F5F7FA] .glow-wipe,
+.bg-[FDF7F4] .glow-wipe,
+.theme-light .glow-wipe {
+  background: rgba(255, 255, 255, 0.12) !important;
+  -webkit-backdrop-filter: blur(0.2px);
+  backdrop-filter: blur(0.2px);
+  box-shadow: none !important;
+}
+
+/* ===== DIAGONAL WIPE AUTO-ADJUST ===== */
+
+.diagonal-wipe {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.4) 50%,
+    transparent 100%
+  );
+}
+
+/* LIGHT BACKGROUND FIX */
+.bg-white .diagonal-wipe,
+.bg-brand-light .diagonal-wipe,
+.bg-[F5F7FA] .diagonal-wipe {
+  background: linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(255,255,255,0.18) 50%,
+    transparent 100%
+  );
+}
+
+/* ===== GLITCH STREAK ANIMATIONS ===== */
+
+@keyframes glitch-streak-1 {
+  0%   { transform: translateX(-30%) skewX(-8deg); }
+  40%  { transform: translateX(20%) skewX(-5deg); }
+  100% { transform: translateX(120%) skewX(-3deg); }
+}
+
+@keyframes glitch-streak-2 {
+  0%   { transform: translateX(-50%) skewX(6deg); }
+  50%  { transform: translateX(0%) skewX(3deg); }
+  100% { transform: translateX(110%) skewX(1deg); }
+}
+
+.animate-glitch-streak-1 {
+  animation: glitch-streak-1 0.45s ease-out forwards;
+}
+
+.animate-glitch-streak-2 {
+  animation: glitch-streak-2 0.55s ease-out forwards;
+}
+
+@keyframes pulse-dot {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}
+
+@keyframes shift-lines {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 40px 40px;
+  }
+}
+
+.animate-shift {
+  animation: shift-lines 10s linear infinite;
+}
+
+.contact-cta-grid {
+  background-image:
+    linear-gradient(#0A4A8A 1px, transparent 1px),
+    linear-gradient(90deg, #0A4A8A 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.contact-cta-dots {
+  background-image: radial-gradient(#1C2A39 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.contact-cta-diagonal {
+  background-image:
+    repeating-linear-gradient(45deg, #1C2A39 0, #1C2A39 1px, transparent 0, transparent 20px);
+}
+
+.contact-cta-panel-grid {
+  background-image:
+    linear-gradient(#1C2A39 1px, transparent 1px),
+    linear-gradient(90deg, #1C2A39 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cad-grid-white {
+  background-image:
+    linear-gradient(to right, #ffffff 1px, transparent 1px),
+    linear-gradient(to bottom, #ffffff 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cad-grid-slate {
+  background-image:
+    linear-gradient(to right, #E2E8F0 1px, transparent 1px),
+    linear-gradient(to bottom, #E2E8F0 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cad-grid-blue {
+  background-image:
+    linear-gradient(#0A4A8A 1px, transparent 1px),
+    linear-gradient(90deg, #0A4A8A 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.cad-grid-black {
+  background-image:
+    linear-gradient(#000 1px, transparent 1px),
+    linear-gradient(90deg, #000 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.about-image-grid {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.diagonal-line-texture {
+  background-image: repeating-linear-gradient(45deg, #ffffff 0, #ffffff 1px, transparent 0, transparent 10px);
+}
+
+.footer-top-dash {
+  background-image: linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.1) 50%);
+  background-size: 20px 4px;
+}
+
+.noise-texture {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+.page-hero-light-grid {
+  background-image:
+    linear-gradient(to right, #c9d6e5 1px, transparent 1px),
+    linear-gradient(to bottom, #c9d6e5 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.page-hero-frame-grid-dark {
+  border: 1px solid #1A2530;
+  background-image:
+    linear-gradient(#ffffff 1px, transparent 1px),
+    linear-gradient(90deg, #ffffff 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.page-hero-frame-grid-light {
+  border: 1px solid #e5e5e5;
+  background-image:
+    linear-gradient(#90a5c3 1px, transparent 1px),
+    linear-gradient(90deg, #90a5c3 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.animate-shift-lines {
+  animation: shift-lines 13s linear infinite;
+}
+
+.process-line-fill {
+  animation: grow-line 1.5s ease-out 0.5s forwards;
+}
+
+@keyframes grow-line {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.draw-path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 4s ease-out forwards infinite;
+}
+
+.draw-path-delay {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 4s ease-out 0.5s forwards infinite;
+}
+
+.draw-path-delay-2 {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: draw 4s ease-out 1s forwards infinite;
+}
+
+.tech-pulse-dot {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes draw {
+  0% { stroke-dashoffset: 1000; opacity: 0; }
+  15% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 1; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { fill-opacity: 0.3; r: 3; }
+  50% { fill-opacity: 1; r: 5; }
+}
+
+.animated-pattern-fast {
+  animation-duration: 1.2s;
+}
+
+.animated-pattern {
+  animation-duration: 2.4s;
+}
+
+.animated-pattern-slow {
+  animation-duration: 4s;
+}
+
+.fade-delay-0 { transition-delay: 0ms; }
+.fade-delay-80 { transition-delay: 80ms; }
+.fade-delay-100 { transition-delay: 100ms; }
+.fade-delay-150 { transition-delay: 150ms; }
+.fade-delay-160 { transition-delay: 160ms; }
+.fade-delay-200 { transition-delay: 200ms; }
+.fade-delay-240 { transition-delay: 240ms; }
+.fade-delay-300 { transition-delay: 300ms; }
+.fade-delay-320 { transition-delay: 320ms; }
+.fade-delay-400 { transition-delay: 400ms; }
+.fade-delay-500 { transition-delay: 500ms; }
+.fade-delay-600 { transition-delay: 600ms; }
+
+/* ===== RGB SHIFT on hover ===== */
+
+button.primary:hover span.relative {
+  filter: drop-shadow(0 0 6px rgba(255,108,46,0.65))
+          drop-shadow(1px 0 3px rgba(255,0,0,0.3))
+          drop-shadow(-1px 0 3px rgba(0,160,255,0.3));
+  transition: 260ms ease-out;
+}
+
+/* ===== MICRO SPARK PARTICLES ===== */
+
+.spark {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: 0 0 6px white;
+}
+
+/* Three randomized spark paths */
+.particle-1 {
+  top: 40%;
+  left: 10%;
+  animation: spark-float 1.2s ease-out infinite;
+}
+
+.particle-2 {
+  bottom: 30%;
+  left: 60%;
+  animation: spark-float 0.9s ease-out infinite;
+}
+
+.particle-3 {
+  top: 20%;
+  right: 10%;
+  animation: spark-float 1.5s ease-out infinite;
+}
+
+@keyframes spark-float {
+  0%   { opacity: 0; transform: scale(0.4) translateY(0px); }
+  40%  { opacity: 1; transform: scale(1) translateY(-6px); }
+  60%  { opacity: 0.8; transform: scale(0.7) translateY(-10px); }
+  100% { opacity: 0; transform: scale(0.2) translateY(-14px); }
+}
