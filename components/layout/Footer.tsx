@@ -61,6 +61,11 @@ const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
+                <a href="/bg/reshenia" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
+                  Решения
+                </a>
+              </li>
+              <li>
                 <a href="/bg/industrii" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
                   Индустрии
                 </a>
