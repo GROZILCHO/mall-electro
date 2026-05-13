@@ -86,6 +86,15 @@ interface SolutionDetailLayoutProps {
     intro: string;
     items: FAQItem[];
   };
+  cta?: {
+    badge: string;
+    title: string;
+    text: string;
+    primaryText: string;
+    primaryHref: string;
+    secondaryText: string;
+    secondaryHref: string;
+  };
 }
 
 const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
@@ -98,7 +107,19 @@ const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
   process,
   technical,
   faq,
+  cta,
 }) => {
+  const finalCta = cta ?? {
+    badge: "Следваща стъпка",
+    title: "Обсъдете табло и автоматизация за вашата линия",
+    text:
+      "Изпратете информация за машината, линията, съществуващите табла и ограниченията за работа. Ще уточним практичен технически обхват.",
+    primaryText: "Обсъдете проекта",
+    primaryHref: "/bg/kontakti",
+    secondaryText: "Всички решения",
+    secondaryHref: "/bg/reshenia",
+  };
+
   return (
     <main>
       <SEO page={seoPage} />
@@ -338,24 +359,23 @@ const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
         <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
           <FadeIn>
             <div className="mb-10 max-w-3xl">
-              <Badge text="Следваща стъпка" variant="pill-dark" />
+              <Badge text={finalCta.badge} variant="pill-dark" />
               <h2 className="mb-6 font-sans text-3xl font-bold leading-tight lg:text-5xl">
-                Обсъдете табло и автоматизация за вашата линия
+                {finalCta.title}
               </h2>
               <p className="text-lg leading-relaxed text-white/70">
-                Изпратете информация за машината, линията, съществуващите табла
-                и ограниченията за работа. Ще уточним практичен технически обхват.
+                {finalCta.text}
               </p>
             </div>
           </FadeIn>
 
           <FadeIn delay={200}>
             <div className="flex flex-wrap gap-4">
-              <Button variant="primary" icon="ChevronRight" href="/bg/kontakti">
-                Обсъдете проекта
+              <Button variant="primary" icon="ChevronRight" href={finalCta.primaryHref}>
+                {finalCta.primaryText}
               </Button>
-              <Button variant="ghost" icon="Factory" href="/bg/reshenia">
-                Всички решения
+              <Button variant="ghost" icon="Factory" href={finalCta.secondaryHref}>
+                {finalCta.secondaryText}
               </Button>
             </div>
           </FadeIn>

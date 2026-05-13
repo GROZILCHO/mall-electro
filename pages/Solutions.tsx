@@ -22,6 +22,7 @@ const solutionScenarios = [
     description:
       "Планиране и изпълнение на електро инфраструктура за нови производствени, складови или технологични обекти.",
     icon: "Factory",
+    href: "/bg/reshenia/nov-proizvodstven-obekt",
   },
   {
     title: "Модернизация на електро система",
