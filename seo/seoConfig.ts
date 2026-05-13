@@ -13,6 +13,7 @@ import { logistikaIndustryFaqItems } from "../data/logistikaIndustryFaq";
 import { proizvodstveniPredpriyatiyaIndustryFaqItems } from "../data/proizvodstveniPredpriyatiyaIndustryFaq";
 import { solutionPanelAutomationLineFaqItems } from "../data/solutionPanelAutomationLineFaq";
 import { solutionNewProductionSiteFaqItems } from "../data/solutionNewProductionSiteFaq";
+import { solutionModernizationFaqItems } from "../data/solutionModernizationFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -26,6 +27,7 @@ export type SeoPageKey =
   | "services"
   | "solutions"
   | "solutionNewProductionSite"
+  | "solutionModernization"
   | "solutionPanelAutomationLine"
   | "electricPanels"
   | "cableRoutes"
@@ -96,6 +98,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Решение за електрически табла, кабелни трасета, ниско напрежение, автоматизация, пуск и поддръжка при нови производствени обекти.",
     ogImage: "/images/services/hero-services.png",
+  },
+  {
+    key: "solutionModernization",
+    path: "/bg/reshenia/modernizatsia-na-elektro-sistema",
+    title: "Модернизация на индустриална електро система | Mall Electro",
+    description:
+      "Решение за оценка, подмяна, разширяване и модернизация на електрически табла, трасета, захранвания, автоматизация и контролни точки.",
+    ogImage: "/images/Premium-Electrical-Panel-Display.png",
   },
   {
     key: "solutionPanelAutomationLine",
@@ -442,6 +452,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "solutionNewProductionSite") {
     schemas.push(createFAQPageSchema(solutionNewProductionSiteFaqItems));
+  }
+
+  if (route.key === "solutionModernization") {
+    schemas.push(createFAQPageSchema(solutionModernizationFaqItems));
   }
 
   return schemas;

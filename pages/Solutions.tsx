@@ -29,6 +29,7 @@ const solutionScenarios = [
     description:
       "Оценка, подмяна и разширяване на съществуващи табла, трасета, захранвания и контролни точки.",
     icon: "Settings",
+    href: "/bg/reshenia/modernizatsia-na-elektro-sistema",
   },
   {
     title: "Табла и автоматизация за технологични линии",
