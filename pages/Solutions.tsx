@@ -43,6 +43,7 @@ const solutionScenarios = [
     description:
       "Организация на кабелни трасета, ниско напрежение и захранвания за индустриални бази, складове и производствени зони.",
     icon: "Activity",
+    href: "/bg/reshenia/kabelna-infrastruktura-za-baza",
   },
   {
     title: "Сервиз и разширяване",
