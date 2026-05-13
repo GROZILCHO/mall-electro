@@ -10,6 +10,7 @@ import NewProductionSiteSolution from "./pages/solutions/NewProductionSiteSoluti
 import ElectricalSystemModernizationSolution from "./pages/solutions/ElectricalSystemModernizationSolution";
 import CableInfrastructureBaseSolution from "./pages/solutions/CableInfrastructureBaseSolution";
 import ServiceExpansionSolution from "./pages/solutions/ServiceExpansionSolution";
+import HeightInstallationSolution from "./pages/solutions/HeightInstallationSolution";
 import ElectricPanels from "./pages/services/ElectricPanels";
 import CableRoutes from "./pages/services/CableRoutes";
 import IndustrialElectricalInstallations from "./pages/services/IndustrialElectricalInstallations";
@@ -43,6 +44,7 @@ const AppRoutes = () => (
       <Route path="/bg/reshenia/modernizatsia-na-elektro-sistema" element={<ElectricalSystemModernizationSolution />} />
       <Route path="/bg/reshenia/kabelna-infrastruktura-za-baza" element={<CableInfrastructureBaseSolution />} />
       <Route path="/bg/reshenia/serviz-i-razshiryavane" element={<ServiceExpansionSolution />} />
+      <Route path="/bg/reshenia/elektromontazh-na-visochina-s-vishka" element={<HeightInstallationSolution />} />
       <Route path="/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii" element={<PanelAutomationLineSolution />} />
       <Route path="/bg/uslugi/elektricheski-tabla" element={<ElectricPanels />} />
       <Route path="/bg/uslugi/kabelni-traseta" element={<CableRoutes />} />

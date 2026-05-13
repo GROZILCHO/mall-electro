@@ -52,6 +52,13 @@ const solutionScenarios = [
     icon: "Wrench",
     href: "/bg/reshenia/serviz-i-razshiryavane",
   },
+  {
+    title: "Електромонтаж на височина с вишка",
+    description:
+      "Електромонтажни дейности във високи индустриални зони, халета, складови бази и труднодостъпни монтажни точки.",
+    icon: "HardHat",
+    href: "/bg/reshenia/elektromontazh-na-visochina-s-vishka",
+  },
 ] satisfies Array<{
   title: string;
   description: string;

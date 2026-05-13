@@ -16,6 +16,7 @@ import { solutionNewProductionSiteFaqItems } from "../data/solutionNewProduction
 import { solutionModernizationFaqItems } from "../data/solutionModernizationFaq";
 import { solutionCableInfrastructureBaseFaqItems } from "../data/solutionCableInfrastructureBaseFaq";
 import { solutionServiceExpansionFaqItems } from "../data/solutionServiceExpansionFaq";
+import { solutionHeightInstallationFaqItems } from "../data/solutionHeightInstallationFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -32,6 +33,7 @@ export type SeoPageKey =
   | "solutionModernization"
   | "solutionCableInfrastructureBase"
   | "solutionServiceExpansion"
+  | "solutionHeightInstallation"
   | "solutionPanelAutomationLine"
   | "electricPanels"
   | "cableRoutes"
@@ -126,6 +128,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Решение за диагностика, поддръжка, подобрения, разширяване и сервиз на електрически табла, трасета, автоматизация и ниско напрежение.",
     ogImage: "/images/Premium-Electrical-Panel-Display.png",
+  },
+  {
+    key: "solutionHeightInstallation",
+    path: "/bg/reshenia/elektromontazh-na-visochina-s-vishka",
+    title: "Електромонтаж на височина с монтажна вишка | Mall Electro",
+    description:
+      "Решение за електромонтаж на височина, кабелни трасета, захранвания, окабеляване и сервизни дейности в индустриални обекти, халета и складови бази.",
+    ogImage: "/images/services/hero-services.png",
   },
   {
     key: "solutionPanelAutomationLine",
@@ -484,6 +494,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "solutionServiceExpansion") {
     schemas.push(createFAQPageSchema(solutionServiceExpansionFaqItems));
+  }
+
+  if (route.key === "solutionHeightInstallation") {
+    schemas.push(createFAQPageSchema(solutionHeightInstallationFaqItems));
   }
 
   return schemas;
