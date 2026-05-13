@@ -57,6 +57,9 @@ const IndustriesPremium: React.FC = () => {
                            </li>
                         ))}
                     </ul>
+                    <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
+                      Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                    </span>
                  </div>
               </Link>
             </FadeIn>
@@ -92,6 +95,9 @@ const IndustriesPremium: React.FC = () => {
                            </li>
                         ))}
                     </ul>
+                    <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E] md:justify-end">
+                      Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                    </span>
                  </div>
               </Link>
             </FadeIn>
@@ -121,6 +127,9 @@ const IndustriesPremium: React.FC = () => {
                               </li>
                            ))}
                         </ul>
+                        <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
+                          Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                        </span>
                    </div>
                 </Link>
              </FadeIn>
@@ -145,6 +154,9 @@ const IndustriesPremium: React.FC = () => {
                               </li>
                            ))}
                         </ul>
+                        <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
+                          Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                        </span>
                    </div>
                 </Link>
              </FadeIn>
@@ -169,11 +181,52 @@ const IndustriesPremium: React.FC = () => {
                               </li>
                            ))}
                         </ul>
+                        <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
+                          Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                        </span>
                    </div>
                 </Link>
              </FadeIn>
 
           </div>
+
+          {/* ROW 3 - PRODUCTION ENTERPRISES */}
+          <FadeIn delay={600}>
+            <Link to="/bg/industrii/proizvodstveni-predpriyatiya" id="industry-production" className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 group h-full flex flex-col md:flex-row">
+              <div className="w-full md:w-2/5 h-64 md:h-auto relative overflow-hidden">
+                <img
+                  src="/images/industries/hero_industriy.png"
+                  alt="Производствени предприятия"
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+              </div>
+              <div className="w-full md:w-3/5 p-8 flex flex-col justify-center relative">
+                <div className="absolute top-6 right-6 text-[#FF6D2E]">
+                  <Icons.Factory className="w-8 h-8" strokeWidth={1.5} />
+                </div>
+                <h3 className="text-2xl font-bold text-[#1C2A39] mb-3 group-hover:text-[#4A90E2] transition-colors">
+                  Производствени предприятия
+                </h3>
+                <p className="text-[#56677A] text-sm mb-6 leading-relaxed">
+                  Електро инфраструктура за индустриални халета, технологични линии, машини, работни зони и производствени процеси.
+                </p>
+                <ul className="space-y-2 mt-auto">
+                  {['Захранване за машини, линии и работни зони', 'Кабелни трасета през халета и технически помещения', 'Автоматизация, ниско напрежение и сервизна поддръжка'].map((item, i) => (
+                    <li key={i} className="flex items-center text-xs font-bold text-gray-500 uppercase tracking-wide">
+                      <div className="w-1.5 h-1.5 bg-[#FF6D2E] rounded-full mr-3"></div>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
+                  Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                </span>
+              </div>
+            </Link>
+          </FadeIn>
 
         </div>
       </div>

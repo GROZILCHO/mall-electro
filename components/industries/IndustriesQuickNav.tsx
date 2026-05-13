@@ -10,6 +10,7 @@ const links = [
   { href: "#industry-mills", label: "Мелници", icon: "Settings" },
   { href: "#industry-agro", label: "Агро", icon: "Warehouse" },
   { href: "#industry-logistics", label: "Логистика", icon: "Truck" },
+  { href: "#industry-production", label: "Производствени предприятия", icon: "Factory" },
 ];
 
 const IndustriesQuickNav: React.FC = () => {
@@ -37,7 +38,7 @@ const IndustriesQuickNav: React.FC = () => {
           <div
             className="
               flex justify-center gap-4 flex-wrap
-              sm:flex-nowrap w-full
+              lg:flex-nowrap w-full
             "
           >
             {links.map((link) => {
