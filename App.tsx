@@ -16,6 +16,7 @@ import ZarnoprerabotkaIndustry from "./pages/industries/ZarnoprerabotkaIndustry"
 import MelnitsiIndustry from "./pages/industries/MelnitsiIndustry";
 import AgroIndustry from "./pages/industries/AgroIndustry";
 import LogistikaIndustry from "./pages/industries/LogistikaIndustry";
+import ProizvodstveniPredpriyatiyaIndustry from "./pages/industries/ProizvodstveniPredpriyatiyaIndustry";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
 import CookiePolicy from "./pages/legal/CookiePolicy";
@@ -44,6 +45,7 @@ const AppRoutes = () => (
       <Route path="/bg/industrii/melnitsi" element={<MelnitsiIndustry />} />
       <Route path="/bg/industrii/agro" element={<AgroIndustry />} />
       <Route path="/bg/industrii/logistika" element={<LogistikaIndustry />} />
+      <Route path="/bg/industrii/proizvodstveni-predpriyatiya" element={<ProizvodstveniPredpriyatiyaIndustry />} />
       <Route path="/bg/kontakti" element={<Contact />} />
       <Route path="/bg/politika-za-poveritelnost" element={<PrivacyPolicy />} />
       <Route path="/bg/politika-za-biskvitki" element={<CookiePolicy />} />

@@ -10,6 +10,7 @@ import { zarnoprerabotkaIndustryFaqItems } from "../data/zarnoprerabotkaIndustry
 import { melnitsiIndustryFaqItems } from "../data/melnitsiIndustryFaq";
 import { agroIndustryFaqItems } from "../data/agroIndustryFaq";
 import { logistikaIndustryFaqItems } from "../data/logistikaIndustryFaq";
+import { proizvodstveniPredpriyatiyaIndustryFaqItems } from "../data/proizvodstveniPredpriyatiyaIndustryFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -33,6 +34,7 @@ export type SeoPageKey =
   | "industryMelnitsi"
   | "industryAgro"
   | "industryLogistika"
+  | "industryProizvodstveniPredpriyatiya"
   | "contact"
   | "privacyPolicy"
   | "cookiePolicy"
@@ -169,6 +171,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за логистични бази, складове и хладилни камери.",
     ogImage: "/images/industries/modern-warehouse-interior_1.png",
+  },
+  {
+    key: "industryProizvodstveniPredpriyatiya",
+    path: "/bg/industrii/proizvodstveni-predpriyatiya",
+    title: "Електро системи за производствени предприятия | Mall Electro",
+    description:
+      "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за производствени предприятия и индустриални обекти.",
+    ogImage: "/images/industries/hero_industriy.png",
   },
   {
     key: "contact",
@@ -391,6 +401,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "industryLogistika") {
     schemas.push(createFAQPageSchema(logistikaIndustryFaqItems));
+  }
+
+  if (route.key === "industryProizvodstveniPredpriyatiya") {
+    schemas.push(createFAQPageSchema(proizvodstveniPredpriyatiyaIndustryFaqItems));
   }
 
   return schemas;
