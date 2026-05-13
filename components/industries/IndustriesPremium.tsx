@@ -16,7 +16,7 @@ const IndustriesPremium: React.FC = () => {
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-[3px] bg-[#FF6D2E]"></div>
             </h2>
             <p className="mt-6 text-[#53616F] text-lg max-w-2xl mx-auto font-light">
-              Електрически табла, автоматизация и системи за управление на производствени линии в ХВП предприятия – от суровинно приемане до пакетиране.
+              Сектори и работни среди, в които електро услугите и проектните решения се адаптират към конкретния обект, процес и режим на работа.
             </p>
           </div>
         </FadeIn>
@@ -58,7 +58,7 @@ const IndustriesPremium: React.FC = () => {
                         ))}
                     </ul>
                     <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
-                      Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                      Виж индустрията <Icons.ChevronRight className="ml-2 h-4 w-4" />
                     </span>
                  </div>
               </Link>
@@ -96,7 +96,7 @@ const IndustriesPremium: React.FC = () => {
                         ))}
                     </ul>
                     <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E] md:justify-end">
-                      Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                      Виж индустрията <Icons.ChevronRight className="ml-2 h-4 w-4" />
                     </span>
                  </div>
               </Link>
@@ -128,7 +128,7 @@ const IndustriesPremium: React.FC = () => {
                            ))}
                         </ul>
                         <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
-                          Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                          Виж индустрията <Icons.ChevronRight className="ml-2 h-4 w-4" />
                         </span>
                    </div>
                 </Link>
@@ -155,7 +155,7 @@ const IndustriesPremium: React.FC = () => {
                            ))}
                         </ul>
                         <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
-                          Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                          Виж индустрията <Icons.ChevronRight className="ml-2 h-4 w-4" />
                         </span>
                    </div>
                 </Link>
@@ -182,7 +182,7 @@ const IndustriesPremium: React.FC = () => {
                            ))}
                         </ul>
                         <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
-                          Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                          Виж индустрията <Icons.ChevronRight className="ml-2 h-4 w-4" />
                         </span>
                    </div>
                 </Link>
@@ -222,7 +222,7 @@ const IndustriesPremium: React.FC = () => {
                   ))}
                 </ul>
                 <span className="mt-6 inline-flex items-center text-sm font-bold text-[#4A90E2] transition-colors group-hover:text-[#FF6D2E]">
-                  Виж решенията <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                  Виж индустрията <Icons.ChevronRight className="ml-2 h-4 w-4" />
                 </span>
               </div>
             </Link>

@@ -50,7 +50,7 @@ const PanelEngineering: React.FC = () => {
               </ul>
               
               <Link to="/bg/uslugi/elektricheski-tabla" className="inline-flex items-center gap-3 px-8 py-4 bg-[#1C2A39] text-white font-medium text-sm tracking-wide rounded hover:bg-black transition-all hover:gap-5 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-300">
-                <span>Разгледайте проекти</span>
+                <span>Виж електрически табла</span>
                 <Icons.ChevronRight className="w-4 h-4" />
               </Link>
             </FadeIn>
