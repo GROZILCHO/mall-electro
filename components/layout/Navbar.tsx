@@ -25,6 +25,19 @@ const serviceLinks: NavItem[] = [
   { label: "Всички услуги", href: "/bg/uslugi" },
 ];
 
+const solutionLinks: NavItem[] = [
+  { label: "Нов производствен обект", href: "/bg/reshenia/nov-proizvodstven-obekt" },
+  { label: "Модернизация на електро система", href: "/bg/reshenia/modernizatsia-na-elektro-sistema" },
+  {
+    label: "Табла и автоматизация за технологични линии",
+    href: "/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii",
+  },
+  { label: "Кабелна инфраструктура за база", href: "/bg/reshenia/kabelna-infrastruktura-za-baza" },
+  { label: "Сервиз и разширяване", href: "/bg/reshenia/serviz-i-razshiryavane" },
+  { label: "Електромонтаж на височина", href: "/bg/reshenia/elektromontazh-na-visochina-s-vishka" },
+  { label: "Всички решения", href: "/bg/reshenia" },
+];
+
 const industryLinks: NavItem[] = [
   { label: "ХВП", href: "/bg/industrii/hvp" },
   { label: "Зърнопреработка", href: "/bg/industrii/zarnoprerabotka" },
@@ -39,8 +52,10 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isSolutionsOpen, setIsSolutionsOpen] = useState(false);
   const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const solutionsDropdownRef = useRef<HTMLDivElement>(null);
   const industriesDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,11 +79,19 @@ export default function Navbar() {
       ) {
         setIsIndustriesOpen(false);
       }
+
+      if (
+        solutionsDropdownRef.current &&
+        !solutionsDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsSolutionsOpen(false);
+      }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsServicesOpen(false);
+        setIsSolutionsOpen(false);
         setIsIndustriesOpen(false);
       }
     };
@@ -103,10 +126,16 @@ export default function Navbar() {
     : "bg-[#1C2A39]/85 py-5";
 
   const closeServicesDropdown = () => setIsServicesOpen(false);
+  const closeSolutionsDropdown = () => setIsSolutionsOpen(false);
   const closeIndustriesDropdown = () => setIsIndustriesOpen(false);
 
   const handleServiceLinkClick = () => {
     closeServicesDropdown();
+    setMobileMenuOpen(false);
+  };
+
+  const handleSolutionLinkClick = () => {
+    closeSolutionsDropdown();
     setMobileMenuOpen(false);
   };
 
@@ -143,6 +172,7 @@ export default function Navbar() {
                   aria-controls="services-dropdown-menu"
                   onClick={() => {
                     setIsServicesOpen((open) => !open);
+                    setIsSolutionsOpen(false);
                     setIsIndustriesOpen(false);
                   }}
                 >
@@ -183,6 +213,63 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+            ) : item.href === "/bg/reshenia" ? (
+              <div
+                key={item.label}
+                ref={solutionsDropdownRef}
+                className="relative"
+              >
+                <button
+                  type="button"
+                  className={`flex items-center gap-1 font-medium transition-colors hover:text-brand-orange ${
+                    isSolutionsOpen ? "text-brand-orange" : "text-white/90"
+                  }`}
+                  aria-haspopup="menu"
+                  aria-expanded={isSolutionsOpen}
+                  aria-controls="solutions-dropdown-menu"
+                  onClick={() => {
+                    setIsSolutionsOpen((open) => !open);
+                    setIsServicesOpen(false);
+                    setIsIndustriesOpen(false);
+                  }}
+                >
+                  {item.label}
+                  <Icons.ChevronRight
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      isSolutionsOpen ? "-rotate-90" : "rotate-90"
+                    }`}
+                  />
+                </button>
+
+                <div
+                  id="solutions-dropdown-menu"
+                  className={`absolute left-0 top-full z-50 w-96 pt-4 transition-all duration-200 ${
+                    isSolutionsOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible translate-y-2 opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="overflow-hidden border border-white/10 bg-[#1C2A39]/95 shadow-lg">
+                    <ul className="py-2">
+                      {solutionLinks.map((solution, index) => (
+                        <li key={solution.href}>
+                          <Link
+                            to={solution.href}
+                            onClick={handleSolutionLinkClick}
+                            className={`block px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:bg-brand-blue/15 hover:text-white focus:bg-brand-blue/15 focus:text-white ${
+                              index === solutionLinks.length - 1
+                                ? "mt-2 border-t border-white/10 text-brand-orange hover:text-brand-orange focus:text-brand-orange"
+                                : ""
+                            }`}
+                          >
+                            {solution.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             ) : item.href === "/bg/industrii" ? (
               <div
                 key={item.label}
@@ -200,6 +287,7 @@ export default function Navbar() {
                   onClick={() => {
                     setIsIndustriesOpen((open) => !open);
                     setIsServicesOpen(false);
+                    setIsSolutionsOpen(false);
                   }}
                 >
                   {item.label}
@@ -282,6 +370,24 @@ export default function Navbar() {
                         className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
                       >
                         {service.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : item.href === "/bg/reshenia" ? (
+                <div key={item.label}>
+                  <span className="block py-2 font-medium text-white/90">
+                    {item.label}
+                  </span>
+                  <div className="ml-4 border-l border-white/10 pl-4">
+                    {solutionLinks.map((solution) => (
+                      <Link
+                        key={solution.href}
+                        to={solution.href}
+                        onClick={handleSolutionLinkClick}
+                        className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
+                      >
+                        {solution.label}
                       </Link>
                     ))}
                   </div>
