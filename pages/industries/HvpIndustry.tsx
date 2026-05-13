@@ -140,6 +140,7 @@ export default function HvpIndustry() {
           {
             title: "Логистика",
             text: "Складови бази, хладилни камери, конвейери и ниско напрежение.",
+            href: "/bg/industrii/logistika",
           },
         ],
       }}

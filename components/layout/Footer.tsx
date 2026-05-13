@@ -17,6 +17,12 @@ const Footer: React.FC = () => {
     { label: "Поддръжка и сервиз", href: "/bg/uslugi/poddrazhka-i-serviz" },
   ];
 
+  const legalLinks = [
+    { label: "Политика за поверителност", href: "/bg/politika-za-poveritelnost" },
+    { label: "Бисквитки", href: "/bg/politika-za-biskvitki" },
+    { label: "Условия за ползване", href: "/bg/usloviya-za-polzvane" },
+  ];
+
   return (
     <footer id="contact" className="relative bg-[#1C2A39] py-20 text-white/80">
       <div className="absolute left-0 top-0 h-[1px] w-full bg-white/10"></div>
@@ -114,6 +120,27 @@ const Footer: React.FC = () => {
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className="mt-12 border-t border-white/10 pt-6">
+          <nav
+            aria-label="Правна информация"
+            className="grid gap-4 text-xs text-white/70 lg:grid-cols-[minmax(0,220px)_1fr] lg:items-center"
+          >
+            <p className="font-semibold uppercase tracking-wider text-white/70">
+              Правна информация
+            </p>
+            <ul className="flex flex-col gap-y-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 lg:justify-end">
+              {legalLinks.map((link) => (
+                <li key={link.href} className="inline-flex items-center gap-2 leading-none">
+                  <span className="h-1 w-1 shrink-0 rounded-full bg-[#FF6D2E]" aria-hidden="true"></span>
+                  <Link to={link.href} className="inline-flex items-center leading-5 text-white/80 transition-colors hover:text-[#FF6D2E]">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

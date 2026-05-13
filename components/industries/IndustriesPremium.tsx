@@ -151,7 +151,7 @@ const IndustriesPremium: React.FC = () => {
 
              {/* PANEL E - Logistics */}
              <FadeIn delay={500}>
-                <div id="industry-logistics" className="bg-white rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.03)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group h-full">
+                <Link to="/bg/industrii/logistika" id="industry-logistics" className="bg-white rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.03)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group h-full block">
                    <div className="h-40 relative overflow-hidden">
                        <img src="/images/industries/modern-warehouse-interior_1.png" loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt="Logistics" />
                    </div>
@@ -170,7 +170,7 @@ const IndustriesPremium: React.FC = () => {
                            ))}
                         </ul>
                    </div>
-                </div>
+                </Link>
              </FadeIn>
 
           </div>

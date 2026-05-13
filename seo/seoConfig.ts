@@ -9,6 +9,7 @@ import { hvpIndustryFaqItems } from "../data/hvpIndustryFaq";
 import { zarnoprerabotkaIndustryFaqItems } from "../data/zarnoprerabotkaIndustryFaq";
 import { melnitsiIndustryFaqItems } from "../data/melnitsiIndustryFaq";
 import { agroIndustryFaqItems } from "../data/agroIndustryFaq";
+import { logistikaIndustryFaqItems } from "../data/logistikaIndustryFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -31,7 +32,11 @@ export type SeoPageKey =
   | "industryZarnoprerabotka"
   | "industryMelnitsi"
   | "industryAgro"
+  | "industryLogistika"
   | "contact"
+  | "privacyPolicy"
+  | "cookiePolicy"
+  | "termsOfUse"
   | "notFound";
 
 export interface SeoRoute {
@@ -158,11 +163,43 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industries/golden-farmland-aerial_2.png",
   },
   {
+    key: "industryLogistika",
+    path: "/bg/industrii/logistika",
+    title: "Електро системи за логистични бази и складови комплекси | Mall Electro",
+    description:
+      "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за логистични бази, складове и хладилни камери.",
+    ogImage: "/images/industries/modern-warehouse-interior_1.png",
+  },
+  {
     key: "contact",
     path: "/bg/kontakti",
     title: "Контакти с Mall Electro - заявка за оглед или консултация",
     description:
       "Свържете се с инженерния екип на Mall Electro за оглед, технически анализ, оферта или консултация за индустриални електро системи.",
+    ogImage: "/images/about/hero-about.png",
+  },
+  {
+    key: "privacyPolicy",
+    path: "/bg/politika-za-poveritelnost",
+    title: "Политика за поверителност | Mall Electro",
+    description:
+      "Информация за обработване на лични данни, права по GDPR, срокове за съхранение и контакт за заявки към Mall Electro.",
+    ogImage: "/images/about/hero-about.png",
+  },
+  {
+    key: "cookiePolicy",
+    path: "/bg/politika-za-biskvitki",
+    title: "Политика за бисквитки | Mall Electro",
+    description:
+      "Информация за бисквитки, техническо съхранение, управление в браузъра и бъдещо използване на аналитични или маркетингови инструменти.",
+    ogImage: "/images/about/hero-about.png",
+  },
+  {
+    key: "termsOfUse",
+    path: "/bg/usloviya-za-polzvane",
+    title: "Условия за ползване | Mall Electro",
+    description:
+      "Условия за използване на сайта на Mall Electro, информационен характер на съдържанието, оферти, интелектуална собственост и контакт.",
     ogImage: "/images/about/hero-about.png",
   },
   {
@@ -350,6 +387,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "industryAgro") {
     schemas.push(createFAQPageSchema(agroIndustryFaqItems));
+  }
+
+  if (route.key === "industryLogistika") {
+    schemas.push(createFAQPageSchema(logistikaIndustryFaqItems));
   }
 
   return schemas;

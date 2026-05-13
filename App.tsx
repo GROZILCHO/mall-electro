@@ -15,7 +15,11 @@ import HvpIndustry from "./pages/industries/HvpIndustry";
 import ZarnoprerabotkaIndustry from "./pages/industries/ZarnoprerabotkaIndustry";
 import MelnitsiIndustry from "./pages/industries/MelnitsiIndustry";
 import AgroIndustry from "./pages/industries/AgroIndustry";
+import LogistikaIndustry from "./pages/industries/LogistikaIndustry";
 import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/legal/PrivacyPolicy";
+import CookiePolicy from "./pages/legal/CookiePolicy";
+import TermsOfUse from "./pages/legal/TermsOfUse";
 import NotFound from "./pages/NotFound";
 
 interface AppProps {
@@ -39,7 +43,11 @@ const AppRoutes = () => (
       <Route path="/bg/industrii/zarnoprerabotka" element={<ZarnoprerabotkaIndustry />} />
       <Route path="/bg/industrii/melnitsi" element={<MelnitsiIndustry />} />
       <Route path="/bg/industrii/agro" element={<AgroIndustry />} />
+      <Route path="/bg/industrii/logistika" element={<LogistikaIndustry />} />
       <Route path="/bg/kontakti" element={<Contact />} />
+      <Route path="/bg/politika-za-poveritelnost" element={<PrivacyPolicy />} />
+      <Route path="/bg/politika-za-biskvitki" element={<CookiePolicy />} />
+      <Route path="/bg/usloviya-za-polzvane" element={<TermsOfUse />} />
       <Route path="/" element={<Navigate to="/bg/" replace />} />
       <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />
       <Route path="/about" element={<Navigate to="/bg/za-nas" replace />} />
