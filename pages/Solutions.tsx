@@ -50,6 +50,7 @@ const solutionScenarios = [
     description:
       "Диагностика, поддръжка, подобрения и разширяване на съществуващи индустриални електро системи.",
     icon: "Wrench",
+    href: "/bg/reshenia/serviz-i-razshiryavane",
   },
 ] satisfies Array<{
   title: string;
