@@ -63,7 +63,7 @@ const IndustriesPremium: React.FC = () => {
 
             {/* PANEL B - Grain Processing */}
             <FadeIn delay={150}>
-              <div id="industry-grain" className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 group h-full flex flex-col md:flex-row-reverse">
+              <Link to="/bg/industrii/zarnoprerabotka" id="industry-grain" className="bg-white rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-1 transition-all duration-300 group h-full flex flex-col md:flex-row-reverse">
                  {/* Image */}
                  <div className="w-full md:w-2/5 h-64 md:h-auto relative overflow-hidden">
                               <img 
@@ -93,7 +93,7 @@ const IndustriesPremium: React.FC = () => {
                         ))}
                     </ul>
                  </div>
-              </div>
+              </Link>
             </FadeIn>
 
           </div>

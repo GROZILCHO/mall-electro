@@ -6,6 +6,7 @@ import { automationFaqItems } from "../data/automationFaq";
 import { lowVoltageFaqItems } from "../data/lowVoltageFaq";
 import { maintenanceServiceFaqItems } from "../data/maintenanceServiceFaq";
 import { hvpIndustryFaqItems } from "../data/hvpIndustryFaq";
+import { zarnoprerabotkaIndustryFaqItems } from "../data/zarnoprerabotkaIndustryFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -25,6 +26,7 @@ export type SeoPageKey =
   | "maintenanceService"
   | "industries"
   | "industryHvp"
+  | "industryZarnoprerabotka"
   | "contact"
   | "notFound";
 
@@ -126,6 +128,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за ХВП, производствени линии и хранително-вкусови обекти.",
     ogImage: "/images/industries/stainless-steel-production-line_2.png",
+  },
+  {
+    key: "industryZarnoprerabotka",
+    path: "/bg/industrii/zarnoprerabotka",
+    title: "Електро системи за зърнопреработка и силозни бази | Mall Electro",
+    description:
+      "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за зърнопреработвателни предприятия и силозни комплекси.",
+    ogImage: "/images/industries/golden-hour-grain-complex.png",
   },
   {
     key: "contact",
@@ -308,6 +318,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "industryHvp") {
     schemas.push(createFAQPageSchema(hvpIndustryFaqItems));
+  }
+
+  if (route.key === "industryZarnoprerabotka") {
+    schemas.push(createFAQPageSchema(zarnoprerabotkaIndustryFaqItems));
   }
 
   return schemas;

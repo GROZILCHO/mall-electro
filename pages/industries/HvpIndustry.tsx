@@ -130,6 +130,7 @@ export default function HvpIndustry() {
           {
             title: "Зърнопреработка",
             text: "Силози, сушилни, транспортни линии и управление на процесни точки.",
+            href: "/bg/industrii/zarnoprerabotka",
           },
           {
             title: "Мелници",
