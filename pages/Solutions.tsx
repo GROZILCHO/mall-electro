@@ -30,10 +30,11 @@ const solutionScenarios = [
     icon: "Settings",
   },
   {
-    title: "Табло и автоматизация за линия",
+    title: "Табла и автоматизация за технологични линии",
     description:
       "Комбиниране на електрически табла, управление, сензори и автоматизация за машини и технологични линии.",
     icon: "Cpu",
+    href: "/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii",
   },
   {
     title: "Кабелна инфраструктура за база",
@@ -51,6 +52,7 @@ const solutionScenarios = [
   title: string;
   description: string;
   icon: keyof typeof Icons;
+  href?: string;
 }>;
 
 const serviceLinks: LinkedItem[] = [
@@ -217,25 +219,44 @@ const Solutions: React.FC = () => {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {solutionScenarios.map((scenario, index) => {
               const Icon = Icons[scenario.icon];
+              const scenarioContent = (
+                <>
+                  <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                      Solution {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} />
+                    </div>
+                  </div>
+                  <h3 className="mb-4 text-xl font-bold text-[#1C2A39] transition-colors duration-300 group-hover:text-brand-blue">
+                    {scenario.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[#56677A]">
+                    {scenario.description}
+                  </p>
+                  {scenario.href && (
+                    <div className="mt-6 border-t border-dashed border-gray-100 pt-5 text-sm font-medium text-brand-blue">
+                      <span className="inline-flex items-center">
+                        Виж решението <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                      </span>
+                    </div>
+                  )}
+                </>
+              );
 
               return (
                 <FadeIn key={scenario.title} delay={index * 80}>
-                  <Card className="h-full">
-                    <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
-                      <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                        Solution {String(index + 1).padStart(2, "0")}
-                      </span>
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue">
-                        <Icon className="h-6 w-6" strokeWidth={1.75} />
-                      </div>
-                    </div>
-                    <h3 className="mb-4 text-xl font-bold text-[#1C2A39]">
-                      {scenario.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-[#56677A]">
-                      {scenario.description}
-                    </p>
-                  </Card>
+                  {scenario.href ? (
+                    <Link
+                      to={scenario.href}
+                      className="group block h-full rounded-xl border border-blue-100 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl"
+                    >
+                      {scenarioContent}
+                    </Link>
+                  ) : (
+                    <Card className="h-full">{scenarioContent}</Card>
+                  )}
                 </FadeIn>
               );
             })}
