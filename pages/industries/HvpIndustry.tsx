@@ -135,6 +135,7 @@ export default function HvpIndustry() {
           {
             title: "Мелници",
             text: "Процесни линии, дозиране, смесване и управление на оборудване.",
+            href: "/bg/industrii/melnitsi",
           },
           {
             title: "Логистика",
