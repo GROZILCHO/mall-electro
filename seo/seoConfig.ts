@@ -5,6 +5,7 @@ import { industrialElectricalInstallationsFaqItems } from "../data/industrialEle
 import { automationFaqItems } from "../data/automationFaq";
 import { lowVoltageFaqItems } from "../data/lowVoltageFaq";
 import { maintenanceServiceFaqItems } from "../data/maintenanceServiceFaq";
+import { hvpIndustryFaqItems } from "../data/hvpIndustryFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -23,6 +24,7 @@ export type SeoPageKey =
   | "lowVoltage"
   | "maintenanceService"
   | "industries"
+  | "industryHvp"
   | "contact"
   | "notFound";
 
@@ -116,6 +118,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Mall Electro изгражда надеждни електро системи, трасета и автоматизация за ХВП, зърнопреработка, мелници, агро, логистика и производствени предприятия.",
     ogImage: "/images/industries/hero_industriy.png",
+  },
+  {
+    key: "industryHvp",
+    path: "/bg/industrii/hvp",
+    title: "Електро системи за ХВП и хранително-вкусова промишленост | Mall Electro",
+    description:
+      "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за ХВП, производствени линии и хранително-вкусови обекти.",
+    ogImage: "/images/industries/stainless-steel-production-line_2.png",
   },
   {
     key: "contact",
@@ -294,6 +304,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "maintenanceService") {
     schemas.push(createFAQPageSchema(maintenanceServiceFaqItems));
+  }
+
+  if (route.key === "industryHvp") {
+    schemas.push(createFAQPageSchema(hvpIndustryFaqItems));
   }
 
   return schemas;
