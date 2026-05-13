@@ -88,7 +88,7 @@ const IndustriesPremium: React.FC = () => {
                       Системи за сушене, транспорт, окабеляване и автоматизация на силозни стопанства и зърнопреработвателни бази.
                     </p>
                     <ul className="space-y-2 mt-auto md:items-end md:flex md:flex-col">
-                        {['Електроинсталации за силози и транспортни линии', 'Захранване и управление на сушилни и вентилатори', '•	Автоматизация и мониторинг на нива и потоци'].map((item, i) => (
+                        {['Електроинсталации за силози и транспортни линии', 'Захранване и управление на сушилни и вентилатори', 'Автоматизация и мониторинг на нива и потоци'].map((item, i) => (
                            <li key={i} className="flex items-center text-xs font-bold text-gray-500 uppercase tracking-wide md:flex-row-reverse">
                               <div className="w-1.5 h-1.5 bg-[#FF6D2E] rounded-full mr-3 md:mr-0 md:ml-3"></div>
                               {item}
