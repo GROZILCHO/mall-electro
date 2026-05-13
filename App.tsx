@@ -14,6 +14,7 @@ import Industries from "./pages/Industries";
 import HvpIndustry from "./pages/industries/HvpIndustry";
 import ZarnoprerabotkaIndustry from "./pages/industries/ZarnoprerabotkaIndustry";
 import MelnitsiIndustry from "./pages/industries/MelnitsiIndustry";
+import AgroIndustry from "./pages/industries/AgroIndustry";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 
@@ -37,6 +38,7 @@ const AppRoutes = () => (
       <Route path="/bg/industrii/hvp" element={<HvpIndustry />} />
       <Route path="/bg/industrii/zarnoprerabotka" element={<ZarnoprerabotkaIndustry />} />
       <Route path="/bg/industrii/melnitsi" element={<MelnitsiIndustry />} />
+      <Route path="/bg/industrii/agro" element={<AgroIndustry />} />
       <Route path="/bg/kontakti" element={<Contact />} />
       <Route path="/" element={<Navigate to="/bg/" replace />} />
       <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />

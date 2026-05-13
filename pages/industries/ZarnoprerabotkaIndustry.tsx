@@ -141,6 +141,7 @@ export default function ZarnoprerabotkaIndustry() {
           {
             title: "Агро",
             text: "Складови бази, помпени системи, осветление, силови линии и ниско напрежение.",
+            href: "/bg/industrii/agro",
           },
         ],
       }}

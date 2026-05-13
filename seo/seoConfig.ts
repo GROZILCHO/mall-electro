@@ -8,6 +8,7 @@ import { maintenanceServiceFaqItems } from "../data/maintenanceServiceFaq";
 import { hvpIndustryFaqItems } from "../data/hvpIndustryFaq";
 import { zarnoprerabotkaIndustryFaqItems } from "../data/zarnoprerabotkaIndustryFaq";
 import { melnitsiIndustryFaqItems } from "../data/melnitsiIndustryFaq";
+import { agroIndustryFaqItems } from "../data/agroIndustryFaq";
 import type { FAQItem } from "../data/faqTypes";
 
 export const SITE_URL = "https://mallelectro.com";
@@ -29,6 +30,7 @@ export type SeoPageKey =
   | "industryHvp"
   | "industryZarnoprerabotka"
   | "industryMelnitsi"
+  | "industryAgro"
   | "contact"
   | "notFound";
 
@@ -146,6 +148,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за мелници, брашномелни линии и производствени зони.",
     ogImage: "/images/industries/industrial-flour-milling-facility.png",
+  },
+  {
+    key: "industryAgro",
+    path: "/bg/industrii/agro",
+    title: "Електро системи за агро обекти и земеделска инфраструктура | Mall Electro",
+    description:
+      "Електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервиз за агро обекти, стопанства и складови бази.",
+    ogImage: "/images/industries/golden-farmland-aerial_2.png",
   },
   {
     key: "contact",
@@ -336,6 +346,10 @@ export const getSchemasForRoute = (route: SeoRoute) => {
 
   if (route.key === "industryMelnitsi") {
     schemas.push(createFAQPageSchema(melnitsiIndustryFaqItems));
+  }
+
+  if (route.key === "industryAgro") {
+    schemas.push(createFAQPageSchema(agroIndustryFaqItems));
   }
 
   return schemas;
