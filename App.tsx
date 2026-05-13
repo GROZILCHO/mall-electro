@@ -4,6 +4,7 @@ import Layout from "./components/layout/Layout";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Services from "./pages/Services";
+import Solutions from "./pages/Solutions";
 import ElectricPanels from "./pages/services/ElectricPanels";
 import CableRoutes from "./pages/services/CableRoutes";
 import IndustrialElectricalInstallations from "./pages/services/IndustrialElectricalInstallations";
@@ -32,6 +33,7 @@ const AppRoutes = () => (
     <Routes>
       <Route path="/bg" element={<Home />} />
       <Route path="/bg/uslugi" element={<Services />} />
+      <Route path="/bg/reshenia" element={<Solutions />} />
       <Route path="/bg/uslugi/elektricheski-tabla" element={<ElectricPanels />} />
       <Route path="/bg/uslugi/kabelni-traseta" element={<CableRoutes />} />
       <Route path="/bg/uslugi/industrialni-elektroinstalatsii" element={<IndustrialElectricalInstallations />} />

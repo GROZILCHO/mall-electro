@@ -22,6 +22,7 @@ export type SeoPageKey =
   | "home"
   | "about"
   | "services"
+  | "solutions"
   | "electricPanels"
   | "cableRoutes"
   | "industrialElectricalInstallations"
@@ -75,6 +76,14 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Индустриални електро услуги от Mall Electro: електрически табла, кабелни трасета, електроинсталации, автоматизация, ниско напрежение, поддръжка и сервиз.",
     ogImage: "/images/services/hero-services.png",
+  },
+  {
+    key: "solutions",
+    path: "/bg/reshenia",
+    title: "Решения за индустриални електро системи | Mall Electro",
+    description:
+      "Инженерни решения за нови обекти, модернизация, табла, автоматизация, кабелна инфраструктура, сервиз и разширяване на индустриални системи.",
+    ogImage: "/images/home/hero-home.png",
   },
   {
     key: "electricPanels",
