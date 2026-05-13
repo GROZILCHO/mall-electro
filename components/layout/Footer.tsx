@@ -25,9 +25,9 @@ const Footer: React.FC = () => {
       <div className="container mx-auto max-w-screen-xl px-6 lg:px-12">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6">
-            <h4 className="font-sans text-2xl font-bold tracking-tight text-white">
+            <p className="font-sans text-2xl font-bold tracking-tight text-white">
               Mall Electro
-            </h4>
+            </p>
             <p className="text-sm leading-relaxed text-white/70">
               Вашият надежден партньор за индустриални електро решения.
               Качество, сигурност и професионализъм.
@@ -40,9 +40,9 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h5 className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
+            <p className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
               Меню
-            </h5>
+            </p>
             <ul className="space-y-3">
               <li>
                 <a href="/bg/" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
@@ -73,9 +73,9 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h5 className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
+            <p className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
               Услуги
-            </h5>
+            </p>
             <ul className="space-y-3 text-sm text-white/90">
               {serviceLinks.map((service) => (
                 <li key={service.href}>
@@ -88,9 +88,9 @@ const Footer: React.FC = () => {
           </div>
 
           <div>
-            <h5 className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
+            <p className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
               Контакти
-            </h5>
+            </p>
             <ul className="space-y-4 text-sm text-white/90">
               <li className="flex items-start">
                 <Icons.MapPin className="mr-3 h-5 w-5 shrink-0 text-[#4A90E2]" />

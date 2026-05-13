@@ -6,6 +6,7 @@ export interface ServiceItem {
   title: string;
   description: string;
   icon: keyof typeof Icons;
+  href?: string;
 }
 
 export interface IndustryItem {

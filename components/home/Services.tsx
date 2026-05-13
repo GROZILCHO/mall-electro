@@ -10,37 +10,43 @@ const servicesData: ServiceItem[] = [
     id: 1,
     title: "Електро табла и командни шкафове",
     description: "Проектиране и изработка на табла по спецификация — от малки разпределителни шкафове до комплексни индустриални системи.",
-    icon: "LayoutDashboard"
+    icon: "LayoutDashboard",
+    href: "/bg/uslugi/elektricheski-tabla"
   },
   {
     id: 2,
     title: "Кабелни трасета",
     description: "Монтаж на кабелни трасета и скари за натоварени промишлени среди. Чисто, подредено и безопасно окабеляване.",
-    icon: "Factory"
+    icon: "Factory",
+    href: "/bg/uslugi/kabelni-traseta"
   },
   {
     id: 3,
     title: "Ниско напрежение и окабеляване",
     description: "Полагане на кабели, връзки между машини, табла и линии. Бърза работа с минимално прекъсване на производството.",
-    icon: "Zap"
+    icon: "Zap",
+    href: "/bg/uslugi/nisko-naprezhenie"
   },
   {
     id: 4,
     title: "Монтаж на височина с монтажни вишки",
     description: "Височинни монтажи за електроинсталации. Безопасност и устойчивост при работа на височина.",
-    icon: "HardHat"
+    icon: "HardHat",
+    href: "/bg/uslugi/industrialni-elektroinstalatsii"
   },
   {
     id: 5,
     title: "Индустриални електро услуги",
     description: "Проектиране, реализация и пуск на електро системи според нуждите на клиента.",
-    icon: "PenTool"
+    icon: "PenTool",
+    href: "/bg/uslugi/avtomatizatsia"
   },
   {
     id: 6,
     title: "Монтажни бригади и поддръжка",
     description: "Опитни екипи за монтаж, ремонт и поддръжка. Бърза реакция и професионален сервиз.",
-    icon: "Users"
+    icon: "Users",
+    href: "/bg/uslugi/poddrazhka-i-serviz"
   }
 ];
 
@@ -73,6 +79,7 @@ const Services: React.FC = () => {
               title={service.title}
               description={service.description}
               icon={service.icon}
+              href={service.href}
               />
             </FadeIn>
           ))}

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Icons } from "../ui/LucideIcons";
 
 interface ServiceTileProps {
@@ -6,29 +7,30 @@ interface ServiceTileProps {
   title: string;
   description: string;
   icon: keyof typeof Icons;
+  href?: string;
 }
 
 const ServiceTile: React.FC<ServiceTileProps> = ({
   index,
   title,
   description,
-  icon
+  icon,
+  href
 }) => {
   const IconComponent = Icons[icon];
+  const className = `
+    p-8 group relative h-full bg-white
+    border border-gray-200
+    shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]
+    hover:shadow-[0_20px_40px_-10px_rgba(74,144,226,0.15)]
+    hover:-translate-y-1
+    transition-all duration-300 overflow-hidden
+    flex flex-col
+    justify-between
+  `;
 
-  return (
-    <div
-      className="
-        p-8 group relative h-full bg-white
-        border border-gray-200
-        shadow-[0_4px_20px_-10px_rgba(0,0,0,0.05)]
-        hover:shadow-[0_20px_40px_-10px_rgba(74,144,226,0.15)]
-        hover:-translate-y-1
-        transition-all duration-300 overflow-hidden
-        flex flex-col
-        justify-between
-      "
-    >
+  const content = (
+    <>
       {/* Tech Corner Marker */}
       <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-gray-100 group-hover:border-[#4A90E2] transition-colors duration-300"></div>
       <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-gray-100 group-hover:border-brand-orange transition-colors duration-300"></div>
@@ -89,6 +91,20 @@ const ServiceTile: React.FC<ServiceTileProps> = ({
           group-hover:opacity-100 transition-opacity duration-300
         "
       ></div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link to={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className={className}>
+      {content}
     </div>
   );
 };
