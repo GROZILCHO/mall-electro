@@ -24,11 +24,23 @@ const serviceLinks: NavItem[] = [
   { label: "Всички услуги", href: "/bg/uslugi" },
 ];
 
+const industryLinks: NavItem[] = [
+  { label: "ХВП", href: "/bg/industrii/hvp" },
+  { label: "Зърнопреработка", href: "/bg/industrii/zarnoprerabotka" },
+  { label: "Мелници", href: "/bg/industrii/melnitsi" },
+  { label: "Агро", href: "/bg/industrii/agro" },
+  { label: "Логистика", href: "/bg/industrii/logistika" },
+  { label: "Производствени предприятия", href: "/bg/industrii/proizvodstveni-predpriyatiya" },
+  { label: "Всички индустрии", href: "/bg/industrii" },
+];
+
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isIndustriesOpen, setIsIndustriesOpen] = useState(false);
   const servicesDropdownRef = useRef<HTMLDivElement>(null);
+  const industriesDropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -44,11 +56,19 @@ export default function Navbar() {
       ) {
         setIsServicesOpen(false);
       }
+
+      if (
+        industriesDropdownRef.current &&
+        !industriesDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsIndustriesOpen(false);
+      }
     };
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         setIsServicesOpen(false);
+        setIsIndustriesOpen(false);
       }
     };
 
@@ -61,6 +81,19 @@ export default function Navbar() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileMenuOpen]);
+
   const baseClasses =
     "fixed top-0 left-0 w-full z-50 transition-all duration-300";
 
@@ -69,9 +102,15 @@ export default function Navbar() {
     : "bg-[#1C2A39]/85 py-5";
 
   const closeServicesDropdown = () => setIsServicesOpen(false);
+  const closeIndustriesDropdown = () => setIsIndustriesOpen(false);
 
   const handleServiceLinkClick = () => {
     closeServicesDropdown();
+    setMobileMenuOpen(false);
+  };
+
+  const handleIndustryLinkClick = () => {
+    closeIndustriesDropdown();
     setMobileMenuOpen(false);
   };
 
@@ -101,7 +140,10 @@ export default function Navbar() {
                   aria-haspopup="menu"
                   aria-expanded={isServicesOpen}
                   aria-controls="services-dropdown-menu"
-                  onClick={() => setIsServicesOpen((open) => !open)}
+                  onClick={() => {
+                    setIsServicesOpen((open) => !open);
+                    setIsIndustriesOpen(false);
+                  }}
                 >
                   {item.label}
                   <Icons.ChevronRight
@@ -140,6 +182,62 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
+            ) : item.href === "/bg/industrii" ? (
+              <div
+                key={item.label}
+                ref={industriesDropdownRef}
+                className="relative"
+              >
+                <button
+                  type="button"
+                  className={`flex items-center gap-1 font-medium transition-colors hover:text-brand-orange ${
+                    isIndustriesOpen ? "text-brand-orange" : "text-white/90"
+                  }`}
+                  aria-haspopup="menu"
+                  aria-expanded={isIndustriesOpen}
+                  aria-controls="industries-dropdown-menu"
+                  onClick={() => {
+                    setIsIndustriesOpen((open) => !open);
+                    setIsServicesOpen(false);
+                  }}
+                >
+                  {item.label}
+                  <Icons.ChevronRight
+                    className={`h-4 w-4 transition-transform duration-200 ${
+                      isIndustriesOpen ? "-rotate-90" : "rotate-90"
+                    }`}
+                  />
+                </button>
+
+                <div
+                  id="industries-dropdown-menu"
+                  className={`absolute left-0 top-full z-50 w-80 pt-4 transition-all duration-200 ${
+                    isIndustriesOpen
+                      ? "visible translate-y-0 opacity-100"
+                      : "invisible translate-y-2 opacity-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="overflow-hidden border border-white/10 bg-[#1C2A39]/95 shadow-lg">
+                    <ul className="py-2">
+                      {industryLinks.map((industry, index) => (
+                        <li key={industry.href}>
+                          <Link
+                            to={industry.href}
+                            onClick={handleIndustryLinkClick}
+                            className={`block px-5 py-3 text-sm font-medium text-white/90 transition-colors hover:bg-brand-blue/15 hover:text-white focus:bg-brand-blue/15 focus:text-white ${
+                              index === industryLinks.length - 1
+                                ? "mt-2 border-t border-white/10 text-brand-orange hover:text-brand-orange focus:text-brand-orange"
+                                : ""
+                            }`}
+                          >
+                            {industry.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
             ) : (
               <Link
                 key={item.label}
@@ -166,8 +264,8 @@ export default function Navbar() {
       </div>
 
       {mobileMenuOpen && (
-        <div className="border-t border-white/10 bg-[#1C2A39] lg:hidden">
-          <div className="container mx-auto flex flex-col gap-2 px-6 py-4">
+        <div className="max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#1C2A39] lg:hidden">
+          <div className="container mx-auto flex flex-col gap-2 px-6 py-4 pb-8">
             {navItems.map((item) =>
               item.href === "/bg/uslugi" ? (
                 <div key={item.label}>
@@ -183,6 +281,24 @@ export default function Navbar() {
                         className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
                       >
                         {service.label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              ) : item.href === "/bg/industrii" ? (
+                <div key={item.label}>
+                  <span className="block py-2 font-medium text-white/90">
+                    {item.label}
+                  </span>
+                  <div className="ml-4 border-l border-white/10 pl-4">
+                    {industryLinks.map((industry) => (
+                      <Link
+                        key={industry.href}
+                        to={industry.href}
+                        onClick={handleIndustryLinkClick}
+                        className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
+                      >
+                        {industry.label}
                       </Link>
                     ))}
                   </div>
