@@ -11,8 +11,8 @@ const ElectricalSystemModernizationSolution: React.FC = () => {
         title: "Модернизация на индустриална електро система",
         subtitle:
           "Оценяваме и модернизираме съществуващи индустриални електро системи - електрически табла, кабелни трасета, захранвания, ниско напрежение, автоматизация и контролни точки, с фокус върху безопасност, надеждност и бъдещо разширяване.",
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Модернизация и проверка на индустриална електро система.",
+        image: "/images/engineering/engineering-electrical-system-modernization-technical-room-01.png",
+        imageAlt: "Модернизация на съществуваща индустриална електро система",
         primaryCtaText: "Обсъдете модернизация",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",

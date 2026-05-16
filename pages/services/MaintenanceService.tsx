@@ -11,8 +11,8 @@ const MaintenanceService: React.FC = () => {
         subtitle:
           "Осигуряваме поддръжка, диагностика и сервизни дейности за електрически табла, кабелни трасета, ниско напрежение, автоматизация и индустриални електроинсталации. Целта е по-надеждна работа, по-бърза реакция и по-малък риск от непланирани прекъсвания.",
         badgeText: "Поддръжка и сервиз",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Поддръжка и сервиз на индустриални електро системи.",
+        image: "/images/engineering/engineering-maintenance-diagnostics-control-cabinet-01.png",
+        imageAlt: "Инженерна диагностика на електрическо табло в индустриална среда",
         primaryCtaText: "Заявете сервизна проверка",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте всички услуги",

@@ -11,8 +11,8 @@ const PanelAutomationLineSolution: React.FC = () => {
         title: "Табла и автоматизация за технологични линии",
         subtitle:
           "Комбинираме електрически табла, управление, сензори, кабелни трасета, ниско напрежение и пускови дейности в цялостно решение за машини, технологични линии и индустриални процеси.",
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Електрически табла, управление и автоматизация за технологични линии.",
+        image: "/images/automation/automation-control-panel-technological-line-01.png",
+        imageAlt: "Табла и автоматизация за технологична производствена линия",
         primaryCtaText: "Обсъдете проекта",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",

@@ -11,8 +11,8 @@ const NewProductionSiteSolution: React.FC = () => {
         title: "Електро инфраструктура за нов производствен обект",
         subtitle:
           "Планираме и изграждаме електро инфраструктура за нови производствени, складови и технологични обекти - от електрически табла и кабелни трасета до ниско напрежение, автоматизация, пуск и последваща поддръжка.",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Инженерен преглед на електро инфраструктура за нов производствен обект.",
+        image: "/images/industrial/industrial-new-production-site-electrical-infrastructure-01.png",
+        imageAlt: "Нов производствен обект с планирана електро инфраструктура",
         primaryCtaText: "Обсъдете проекта",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",

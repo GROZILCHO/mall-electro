@@ -11,8 +11,8 @@ const CableRoutes: React.FC = () => {
         subtitle:
           "Изграждаме кабелни трасета, кабелни скари и индустриално окабеляване за производствени обекти, складови бази и технологични линии. Целта е подредена, безопасна и лесна за поддръжка електро инфраструктура.",
         badgeText: "Кабелни трасета",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Кабелни трасета и индустриално окабеляване в производствена среда.",
+        image: "/images/cable-routing/cable-routing-overhead-trays-industrial-hall-02.png",
+        imageAlt: "Кабелни трасета и кабелни скари в индустриално хале",
         primaryCtaText: "Обсъдете кабелно трасе",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте всички услуги",

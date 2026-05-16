@@ -11,8 +11,8 @@ const LowVoltage: React.FC = () => {
         subtitle:
           "Изпълняваме системи ниско напрежение, захранващи линии и електро връзки за машини, табла, производствени участъци и технологични процеси. Целта е безопасна, подредена и надеждна електро инфраструктура за ежедневна работа.",
         badgeText: "Ниско напрежение",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Системи ниско напрежение и електро връзки в индустриален обект.",
+        image: "/images/electrical-panels/electrical-panels-low-voltage-distribution-technical-room-01.png",
+        imageAlt: "Нисковолтова електро инфраструктура и разпределително табло",
         primaryCtaText: "Обсъдете ниско напрежение",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте всички услуги",

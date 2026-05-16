@@ -170,8 +170,8 @@ const Solutions: React.FC = () => {
         secondaryCtaHref="/bg/uslugi"
         secondaryCtaVariant="dark"
         secondaryCtaIcon="Factory"
-        heroImage="/images/Premium-Electrical-Panel-Display.png"
-        heroImageAlt="Инженерен проект за индустриална електро система."
+        heroImage="/images/industrial/industrial-electrical-project-planning-production-hall-01.png"
+        heroImageAlt="Индустриален електро проект с табла, трасета и техническо планиране"
       />
 
       <section className="relative overflow-hidden bg-white py-24 lg:py-32">

@@ -11,8 +11,8 @@ const IndustrialElectricalInstallations: React.FC = () => {
         subtitle:
           "Изпълняваме индустриални електроинсталации за производствени линии, складови бази, машини и технологични процеси. Работим с ясен обхват, подредено окабеляване, защити и готовност за бъдеща поддръжка.",
         badgeText: "Индустриални електроинсталации",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Индустриални електроинсталации в производствен обект.",
+        image: "/images/industrial/industrial-electrical-installation-production-zone-02.png",
+        imageAlt: "Индустриална електроинсталация в производствен обект",
         primaryCtaText: "Обсъдете електроинсталация",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте всички услуги",

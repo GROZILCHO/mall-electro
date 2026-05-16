@@ -11,8 +11,8 @@ const HeightInstallationSolution: React.FC = () => {
         title: "Електромонтаж на височина с монтажна вишка",
         subtitle:
           "Изпълняваме електромонтажни дейности на височина в индустриални обекти, халета, складови бази и производствени зони - кабелни трасета, окабеляване, захранвания, осветление, контролни точки и сервизни дейности.",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Електромонтаж на височина в индустриално хале.",
+        image: "/images/industrial/industrial-electrical-installation-aerial-lift-warehouse-01.png",
+        imageAlt: "Електромонтаж на височина с монтажна вишка в индустриално хале",
         primaryCtaText: "Обсъдете обекта",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",

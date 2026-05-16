@@ -11,8 +11,8 @@ const CableInfrastructureBaseSolution: React.FC = () => {
         title: "Кабелна инфраструктура за индустриална база",
         subtitle:
           "Организираме кабелни трасета, захранвания, ниско напрежение и подредено окабеляване за индустриални бази, складове, производствени зони и технически помещения, с фокус върху безопасност, достъп за поддръжка и бъдещо разширяване.",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Кабелна инфраструктура и електро трасета за индустриална база.",
+        image: "/images/cable-routing/cable-routing-industrial-base-technical-corridor-01.png",
+        imageAlt: "Кабелна инфраструктура за индустриална база",
         primaryCtaText: "Обсъдете трасетата",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",

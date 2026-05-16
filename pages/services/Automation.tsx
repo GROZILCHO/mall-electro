@@ -11,8 +11,8 @@ const Automation: React.FC = () => {
         subtitle:
           "Изграждаме решения за автоматизация, управление и контрол на производствени процеси, машини и технологични линии. Свързваме електрически табла, сензори, задвижвания и контролни системи в ясна и поддържаема структура.",
         badgeText: "Автоматизация",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Автоматизация, управление и контрол на индустриални процеси.",
+        image: "/images/automation/automation-plc-control-system-production-line-01.png",
+        imageAlt: "PLC автоматизация и контролно табло за индустриален процес",
         primaryCtaText: "Обсъдете автоматизация",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте всички услуги",

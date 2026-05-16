@@ -11,8 +11,8 @@ const ElectricPanels: React.FC = () => {
         subtitle:
           "Проектираме, изработваме, окабеляваме и тестваме електрически табла за производствени линии, машини, ниско напрежение и автоматизация. Подходът е практичен: ясно решение, подредено изпълнение и готовност за пуск.",
         badgeText: "Електрически табла",
-        image: "/images/services/hero-services.png",
-        imageAlt: "Електрическо табло и команден шкаф в индустриална среда.",
+        image: "/images/electrical-panels/electrical-panels-control-cabinet-technical-room-01.png",
+        imageAlt: "Електрическо табло с подредено окабеляване и индустриални компоненти",
         primaryCtaText: "Обсъдете вашето табло",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте всички услуги",

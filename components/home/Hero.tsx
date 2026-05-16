@@ -46,18 +46,25 @@ const Hero: React.FC = () => {
   return (
     <section className="relative flex min-h-[95vh] w-full items-center overflow-hidden bg-[#0a1520]">
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-full w-full scale-105 object-cover opacity-30 grayscale mix-blend-luminosity"
-        >
+        <picture>
           <source
-            src="https://assets.mixkit.co/videos/preview/mixkit-industrial-metal-factory-1236-large.mp4"
-            type="video/mp4"
+            type="image/avif"
+            srcSet="/optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-480.avif 480w, /optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-768.avif 768w, /optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-1024.avif 1024w, /optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-1600.avif 1600w"
+            sizes="100vw"
           />
-        </video>
+          <source
+            type="image/webp"
+            srcSet="/optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-480.webp 480w, /optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-768.webp 768w, /optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-1024.webp 1024w, /optimized/industrial-electrical-infrastructure-homepage-hero-wide-01-1600.webp 1600w"
+            sizes="100vw"
+          />
+          <img
+            src="/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png"
+            alt="Индустриална електро инфраструктура в производствена среда"
+            fetchPriority="high"
+            decoding="async"
+            className="h-full w-full scale-105 object-cover opacity-30 grayscale mix-blend-luminosity"
+          />
+        </picture>
       </div>
 
       <div className="absolute inset-0 z-0 bg-gradient-to-r from-[#0a1520] via-[#0a1520]/90 to-[#0a1520]/60" />

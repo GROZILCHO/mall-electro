@@ -116,8 +116,8 @@ const Services: React.FC = () => {
         secondaryCtaText="Виж индустриите"
         secondaryCtaHref="/bg/industrii"
         secondaryCtaVariant="dark"
-        heroImage="/images/services/hero-services.png"
-        heroImageAlt="Инженер преглежда електрическо табло в индустриална среда."
+        heroImage="/images/industrial/industrial-electrical-workshop-technical-zone-01.png"
+        heroImageAlt="Индустриална електро работилница с табла и кабелна инфраструктура"
       />
 
       <section className="relative overflow-hidden bg-white py-24 lg:py-32">

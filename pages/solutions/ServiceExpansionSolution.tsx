@@ -11,8 +11,8 @@ const ServiceExpansionSolution: React.FC = () => {
         title: "Сервиз и разширяване на индустриални електро системи",
         subtitle:
           "Извършваме диагностика, поддръжка, подобрения и разширяване на съществуващи индустриални електро системи - електрически табла, кабелни трасета, ниско напрежение, автоматизация и контролни точки.",
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Сервизна диагностика и разширяване на индустриална електро система.",
+        image: "/images/engineering/engineering-service-expansion-electrical-system-01.png",
+        imageAlt: "Сервиз и разширяване на индустриална електро система",
         primaryCtaText: "Заявете сервизен оглед",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",
