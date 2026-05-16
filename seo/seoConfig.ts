@@ -71,7 +71,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Mall Electro - индустриални електро системи и монтажни услуги",
     description:
       "Mall Electro проектира, монтира и поддържа електрически табла, кабелни трасета, ниско напрежение и индустриални електро системи за България и Румъния.",
-    ogImage: "/images/home/hero-home.png",
+    ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
   },
   {
     key: "about",
@@ -87,7 +87,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Електро услуги, електрически табла и индустриални инсталации",
     description:
       "Индустриални електро услуги от Mall Electro: електрически табла, кабелни трасета, електроинсталации, автоматизация, ниско напрежение, поддръжка и сервиз.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/industrial/industrial-electrical-workshop-technical-zone-01.png",
   },
   {
     key: "solutions",
@@ -95,7 +95,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Решения за индустриални електро системи | Mall Electro",
     description:
       "Инженерни решения за нови обекти, модернизация, табла, автоматизация, кабелна инфраструктура, сервиз и разширяване на индустриални системи.",
-    ogImage: "/images/home/hero-home.png",
+    ogImage: "/images/industrial/industrial-electrical-project-planning-production-hall-01.png",
   },
   {
     key: "solutionNewProductionSite",
@@ -103,7 +103,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Електро инфраструктура за нов производствен обект | Mall Electro",
     description:
       "Решение за електрически табла, кабелни трасета, ниско напрежение, автоматизация, пуск и поддръжка при нови производствени обекти.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/industrial/industrial-new-production-site-electrical-infrastructure-01.png",
   },
   {
     key: "solutionModernization",
@@ -111,7 +111,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Модернизация на индустриална електро система | Mall Electro",
     description:
       "Решение за оценка, подмяна, разширяване и модернизация на електрически табла, трасета, захранвания, автоматизация и контролни точки.",
-    ogImage: "/images/Premium-Electrical-Panel-Display.png",
+    ogImage: "/images/engineering/engineering-electrical-system-modernization-technical-room-01.png",
   },
   {
     key: "solutionCableInfrastructureBase",
@@ -119,7 +119,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Кабелна инфраструктура за индустриална база | Mall Electro",
     description:
       "Решение за кабелни трасета, ниско напрежение, захранвания, окабеляване и поддръжка за индустриални бази, складове и производствени зони.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/cable-routing/cable-routing-industrial-base-technical-corridor-01.png",
   },
   {
     key: "solutionServiceExpansion",
@@ -127,7 +127,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Сервиз и разширяване на индустриални електро системи | Mall Electro",
     description:
       "Решение за диагностика, поддръжка, подобрения, разширяване и сервиз на електрически табла, трасета, автоматизация и ниско напрежение.",
-    ogImage: "/images/Premium-Electrical-Panel-Display.png",
+    ogImage: "/images/engineering/engineering-service-expansion-electrical-system-01.png",
   },
   {
     key: "solutionHeightInstallation",
@@ -135,7 +135,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Електромонтаж на височина с монтажна вишка | Mall Electro",
     description:
       "Решение за електромонтаж на височина, кабелни трасета, захранвания, окабеляване и сервизни дейности в индустриални обекти, халета и складови бази.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/industrial/industrial-electrical-installation-aerial-lift-warehouse-01.png",
   },
   {
     key: "solutionPanelAutomationLine",
@@ -143,7 +143,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Табла и автоматизация за технологични линии | Mall Electro",
     description:
       "Решение за електрически табла, управление, автоматизация, кабелни трасета и пуск на машини и технологични линии.",
-    ogImage: "/images/Premium-Electrical-Panel-Display.png",
+    ogImage: "/images/automation/automation-control-panel-technological-line-01.png",
   },
   {
     key: "electricPanels",
@@ -151,7 +151,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Електрически табла и командни шкафове за индустрията | Mall Electro",
     description:
       "Проектиране, изработка, окабеляване и тестване на електрически табла и командни шкафове за индустриални обекти, производствени линии и автоматизация.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/electrical-panels/electrical-panels-control-cabinet-technical-room-01.png",
   },
   {
     key: "cableRoutes",
@@ -159,7 +159,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Кабелни трасета и индустриално окабеляване | Mall Electro",
     description:
       "Монтаж на кабелни трасета, кабелни скари и индустриално окабеляване за производствени обекти, технологични линии, складови бази и електро системи.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/cable-routing/cable-routing-overhead-trays-industrial-hall-02.png",
   },
   {
     key: "industrialElectricalInstallations",
@@ -167,7 +167,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Индустриални електроинсталации за производствени обекти | Mall Electro",
     description:
       "Проектиране и изпълнение на индустриални електроинсталации, силови линии, окабеляване, кабелни трасета и електро системи за производствени обекти.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/industrial/industrial-electrical-installation-production-zone-02.png",
   },
   {
     key: "automation",
@@ -175,7 +175,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Автоматизация на индустриални процеси | Mall Electro",
     description:
       "Автоматизация на индустриални процеси, системи за управление, PLC, сензори, задвижвания, електрически табла и контрол на производствени линии.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/automation/automation-plc-control-system-production-line-01.png",
   },
   {
     key: "lowVoltage",
@@ -183,7 +183,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Системи ниско напрежение за индустриални обекти | Mall Electro",
     description:
       "Изграждане на системи ниско напрежение, захранващи линии, електро връзки, табла, кабелни трасета и проверки за индустриални обекти.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/electrical-panels/electrical-panels-low-voltage-distribution-technical-room-01.png",
   },
   {
     key: "maintenanceService",
@@ -191,7 +191,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Поддръжка и сервиз на индустриални електро системи | Mall Electro",
     description:
       "Поддръжка, диагностика и сервиз на електрически табла, ниско напрежение, автоматизация, кабелни трасета и индустриални електро системи.",
-    ogImage: "/images/services/hero-services.png",
+    ogImage: "/images/engineering/engineering-maintenance-diagnostics-control-cabinet-01.png",
   },
   {
     key: "industries",
@@ -255,7 +255,7 @@ export const seoRoutes: SeoRoute[] = [
     title: "Контакти с Mall Electro - заявка за оглед или консултация",
     description:
       "Свържете се с инженерния екип на Mall Electro за оглед, технически анализ, оферта или консултация за индустриални електро системи.",
-    ogImage: "/images/about/hero-about.png",
+    ogImage: "/images/engineering/engineering-consultation-control-cabinet-industrial-hall-01.png",
   },
   {
     key: "privacyPolicy",
