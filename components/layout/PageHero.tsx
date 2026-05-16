@@ -144,7 +144,7 @@ const PageHero: React.FC<PageHeroProps> = ({
             <FadeIn delay={100}>
               <h1
                 className={`text-4xl font-bold leading-tight drop-shadow-sm md:text-5xl ${
-                  isDark ? "text-white" : "text-brand-dark"
+                  isDark ? "text-white" : "text-[#1C2A39]"
                 }`}
               >
                 {title}
@@ -155,7 +155,7 @@ const PageHero: React.FC<PageHeroProps> = ({
               <FadeIn delay={200}>
                 <div
                   className={`mt-4 max-w-2xl space-y-4 text-base leading-relaxed md:text-xl ${
-                    isDark ? "text-gray-300" : "text-gray-600"
+                    isDark ? "text-gray-300" : "text-[#1C2A39]/80"
                   }`}
                 >
                   {subtitle}
