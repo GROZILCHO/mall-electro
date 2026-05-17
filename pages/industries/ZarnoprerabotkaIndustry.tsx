@@ -110,8 +110,8 @@ export default function ZarnoprerabotkaIndustry() {
             text: "Осигуряваме възможност за диагностика, профилактика, корекции и бъдещо разширяване на електро системите.",
           },
         ],
-        image: "/images/industries/wheat-close-up.png",
-        imageAlt: "Зърно и производствена среда за зърнопреработка.",
+        image: "/images/industries/industries-grain-processing-facility-01.png",
+        imageAlt: "Зърнопреработвателна база с индустриална електро инфраструктура и технологично оборудване.",
         imageKicker: "GRAIN SYSTEM REVIEW",
         imageTitle: "READY FOR SEASONAL LOAD",
       }}

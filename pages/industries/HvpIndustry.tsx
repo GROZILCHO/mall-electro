@@ -110,8 +110,8 @@ export default function HvpIndustry() {
             text: "Осигуряваме възможност за диагностика, профилактика, корекции и бъдещо разширяване на системите.",
           },
         ],
-        image: "/images/industries/industry_overview.png",
-        imageAlt: "Индустриални електро табла и контрол на производствен процес.",
+        image: "/images/industries/industries-food-processing-production-line-01.png",
+        imageAlt: "Производствена линия в хранително-вкусова промишленост с индустриална електро инфраструктура.",
         imageKicker: "HVP SYSTEM REVIEW",
         imageTitle: "READY FOR PRODUCTION FLOW",
       }}

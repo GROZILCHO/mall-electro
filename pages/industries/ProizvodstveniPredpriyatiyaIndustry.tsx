@@ -110,9 +110,9 @@ export default function ProizvodstveniPredpriyatiyaIndustry() {
             text: "Осигуряваме възможност за диагностика, профилактика, корекции, разширяване и модернизация на електро системите.",
           },
         ],
-        image: "/images/industries/stainless-steel-production-line.png",
+        image: "/images/industries/industries-manufacturing-enterprise-production-floor-01.png",
         imageAlt:
-          "Производствена линия с техническа инфраструктура и работни зони.",
+          "Производствено предприятие с индустриална електро инфраструктура и работна производствена среда.",
         imageKicker: "PRODUCTION SYSTEM REVIEW",
         imageTitle: "READY FOR MODERNIZATION",
       }}

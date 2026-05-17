@@ -110,8 +110,8 @@ export default function MelnitsiIndustry() {
             text: "Осигуряваме възможност за диагностика, профилактика, корекции и бъдещо разширяване на електро системите.",
           },
         ],
-        image: "/images/industries/wheat-close-up.png",
-        imageAlt: "Суровина и производствена среда за брашномелно производство.",
+        image: "/images/industries/industries-flour-mill-production-01.png",
+        imageAlt: "Мелнично производство с индустриални системи и електро инфраструктура.",
         imageKicker: "MILL SYSTEM REVIEW",
         imageTitle: "READY FOR PROCESS FLOW",
       }}

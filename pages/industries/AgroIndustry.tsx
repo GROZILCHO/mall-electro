@@ -110,8 +110,8 @@ export default function AgroIndustry() {
             text: "Осигуряваме възможност за диагностика, профилактика, корекции и бъдещо разширяване на електро системите.",
           },
         ],
-        image: "/images/industries/golden-wheat-fields_2.png",
-        imageAlt: "Агро среда и земеделска инфраструктура със сезонна натовареност.",
+        image: "/images/industries/industries-agro-industrial-facility-01.png",
+        imageAlt: "Агро индустриален обект със складова и техническа инфраструктура.",
         imageKicker: "AGRO SYSTEM REVIEW",
         imageTitle: "READY FOR SEASONAL WORK",
       }}
