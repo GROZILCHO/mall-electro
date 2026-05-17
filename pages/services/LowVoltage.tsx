@@ -68,8 +68,8 @@ const LowVoltage: React.FC = () => {
         ],
         image: "/images/electrical-panels/electrical-terminal-block-wiring-detail-01.png",
         imageAlt: "Клемореди и нисковолтово окабеляване в индустриално електрическо табло.",
-        imageKicker: "LOW VOLTAGE CHECK",
-        imageTitle: "READY FOR OPERATION",
+        imageKicker: "ПРОВЕРКА НИСКО НАПРЕЖЕНИЕ",
+        imageTitle: "ГОТОВО ЗА РАБОТА",
       }}
       faq={{
         title: "Често задавани въпроси",

@@ -183,8 +183,8 @@ const PanelAutomationLineSolution: React.FC = () => {
         ],
         image: "/images/automation/automation-control-room-monitoring-support-01.png",
         imageAlt: "Индустриален контрол и мониторинг на автоматизирана производствена линия.",
-        imageKicker: "CONTROL CHECK",
-        imageTitle: "READY FOR STARTUP",
+        imageKicker: "ПРОВЕРКА НА УПРАВЛЕНИЕТО",
+        imageTitle: "ГОТОВО ЗА ПУСК",
       }}
       technical={{
         badge: "Технически акценти",

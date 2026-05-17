@@ -78,7 +78,7 @@ const Hero: React.FC = () => {
             <FadeIn delay={0}>
               <div className="mb-8 inline-flex items-center gap-3 border-l-2 border-brand-orange bg-white/5 px-3 py-1 backdrop-blur-md">
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-                  Industrial Engineering
+                  Индустриален инженеринг
                 </span>
               </div>
             </FadeIn>
@@ -127,7 +127,7 @@ const Hero: React.FC = () => {
                 <TechSVG />
 
                 <div className="absolute bottom-6 right-6 border border-brand-blue/30 bg-brand-dark/80 px-3 py-1 font-mono text-[10px] text-brand-blue">
-                  CAD_VIEW_01 [LIVE]
+                  CAD_ИЗГЛЕД_01 [НА ЖИВО]
                 </div>
               </div>
             </FadeIn>

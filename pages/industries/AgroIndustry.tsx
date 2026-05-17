@@ -112,8 +112,8 @@ export default function AgroIndustry() {
         ],
         image: "/images/industries/industries-agro-industrial-facility-01.png",
         imageAlt: "Агро индустриален обект със складова и техническа инфраструктура.",
-        imageKicker: "AGRO SYSTEM REVIEW",
-        imageTitle: "READY FOR SEASONAL WORK",
+        imageKicker: "ПРЕГЛЕД НА АГРО СИСТЕМАТА",
+        imageTitle: "ГОТОВО ЗА СЕЗОННА РАБОТА",
       }}
       faq={{
         title: "Чести въпроси за електро проекти при агро обекти",

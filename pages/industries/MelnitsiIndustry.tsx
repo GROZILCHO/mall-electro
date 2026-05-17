@@ -112,8 +112,8 @@ export default function MelnitsiIndustry() {
         ],
         image: "/images/industries/industries-flour-mill-production-01.png",
         imageAlt: "Мелнично производство с индустриални системи и електро инфраструктура.",
-        imageKicker: "MILL SYSTEM REVIEW",
-        imageTitle: "READY FOR PROCESS FLOW",
+        imageKicker: "ПРЕГЛЕД НА МЕЛНИЧНАТА СИСТЕМА",
+        imageTitle: "ГОТОВО ЗА ПРОЦЕСЕН ПОТОК",
       }}
       faq={{
         title: "Чести въпроси за електро проекти при мелници",

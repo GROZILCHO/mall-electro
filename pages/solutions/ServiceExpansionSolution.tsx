@@ -183,8 +183,8 @@ const ServiceExpansionSolution: React.FC = () => {
         ],
         image: "/images/engineering/engineering-planned-service-response-01.png",
         imageAlt: "Планирана сервизна намеса и разширяване на индустриална електро система.",
-        imageKicker: "SERVICE CHECK",
-        imageTitle: "READY FOR SUPPORT",
+        imageKicker: "СЕРВИЗНА ПРОВЕРКА",
+        imageTitle: "ГОТОВО ЗА ПОДДРЪЖКА",
       }}
       technical={{
         badge: "Технически акценти",

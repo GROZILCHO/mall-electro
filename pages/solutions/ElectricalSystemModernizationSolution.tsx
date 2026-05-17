@@ -183,8 +183,8 @@ const ElectricalSystemModernizationSolution: React.FC = () => {
         ],
         image: "/images/engineering/engineering-electrical-safety-inspection-01.png",
         imageAlt: "Инженерна проверка на електро система преди модернизация.",
-        imageKicker: "MODERNIZATION CHECK",
-        imageTitle: "READY FOR UPGRADE",
+        imageKicker: "ПРОВЕРКА ЗА МОДЕРНИЗАЦИЯ",
+        imageTitle: "ГОТОВО ЗА ОБНОВЯВАНЕ",
       }}
       technical={{
         badge: "Технически акценти",

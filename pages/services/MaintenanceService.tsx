@@ -68,8 +68,8 @@ const MaintenanceService: React.FC = () => {
         ],
         image: "/images/engineering/engineering-diagnostics-maintenance-tools-01.png",
         imageAlt: "Инструменти и техническа диагностика при сервиз на индустриална електро система.",
-        imageKicker: "SERVICE CHECK",
-        imageTitle: "READY FOR FOLLOW-UP",
+        imageKicker: "СЕРВИЗНА ПРОВЕРКА",
+        imageTitle: "ГОТОВО ЗА ПОСЛЕДВАЩИ ДЕЙСТВИЯ",
       }}
       faq={{
         title: "Често задавани въпроси",

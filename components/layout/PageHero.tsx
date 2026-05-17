@@ -217,8 +217,8 @@ const PageHero: React.FC<PageHeroProps> = ({
               <div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-white shadow-[0_0_10px_white]"></div>
               <div className="absolute bottom-1/3 right-1/4 h-3 w-3 animate-pulse rounded-full bg-[#FF6D2E] shadow-[0_0_10px_#FF6D2E]"></div>
               <div className="absolute bottom-6 left-6 text-white">
-                <p className="font-mono text-xs opacity-70">PROJECT_ID: #8842</p>
-                <p className="font-bold">FIELD REVIEW</p>
+                <p className="font-mono text-xs opacity-70">ПРОЕКТ: #8842</p>
+                <p className="font-bold">ПРЕГЛЕД НА ОБЕКТА</p>
               </div>
             </div>
           </div>

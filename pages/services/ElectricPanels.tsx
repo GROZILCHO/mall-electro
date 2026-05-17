@@ -68,8 +68,8 @@ const ElectricPanels: React.FC = () => {
         ],
         image: "/images/electrical-panels/electrical-panels-cabinet-interior-detail-01.png",
         imageAlt: "Детайл от вътрешността на електрическо табло с подредено индустриално окабеляване.",
-        imageKicker: "PANEL CHECK",
-        imageTitle: "READY FOR TESTING",
+        imageKicker: "ПРОВЕРКА НА ТАБЛОТО",
+        imageTitle: "ГОТОВО ЗА ТЕСТ",
       }}
       faq={{
         title: "Често задавани въпроси",

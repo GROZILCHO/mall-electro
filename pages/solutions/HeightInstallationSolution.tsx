@@ -183,8 +183,8 @@ const HeightInstallationSolution: React.FC = () => {
         ],
         image: "/images/industrial/industrial-electrical-infrastructure-production-hall-03.png",
         imageAlt: "Индустриално производствено хале с електро инфраструктура за монтажни дейности.",
-        imageKicker: "HEIGHT WORK CHECK",
-        imageTitle: "READY FOR ACCESS",
+        imageKicker: "ПРОВЕРКА ЗА РАБОТА НА ВИСОЧИНА",
+        imageTitle: "ГОТОВО ЗА ДОСТЪП",
       }}
       technical={{
         badge: "Технически акценти",

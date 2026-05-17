@@ -112,8 +112,8 @@ export default function LogistikaIndustry() {
         ],
         image: "/images/industries/industries-logistics-warehouse-electrical-infrastructure-01.png",
         imageAlt: "Логистичен склад с осветление, кабелни трасета и индустриална електро инфраструктура.",
-        imageKicker: "LOGISTICS SYSTEM REVIEW",
-        imageTitle: "READY FOR DAILY OPERATIONS",
+        imageKicker: "ПРЕГЛЕД НА ЛОГИСТИЧНАТА СИСТЕМАТА",
+        imageTitle: "ГОТОВО ЗА ЕЖЕДНЕВНА РАБОТА",
       }}
       faq={{
         title: "Чести въпроси за електро проекти при логистични бази",

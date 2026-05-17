@@ -68,8 +68,8 @@ const IndustrialElectricalInstallations: React.FC = () => {
         ],
         image: "/images/industrial/industrial-electrical-infrastructure-production-hall-02.png",
         imageAlt: "Индустриална електро инфраструктура в производствено хале.",
-        imageKicker: "INSTALLATION CHECK",
-        imageTitle: "READY FOR COMMISSIONING",
+        imageKicker: "ПРОВЕРКА НА ИНСТАЛАЦИЯТА",
+        imageTitle: "ГОТОВО ЗА ПУСК",
       }}
       faq={{
         title: "Често задавани въпроси",

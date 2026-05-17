@@ -68,8 +68,8 @@ const Automation: React.FC = () => {
         ],
         image: "/images/automation/automation-plc-technical-detail-01.png",
         imageAlt: "Технически детайл от PLC автоматизация и контролна електро система.",
-        imageKicker: "CONTROL CHECK",
-        imageTitle: "READY FOR STARTUP",
+        imageKicker: "ПРОВЕРКА НА УПРАВЛЕНИЕТО",
+        imageTitle: "ГОТОВО ЗА ПУСК",
       }}
       faq={{
         title: "Често задавани въпроси",

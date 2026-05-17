@@ -112,8 +112,8 @@ export default function ZarnoprerabotkaIndustry() {
         ],
         image: "/images/industries/industries-grain-processing-facility-01.png",
         imageAlt: "Зърнопреработвателна база с индустриална електро инфраструктура и технологично оборудване.",
-        imageKicker: "GRAIN SYSTEM REVIEW",
-        imageTitle: "READY FOR SEASONAL LOAD",
+        imageKicker: "ПРЕГЛЕД НА ЗЪРНЕНАТА СИСТЕМА",
+        imageTitle: "ГОТОВО ЗА СЕЗОННО НАТОВАРВАНЕ",
       }}
       faq={{
         title: "Чести въпроси за електро проекти при зърнопреработка",

@@ -62,7 +62,7 @@ const Services: React.FC = () => {
         {/* Section Header */}
         <FadeIn>
           <div className="mb-20 max-w-4xl">
-            <Badge text="System Capabilities" variant="section-line"/>
+            <Badge text="Системни възможности" variant="section-line"/>
             <h2 className="text-3xl md:text-5xl font-bold text-[#1C2A39] leading-[1.1] font-sans tracking-tight">
               Основни електро услуги за индустриални обекти
             </h2>

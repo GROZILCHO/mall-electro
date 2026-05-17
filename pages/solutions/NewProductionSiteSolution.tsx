@@ -183,8 +183,8 @@ const NewProductionSiteSolution: React.FC = () => {
         ],
         image: "/images/engineering/engineering-electrical-planning-documentation-01.png",
         imageAlt: "Техническо планиране и документация за електро инфраструктура на нов производствен обект.",
-        imageKicker: "SITE CHECK",
-        imageTitle: "READY FOR COMMISSIONING",
+        imageKicker: "ПРОВЕРКА НА ОБЕКТА",
+        imageTitle: "ГОТОВО ЗА ПУСК",
       }}
       technical={{
         badge: "Технически акценти",

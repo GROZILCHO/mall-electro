@@ -32,8 +32,8 @@ const ContactCTA: React.FC = () => {
                   <div className="absolute bottom-1/3 right-1/4 h-3 w-3 animate-[pulse-dot_3s_infinite_1s] rounded-full bg-[#FF6D2E] shadow-[0_0_10px_#FF6D2E]"></div>
 
                   <div className="absolute bottom-6 left-6 text-white">
-                    <p className="font-mono text-xs opacity-70">PROJECT_ID: #8842</p>
-                    <p className="font-bold">SYSTEM READY</p>
+                    <p className="font-mono text-xs opacity-70">ПРОЕКТ: #8842</p>
+                    <p className="font-bold">СИСТЕМАТА Е ГОТОВА</p>
                   </div>
                 </div>
               </div>
@@ -45,7 +45,7 @@ const ContactCTA: React.FC = () => {
               <div className="mb-6 inline-flex items-center gap-2 rounded border border-[#1C2A39]/10 bg-[#1C2A39]/5 px-3 py-1">
                 <div className="h-2 w-2 animate-pulse rounded-full bg-[#FF6D2E]"></div>
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#1C2A39]">
-                  Ready to Talk
+                  ГОТОВИ ЗА РАЗГОВОР
                 </span>
               </div>
 

@@ -112,8 +112,8 @@ export default function HvpIndustry() {
         ],
         image: "/images/industries/industries-food-processing-production-line-01.png",
         imageAlt: "Производствена линия в хранително-вкусова промишленост с индустриална електро инфраструктура.",
-        imageKicker: "HVP SYSTEM REVIEW",
-        imageTitle: "READY FOR PRODUCTION FLOW",
+        imageKicker: "ПРЕГЛЕД НА ХВП СИСТЕМАТА",
+        imageTitle: "ГОТОВО ЗА ПРОИЗВОДСТВЕН ПОТОК",
       }}
       faq={{
         title: "Чести въпроси за ХВП електро проекти",

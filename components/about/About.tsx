@@ -37,14 +37,14 @@ const About: React.FC = () => {
             <FadeIn direction="up">
               <div className="mb-4 inline-block border border-brand-orange/50 bg-brand-orange/10 px-3 py-1 backdrop-blur-md">
                 <span className="font-mono text-xs uppercase tracking-widest text-brand-orange">
-                  System Status: Active
+                  СЪСТОЯНИЕ НА СИСТЕМАТА: АКТИВНА
                 </span>
               </div>
               <div className="mb-6 h-1 w-16 bg-white"></div>
               <p className="max-w-md font-mono text-sm text-white/80">
-                CAD_REF: 44-902 // INDUSTRIAL AUTOMATION SECTOR
+                CAD_РЕФ: 44-902 // СЕКТОР ИНДУСТРИАЛНА АВТОМАТИЗАЦИЯ
                 <br />
-                LOCATION: VARNA, BG
+                ЛОКАЦИЯ: ВАРНА, BG
               </p>
             </FadeIn>
           </div>
@@ -59,7 +59,7 @@ const About: React.FC = () => {
 
           <div className="w-full max-w-lg">
             <FadeIn direction="left" delay={200}>
-              <Badge text="About Us // 01" variant="pill-light" align="left" />
+              <Badge text="За нас // 01" variant="pill-light" align="left" />
 
               <h2 className="mb-8 font-sans text-3xl font-bold leading-tight text-brand-dark lg:text-5xl">
                 Кои сме ние
@@ -95,7 +95,7 @@ const About: React.FC = () => {
                 ))}
               </div>
 
-              <Badge variant="signature" text="Industry Expertise" />
+              <Badge variant="signature" text="Индустриална експертиза" />
             </FadeIn>
           </div>
         </div>

@@ -60,7 +60,7 @@ const KPI: React.FC = () => {
 
               <div className="p-8 flex flex-col items-center lg:items-start text-center lg:text-left transition-all duration-300 hover:bg-white/[0.02]">
                 <span className="text-[10px] font-mono text-gray-500 uppercase tracking-widest mb-4 group-hover:text-brand-blue transition-colors">
-                  Metric // {metric.id}
+                  Показател // {metric.id}
                 </span>
                 
                 <div className="relative mb-2">

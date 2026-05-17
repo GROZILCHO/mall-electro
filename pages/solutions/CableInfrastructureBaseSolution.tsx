@@ -183,8 +183,8 @@ const CableInfrastructureBaseSolution: React.FC = () => {
         ],
         image: "/images/cable-routing/cable-routing-overhead-technical-detail-01.png",
         imageAlt: "Организирани кабелни трасета и кабелна инфраструктура в индустриална база.",
-        imageKicker: "CABLE ROUTE CHECK",
-        imageTitle: "READY FOR EXPANSION",
+        imageKicker: "ПРОВЕРКА НА КАБЕЛНИТЕ ТРАСЕТА",
+        imageTitle: "ГОТОВО ЗА РАЗШИРЕНИЕ",
       }}
       technical={{
         badge: "Технически акценти",

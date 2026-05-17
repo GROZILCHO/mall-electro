@@ -68,8 +68,8 @@ const CableRoutes: React.FC = () => {
         ],
         image: "/images/cable-routing/cable-routing-overhead-technical-detail-01.png",
         imageAlt: "Детайл от кабелни скари и организирано кабелно трасе в индустриална среда.",
-        imageKicker: "ROUTE CHECK",
-        imageTitle: "READY FOR CABLING",
+        imageKicker: "ПРОВЕРКА НА ТРАСЕТО",
+        imageTitle: "ГОТОВО ЗА ОКАБЕЛЯВАНЕ",
       }}
       faq={{
         title: "Често задавани въпроси",

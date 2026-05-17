@@ -46,7 +46,7 @@ const ValueProposition: React.FC = () => {
                 {/* Top Label */}
                 <div className="flex items-center justify-between mb-4">
                   <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-gray-500 group-hover:text-[#4A90E2] transition-colors">
-                    Metric {val.id}
+                    Показател {val.id}
                   </span>
                   <div className="text-[#FF6B35] transition-all duration-300 group-hover:drop-shadow-[0_0_8px_rgba(255,107,53,0.6)] group-hover:scale-110">
                     {val.icon}

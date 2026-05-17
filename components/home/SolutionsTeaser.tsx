@@ -56,7 +56,7 @@ const SolutionsTeaser: React.FC = () => {
       <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
         <div className="mb-14 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-end">
           <FadeIn className="lg:col-span-8">
-            <Badge text="Project scenarios" variant="blueprint" />
+            <Badge text="Проектни сценарии" variant="blueprint" />
             <h2 className="max-w-4xl font-sans text-3xl font-bold leading-tight text-[#1C2A39] md:text-5xl">
               Решения според проектната ситуация
             </h2>
@@ -86,7 +86,7 @@ const SolutionsTeaser: React.FC = () => {
                 >
                   <div className="mb-6 flex items-start justify-between border-b border-white pb-5">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                      Solution {String(index + 1).padStart(2, "0")}
+                      Решение {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="flex h-10 w-10 items-center justify-center rounded bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
                       <Icon className="h-5 w-5" strokeWidth={1.75} />

@@ -113,8 +113,8 @@ export default function ProizvodstveniPredpriyatiyaIndustry() {
         image: "/images/industries/industries-manufacturing-enterprise-production-floor-01.png",
         imageAlt:
           "Производствено предприятие с индустриална електро инфраструктура и работна производствена среда.",
-        imageKicker: "PRODUCTION SYSTEM REVIEW",
-        imageTitle: "READY FOR MODERNIZATION",
+        imageKicker: "ПРЕГЛЕД НА ПРОИЗВОДСТВЕНАТА СИСТЕМА",
+        imageTitle: "ГОТОВО ЗА МОДЕРНИЗАЦИЯ",
       }}
       faq={{
         title: "Чести въпроси за електро проекти при производствени предприятия",

@@ -17,7 +17,7 @@ const PanelEngineering: React.FC = () => {
             <FadeIn>
               <div className="mb-6 flex items-center gap-3">
                  <div className="w-8 h-[1px] bg-[#0A4A8A]"></div>
-                 <span className="text-[#0A4A8A] font-mono font-bold text-xs uppercase tracking-[0.2em]">Engineering Expertise</span>
+                 <span className="text-[#0A4A8A] font-mono font-bold text-xs uppercase tracking-[0.2em]">Инженерна експертиза</span>
               </div>
               
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-8 font-sans leading-[1.1] text-[#1C2A39]">
@@ -86,7 +86,7 @@ const PanelEngineering: React.FC = () => {
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] border border-white/10 rounded-full animate-pulse z-10 pointer-events-none"></div>
                     <div className="absolute bottom-10 right-10 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded border border-white/10 z-20">
                          <div className="w-1.5 h-1.5 bg-[#FF6D2E] rounded-full animate-pulse"></div>
-                         <span className="text-[10px] text-white font-mono tracking-wider">LIVE MONITORING</span>
+                         <span className="text-[10px] text-white font-mono tracking-wider">НАБЛЮДЕНИЕ НА ЖИВО</span>
                     </div>
                 </div>
             </FadeIn>

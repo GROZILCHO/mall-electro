@@ -178,7 +178,7 @@ const Services: React.FC = () => {
                     <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-gray-100 transition-colors duration-300 group-hover:border-brand-blue" />
                     <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                        Service {String(index + 1).padStart(2, "0")}
+                        Услуга {String(index + 1).padStart(2, "0")}
                       </span>
                       <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
                         <Icon className="h-6 w-6" strokeWidth={1.75} />
@@ -262,8 +262,8 @@ const Services: React.FC = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#1C2A39]/70 to-transparent" />
                   <div className="absolute bottom-6 left-6 text-white">
-                    <p className="font-mono text-xs opacity-70">ENGINEERING CHECK</p>
-                    <p className="text-lg font-bold">READY FOR COMMISSIONING</p>
+                    <p className="font-mono text-xs opacity-70">ИНЖЕНЕРНА ПРОВЕРКА</p>
+                    <p className="text-lg font-bold">ГОТОВО ЗА ПУСК</p>
                   </div>
                 </div>
               </div>

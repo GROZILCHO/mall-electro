@@ -42,7 +42,7 @@ const ServiceTile: React.FC<ServiceTileProps> = ({
       <div className="flex justify-between items-start mb-8 border-b border-gray-50 pb-6">
         {/* TOP LINE  — SERVICE NUMBER */}
           <div className="font-mono text-[10px] font-bold text-gray-400 uppercase tracking-widest group-hover:text-brand-blue transition-colors">
-            Service {String(index).padStart(2, "0")}
+            Услуга {String(index).padStart(2, "0")}
           </div>
 
           {/* ICON TOP-RIGHT */}

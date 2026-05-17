@@ -234,7 +234,7 @@ const Solutions: React.FC = () => {
                 <>
                   <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
                     <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
-                      Solution {String(index + 1).padStart(2, "0")}
+                      Решение {String(index + 1).padStart(2, "0")}
                     </span>
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
                       <Icon className="h-6 w-6" strokeWidth={1.75} />
