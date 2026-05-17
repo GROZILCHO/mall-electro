@@ -57,7 +57,10 @@ const ContactCTA: React.FC = () => {
               <p className="mb-10 max-w-xl text-lg leading-relaxed text-[#56677A]">
                 Инженерният ни екип е на разположение за оглед, проектиране и изпълнение.
                 <br />
-                <span className="font-semibold text-[#1C2A39]">Отговаряме до 1 работен ден.</span>
+                <span className="font-semibold text-[#1C2A39]">
+                  Ще прегледаме запитването и ще се свържем с вас за уточняване на обхвата и
+                  следващите стъпки.
+                </span>
               </p>
 
               <div className="flex flex-col gap-5 sm:flex-row">
