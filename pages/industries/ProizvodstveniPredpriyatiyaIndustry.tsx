@@ -10,9 +10,9 @@ export default function ProizvodstveniPredpriyatiyaIndustry() {
         title: "Електро системи за производствени предприятия",
         subtitle:
           "Изграждаме електро инфраструктура за производствени предприятия, индустриални халета, технологични линии и работни зони - електрически табла, кабелни трасета, ниско напрежение, автоматизация и сервизна поддръжка за надеждна работа на обекта.",
-        image: "/images/industries/hero_industriy.png",
+        image: "/images/industries/industries-heavy-industrial-electrical-infrastructure-01.png",
         imageAlt:
-          "Производствено предприятие с индустриална електро инфраструктура и технологични линии.",
+          "Производствено предприятие с индустриална електро инфраструктура, електрически системи и работна производствена среда.",
         primaryCtaText: "Обсъдете производствен обект",
         primaryCtaHref: "/bg/kontakti",
         secondaryCtaText: "Вижте услугите",

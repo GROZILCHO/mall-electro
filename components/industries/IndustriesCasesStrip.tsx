@@ -2,20 +2,20 @@ import GridContainer from "../layout/GridContainer";
 
 const items = [
   {
-    title: "Ел. табла за ХВП предприятие",
-    subtitle: "Проектиране, изработка и пуск",
+    title: "Електро инфраструктура за ХВП обект",
+    subtitle: "Табла, трасета, ниско напрежение и контролни връзки за производствена среда.",
     image: "/images/industries/stainless-steel-production-line_2.png",
     tag: "ХВП",
   },
   {
-    title: "Автоматизация на силозен комплекс",
-    subtitle: "PLC контрол и процесна визуализация",
+    title: "Автоматизация за зърнопреработка",
+    subtitle: "Контролни точки, датчици, табла и процесни връзки за приемане, транспорт и обработка.",
     image: "/images/industries/golden-hour-grain-complex.png",
     tag: "Зърнопреработка",
   },
   {
-    title: "Ел. инсталации за логистичен център",
-    subtitle: "Окабеляване, ВОЛС и UPS системи",
+    title: "Кабелна инфраструктура за логистична база",
+    subtitle: "Трасета, осветление, захранване и сервизни точки за складови и товаро-разтоварни зони.",
     image: "/images/industries/modern-warehouse-interior_1.png",
     tag: "Логистика",
   },
@@ -26,12 +26,12 @@ export default function IndustriesCasesStrip() {
     <GridContainer>
       <section className="py-16">
         <h2 className="mb-6 text-center font-sans text-3xl font-bold text-brand-dark">
-          Реализирани индустриални решения
+          Типови индустриални сценарии
         </h2>
 
         <p className="mx-auto mb-14 max-w-3xl text-center text-base leading-relaxed text-gray-600 md:text-lg">
-          Примери от реални обекти в <strong>ХВП, зърнопреработка и логистични бази</strong>,
-          изпълнени от нашите инженери и монтажни екипи.
+          Примери за проектни ситуации, в които електрически табла, кабелни трасета, автоматизация и сервизна поддръжка
+          се комбинират според средата и работния режим на обекта.
         </p>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
