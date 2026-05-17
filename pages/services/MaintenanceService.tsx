@@ -66,8 +66,8 @@ const MaintenanceService: React.FC = () => {
               "Обобщаваме установеното, препоръчваме последващи действия и при нужда планираме профилактика или разширяване.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Сервизна проверка на електрическо табло и индустриална електро система",
+        image: "/images/engineering/engineering-diagnostics-maintenance-tools-01.png",
+        imageAlt: "Инструменти и техническа диагностика при сервиз на индустриална електро система.",
         imageKicker: "SERVICE CHECK",
         imageTitle: "READY FOR FOLLOW-UP",
       }}

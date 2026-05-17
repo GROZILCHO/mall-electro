@@ -181,8 +181,8 @@ const NewProductionSiteSolution: React.FC = () => {
             text: "Проверяваме системите, уточняваме финални корекции и осигуряваме възможност за последваща поддръжка.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Електрически табла и индустриална електро инфраструктура за нов обект.",
+        image: "/images/engineering/engineering-electrical-planning-documentation-01.png",
+        imageAlt: "Техническо планиране и документация за електро инфраструктура на нов производствен обект.",
         imageKicker: "SITE CHECK",
         imageTitle: "READY FOR COMMISSIONING",
       }}

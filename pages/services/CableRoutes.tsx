@@ -66,8 +66,8 @@ const CableRoutes: React.FC = () => {
               "Проверяваме подредбата, закрепването, маркировката и готовността за свързване към табла, машини и системи.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Индустриално окабеляване и подготовка на електро система",
+        image: "/images/cable-routing/cable-routing-overhead-technical-detail-01.png",
+        imageAlt: "Детайл от кабелни скари и организирано кабелно трасе в индустриална среда.",
         imageKicker: "ROUTE CHECK",
         imageTitle: "READY FOR CABLING",
       }}

@@ -66,8 +66,8 @@ const LowVoltage: React.FC = () => {
               "Проверяваме връзки, защити, трасета и готовност на системата за безопасна работа преди предаване.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Нисковолтово електро табло и подредено окабеляване",
+        image: "/images/electrical-panels/electrical-terminal-block-wiring-detail-01.png",
+        imageAlt: "Клемореди и нисковолтово окабеляване в индустриално електрическо табло.",
         imageKicker: "LOW VOLTAGE CHECK",
         imageTitle: "READY FOR OPERATION",
       }}

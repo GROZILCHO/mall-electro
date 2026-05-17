@@ -181,8 +181,8 @@ const HeightInstallationSolution: React.FC = () => {
             text: "Проверяваме готовността за работа, уточняваме сервизния достъп и подготвяме системата за бъдеща поддръжка.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Проверка на електро връзки и кабелни трасета след монтаж.",
+        image: "/images/industrial/industrial-electrical-infrastructure-production-hall-03.png",
+        imageAlt: "Индустриално производствено хале с електро инфраструктура за монтажни дейности.",
         imageKicker: "HEIGHT WORK CHECK",
         imageTitle: "READY FOR ACCESS",
       }}

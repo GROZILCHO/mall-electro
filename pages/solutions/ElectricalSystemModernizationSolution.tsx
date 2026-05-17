@@ -181,8 +181,8 @@ const ElectricalSystemModernizationSolution: React.FC = () => {
             text: "Подготвяме системата за работа, уточняваме сервизния достъп и осигуряваме база за последваща поддръжка.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Проверка и модернизация на електрическо табло.",
+        image: "/images/engineering/engineering-electrical-safety-inspection-01.png",
+        imageAlt: "Инженерна проверка на електро система преди модернизация.",
         imageKicker: "MODERNIZATION CHECK",
         imageTitle: "READY FOR UPGRADE",
       }}

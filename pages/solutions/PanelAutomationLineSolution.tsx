@@ -181,8 +181,8 @@ const PanelAutomationLineSolution: React.FC = () => {
             text: "Проверяваме работните режими, правим финални корекции и подготвяме системата за сервизна поддръжка.",
           },
         ],
-        image: "/images/services/hero-services.png",
-        imageAlt: "Инженерен преглед на електрическо табло и автоматизация.",
+        image: "/images/automation/automation-control-room-monitoring-support-01.png",
+        imageAlt: "Индустриален контрол и мониторинг на автоматизирана производствена линия.",
         imageKicker: "CONTROL CHECK",
         imageTitle: "READY FOR STARTUP",
       }}

@@ -66,8 +66,8 @@ const IndustrialElectricalInstallations: React.FC = () => {
               "Правим проверки на връзки, трасета, защити и готовност за безопасен пуск преди предаване към клиента.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Индустриално електро табло и окабеляване за производствен обект",
+        image: "/images/industrial/industrial-electrical-infrastructure-production-hall-02.png",
+        imageAlt: "Индустриална електро инфраструктура в производствено хале.",
         imageKicker: "INSTALLATION CHECK",
         imageTitle: "READY FOR COMMISSIONING",
       }}

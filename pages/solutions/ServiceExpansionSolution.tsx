@@ -181,8 +181,8 @@ const ServiceExpansionSolution: React.FC = () => {
             text: "Документираме промените, уточняваме достъп за бъдещ сервиз и подготвяме системата за поддръжка.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Сервизна проверка на електрическо табло и индустриална система.",
+        image: "/images/engineering/engineering-planned-service-response-01.png",
+        imageAlt: "Планирана сервизна намеса и разширяване на индустриална електро система.",
         imageKicker: "SERVICE CHECK",
         imageTitle: "READY FOR SUPPORT",
       }}

@@ -66,8 +66,8 @@ const Automation: React.FC = () => {
               "Проверяваме поведението на системата на обекта, настройваме финалните параметри и подготвяме системата за работа.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Команден шкаф и контролни вериги за автоматизация",
+        image: "/images/automation/automation-plc-technical-detail-01.png",
+        imageAlt: "Технически детайл от PLC автоматизация и контролна електро система.",
         imageKicker: "CONTROL CHECK",
         imageTitle: "READY FOR STARTUP",
       }}

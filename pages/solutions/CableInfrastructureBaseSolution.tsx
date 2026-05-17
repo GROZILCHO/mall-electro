@@ -181,8 +181,8 @@ const CableInfrastructureBaseSolution: React.FC = () => {
             text: "Проверяваме връзки, захранвания, достъп за обслужване и готовност за бъдещи сервизни дейности.",
           },
         ],
-        image: "/images/Premium-Electrical-Panel-Display.png",
-        imageAlt: "Планиране на кабелни трасета и електро инфраструктура.",
+        image: "/images/cable-routing/cable-routing-overhead-technical-detail-01.png",
+        imageAlt: "Организирани кабелни трасета и кабелна инфраструктура в индустриална база.",
         imageKicker: "CABLE ROUTE CHECK",
         imageTitle: "READY FOR EXPANSION",
       }}
