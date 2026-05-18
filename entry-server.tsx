@@ -1,6 +1,6 @@
 import React from "react";
 import { renderToString } from "react-dom/server";
-import App from "./App";
+import App, { loadSsrPagesForPath } from "./App";
 import {
   DEFAULT_OG_IMAGE,
   getAbsoluteAssetUrl,
@@ -23,7 +23,10 @@ const escapeHtml = (value: string) =>
 const renderJsonLd = (schema: Record<string, unknown>) =>
   `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
 
-export const render = (path: string) => renderToString(<App ssrPath={path} />);
+export const render = async (path: string) => {
+  const ssrPages = await loadSsrPagesForPath(path);
+  return renderToString(<App ssrPath={path} ssrPages={ssrPages} />);
+};
 
 export const renderHeadTags = (route: SeoRoute) => {
   const canonicalUrl = getCanonicalUrl(route.path);

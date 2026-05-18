@@ -38,7 +38,7 @@ const writeFile = (filePath, content) => {
 
 for (const route of seoRoutes) {
   const renderedRoute = getSeoRouteByPath(route.path);
-  const appHtml = stripRenderedHeadTagsFromRoot(render(route.path));
+  const appHtml = stripRenderedHeadTagsFromRoot(await render(route.path));
   const html = removeTemplateSeo(template)
     .replace("</head>", `    ${renderHeadTags(renderedRoute)}\n  </head>`)
     .replace(/<div id="root"><\/div>/, `<div id="root">${appHtml}</div>`);
