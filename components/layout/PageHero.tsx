@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import FadeIn from "../ui/FadeIn";
 import AnimatedPattern from "../ui/AnimatedPattern";
 import Button from "../ui/Button";
@@ -58,26 +58,6 @@ const PageHero: React.FC<PageHeroProps> = ({
     heroImage && heroImage.startsWith("/")
       ? `/optimized/${heroImage.split("/").pop()?.replace(/\.(png|jpg|jpeg)$/i, "")}`
       : null;
-
-  useEffect(() => {
-    if (!optimizedBase) {
-      return;
-    }
-
-    const href = `${optimizedBase}-1024.avif`;
-
-    try {
-      const link = document.createElement("link");
-      link.rel = "preload";
-      link.as = "image";
-      link.href = href;
-      document.head.appendChild(link);
-
-      return () => document.head.removeChild(link);
-    } catch {
-      return;
-    }
-  }, [optimizedBase]);
 
   return (
     <section
