@@ -4,11 +4,11 @@ Last updated: 2026-06-29
 
 ## Sprint Name
 
-Multilingual Foundation and Deployment Readiness
+Design System Relock and Architecture Baseline Stabilization
 
 ## Sprint Goal
 
-Prepare Mall Electro for a safe production deployment and establish the documentation and structural rules required for BG -> EN -> RO implementation without damaging the approved Bulgarian baseline.
+Stabilize Mall Electro before Sprint 9 i18n foundation work by aligning governance documents with the real Design System implementation, preserving the approved Bulgarian baseline and adding safe validation scripts.
 
 ## Sprint Scope
 
@@ -20,6 +20,9 @@ Prepare Mall Electro for a safe production deployment and establish the document
 - language architecture planning
 - route and SEO planning for localization
 - PM and execution documentation
+- Design System governance alignment
+- button variant governance
+- validation script readiness
 
 ### Out of scope
 
@@ -28,16 +31,17 @@ Prepare Mall Electro for a safe production deployment and establish the document
 - service detail page rollout
 - industry detail page rollout
 - broad component refactors
+- i18n implementation
+- translation work
+- visual redesign
 
 ## Sprint Deliverables
 
-- project status document
-- next actions document
-- active sprint definition
-- decisions log
-- language implementation plan
-- master terminology and translation guide
-- production deployment clarity for current site
+- updated AI bootstrap entry point
+- aligned Design System governance
+- documented button variant status
+- safe validation scripts where compatible
+- build and typecheck validation results
 
 ## Working Assumptions
 
@@ -52,21 +56,20 @@ Prepare Mall Electro for a safe production deployment and establish the document
 2. Protect SEO/prerender integrity
 3. Define multilingual architecture
 4. Prepare terminology and translation consistency
-5. Execute production deployment cleanly
+5. Keep the current Bulgarian site visually unchanged
 
 ## Definition of Done
 
 This sprint is complete when:
 
-- the documentation set is in place
-- multilingual scope is clearly defined
-- translation governance is documented
-- deployment path is documented and understood
-- no source code changes are required to complete the PM documentation package
+- Design System documentation matches the current approved implementation baseline
+- active button variants are documented
+- deprecated/pending variants are identified
+- validation scripts are available where compatible
+- no visual output changes are intentionally introduced
 
 ## Open Questions for Next Sprint
 
-- Will the default public root remain Bulgarian during the first multilingual release?
-- Will localized URLs use translated slugs in all languages?
-- Will translation data be stored per page, per component, or in a centralized locale structure?
-- Will multilingual rollout happen route-by-route or full overview set first?
+- Should Tailwind token aliases be normalized in a later visual QA task?
+- Should unused `tertiary` and `monochrome` button variants be removed or retained as legacy compatibility?
+- Should hardcoded component color values be gradually replaced with semantic classes after visual snapshots exist?

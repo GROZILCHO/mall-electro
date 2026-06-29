@@ -7,16 +7,39 @@
 # 1. DESIGN SYSTEM (GLOBAL + NON-NEGOTIABLE)
 
 ## 1.1 Color Tokens
-- --brand-blue: #4A90E2  
-- --brand-dark: #1C2A39  
-- --brand-orange: #FF6D2E  
-- --gray-100: #F5F7FA  
-- --gray-200: #E7EDF5  
-- --gray-900: #111  
-- --white: #fff  
 
-Use ONLY these colors.  
-DO NOT generate new hues, tints or alternate shades.
+### Approved v1.1 semantic tokens
+
+- --brand-dark: #1C2A39
+- --brand-blue: #4A90E2
+- --brand-orange: #FF6D2E
+- --gray-100: #F5F7FA
+- --gray-200: #E7EDF5
+- --gray-900: #111
+- --white: #fff
+
+### Approved implementation aliases currently present in code
+
+These aliases exist in `tailwind.config.js`, `styles/main.css` or approved Home/Industries components. Do not remove or rename them without visual QA and Project Owner approval.
+
+- Tailwind `brand.blue`: #4A90E2
+- Tailwind `brand.dark`: #2C3E50
+- Tailwind `brand.orange`: #FF6B35
+- Tailwind `brand.gray`: #F5F7FA
+- Tailwind `brand.text`: #333333
+- CSS `--brand-blue`: #1C2A39
+- CSS `--brand-ocean`: #4A90E2
+- CSS `--brand-orange`: #FF6D2E
+- CSS `--brand-light`: #F5F7FA
+- CSS `--brand-surface`: #FFFFFF
+- CSS `--brand-grid`: #E7EDF5
+- CSS `--brand-cream`: #FDF7F4
+
+Use the approved v1.1 semantic tokens for new work.
+
+Existing implementation aliases are grandfathered for the approved Home and Industries visual baseline.
+
+Do not introduce new hues, tints, aliases or CSS custom properties without explicit approval.
 
 ---
 
@@ -31,6 +54,9 @@ DO NOT generate new hues, tints or alternate shades.
 
 No serif fonts.  
 No decorative fonts.
+
+Implementation note v1.1:
+`index.html` and `tailwind.config.js` currently load Inter for headings/general sans usage and Roboto for body usage. This is approved for the current Home/Industries baseline. Do not change typography tokens without visual QA.
 
 ---
 
@@ -51,9 +77,17 @@ No decorative fonts.
 ### Buttons:
 Variants allowed:
 - primary (orange)
+- secondary (text/link style; active in approved pages)
 - outline (brand-blue)
 - dark (brand-dark)
 - ghost (transparent white)
+
+Existing but not currently approved for new usage:
+- tertiary
+- monochrome
+
+`tertiary` and `monochrome` are present in `Button.tsx` for legacy compatibility, but no active usage was found during the ME-FE-STAB-01 audit. Do not use them in new work unless the Project Owner approves or a deprecation task removes them safely.
+
 No new button variants.
 
 ### Badges:
@@ -123,6 +157,7 @@ Allowed:
 - Hover lift on cards
 - Soft glow wipe on primary CTAs
 - Animated blueprint lines
+- Existing technical line draw, pulse-dot, marquee and subtle engineering pattern animations already used by approved Home/Industries components
 
 Forbidden:
 - bounce

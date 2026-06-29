@@ -22,15 +22,9 @@ The site should communicate a practical, reliable, premium engineering feel for 
 
 Follow `PROJECT_RULES.md` as the source of truth for design decisions.
 
-Use only approved colors:
+Use the approved v1.1 semantic tokens documented in `PROJECT_RULES.md`.
 
-- `--brand-blue: #4A90E2`
-- `--brand-dark: #1C2A39`
-- `--brand-orange: #FF6D2E`
-- `--gray-100: #F5F7FA`
-- `--gray-200: #E7EDF5`
-- `--gray-900: #111`
-- `--white: #fff`
+Existing Tailwind/CSS implementation aliases are grandfathered for the approved Home and Industries baseline. Do not remove, rename or normalize those aliases without visual QA and Project Owner approval.
 
 Component and styling rules:
 
@@ -39,6 +33,8 @@ Component and styling rules:
 - Do not create new visual patterns without approval.
 - Do not create new color tokens.
 - Do not add new button variants.
+- `secondary` is an approved active Button variant.
+- `tertiary` and `monochrome` exist in `Button.tsx` for legacy compatibility but are not approved for new usage unless a later decision allows them.
 - Do not use decorative fonts.
 - Do not introduce random spacing or irregular grids.
 - Use approved section rhythm and spacing from `PROJECT_RULES.md`.
