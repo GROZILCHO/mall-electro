@@ -71,31 +71,26 @@ Rules:
 
 ## 5. Route Strategy
 
-Current approved overview routes:
+Current multilingual public routes use locale prefixes:
 
-- `/`
-- `/services`
-- `/about`
-- `/industries`
-- `/contact`
+- `/bg/`
+- `/en/`
+- `/ro/`
 
-Planned service detail routes:
+Root behavior:
 
-- `/services/elektricheski-tabla`
-- `/services/kabelni-traseta`
-- `/services/industrialni-elektroinstalatsii`
-- `/services/avtomatizatsia`
-- `/services/nisko-naprezhenie`
-- `/services/poddrazhka-i-serviz`
+- `/` redirects to `/bg/`
 
-Planned industry detail routes:
+Legacy routes are preserved only as redirects:
 
-- `/industries/hvp`
-- `/industries/zarnoprerabotka`
-- `/industries/melnitsi`
-- `/industries/agro`
-- `/industries/logistika`
-- `/industries/proizvodstveni-predpriyatiya`
+- `/services` redirects to `/bg/uslugi/`
+- `/about` redirects to `/bg/za-nas/`
+- `/industries` redirects to `/bg/industrii/`
+- `/contact` redirects to `/bg/kontakti/`
+
+Detailed route and localized slug strategy is governed by:
+
+- `docs/06_ARCHITECTURE_DECISIONS.md`
 
 Route rules:
 
