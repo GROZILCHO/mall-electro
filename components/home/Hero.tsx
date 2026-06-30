@@ -2,6 +2,19 @@ import React from "react";
 import FadeIn from "../ui/FadeIn";
 import Button from "../ui/Button";
 import { SITE_PHONE_RAW } from "../../utils/siteConfig";
+import type { HomeFullContent } from "../../data/i18n/content";
+
+const defaultContent: HomeFullContent["hero"] = {
+  badge: "Индустриален инженеринг",
+  title: "Индустриални електро-инсталации и системи за",
+  highlightedTitle: "надеждно производство",
+  subtitle:
+    "Mall Electro предоставя цялостни инженерни решения - от проектиране на електроинсталации и командни табла до изграждане на автоматизирани системи и индустриални трасета. Работим по утвърдени стандарти, гарантираме безопасност, ефективност и устойчивост на всеки производствен процес.",
+  primaryCta: "Вижте нашите услуги",
+  secondaryCta: "Свържете се с инженер",
+  imageAlt: "Индустриална електро инфраструктура в производствена среда",
+  cadLabel: "CAD_ИЗГЛЕД_01 [НА ЖИВО]",
+};
 
 const TechSVG = () => (
   <svg
@@ -13,23 +26,10 @@ const TechSVG = () => (
     strokeLinecap="round"
     strokeLinejoin="round"
   >
-    <path
-      d="M50 50 H 300 V 350 H 50 V 50 Z"
-      className="draw-path text-brand-blue"
-      strokeWidth="2"
-    />
-    <path
-      d="M320 50 H 550 V 350 H 320 V 50 Z"
-      className="draw-path-delay text-brand-blue/60"
-    />
-    <path
-      d="M70 80 H 280 M 70 120 H 280 M 70 160 H 280"
-      className="draw-path-delay-2 text-brand-orange"
-    />
-    <path
-      d="M100 200 V 300 M 140 200 V 300 M 180 200 V 300 M 220 200 V 300"
-      className="draw-path text-white/40"
-    />
+    <path d="M50 50 H 300 V 350 H 50 V 50 Z" className="draw-path text-brand-blue" strokeWidth="2" />
+    <path d="M320 50 H 550 V 350 H 320 V 50 Z" className="draw-path-delay text-brand-blue/60" />
+    <path d="M70 80 H 280 M 70 120 H 280 M 70 160 H 280" className="draw-path-delay-2 text-brand-orange" />
+    <path d="M100 200 V 300 M 140 200 V 300 M 180 200 V 300 M 220 200 V 300" className="draw-path text-white/40" />
     <circle cx="100" cy="200" r="3" className="tech-pulse-dot fill-brand-orange text-brand-orange" stroke="none" />
     <circle cx="140" cy="200" r="3" className="tech-pulse-dot fill-brand-orange text-brand-orange" stroke="none" />
     <circle cx="180" cy="200" r="3" className="tech-pulse-dot fill-brand-orange text-brand-orange" stroke="none" />
@@ -42,7 +42,11 @@ const TechSVG = () => (
   </svg>
 );
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  content?: HomeFullContent["hero"];
+}
+
+const Hero: React.FC<HeroProps> = ({ content = defaultContent }) => {
   return (
     <section className="relative flex min-h-[95vh] w-full items-center overflow-hidden bg-[#0a1520]">
       <div className="absolute inset-0 z-0">
@@ -59,7 +63,7 @@ const Hero: React.FC = () => {
           />
           <img
             src="/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png"
-            alt="Индустриална електро инфраструктура в производствена среда"
+            alt={content.imageAlt}
             fetchPriority="high"
             decoding="async"
             className="h-full w-full scale-105 object-cover opacity-30 grayscale mix-blend-luminosity"
@@ -78,39 +82,33 @@ const Hero: React.FC = () => {
             <FadeIn delay={0}>
               <div className="mb-8 inline-flex items-center gap-3 border-l-2 border-brand-orange bg-white/5 px-3 py-1 backdrop-blur-md">
                 <span className="font-mono text-xs uppercase tracking-[0.2em] text-brand-blue">
-                  Индустриален инженеринг
+                  {content.badge}
                 </span>
               </div>
             </FadeIn>
 
             <FadeIn delay={100}>
               <h1 className="mb-6 font-sans text-4xl font-bold leading-[1.1] tracking-tight text-white md:text-5xl lg:text-[3.5rem]">
-                Индустриални електро-инсталации и системи за{" "}
+                {content.title}{" "}
                 <span className="bg-gradient-to-r from-brand-blue to-brand-blue/60 bg-clip-text text-transparent">
-                  надеждно производство
+                  {content.highlightedTitle}
                 </span>
               </h1>
             </FadeIn>
 
             <FadeIn delay={200}>
               <h2 className="mb-10 max-w-2xl border-l border-white/10 pl-4 text-lg font-light leading-relaxed text-gray-300 md:text-xl">
-                <strong>
-                  Mall Electro предоставя цялостни инженерни решения - от
-                  проектиране на електроинсталации и командни табла до
-                  изграждане на автоматизирани системи и индустриални трасета.
-                  Работим по утвърдени стандарти, гарантираме безопасност,
-                  ефективност и устойчивост на всеки производствен процес.
-                </strong>
+                <strong>{content.subtitle}</strong>
               </h2>
             </FadeIn>
 
             <FadeIn delay={300}>
               <div className="mt-6 flex flex-col gap-8 sm:flex-row md:gap-10">
                 <Button variant="primary" size="md" icon="ChevronRight" href="/bg/uslugi">
-                  Вижте нашите услуги
+                  {content.primaryCta}
                 </Button>
                 <Button variant="secondary" size="md" icon="Phone" href={`tel:${SITE_PHONE_RAW}`}>
-                  Свържете се с инженер
+                  {content.secondaryCta}
                 </Button>
               </div>
             </FadeIn>
@@ -127,7 +125,7 @@ const Hero: React.FC = () => {
                 <TechSVG />
 
                 <div className="absolute bottom-6 right-6 border border-brand-blue/30 bg-brand-dark/80 px-3 py-1 font-mono text-[10px] text-brand-blue">
-                  CAD_ИЗГЛЕД_01 [НА ЖИВО]
+                  {content.cadLabel}
                 </div>
               </div>
             </FadeIn>

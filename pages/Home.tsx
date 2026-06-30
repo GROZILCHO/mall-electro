@@ -1,36 +1,21 @@
-import Hero from "../components/home/Hero";
-import ValueProposition from "../components/home/ValueProposition";
-import Services from "../components/home/Services";
-import SolutionsTeaser from "../components/home/SolutionsTeaser";
-import About from "../components/about/About";
-import KPI from "../components/home/KPI";
-import WhyChooseUs from "../components/home/WhyChooseUs";
-import PanelEngineering from "../components/home/PanelEngineering";
-import IndustriesPremium from "../components/industries/IndustriesPremium";
-import LogoStrip from "../components/shared/LogoStrip";
-import Testimonials from "../components/shared/Testimonials";
-import Process from "../components/shared/Process";
-import ContactForm from "../components/shared/ContactForm";
-import ContactCTA from "../components/shared/ContactCTA";
 import SEO from "../components/seo/SEO";
+import HomePage from "../components/home/HomePage";
+import { enContent } from "../data/i18n/content";
 
-export default function Home() {
+interface HomeProps {
+  locale?: "bg" | "en";
+}
+
+export default function Home({ locale = "bg" }: HomeProps) {
+  const isEnglish = locale === "en";
+
   return (
     <>
       <SEO page="home" />
-      <Hero />
-      <ValueProposition />
-      <Services />
-      <SolutionsTeaser />
-      <About />
-      <KPI />
-      <WhyChooseUs />
-      <PanelEngineering />
-      <IndustriesPremium />
-      <LogoStrip />
-      <Process />
-      <ContactForm />
-      <ContactCTA />
+      <HomePage
+        content={isEnglish ? enContent.pages.home.full : undefined}
+        contactFormContent={isEnglish ? enContent.forms.contact : undefined}
+      />
     </>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { formsContent } from "../../data/i18n/content";
+import type { ContactFormContent } from "../../data/i18n/content";
 import {
   SITE_EMAIL,
   SITE_PHONE_DISPLAY,
@@ -26,10 +27,13 @@ const initialState: FormState = {
   message: "",
 };
 
-const contactFormContent = formsContent.contact;
-const projectOptions = contactFormContent.projectOptions.map((option) => option.label);
+interface ContactFormProps {
+  content?: ContactFormContent;
+}
 
-const ContactForm: React.FC = () => {
+const ContactForm: React.FC<ContactFormProps> = ({ content }) => {
+  const contactFormContent = content ?? formsContent.contact;
+  const projectOptions = contactFormContent.projectOptions.map((option) => option.label);
   const [formState, setFormState] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<FormErrors>({});
   const [submitState, setSubmitState] = useState<"idle" | "ready">("idle");

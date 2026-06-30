@@ -2,15 +2,32 @@ import React from "react";
 import FadeIn from "../ui/FadeIn";
 import { Icons } from "../ui/LucideIcons";
 import Badge from "../ui/Badge";
+import type { HomeFullContent } from "../../data/i18n/content";
 
-const About: React.FC = () => {
-  const advantages = [
+const defaultContent: HomeFullContent["about"] = {
+  status: "СЪСТОЯНИЕ НА СИСТЕМАТА: АКТИВНА",
+  cadRef: "CAD_РЕФ: 44-902 // СЕКТОР ИНДУСТРИАЛНА АВТОМАТИЗАЦИЯ",
+  location: "ЛОКАЦИЯ: ВАРНА, BG",
+  badge: "За нас // 01",
+  heading: "Кои сме ние",
+  paragraphs: [
+    "Mall Electro е инженерингова платформа, част от групата на Уни Компани ЕООД, със специализация в електро обзавеждане, електрически табла, индустриална автоматизация, кабелни трасета и електроинсталации за ХВП, земеделието, индустриално и жилищно строителство. Работим на територията на България и Румъния, като изпълняваме проекти по утвърдени европейски EN стандарти.",
+    "С опит в десетки индустриални обекти, комбинираме инженерно мислене с практическа експертиза - от първоначален оглед и проектиране до монтаж, пуск и поддръжка.",
+  ],
+  advantages: [
     "Инженерна експертиза",
     "Опит в ХВП и агро сектора",
     "Собствени монтажни бригади",
     "Гаранция и поддръжка",
-  ];
+  ],
+  signature: "Индустриална експертиза",
+};
 
+interface AboutProps {
+  content?: HomeFullContent["about"];
+}
+
+const About: React.FC<AboutProps> = ({ content = defaultContent }) => {
   return (
     <section id="about" className="relative overflow-hidden border-t border-gray-100 bg-white py-0">
       <div className="grid min-h-[700px] grid-cols-1 lg:grid-cols-2">
@@ -37,14 +54,14 @@ const About: React.FC = () => {
             <FadeIn direction="up">
               <div className="mb-4 inline-block border border-brand-orange/50 bg-brand-orange/10 px-3 py-1 backdrop-blur-md">
                 <span className="font-mono text-xs uppercase tracking-widest text-brand-orange">
-                  СЪСТОЯНИЕ НА СИСТЕМАТА: АКТИВНА
+                  {content.status}
                 </span>
               </div>
               <div className="mb-6 h-1 w-16 bg-white"></div>
               <p className="max-w-md font-mono text-sm text-white/80">
-                CAD_РЕФ: 44-902 // СЕКТОР ИНДУСТРИАЛНА АВТОМАТИЗАЦИЯ
+                {content.cadRef}
                 <br />
-                ЛОКАЦИЯ: ВАРНА, BG
+                {content.location}
               </p>
             </FadeIn>
           </div>
@@ -59,30 +76,23 @@ const About: React.FC = () => {
 
           <div className="w-full max-w-lg">
             <FadeIn direction="left" delay={200}>
-              <Badge text="За нас // 01" variant="pill-light" align="left" />
+              <Badge text={content.badge} variant="pill-light" align="left" />
 
               <h2 className="mb-8 font-sans text-3xl font-bold leading-tight text-brand-dark lg:text-5xl">
-                Кои сме ние
+                {content.heading}
               </h2>
 
               <div className="mb-10 space-y-6 text-lg font-light leading-relaxed text-[#56677A]">
                 <p className="border-l-2 border-brand-blue/20 pl-6">
-                  <strong className="font-semibold text-brand-dark">Mall Electro</strong> инженерингова платформа част от групата на <strong>Уни Компани ЕООД</strong>, със специализация в {" "}
-                  <strong>
-                    електро обзавеждане, електрически табла, индустриална автоматизация, кабелни трасета и електроинсталации за ХВП, земеделието, индустриално и жилищно строителство
-                  </strong>
-                  . Работим на територията на <strong>България и Румъния</strong>, като
-                  изпълняваме проекти по утвърдени европейски EN стандарти.
+                  {content.paragraphs[0]}
                 </p>
                 <p className="pl-6">
-                  С опит в десетки индустриални обекти, комбинираме инженерно
-                  мислене с практическа експертиза - от първоначален оглед и
-                  проектиране до монтаж, пуск и поддръжка.
+                  {content.paragraphs[1]}
                 </p>
               </div>
 
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                {advantages.map((adv, idx) => (
+                {content.advantages.map((adv, idx) => (
                   <div key={idx} className="group flex items-center">
                     <div className="relative mr-4 flex h-5 w-5 items-center justify-center">
                       <div className="absolute inset-0 rotate-45 rounded-sm bg-brand-orange/10 transition-transform duration-300 group-hover:rotate-90"></div>
@@ -95,7 +105,7 @@ const About: React.FC = () => {
                 ))}
               </div>
 
-              <Badge variant="signature" text="Индустриална експертиза" />
+              <Badge variant="signature" text={content.signature} />
             </FadeIn>
           </div>
         </div>

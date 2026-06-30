@@ -4,7 +4,7 @@ import Layout from "./components/layout/Layout";
 import { bgRoutePageKeys, bgRuntimeRoutes } from "./data/i18n/runtimeRoutes";
 import type { RuntimePageKey } from "./data/i18n/types";
 
-type PageComponent = ComponentType<Record<string, never>>;
+type PageComponent = ComponentType<{ locale?: "bg" | "en" }>;
 type PageModule = { default: PageComponent };
 
 const pageLoaders = {
@@ -47,7 +47,7 @@ const clientPages = Object.fromEntries(
 
 export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
   const normalizedPath = path.length > 1 ? path.replace(/\/$/, "") : path;
-  const pageKey = bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+  const pageKey = normalizedPath === "/en" ? "home" : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -59,9 +59,9 @@ interface AppProps {
 }
 
 const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
-  const page = (key: PageKey) => {
+  const page = (key: PageKey, props: { locale?: "bg" | "en" } = {}) => {
     const Component = ssrPages[key] ?? clientPages[key];
-    return <Component />;
+    return <Component {...props} />;
   };
 
   return (
@@ -71,6 +71,7 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
           {bgRuntimeRoutes.map((route) => (
             <Route key={route.routeKey} path={route.path} element={page(route.pageKey)} />
           ))}
+          <Route path="/en/" element={page("home", { locale: "en" })} />
           <Route path="/" element={<Navigate to="/bg/" replace />} />
           <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />
           <Route path="/about" element={<Navigate to="/bg/za-nas" replace />} />

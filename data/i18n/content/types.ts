@@ -197,7 +197,147 @@ export interface HomeCtaContent {
   secondaryCtaText?: string;
 }
 
+export interface HomeValueItemContent {
+  id: string;
+  title: string;
+  subtitle: string;
+}
+
+export interface HomeServiceCardContent {
+  id: number;
+  title: string;
+  description: string;
+  icon: string;
+  href: string;
+}
+
+export interface HomeSolutionCardContent {
+  title: string;
+  text: string;
+  href: string;
+  icon: string;
+}
+
+export interface HomeMetricContent {
+  id: string;
+  value: string;
+  label: string;
+  sub: string;
+}
+
+export interface HomeFeatureContent {
+  id: number;
+  title: string;
+  description: string;
+}
+
+export interface HomeIndustryCardContent {
+  title: string;
+  text: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  icon: string;
+  bullets: readonly string[];
+}
+
+export interface HomeFullContent {
+  hero: {
+    badge: string;
+    title: string;
+    highlightedTitle: string;
+    subtitle: string;
+    primaryCta: string;
+    secondaryCta: string;
+    imageAlt: string;
+    cadLabel: string;
+  };
+  valueProposition: {
+    labelPrefix: string;
+    items: readonly HomeValueItemContent[];
+  };
+  services: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly HomeServiceCardContent[];
+  };
+  solutions: {
+    badge: string;
+    heading: string;
+    body: string;
+    allCta: string;
+    cardPrefix: string;
+    cardCta: string;
+    items: readonly HomeSolutionCardContent[];
+  };
+  about: {
+    status: string;
+    cadRef: string;
+    location: string;
+    badge: string;
+    heading: string;
+    paragraphs: readonly string[];
+    advantages: readonly string[];
+    signature: string;
+  };
+  kpi: {
+    heading: string;
+    labelPrefix: string;
+    metrics: readonly HomeMetricContent[];
+  };
+  whyChooseUs: {
+    badge: string;
+    heading: string;
+    subheading: string;
+    body: string;
+    cta: string;
+    features: readonly HomeFeatureContent[];
+  };
+  panelEngineering: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    bullets: readonly string[];
+    cta: string;
+    imageAlt: string;
+    status: string;
+  };
+  industries: {
+    heading: string;
+    body: string;
+    cardCta: string;
+    items: readonly HomeIndustryCardContent[];
+  };
+  logoStrip: {
+    heading: string;
+    partners: readonly string[];
+  };
+  process: {
+    heading: string;
+    body: string;
+    steps: readonly {
+      id: number;
+      title: string;
+      description: string;
+    }[];
+  };
+  contactCta: {
+    imageAlt: string;
+    projectLabel: string;
+    readyLabel: string;
+    badge: string;
+    heading: string;
+    highlightedHeading: string;
+    body: string;
+    strongBody: string;
+    primaryCta: string;
+    secondaryCta: string;
+  };
+}
+
 export interface HomePageContent {
+  full?: HomeFullContent;
   hero?: HomeHeroContent;
   stats?: readonly HomeStatContent[];
   sectionIntros?: readonly HomeSectionIntroContent[];
@@ -219,3 +359,4 @@ export interface LocaleContent {
 }
 
 export type BgContent = LocaleContent & { locale: "bg" };
+export type EnContent = LocaleContent & { locale: "en" };

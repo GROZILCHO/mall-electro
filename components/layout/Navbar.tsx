@@ -1,6 +1,7 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { navigationContent } from "../../data/i18n/content";
+import { enContent, navigationContent } from "../../data/i18n/content";
+import type { NavigationContent } from "../../data/i18n/content";
 import { getLocalizedPath } from "../../data/i18n/routes";
 import type { RouteKey } from "../../data/i18n/types";
 import { Icons } from "../ui/LucideIcons";
@@ -11,40 +12,39 @@ interface NavigationItem {
   href: string;
 }
 
-const ACTIVE_LOCALE = "bg";
-
-const getNavigationLabel = (routeKey: RouteKey): string =>
-  navigationContent.labels[routeKey] ?? routeKey;
-
-const getDropdownLabel = (routeKey: RouteKey): string =>
-  navigationContent.groupOverviewLabels[routeKey] ?? getNavigationLabel(routeKey);
-
 const toNavigationItem = (
   routeKey: RouteKey,
-  labelResolver: (routeKey: RouteKey) => string = getDropdownLabel
+  content: NavigationContent,
+  labelResolver: (routeKey: RouteKey) => string,
+  isEnglish: boolean
 ): NavigationItem => ({
   routeKey,
   label: labelResolver(routeKey),
-  href: getLocalizedPath(routeKey, ACTIVE_LOCALE),
+  href: routeKey === "home" && isEnglish ? "/en/" : getLocalizedPath(routeKey, "bg"),
 });
 
-const navItems = navigationContent.groups.main.map((routeKey) =>
-  toNavigationItem(routeKey, getNavigationLabel)
-);
-
-const serviceLinks = navigationContent.groups.services.map((routeKey) =>
-  toNavigationItem(routeKey)
-);
-
-const solutionLinks = navigationContent.groups.solutions.map((routeKey) =>
-  toNavigationItem(routeKey)
-);
-
-const industryLinks = navigationContent.groups.industries.map((routeKey) =>
-  toNavigationItem(routeKey)
-);
-
 export default function Navbar() {
+  const location = useLocation();
+  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
+  const activeNavigationContent: NavigationContent = isEnglish
+    ? enContent.navigation
+    : navigationContent;
+  const getNavigationLabel = (routeKey: RouteKey): string =>
+    activeNavigationContent.labels[routeKey] ?? routeKey;
+  const getDropdownLabel = (routeKey: RouteKey): string =>
+    activeNavigationContent.groupOverviewLabels[routeKey] ?? getNavigationLabel(routeKey);
+  const navItems = activeNavigationContent.groups.main.map((routeKey) =>
+    toNavigationItem(routeKey, activeNavigationContent, getNavigationLabel, isEnglish)
+  );
+  const serviceLinks = activeNavigationContent.groups.services.map((routeKey) =>
+    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, isEnglish)
+  );
+  const solutionLinks = activeNavigationContent.groups.solutions.map((routeKey) =>
+    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, isEnglish)
+  );
+  const industryLinks = activeNavigationContent.groups.industries.map((routeKey) =>
+    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, isEnglish)
+  );
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
@@ -143,7 +143,7 @@ export default function Navbar() {
   return (
     <nav className={`${baseClasses} ${stateClasses}`}>
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-12">
-        <Link to="/bg/" className="flex items-center gap-2">
+        <Link to={isEnglish ? "/en/" : "/bg/"} className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded bg-brand-blue text-white">
             <Icons.Zap className="h-6 w-6" />
           </div>
@@ -338,7 +338,7 @@ export default function Navbar() {
         <button
           className="text-white transition-colors hover:text-brand-orange lg:hidden"
           onClick={() => setMobileMenuOpen((open) => !open)}
-          aria-label={navigationContent.aria.openMenu}
+          aria-label={activeNavigationContent.aria.openMenu}
         >
           {mobileMenuOpen ? (
             <Icons.X className="h-6 w-6" />

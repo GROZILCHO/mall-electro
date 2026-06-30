@@ -16,6 +16,16 @@ const scanTargets = [
     dir: path.join(projectRoot, "data", "i18n", "content", "bg"),
     extensions: [".ts"],
   },
+  {
+    label: "EN prerendered HTML",
+    dir: path.join(projectRoot, "dist", "en"),
+    extensions: [".html"],
+  },
+  {
+    label: "EN i18n content",
+    dir: path.join(projectRoot, "data", "i18n", "content", "en"),
+    extensions: [".ts"],
+  },
 ];
 
 const mojibakeMarkers = [
@@ -119,4 +129,6 @@ console.log("Cyrillic encoding safety guard passed.");
 console.log(`- scanned files: ${scannedFileCount}`);
 console.log("- dist/bg HTML: scanned");
 console.log("- BG i18n content TS: scanned");
+console.log("- dist/en HTML: scanned");
+console.log("- EN i18n content TS: scanned");
 console.log("- mojibake markers: absent");

@@ -2,8 +2,27 @@ import React from "react";
 import FadeIn from "../ui/FadeIn";
 import Button from "../ui/Button";
 import { SITE_PHONE_RAW } from "../../utils/siteConfig";
+import type { HomeFullContent } from "../../data/i18n/content";
 
-const ContactCTA: React.FC = () => {
+const defaultContent: HomeFullContent["contactCta"] = {
+  imageAlt: "Инженерен проект и електро табло",
+  projectLabel: "ПРОЕКТ: #8842",
+  readyLabel: "СИСТЕМАТА Е ГОТОВА",
+  badge: "ГОТОВИ ЗА РАЗГОВОР",
+  heading: "Нека изградим вашата",
+  highlightedHeading: "система заедно.",
+  body: "Инженерният ни екип е на разположение за оглед, проектиране и изпълнение.",
+  strongBody:
+    "Ще прегледаме запитването и ще се свържем с вас за уточняване на обхвата и следващите стъпки.",
+  primaryCta: "Изпратете запитване",
+  secondaryCta: "Говорете с инженер",
+};
+
+interface ContactCTAProps {
+  content?: HomeFullContent["contactCta"];
+}
+
+const ContactCTA: React.FC<ContactCTAProps> = ({ content = defaultContent }) => {
   return (
     <section className="relative overflow-hidden bg-[#E7EDF5] py-24 lg:py-32">
       <div className="contact-cta-grid absolute inset-0 pointer-events-none opacity-[0.03]" />
@@ -21,7 +40,7 @@ const ContactCTA: React.FC = () => {
                 <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/50 shadow-2xl">
                   <img
                     src="/images/Premium-Electrical-Panel-Display.png"
-                    alt="Инженерен проект и електро табло"
+                    alt={content.imageAlt}
                     loading="lazy"
                     decoding="async"
                     fetchPriority="low"
@@ -32,8 +51,8 @@ const ContactCTA: React.FC = () => {
                   <div className="absolute bottom-1/3 right-1/4 h-3 w-3 animate-[pulse-dot_3s_infinite_1s] rounded-full bg-[#FF6D2E] shadow-[0_0_10px_#FF6D2E]"></div>
 
                   <div className="absolute bottom-6 left-6 text-white">
-                    <p className="font-mono text-xs opacity-70">ПРОЕКТ: #8842</p>
-                    <p className="font-bold">СИСТЕМАТА Е ГОТОВА</p>
+                    <p className="font-mono text-xs opacity-70">{content.projectLabel}</p>
+                    <p className="font-bold">{content.readyLabel}</p>
                   </div>
                 </div>
               </div>
@@ -45,30 +64,27 @@ const ContactCTA: React.FC = () => {
               <div className="mb-6 inline-flex items-center gap-2 rounded border border-[#1C2A39]/10 bg-[#1C2A39]/5 px-3 py-1">
                 <div className="h-2 w-2 animate-pulse rounded-full bg-[#FF6D2E]"></div>
                 <span className="text-xs font-mono font-bold uppercase tracking-widest text-[#1C2A39]">
-                  ГОТОВИ ЗА РАЗГОВОР
+                  {content.badge}
                 </span>
               </div>
 
               <h2 className="mb-6 font-sans text-3xl font-bold leading-tight text-[#1C2A39] lg:text-5xl">
-                Нека изградим вашата <br />
-                <span className="text-[#4A90E2]">система заедно.</span>
+                {content.heading} <br />
+                <span className="text-[#4A90E2]">{content.highlightedHeading}</span>
               </h2>
 
               <p className="mb-10 max-w-xl text-lg leading-relaxed text-[#56677A]">
-                Инженерният ни екип е на разположение за оглед, проектиране и изпълнение.
+                {content.body}
                 <br />
-                <span className="font-semibold text-[#1C2A39]">
-                  Ще прегледаме запитването и ще се свържем с вас за уточняване на обхвата и
-                  следващите стъпки.
-                </span>
+                <span className="font-semibold text-[#1C2A39]">{content.strongBody}</span>
               </p>
 
               <div className="flex flex-col gap-5 sm:flex-row">
                 <Button variant="primary" size="md" icon="ArrowRight" href="/bg/kontakti">
-                  Изпратете запитване
+                  {content.primaryCta}
                 </Button>
                 <Button variant="outline" size="md" icon="Phone" href={`tel:${SITE_PHONE_RAW}`}>
-                  Говорете с инженер
+                  {content.secondaryCta}
                 </Button>
               </div>
             </FadeIn>

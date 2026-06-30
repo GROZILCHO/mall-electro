@@ -1,4 +1,12 @@
-export { bgContent, commonContent, footerContent, formsContent, navigationContent, pagesContent } from "./bg";
+export {
+  bgContent,
+  commonContent,
+  footerContent,
+  formsContent,
+  navigationContent,
+  pagesContent,
+} from "./bg";
+export { enContent } from "./en";
 export type {
   BgContent,
   CommonContent,
@@ -12,10 +20,18 @@ export type {
   FooterContent,
   FormsContent,
   HomeCtaContent,
+  EnContent,
+  HomeFeatureContent,
+  HomeFullContent,
   HomeHeroContent,
+  HomeIndustryCardContent,
+  HomeMetricContent,
   HomePageContent,
+  HomeServiceCardContent,
   HomeSectionIntroContent,
+  HomeSolutionCardContent,
   HomeStatContent,
+  HomeValueItemContent,
   LocaleContent,
   NavigationContent,
   PageHeroContent,

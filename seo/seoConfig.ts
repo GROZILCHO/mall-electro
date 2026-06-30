@@ -85,6 +85,16 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
   },
   {
+    key: "home",
+    path: "/en",
+    title: "Mall Electro - industrial electrical systems and installation services",
+    description:
+      "Mall Electro designs, installs and maintains electrical panels, cable routes, low voltage systems and industrial electrical systems for Bulgaria and Romania.",
+    ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
     ...createSeoRouteIdentity("about"),
     title: "За Mall Electro - инженеринг, качество и електро експертиза",
     description:

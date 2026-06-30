@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 28;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 29;
 const EXPECTED_SITEMAP_URL_COUNT = 27;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -53,12 +53,21 @@ const relativePath = (targetPath) => path.relative(projectRoot, targetPath).repl
 
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
-assertPathMissing(path.join(distDir, "en"), "dist/en");
+assertPathExists(path.join(distDir, "en", "index.html"), "dist/en/index.html");
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
 
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
 const rootHtmlPath = path.join(distDir, "index.html");
 const prerenderedRouteHtmlFiles = htmlFiles.filter((filePath) => path.resolve(filePath) !== rootHtmlPath);
+const enHtmlFiles = htmlFiles.filter((filePath) => relativePath(filePath).startsWith("dist/en/"));
+
+if (enHtmlFiles.length !== 1 || relativePath(enHtmlFiles[0]) !== "dist/en/index.html") {
+  fail(
+    `Expected only dist/en/index.html for EN output, found: ${
+      enHtmlFiles.map(relativePath).join(", ") || "none"
+    }.`
+  );
+}
 
 if (prerenderedRouteHtmlFiles.length !== EXPECTED_PRERENDER_ROUTE_COUNT) {
   fail(
@@ -68,7 +77,6 @@ if (prerenderedRouteHtmlFiles.length !== EXPECTED_PRERENDER_ROUTE_COUNT) {
 
 const htmlDisallowedPatterns = [
   { label: "hreflang", pattern: /hreflang/i },
-  { label: "EN URL", pattern: /(?:https?:\/\/[^"'\s<>]+)?\/en\//i },
   { label: "RO URL", pattern: /(?:https?:\/\/[^"'\s<>]+)?\/ro\//i },
 ];
 
@@ -114,5 +122,6 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN/RO output: absent");
+console.log("- EN output: dist/en/index.html only");
+console.log("- RO output: absent");
 console.log("- hreflang: absent");
