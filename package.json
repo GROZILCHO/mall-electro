@@ -8,6 +8,7 @@
     "build": "vite build && vite build --ssr entry-server.tsx --outDir dist/server && node scripts/prerender.mjs && node scripts/compress-dist.js",
     "build:client": "vite build",
     "check:i18n-output": "node scripts/check-i18n-output.mjs",
+    "check:encoding-output": "node scripts/check-encoding-output.mjs",
     "typecheck": "tsc --noEmit",
     "preview": "npx serve -s dist -l 5000",
     "preview:spa": "npx serve -s dist -l 5000",
