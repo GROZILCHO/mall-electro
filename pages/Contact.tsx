@@ -2,12 +2,18 @@ import React from "react";
 import PageHero from "../components/layout/PageHero";
 import ContactForm from "../components/shared/ContactForm";
 import SEO from "../components/seo/SEO";
-import { pagesContent } from "../data/i18n/content";
+import { enContent, pagesContent } from "../data/i18n/content";
 import { SITE_PHONE_RAW } from "../utils/siteConfig";
 
-const contactPageContent = pagesContent.contact;
+interface ContactProps {
+  locale?: "bg" | "en";
+}
 
-const Contact: React.FC = () => {
+const Contact: React.FC<ContactProps> = ({ locale = "bg" }) => {
+  const isEnglish = locale === "en";
+  const contactPageContent = isEnglish ? enContent.pages.contact : pagesContent.contact;
+  const contactFormContent = isEnglish ? enContent.forms.contact : undefined;
+
   return (
     <div>
       <SEO page="contact" />
@@ -24,9 +30,11 @@ const Contact: React.FC = () => {
         secondaryCtaText={contactPageContent.hero.secondaryCtaText}
         secondaryCtaHref={`tel:${SITE_PHONE_RAW}`}
         secondaryCtaVariant="dark"
+        overlayProjectLabel={isEnglish ? "PROJECT: #8842" : undefined}
+        overlayStatusLabel={isEnglish ? "SITE INSPECTION" : undefined}
       />
 
-      <ContactForm />
+      <ContactForm content={contactFormContent} />
     </div>
   );
 };

@@ -19,7 +19,12 @@ const toFooterLink = (
 ) => ({
   routeKey,
   label: activeFooterContent.legalLabels[routeKey] ?? activeNavigationContent.labels[routeKey] ?? routeKey,
-  href: routeKey === "home" && isEnglish ? "/en/" : getLocalizedPath(routeKey, "bg"),
+  href:
+    routeKey === "home" && isEnglish
+      ? "/en/"
+      : routeKey === "contact" && isEnglish
+        ? "/en/contact"
+        : getLocalizedPath(routeKey, "bg"),
 });
 
 const Footer: React.FC = () => {

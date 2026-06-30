@@ -47,7 +47,12 @@ const clientPages = Object.fromEntries(
 
 export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
   const normalizedPath = path.length > 1 ? path.replace(/\/$/, "") : path;
-  const pageKey = normalizedPath === "/en" ? "home" : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+  const pageKey =
+    normalizedPath === "/en"
+      ? "home"
+      : normalizedPath === "/en/contact"
+        ? "contact"
+        : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -72,6 +77,7 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
             <Route key={route.routeKey} path={route.path} element={page(route.pageKey)} />
           ))}
           <Route path="/en/" element={page("home", { locale: "en" })} />
+          <Route path="/en/contact" element={page("contact", { locale: "en" })} />
           <Route path="/" element={<Navigate to="/bg/" replace />} />
           <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />
           <Route path="/about" element={<Navigate to="/bg/za-nas" replace />} />

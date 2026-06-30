@@ -32,6 +32,8 @@ interface PageHeroProps {
   secondaryCtaIcon?: keyof typeof Icons;
   heroImage?: string;
   heroImageAlt?: string;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
 }
 
 const PageHero: React.FC<PageHeroProps> = ({
@@ -51,6 +53,8 @@ const PageHero: React.FC<PageHeroProps> = ({
   secondaryCtaIcon = "Phone",
   heroImage = "https://images.unsplash.com/photo-1744868562210-fffb7fa882d9?q=80&w=1113&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   heroImageAlt = "Engineering",
+  overlayProjectLabel = "ПРОЕКТ: #8842",
+  overlayStatusLabel = "ПРЕГЛЕД НА ОБЕКТА",
 }) => {
   const isDark = theme === "dark";
   const showBadge = Boolean(badgeText);
@@ -197,8 +201,8 @@ const PageHero: React.FC<PageHeroProps> = ({
               <div className="absolute left-1/4 top-1/4 h-3 w-3 animate-pulse rounded-full bg-white shadow-[0_0_10px_white]"></div>
               <div className="absolute bottom-1/3 right-1/4 h-3 w-3 animate-pulse rounded-full bg-[#FF6D2E] shadow-[0_0_10px_#FF6D2E]"></div>
               <div className="absolute bottom-6 left-6 text-white">
-                <p className="font-mono text-xs opacity-70">ПРОЕКТ: #8842</p>
-                <p className="font-bold">ПРЕГЛЕД НА ОБЕКТА</p>
+                <p className="font-mono text-xs opacity-70">{overlayProjectLabel}</p>
+                <p className="font-bold">{overlayStatusLabel}</p>
               </div>
             </div>
           </div>

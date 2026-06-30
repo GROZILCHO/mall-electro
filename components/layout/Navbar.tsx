@@ -20,7 +20,12 @@ const toNavigationItem = (
 ): NavigationItem => ({
   routeKey,
   label: labelResolver(routeKey),
-  href: routeKey === "home" && isEnglish ? "/en/" : getLocalizedPath(routeKey, "bg"),
+  href:
+    routeKey === "home" && isEnglish
+      ? "/en/"
+      : routeKey === "contact" && isEnglish
+        ? "/en/contact"
+        : getLocalizedPath(routeKey, "bg"),
 });
 
 export default function Navbar() {

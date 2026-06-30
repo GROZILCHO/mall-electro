@@ -95,6 +95,16 @@ export const seoRoutes: SeoRoute[] = [
     includeInSitemap: false,
   },
   {
+    key: "contact",
+    path: "/en/contact",
+    title: "Contact Mall Electro - engineering inquiry and consultation",
+    description:
+      "Contact the Mall Electro engineering team for a site inspection, technical analysis, offer or consultation for industrial electrical systems.",
+    ogImage: "/images/engineering/engineering-consultation-control-cabinet-industrial-hall-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
     ...createSeoRouteIdentity("about"),
     title: "За Mall Electro - инженеринг, качество и електро експертиза",
     description:
