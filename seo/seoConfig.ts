@@ -28,7 +28,6 @@ export const BG_HOME_PATH = "/bg";
 
 export type SeoPageKey =
   | "home"
-  | "englishHomePreview"
   | "about"
   | "services"
   | "solutions"
@@ -84,16 +83,6 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Mall Electro проектира, монтира и поддържа електрически табла, кабелни трасета, ниско напрежение и индустриални електро системи за България и Румъния.",
     ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
-  },
-  {
-    key: "englishHomePreview",
-    path: "/en",
-    title: "Mall Electro - Industrial electrical systems and engineering",
-    description:
-      "English preview page for Mall Electro industrial electrical engineering services, including electrical panels, cable routes, low-voltage systems, automation and service support.",
-    ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
-    noindex: true,
-    includeInSitemap: false,
   },
   {
     ...createSeoRouteIdentity("about"),

@@ -1,5 +1,4 @@
 export { bgContent, commonContent, footerContent, formsContent, navigationContent, pagesContent } from "./bg";
-export { enContent, enHomePageContent, enPagesContent } from "./en";
 export type {
   BgContent,
   CommonContent,

@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 29;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 28;
 const EXPECTED_SITEMAP_URL_COUNT = 27;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -53,7 +53,7 @@ const relativePath = (targetPath) => path.relative(projectRoot, targetPath).repl
 
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
-assertPathExists(path.join(distDir, "en", "index.html"), "dist/en/index.html");
+assertPathMissing(path.join(distDir, "en"), "dist/en");
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
 
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
@@ -68,17 +68,9 @@ if (prerenderedRouteHtmlFiles.length !== EXPECTED_PRERENDER_ROUTE_COUNT) {
 
 const htmlDisallowedPatterns = [
   { label: "hreflang", pattern: /hreflang/i },
+  { label: "EN URL", pattern: /(?:https?:\/\/[^"'\s<>]+)?\/en\//i },
   { label: "RO URL", pattern: /(?:https?:\/\/[^"'\s<>]+)?\/ro\//i },
 ];
-
-const enHtmlFiles = htmlFiles.filter((filePath) => path.resolve(filePath).startsWith(path.join(distDir, "en") + path.sep));
-const allowedEnHtmlPath = path.join(distDir, "en", "index.html");
-
-for (const enHtmlFile of enHtmlFiles) {
-  if (path.resolve(enHtmlFile) !== path.resolve(allowedEnHtmlPath)) {
-    fail(`Unexpected EN route output found: ${relativePath(enHtmlFile)}.`);
-  }
-}
 
 for (const htmlFile of htmlFiles) {
   const content = fs.readFileSync(htmlFile, "utf8");
@@ -87,13 +79,6 @@ for (const htmlFile of htmlFiles) {
     if (pattern.test(content)) {
       fail(`${label} output found in ${relativePath(htmlFile)}.`);
     }
-  }
-
-  const isAllowedEnPreview = path.resolve(htmlFile) === path.resolve(allowedEnHtmlPath);
-  const enUrlPattern = /(?:https?:\/\/[^"'\s<>]+)?\/en\//i;
-
-  if (!isAllowedEnPreview && enUrlPattern.test(content)) {
-    fail(`EN URL output found outside the preview route in ${relativePath(htmlFile)}.`);
   }
 }
 
@@ -129,6 +114,5 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN preview output: dist/en/index.html only");
-console.log("- RO output: absent");
+console.log("- EN/RO output: absent");
 console.log("- hreflang: absent");
