@@ -1,3 +1,5 @@
+import type { SeoPageKey } from "../../seo/seoConfig";
+
 export type SupportedLocale = "bg" | "en" | "ro";
 
 export type RouteKey =
@@ -97,3 +99,15 @@ export interface RouteLocaleBridgeStatus {
   isLocalePublic: boolean;
   isPublicActive: boolean;
 }
+
+export interface SeoBridgeDefinition {
+  routeKey: RouteKey;
+  seoKey: SeoPageKey;
+  bgPath: string;
+  isIndexable: boolean;
+  isPrerenderEligible: boolean;
+  includeInSitemap: boolean;
+  note?: string;
+}
+
+export type SeoBridgeMap = Record<RouteKey, SeoBridgeDefinition>;
