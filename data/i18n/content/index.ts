@@ -8,6 +8,10 @@ export {
 } from "./bg";
 export { enContent } from "./en";
 export type {
+  AboutLinkedItemContent,
+  AboutPageContent,
+  AboutTaxonomyLinkContent,
+  AboutValuePointContent,
   BgContent,
   CommonContent,
   ContactInfoContent,

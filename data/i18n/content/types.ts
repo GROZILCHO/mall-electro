@@ -176,6 +176,63 @@ export interface ContactPageContent {
   hero: PageHeroContent;
 }
 
+export interface AboutLinkedItemContent {
+  title: string;
+  text: string;
+  href: string;
+  icon: string;
+}
+
+export interface AboutValuePointContent {
+  title: string;
+  text: string;
+}
+
+export interface AboutTaxonomyLinkContent {
+  title: string;
+  text: string;
+  href: string;
+}
+
+export interface AboutPageContent {
+  hero: PageHeroContent;
+  intro: {
+    badge: string;
+    heading: string;
+    paragraphs: readonly string[];
+  };
+  services: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly AboutLinkedItemContent[];
+  };
+  process: {
+    badge: string;
+    heading: string;
+    body: string;
+    steps: readonly string[];
+  };
+  industries: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly AboutLinkedItemContent[];
+  };
+  principles: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly AboutValuePointContent[];
+  };
+  taxonomy: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly AboutTaxonomyLinkContent[];
+  };
+}
+
 export interface HomeHeroContent extends PageHeroContent {
   highlightedTitle?: string;
   trustLabels?: readonly string[];
@@ -346,6 +403,7 @@ export interface HomePageContent {
 
 export interface PagesContent {
   home: HomePageContent;
+  about?: AboutPageContent;
   contact: ContactPageContent;
 }
 

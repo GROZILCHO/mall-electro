@@ -52,6 +52,8 @@ export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
       ? "home"
       : normalizedPath === "/en/contact"
         ? "contact"
+        : normalizedPath === "/en/about"
+          ? "about"
         : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
@@ -78,6 +80,7 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
           ))}
           <Route path="/en/" element={page("home", { locale: "en" })} />
           <Route path="/en/contact" element={page("contact", { locale: "en" })} />
+          <Route path="/en/about" element={page("about", { locale: "en" })} />
           <Route path="/" element={<Navigate to="/bg/" replace />} />
           <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />
           <Route path="/about" element={<Navigate to="/bg/za-nas" replace />} />

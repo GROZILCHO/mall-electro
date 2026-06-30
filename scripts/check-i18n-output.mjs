@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 30;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 31;
 const EXPECTED_SITEMAP_URL_COUNT = 27;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -55,20 +55,25 @@ assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
 assertPathExists(path.join(distDir, "en", "index.html"), "dist/en/index.html");
 assertPathExists(path.join(distDir, "en", "contact", "index.html"), "dist/en/contact/index.html");
+assertPathExists(path.join(distDir, "en", "about", "index.html"), "dist/en/about/index.html");
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
 
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
 const rootHtmlPath = path.join(distDir, "index.html");
 const prerenderedRouteHtmlFiles = htmlFiles.filter((filePath) => path.resolve(filePath) !== rootHtmlPath);
 const enHtmlFiles = htmlFiles.filter((filePath) => relativePath(filePath).startsWith("dist/en/"));
-const allowedEnHtmlFiles = new Set(["dist/en/index.html", "dist/en/contact/index.html"]);
+const allowedEnHtmlFiles = new Set([
+  "dist/en/index.html",
+  "dist/en/contact/index.html",
+  "dist/en/about/index.html",
+]);
 const unexpectedEnHtmlFiles = enHtmlFiles
   .map(relativePath)
   .filter((filePath) => !allowedEnHtmlFiles.has(filePath));
 
 if (enHtmlFiles.length !== allowedEnHtmlFiles.size || unexpectedEnHtmlFiles.length > 0) {
   fail(
-    `Expected only dist/en/index.html and dist/en/contact/index.html for EN output, found: ${
+    `Expected only dist/en/index.html, dist/en/contact/index.html and dist/en/about/index.html for EN output, found: ${
       enHtmlFiles.map(relativePath).join(", ") || "none"
     }.`
   );
@@ -127,6 +132,6 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN output: dist/en/index.html and dist/en/contact/index.html only");
+console.log("- EN output: dist/en/index.html, dist/en/contact/index.html and dist/en/about/index.html only");
 console.log("- RO output: absent");
 console.log("- hreflang: absent");

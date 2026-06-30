@@ -112,6 +112,16 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/about/hero-about.png",
   },
   {
+    key: "about",
+    path: "/en/about",
+    title: "About Mall Electro - engineering and industrial electrical expertise",
+    description:
+      "Learn about Mall Electro, our engineering approach, industrial electrical systems expertise, process, sectors and principles.",
+    ogImage: "/images/about/hero-about.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
     ...createSeoRouteIdentity("services"),
     title: "Електро услуги, електрически табла и индустриални инсталации",
     description:

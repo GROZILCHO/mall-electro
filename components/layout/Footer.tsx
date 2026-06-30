@@ -22,6 +22,8 @@ const toFooterLink = (
   href:
     routeKey === "home" && isEnglish
       ? "/en/"
+      : routeKey === "about" && isEnglish
+        ? "/en/about"
       : routeKey === "contact" && isEnglish
         ? "/en/contact"
         : getLocalizedPath(routeKey, "bg"),
