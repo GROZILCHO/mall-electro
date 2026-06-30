@@ -1,6 +1,6 @@
 # Mall Electro Decisions Log
 
-Last updated: 2026-06-29
+Last updated: 2026-06-30
 
 ## Decision 001
 
@@ -89,3 +89,30 @@ Industrial electrical terminology must remain technically accurate and consisten
 
 Impact:
 Translation work must follow a shared terminology guide rather than ad hoc wording choices.
+
+## Decision 009
+
+Decision:
+Sprint 9 i18n foundation uses explicit route identity separation:
+
+- `routeKey` is the canonical route identity.
+- `pageKey` is the runtime component/content lookup target.
+- `seoKey` is the SEO metadata lookup target.
+- localized `path` values are the URL input/output layer.
+
+Reason:
+Route identity, component loading, SEO metadata and localized URLs have different responsibilities. Keeping them separate prevents brittle string inference and supports future localized slugs.
+
+Impact:
+Future i18n work must use typed bridge layers rather than assuming `routeKey`, `pageKey` and `seoKey` are identical.
+
+## Decision 010
+
+Decision:
+BG-only public output remains protected until explicit multilingual activation approval.
+
+Reason:
+EN and RO route data exists as planned architecture data, but incomplete public output would create routing, SEO and content quality risk.
+
+Impact:
+The project must continue to pass `npm run check:i18n-output` after production builds. The guard enforces 28 prerendered routes, 27 sitemap URLs, no `dist/en`, no `dist/ro`, no hreflang and no `/en/` or `/ro/` output in generated HTML or sitemap.
