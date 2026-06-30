@@ -7,7 +7,7 @@ import type { RuntimePageKey } from "./data/i18n/types";
 type PageComponent = ComponentType<Record<string, never>>;
 type PageModule = { default: PageComponent };
 
-const pageLoaders = {
+const bgPageLoaders = {
   home: () => import("./pages/Home"),
   about: () => import("./pages/About"),
   services: () => import("./pages/Services"),
@@ -38,6 +38,11 @@ const pageLoaders = {
   notFound: () => import("./pages/NotFound"),
 } satisfies Record<RuntimePageKey, () => Promise<PageModule>>;
 
+const pageLoaders = {
+  ...bgPageLoaders,
+  englishHomePreview: () => import("./pages/EnglishHomePreview"),
+} satisfies Record<RuntimePageKey | "englishHomePreview", () => Promise<PageModule>>;
+
 type PageKey = keyof typeof pageLoaders;
 export type SsrPages = Partial<Record<PageKey, PageComponent>>;
 
@@ -47,7 +52,7 @@ const clientPages = Object.fromEntries(
 
 export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
   const normalizedPath = path.length > 1 ? path.replace(/\/$/, "") : path;
-  const pageKey = bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+  const pageKey = normalizedPath === "/en" ? "englishHomePreview" : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -65,9 +70,14 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
   };
 
   return (
-    <Layout>
-      <Suspense fallback={null}>
-        <Routes>
+    <Suspense fallback={null}>
+      <Routes>
+        <Route path="/en" element={page("englishHomePreview")} />
+        <Route
+          path="*"
+          element={
+            <Layout>
+              <Routes>
           {bgRuntimeRoutes.map((route) => (
             <Route key={route.routeKey} path={route.path} element={page(route.pageKey)} />
           ))}
@@ -77,9 +87,12 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
           <Route path="/industries" element={<Navigate to="/bg/industrii" replace />} />
           <Route path="/contact" element={<Navigate to="/bg/kontakti" replace />} />
           <Route path="*" element={page("notFound")} />
-        </Routes>
-      </Suspense>
-    </Layout>
+              </Routes>
+            </Layout>
+          }
+        />
+      </Routes>
+    </Suspense>
   );
 };
 
