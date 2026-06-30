@@ -1,6 +1,6 @@
 import type { RouteKey, SupportedLocale } from "../types";
 
-export type ContentNamespace = "common" | "navigation" | "footer" | "forms";
+export type ContentNamespace = "common" | "navigation" | "footer" | "forms" | "pages";
 
 export type ContentKey =
   | "common"
@@ -153,12 +153,40 @@ export interface FormsContent {
   contact: ContactFormContent;
 }
 
+export interface PageHeroContent {
+  title: string;
+  subtitle: string;
+  badgeText: string;
+  heroImageAlt: string;
+  primaryCtaText: string;
+  secondaryCtaText: string;
+}
+
+export interface PageSectionContent {
+  heading: string;
+  body?: string;
+}
+
+export interface ContactInfoContent {
+  label: string;
+  value: string;
+}
+
+export interface ContactPageContent {
+  hero: PageHeroContent;
+}
+
+export interface PagesContent {
+  contact: ContactPageContent;
+}
+
 export interface LocaleContent {
   locale: SupportedLocale;
   common: CommonContent;
   navigation: NavigationContent;
   footer: FooterContent;
   forms: FormsContent;
+  pages: PagesContent;
 }
 
 export type BgContent = LocaleContent & { locale: "bg" };

@@ -1,8 +1,10 @@
-export { bgContent, commonContent, footerContent, formsContent, navigationContent } from "./bg";
+export { bgContent, commonContent, footerContent, formsContent, navigationContent, pagesContent } from "./bg";
 export type {
   BgContent,
   CommonContent,
+  ContactInfoContent,
   ContactFormContent,
+  ContactPageContent,
   ContactProjectOption,
   ContactProjectTypeKey,
   ContentKey,
@@ -11,4 +13,7 @@ export type {
   FormsContent,
   LocaleContent,
   NavigationContent,
+  PageHeroContent,
+  PagesContent,
+  PageSectionContent,
 } from "./types";
