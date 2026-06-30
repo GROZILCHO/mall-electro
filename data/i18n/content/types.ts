@@ -176,7 +176,36 @@ export interface ContactPageContent {
   hero: PageHeroContent;
 }
 
+export interface HomeHeroContent extends PageHeroContent {
+  highlightedTitle?: string;
+  trustLabels?: readonly string[];
+}
+
+export interface HomeStatContent {
+  value: string;
+  label: string;
+}
+
+export interface HomeSectionIntroContent extends PageSectionContent {
+  eyebrow?: string;
+}
+
+export interface HomeCtaContent {
+  title: string;
+  description?: string;
+  primaryCtaText?: string;
+  secondaryCtaText?: string;
+}
+
+export interface HomePageContent {
+  hero?: HomeHeroContent;
+  stats?: readonly HomeStatContent[];
+  sectionIntros?: readonly HomeSectionIntroContent[];
+  cta?: HomeCtaContent;
+}
+
 export interface PagesContent {
+  home: HomePageContent;
   contact: ContactPageContent;
 }
 
