@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Icons } from "../ui/LucideIcons";
-import FadeIn from "../ui/FadeIn";
+import { formsContent } from "../../data/i18n/content";
 import {
   SITE_EMAIL,
   SITE_PHONE_DISPLAY,
   SITE_PHONE_RAW,
 } from "../../utils/siteConfig";
+import FadeIn from "../ui/FadeIn";
+import { Icons } from "../ui/LucideIcons";
 
 type FormState = {
   name: string;
@@ -25,12 +26,8 @@ const initialState: FormState = {
   message: "",
 };
 
-const projectOptions = [
-  "Индустриална електроинсталация",
-  "Ел. табла и автоматизация",
-  "Поддръжка и сервиз",
-  "Друго",
-];
+const contactFormContent = formsContent.contact;
+const projectOptions = contactFormContent.projectOptions.map((option) => option.label);
 
 const ContactForm: React.FC = () => {
   const [formState, setFormState] = useState<FormState>(initialState);
@@ -49,21 +46,21 @@ const ContactForm: React.FC = () => {
   const validateForm = () => {
     const nextErrors: FormErrors = {};
 
-    if (!formState.name.trim()) nextErrors.name = "Моля, въведете име.";
-    if (!formState.phone.trim()) nextErrors.phone = "Моля, въведете телефон.";
+    if (!formState.name.trim()) nextErrors.name = contactFormContent.validation.nameRequired;
+    if (!formState.phone.trim()) nextErrors.phone = contactFormContent.validation.phoneRequired;
 
     if (!formState.email.trim()) {
-      nextErrors.email = "Моля, въведете имейл.";
+      nextErrors.email = contactFormContent.validation.emailRequired;
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formState.email)) {
-      nextErrors.email = "Моля, въведете валиден имейл.";
+      nextErrors.email = contactFormContent.validation.emailInvalid;
     }
 
     if (!formState.projectType.trim()) {
-      nextErrors.projectType = "Моля, изберете тип проект.";
+      nextErrors.projectType = contactFormContent.validation.projectTypeRequired;
     }
 
     if (!formState.message.trim()) {
-      nextErrors.message = "Моля, опишете проекта накратко.";
+      nextErrors.message = contactFormContent.validation.messageRequired;
     }
 
     setErrors(nextErrors);
@@ -75,14 +72,14 @@ const ContactForm: React.FC = () => {
 
     if (!validateForm()) return;
 
-    const subject = `Запитване от сайта - ${formState.projectType}`;
+    const subject = `${contactFormContent.mailto.subjectPrefix} - ${formState.projectType}`;
     const body = [
-      `Име: ${formState.name}`,
-      `Телефон: ${formState.phone}`,
-      `Имейл: ${formState.email}`,
-      `Тип проект: ${formState.projectType}`,
+      `${contactFormContent.mailto.nameLabel}: ${formState.name}`,
+      `${contactFormContent.mailto.phoneLabel}: ${formState.phone}`,
+      `${contactFormContent.mailto.emailLabel}: ${formState.email}`,
+      `${contactFormContent.mailto.projectTypeLabel}: ${formState.projectType}`,
       "",
-      "Съобщение:",
+      `${contactFormContent.mailto.messageLabel}:`,
       formState.message,
     ].join("\n");
 
@@ -108,16 +105,16 @@ const ContactForm: React.FC = () => {
           <div className="lg:w-7/12">
             <FadeIn>
               <h2 className="mb-2 font-sans text-3xl font-bold text-brand-dark">
-                Свържете се с нас
+                {contactFormContent.heading}
               </h2>
               <p className="mb-10 text-lg text-[#56677A]">
-                Попълнете формата и наш инженер ще се свърже с вас.
+                {contactFormContent.intro}
               </p>
 
               <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6 md:grid-cols-2" noValidate>
                 <div className="flex flex-col gap-2">
                   <label htmlFor="contact-name" className="text-sm font-bold text-gray-700">
-                    Име и фамилия
+                    {contactFormContent.labels.name}
                   </label>
                   <input
                     id="contact-name"
@@ -126,14 +123,14 @@ const ContactForm: React.FC = () => {
                     value={formState.name}
                     onChange={handleChange}
                     className={fieldClassName("name")}
-                    placeholder="Вашето име"
+                    placeholder={contactFormContent.placeholders.name}
                   />
                   {errors.name && <p className="text-sm text-red-600">{errors.name}</p>}
                 </div>
 
                 <div className="flex flex-col gap-2">
                   <label htmlFor="contact-phone" className="text-sm font-bold text-gray-700">
-                    Телефон
+                    {contactFormContent.labels.phone}
                   </label>
                   <input
                     id="contact-phone"
@@ -142,14 +139,14 @@ const ContactForm: React.FC = () => {
                     value={formState.phone}
                     onChange={handleChange}
                     className={fieldClassName("phone")}
-                    placeholder="+359..."
+                    placeholder={contactFormContent.placeholders.phone}
                   />
                   {errors.phone && <p className="text-sm text-red-600">{errors.phone}</p>}
                 </div>
 
                 <div className="flex flex-col gap-2 md:col-span-2">
                   <label htmlFor="contact-email" className="text-sm font-bold text-gray-700">
-                    Имейл
+                    {contactFormContent.labels.email}
                   </label>
                   <input
                     id="contact-email"
@@ -158,14 +155,14 @@ const ContactForm: React.FC = () => {
                     value={formState.email}
                     onChange={handleChange}
                     className={fieldClassName("email")}
-                    placeholder="name@company.com"
+                    placeholder={contactFormContent.placeholders.email}
                   />
                   {errors.email && <p className="text-sm text-red-600">{errors.email}</p>}
                 </div>
 
                 <div className="flex flex-col gap-2 md:col-span-2">
                   <label htmlFor="contact-type" className="text-sm font-bold text-gray-700">
-                    Тип проект
+                    {contactFormContent.labels.projectType}
                   </label>
                   <div className="relative">
                     <select
@@ -175,7 +172,7 @@ const ContactForm: React.FC = () => {
                       onChange={handleChange}
                       className={`${fieldClassName("projectType")} w-full appearance-none cursor-pointer text-gray-700`}
                     >
-                      <option value="">Изберете от списъка...</option>
+                      <option value="">{contactFormContent.placeholders.projectType}</option>
                       {projectOptions.map((option) => (
                         <option key={option} value={option}>
                           {option}
@@ -189,7 +186,7 @@ const ContactForm: React.FC = () => {
 
                 <div className="flex flex-col gap-2 md:col-span-2">
                   <label htmlFor="contact-message" className="text-sm font-bold text-gray-700">
-                    Съобщение
+                    {contactFormContent.labels.message}
                   </label>
                   <textarea
                     id="contact-message"
@@ -198,7 +195,7 @@ const ContactForm: React.FC = () => {
                     value={formState.message}
                     onChange={handleChange}
                     className={`${fieldClassName("message")} resize-none`}
-                    placeholder="Опишете накратко нуждите на проекта..."
+                    placeholder={contactFormContent.placeholders.message}
                   ></textarea>
                   {errors.message && <p className="text-sm text-red-600">{errors.message}</p>}
                 </div>
@@ -207,20 +204,21 @@ const ContactForm: React.FC = () => {
                   <button
                     type="submit"
                     className="flex w-full items-center justify-center gap-2 rounded bg-[#FF6B35] py-4 font-bold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:bg-[#FF814E]"
-                    aria-label="Изпрати запитване"
+                    aria-label={contactFormContent.submit.ariaLabel}
                   >
-                    Изпрати запитване
+                    {contactFormContent.submit.label}
                   </button>
                   <p className="mt-3 text-sm text-gray-500">
-                    При изпращане ще се отвори вашият имейл клиент с готово съобщение до{" "}
+                    {contactFormContent.submit.helperPrefix}{" "}
                     <a href={`mailto:${SITE_EMAIL}`} className="font-medium text-brand-blue hover:underline">
                       {SITE_EMAIL}
                     </a>
-                    .
+                    {contactFormContent.submit.helperSuffix}
                   </p>
                   {submitState === "ready" && (
                     <p className="mt-2 text-sm text-green-700">
-                      Данните са подготвени успешно. Ако не се отвори имейл клиент, изпратете ни запитването ръчно на {SITE_EMAIL}.
+                      {contactFormContent.submit.successPrefix} {SITE_EMAIL}
+                      {contactFormContent.submit.successSuffix}
                     </p>
                   )}
                 </div>
@@ -231,15 +229,21 @@ const ContactForm: React.FC = () => {
           <div className="flex flex-col justify-center lg:w-5/12">
             <FadeIn delay={200}>
               <div className="rounded-2xl border border-gray-100 bg-[#F5F7FA] p-10">
-                <h3 className="mb-6 text-xl font-bold text-brand-dark">Какво получавате?</h3>
+                <h3 className="mb-6 text-xl font-bold text-brand-dark">
+                  {contactFormContent.sidebar.heading}
+                </h3>
                 <ul className="space-y-6">
                   <li className="flex items-start gap-4">
                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-100 text-brand-blue">
                       <Icons.Clock className="h-4 w-4" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-gray-800">Бърза реакция</h4>
-                      <p className="text-sm text-gray-500">Връщаме отговор до 1 работен ден.</p>
+                      <h4 className="text-sm font-bold text-gray-800">
+                        {contactFormContent.sidebar.items[0].title}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {contactFormContent.sidebar.items[0].text}
+                      </p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
@@ -247,8 +251,12 @@ const ContactForm: React.FC = () => {
                       <Icons.FileCheck className="h-4 w-4" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-gray-800">Без ангажимент</h4>
-                      <p className="text-sm text-gray-500">Безплатна първоначална консултация.</p>
+                      <h4 className="text-sm font-bold text-gray-800">
+                        {contactFormContent.sidebar.items[1].title}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {contactFormContent.sidebar.items[1].text}
+                      </p>
                     </div>
                   </li>
                   <li className="flex items-start gap-4">
@@ -256,14 +264,20 @@ const ContactForm: React.FC = () => {
                       <Icons.Lock className="h-4 w-4" />
                     </div>
                     <div>
-                      <h4 className="text-sm font-bold text-gray-800">100% конфиденциалност</h4>
-                      <p className="text-sm text-gray-500">Вашите данни са защитени според GDPR.</p>
+                      <h4 className="text-sm font-bold text-gray-800">
+                        {contactFormContent.sidebar.items[2].title}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {contactFormContent.sidebar.items[2].text}
+                      </p>
                     </div>
                   </li>
                 </ul>
 
                 <div className="mt-10 border-t border-gray-200 pt-8">
-                  <p className="mb-2 text-sm text-gray-500">Директен контакт:</p>
+                  <p className="mb-2 text-sm text-gray-500">
+                    {contactFormContent.sidebar.directContactLabel}
+                  </p>
                   <a
                     href={`tel:${SITE_PHONE_RAW}`}
                     className="text-2xl font-bold text-brand-dark transition-colors hover:text-brand-orange"
@@ -271,11 +285,11 @@ const ContactForm: React.FC = () => {
                     {SITE_PHONE_DISPLAY}
                   </a>
                   <p className="mt-3 text-sm text-gray-500">
-                    Или ни пишете на{" "}
+                    {contactFormContent.sidebar.emailPrefix}{" "}
                     <a href={`mailto:${SITE_EMAIL}`} className="font-medium text-brand-blue hover:underline">
                       {SITE_EMAIL}
                     </a>
-                    .
+                    {contactFormContent.sidebar.emailSuffix}
                   </p>
                 </div>
               </div>

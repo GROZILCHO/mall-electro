@@ -1,52 +1,48 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
+import { navigationContent } from "../../data/i18n/content";
+import { getLocalizedPath } from "../../data/i18n/routes";
+import type { RouteKey } from "../../data/i18n/types";
 import { Icons } from "../ui/LucideIcons";
-import type { NavItem } from "../../types";
 
-const navItems: NavItem[] = [
-  { label: "Начало", href: "/bg/" },
-  { label: "Услуги", href: "/bg/uslugi" },
-  { label: "Решения", href: "/bg/reshenia" },
-  { label: "Индустрии", href: "/bg/industrii" },
-  { label: "За нас", href: "/bg/za-nas" },
-  { label: "Контакти", href: "/bg/kontakti" },
-];
+interface NavigationItem {
+  routeKey: RouteKey;
+  label: string;
+  href: string;
+}
 
-const serviceLinks: NavItem[] = [
-  { label: "Електрически табла", href: "/bg/uslugi/elektricheski-tabla" },
-  { label: "Кабелни трасета", href: "/bg/uslugi/kabelni-traseta" },
-  {
-    label: "Индустриални електроинсталации",
-    href: "/bg/uslugi/industrialni-elektroinstalatsii",
-  },
-  { label: "Автоматизация", href: "/bg/uslugi/avtomatizatsia" },
-  { label: "Ниско напрежение", href: "/bg/uslugi/nisko-naprezhenie" },
-  { label: "Поддръжка и сервиз", href: "/bg/uslugi/poddrazhka-i-serviz" },
-  { label: "Всички услуги", href: "/bg/uslugi" },
-];
+const ACTIVE_LOCALE = "bg";
 
-const solutionLinks: NavItem[] = [
-  { label: "Нов производствен обект", href: "/bg/reshenia/nov-proizvodstven-obekt" },
-  { label: "Модернизация на електро система", href: "/bg/reshenia/modernizatsia-na-elektro-sistema" },
-  {
-    label: "Табла и автоматизация за технологични линии",
-    href: "/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii",
-  },
-  { label: "Кабелна инфраструктура за база", href: "/bg/reshenia/kabelna-infrastruktura-za-baza" },
-  { label: "Сервиз и разширяване", href: "/bg/reshenia/serviz-i-razshiryavane" },
-  { label: "Електромонтаж на височина", href: "/bg/reshenia/elektromontazh-na-visochina-s-vishka" },
-  { label: "Всички решения", href: "/bg/reshenia" },
-];
+const getNavigationLabel = (routeKey: RouteKey): string =>
+  navigationContent.labels[routeKey] ?? routeKey;
 
-const industryLinks: NavItem[] = [
-  { label: "ХВП", href: "/bg/industrii/hvp" },
-  { label: "Зърнопреработка", href: "/bg/industrii/zarnoprerabotka" },
-  { label: "Мелници", href: "/bg/industrii/melnitsi" },
-  { label: "Агро", href: "/bg/industrii/agro" },
-  { label: "Логистика", href: "/bg/industrii/logistika" },
-  { label: "Производствени предприятия", href: "/bg/industrii/proizvodstveni-predpriyatiya" },
-  { label: "Всички индустрии", href: "/bg/industrii" },
-];
+const getDropdownLabel = (routeKey: RouteKey): string =>
+  navigationContent.groupOverviewLabels[routeKey] ?? getNavigationLabel(routeKey);
+
+const toNavigationItem = (
+  routeKey: RouteKey,
+  labelResolver: (routeKey: RouteKey) => string = getDropdownLabel
+): NavigationItem => ({
+  routeKey,
+  label: labelResolver(routeKey),
+  href: getLocalizedPath(routeKey, ACTIVE_LOCALE),
+});
+
+const navItems = navigationContent.groups.main.map((routeKey) =>
+  toNavigationItem(routeKey, getNavigationLabel)
+);
+
+const serviceLinks = navigationContent.groups.services.map((routeKey) =>
+  toNavigationItem(routeKey)
+);
+
+const solutionLinks = navigationContent.groups.solutions.map((routeKey) =>
+  toNavigationItem(routeKey)
+);
+
+const industryLinks = navigationContent.groups.industries.map((routeKey) =>
+  toNavigationItem(routeKey)
+);
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -156,9 +152,9 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-8 lg:flex">
           {navItems.map((item) => (
-            item.href === "/bg/uslugi" ? (
+            item.routeKey === "services" ? (
               <div
-                key={item.label}
+                key={item.routeKey}
                 ref={servicesDropdownRef}
                 className="relative"
               >
@@ -195,7 +191,7 @@ export default function Navbar() {
                   <div className="overflow-hidden border border-white/10 bg-[#1C2A39]/95 shadow-lg">
                     <ul className="py-2">
                       {serviceLinks.map((service, index) => (
-                        <li key={service.href}>
+                        <li key={service.routeKey}>
                           <Link
                             to={service.href}
                             onClick={handleServiceLinkClick}
@@ -213,9 +209,9 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-            ) : item.href === "/bg/reshenia" ? (
+            ) : item.routeKey === "solutions" ? (
               <div
-                key={item.label}
+                key={item.routeKey}
                 ref={solutionsDropdownRef}
                 className="relative"
               >
@@ -252,7 +248,7 @@ export default function Navbar() {
                   <div className="overflow-hidden border border-white/10 bg-[#1C2A39]/95 shadow-lg">
                     <ul className="py-2">
                       {solutionLinks.map((solution, index) => (
-                        <li key={solution.href}>
+                        <li key={solution.routeKey}>
                           <Link
                             to={solution.href}
                             onClick={handleSolutionLinkClick}
@@ -270,9 +266,9 @@ export default function Navbar() {
                   </div>
                 </div>
               </div>
-            ) : item.href === "/bg/industrii" ? (
+            ) : item.routeKey === "industries" ? (
               <div
-                key={item.label}
+                key={item.routeKey}
                 ref={industriesDropdownRef}
                 className="relative"
               >
@@ -309,7 +305,7 @@ export default function Navbar() {
                   <div className="overflow-hidden border border-white/10 bg-[#1C2A39]/95 shadow-lg">
                     <ul className="py-2">
                       {industryLinks.map((industry, index) => (
-                        <li key={industry.href}>
+                        <li key={industry.routeKey}>
                           <Link
                             to={industry.href}
                             onClick={handleIndustryLinkClick}
@@ -329,7 +325,7 @@ export default function Navbar() {
               </div>
             ) : (
               <Link
-                key={item.label}
+                key={item.routeKey}
                 to={item.href}
                 className="font-medium text-white/90 transition-colors hover:text-brand-orange"
               >
@@ -342,7 +338,7 @@ export default function Navbar() {
         <button
           className="text-white transition-colors hover:text-brand-orange lg:hidden"
           onClick={() => setMobileMenuOpen((open) => !open)}
-          aria-label="Отвори менюто"
+          aria-label={navigationContent.aria.openMenu}
         >
           {mobileMenuOpen ? (
             <Icons.X className="h-6 w-6" />
@@ -356,15 +352,15 @@ export default function Navbar() {
         <div className="max-h-[calc(100dvh-72px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#1C2A39] lg:hidden">
           <div className="container mx-auto flex flex-col gap-2 px-6 py-4 pb-8">
             {navItems.map((item) =>
-              item.href === "/bg/uslugi" ? (
-                <div key={item.label}>
+              item.routeKey === "services" ? (
+                <div key={item.routeKey}>
                   <span className="block py-2 font-medium text-white/90">
                     {item.label}
                   </span>
                   <div className="ml-4 border-l border-white/10 pl-4">
                     {serviceLinks.map((service) => (
                       <Link
-                        key={service.href}
+                        key={service.routeKey}
                         to={service.href}
                         onClick={handleServiceLinkClick}
                         className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
@@ -374,15 +370,15 @@ export default function Navbar() {
                     ))}
                   </div>
                 </div>
-              ) : item.href === "/bg/reshenia" ? (
-                <div key={item.label}>
+              ) : item.routeKey === "solutions" ? (
+                <div key={item.routeKey}>
                   <span className="block py-2 font-medium text-white/90">
                     {item.label}
                   </span>
                   <div className="ml-4 border-l border-white/10 pl-4">
                     {solutionLinks.map((solution) => (
                       <Link
-                        key={solution.href}
+                        key={solution.routeKey}
                         to={solution.href}
                         onClick={handleSolutionLinkClick}
                         className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
@@ -392,15 +388,15 @@ export default function Navbar() {
                     ))}
                   </div>
                 </div>
-              ) : item.href === "/bg/industrii" ? (
-                <div key={item.label}>
+              ) : item.routeKey === "industries" ? (
+                <div key={item.routeKey}>
                   <span className="block py-2 font-medium text-white/90">
                     {item.label}
                   </span>
                   <div className="ml-4 border-l border-white/10 pl-4">
                     {industryLinks.map((industry) => (
                       <Link
-                        key={industry.href}
+                        key={industry.routeKey}
                         to={industry.href}
                         onClick={handleIndustryLinkClick}
                         className="block py-2 text-sm font-medium text-white/85 transition-colors hover:text-brand-orange"
@@ -412,7 +408,7 @@ export default function Navbar() {
                 </div>
               ) : (
                 <Link
-                  key={item.label}
+                  key={item.routeKey}
                   to={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className="py-2 font-medium text-white/90 transition-colors hover:text-brand-orange"

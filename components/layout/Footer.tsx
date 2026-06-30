@@ -1,28 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Icons } from "../ui/LucideIcons";
+import { footerContent, navigationContent } from "../../data/i18n/content";
+import { getLocalizedPath } from "../../data/i18n/routes";
+import type { RouteKey } from "../../data/i18n/types";
 import {
   SITE_EMAIL,
   SITE_PHONE_DISPLAY,
   SITE_PHONE_RAW,
 } from "../../utils/siteConfig";
+import { Icons } from "../ui/LucideIcons";
+
+const ACTIVE_LOCALE = "bg";
+
+const getFooterLabel = (routeKey: RouteKey): string =>
+  footerContent.legalLabels[routeKey] ?? navigationContent.labels[routeKey] ?? routeKey;
+
+const toFooterLink = (routeKey: RouteKey) => ({
+  routeKey,
+  label: getFooterLabel(routeKey),
+  href: getLocalizedPath(routeKey, ACTIVE_LOCALE),
+});
+
+const menuLinks = footerContent.menuRouteKeys.map(toFooterLink);
+const serviceLinks = footerContent.serviceRouteKeys.map(toFooterLink);
+const legalLinks = footerContent.legalRouteKeys.map(toFooterLink);
 
 const Footer: React.FC = () => {
-  const serviceLinks = [
-    { label: "Електрически табла", href: "/bg/uslugi/elektricheski-tabla" },
-    { label: "Кабелни трасета", href: "/bg/uslugi/kabelni-traseta" },
-    { label: "Индустриални електроинсталации", href: "/bg/uslugi/industrialni-elektroinstalatsii" },
-    { label: "Автоматизация", href: "/bg/uslugi/avtomatizatsia" },
-    { label: "Ниско напрежение", href: "/bg/uslugi/nisko-naprezhenie" },
-    { label: "Поддръжка и сервиз", href: "/bg/uslugi/poddrazhka-i-serviz" },
-  ];
-
-  const legalLinks = [
-    { label: "Политика за поверителност", href: "/bg/politika-za-poveritelnost" },
-    { label: "Бисквитки", href: "/bg/politika-za-biskvitki" },
-    { label: "Условия за ползване", href: "/bg/usloviya-za-polzvane" },
-  ];
-
   return (
     <footer id="contact" className="relative bg-[#1C2A39] py-20 text-white/80">
       <div className="absolute left-0 top-0 h-[1px] w-full bg-white/10"></div>
@@ -32,64 +35,40 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-6">
             <p className="font-sans text-2xl font-bold tracking-tight text-white">
-              Mall Electro
+              {footerContent.brand.name}
             </p>
             <p className="text-sm leading-relaxed text-white/70">
-              Вашият надежден партньор за индустриални електро решения.
-              Качество, сигурност и професионализъм.
+              {footerContent.brand.description}
             </p>
             <p className="pt-4 text-xs text-white/50">
-              © 2025 Mall Electro.
+              {footerContent.brand.copyright}
               <br />
-              Всички права запазени.
+              {footerContent.brand.rightsReserved}
             </p>
           </div>
 
           <div>
             <p className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
-              Меню
+              {footerContent.sections.menu}
             </p>
             <ul className="space-y-3">
-              <li>
-                <a href="/bg/" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
-                  Начало
-                </a>
-              </li>
-              <li>
-                <a href="/bg/uslugi" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
-                  Услуги
-                </a>
-              </li>
-              <li>
-                <a href="/bg/reshenia" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
-                  Решения
-                </a>
-              </li>
-              <li>
-                <a href="/bg/industrii" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
-                  Индустрии
-                </a>
-              </li>
-              <li>
-                <a href="/bg/za-nas" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
-                  За нас
-                </a>
-              </li>
-              <li>
-                <a href="/bg/kontakti" className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
-                  Контакти
-                </a>
-              </li>
+              {menuLinks.map((link) => (
+                <li key={link.routeKey}>
+                  <a href={link.href} className="text-sm text-white/90 transition-colors hover:text-[#FF6D2E]">
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
             <p className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
-              Услуги
+              {footerContent.sections.services}
             </p>
             <ul className="space-y-3 text-sm text-white/90">
               {serviceLinks.map((service) => (
-                <li key={service.href}>
+                <li key={service.routeKey}>
                   <Link to={service.href} className="transition-colors hover:text-[#FF6D2E]">
                     {service.label}
                   </Link>
@@ -100,15 +79,18 @@ const Footer: React.FC = () => {
 
           <div>
             <p className="mb-6 text-xs font-bold uppercase tracking-wider text-white">
-              Контакти
+              {footerContent.sections.contact}
             </p>
             <ul className="space-y-4 text-sm text-white/90">
               <li className="flex items-start">
                 <Icons.MapPin className="mr-3 h-5 w-5 shrink-0 text-[#4A90E2]" />
                 <span>
-                  ул. Дунав 9, ет.1, офис 1,
-                  <br />
-                  София, България
+                  {footerContent.contact.addressLines.map((line, index) => (
+                    <React.Fragment key={line}>
+                      {line}
+                      {index < footerContent.contact.addressLines.length - 1 && <br />}
+                    </React.Fragment>
+                  ))}
                 </span>
               </li>
               <li className="flex items-center">
@@ -129,15 +111,15 @@ const Footer: React.FC = () => {
 
         <div className="mt-12 border-t border-white/10 pt-6">
           <nav
-            aria-label="Правна информация"
+            aria-label={footerContent.contact.legalNavAriaLabel}
             className="grid gap-4 text-xs text-white/70 lg:grid-cols-[minmax(0,220px)_1fr] lg:items-center"
           >
             <p className="font-semibold uppercase tracking-wider text-white/70">
-              Правна информация
+              {footerContent.sections.legal}
             </p>
             <ul className="flex flex-col gap-y-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-8 lg:justify-end">
               {legalLinks.map((link) => (
-                <li key={link.href} className="inline-flex items-center gap-2 leading-none">
+                <li key={link.routeKey} className="inline-flex items-center gap-2 leading-none">
                   <span className="h-1 w-1 shrink-0 rounded-full bg-[#FF6D2E]" aria-hidden="true"></span>
                   <Link to={link.href} className="inline-flex items-center leading-5 text-white/80 transition-colors hover:text-[#FF6D2E]">
                     {link.label}
