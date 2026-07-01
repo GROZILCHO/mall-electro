@@ -1,8 +1,28 @@
 import React from "react";
 import SolutionDetailLayout from "../../components/solutions/SolutionDetailLayout";
 import { solutionHeightInstallationFaqItems } from "../../data/solutionHeightInstallationFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-const HeightInstallationSolution: React.FC = () => {
+interface HeightInstallationSolutionProps {
+  locale?: "bg" | "en";
+}
+
+const HeightInstallationSolution: React.FC<HeightInstallationSolutionProps> = ({ locale = "bg" }) => {
+  if (locale === "en") {
+    const content = enContent.pages.solutionDetails?.heightInstallation;
+
+    if (content) {
+      return (
+        <SolutionDetailLayout
+          {...content}
+          seoPage={content.seoPage as SeoPageKey}
+          contactCtaPrimaryHref="/en/contact"
+        />
+      );
+    }
+  }
+
   return (
     <SolutionDetailLayout
       seoPage="solutionHeightInstallation"

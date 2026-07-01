@@ -4,6 +4,7 @@ import { homePageContent } from "./home";
 import { industriesOverviewPageContent } from "./industries";
 import { serviceDetailsContent } from "./serviceDetails";
 import { servicesOverviewPageContent } from "./services";
+import { solutionDetailsContent } from "./solutionDetails";
 import { solutionsOverviewPageContent } from "./solutions";
 import type { PagesContent } from "../../types";
 
@@ -13,6 +14,7 @@ export const pagesContent = {
   servicesOverview: servicesOverviewPageContent,
   serviceDetails: serviceDetailsContent,
   solutionsOverview: solutionsOverviewPageContent,
+  solutionDetails: solutionDetailsContent,
   industriesOverview: industriesOverviewPageContent,
   contact: contactPageContent,
 } as const satisfies PagesContent;
@@ -24,5 +26,6 @@ export {
   industriesOverviewPageContent,
   serviceDetailsContent,
   servicesOverviewPageContent,
+  solutionDetailsContent,
   solutionsOverviewPageContent,
 };

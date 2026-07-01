@@ -51,42 +51,42 @@ export const solutionsOverviewPageContent = {
         description:
           "Planning and execution of electrical infrastructure for new production, warehouse or technological facilities.",
         icon: "Factory",
-        href: "/bg/reshenia/nov-proizvodstven-obekt",
+        href: "/en/solutions/new-production-site",
       },
       {
         title: "Electrical system modernization",
         description:
           "Assessment, replacement and expansion of existing panels, routes, power supply and control points.",
         icon: "Settings",
-        href: "/bg/reshenia/modernizatsia-na-elektro-sistema",
+        href: "/en/solutions/electrical-system-modernization",
       },
       {
         title: "Panels and automation for production lines",
         description:
           "Combining electrical panels, control, sensors and automation for machines and technological lines.",
         icon: "Cpu",
-        href: "/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii",
+        href: "/en/solutions/panels-and-automation-for-production-lines",
       },
       {
         title: "Cable infrastructure for a base",
         description:
           "Organization of cable routes, low voltage systems and power supply for industrial bases, warehouses and production zones.",
         icon: "Activity",
-        href: "/bg/reshenia/kabelna-infrastruktura-za-baza",
+        href: "/en/solutions/cable-infrastructure-for-base",
       },
       {
         title: "Service and expansion",
         description:
           "Diagnostics, maintenance, improvements and expansion of existing industrial electrical systems.",
         icon: "Wrench",
-        href: "/bg/reshenia/serviz-i-razshiryavane",
+        href: "/en/solutions/service-and-expansion",
       },
       {
         title: "Electrical installation at height",
         description:
           "Electrical installation work in high industrial zones, halls, warehouse bases and difficult installation points.",
         icon: "HardHat",
-        href: "/bg/reshenia/elektromontazh-na-visochina-s-vishka",
+        href: "/en/solutions/high-access-installation",
       },
     ],
   },

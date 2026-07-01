@@ -70,9 +70,21 @@ export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
                       ? "maintenanceService"
                       : normalizedPath === "/en/solutions"
                         ? "solutions"
-                        : normalizedPath === "/en/industries"
-                          ? "industries"
-                          : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+                        : normalizedPath === "/en/solutions/new-production-site"
+                          ? "newProductionSiteSolution"
+                          : normalizedPath === "/en/solutions/electrical-system-modernization"
+                            ? "electricalSystemModernizationSolution"
+                            : normalizedPath === "/en/solutions/panels-and-automation-for-production-lines"
+                              ? "panelAutomationLineSolution"
+                              : normalizedPath === "/en/solutions/cable-infrastructure-for-base"
+                                ? "cableInfrastructureBaseSolution"
+                                : normalizedPath === "/en/solutions/service-and-expansion"
+                                  ? "serviceExpansionSolution"
+                                  : normalizedPath === "/en/solutions/high-access-installation"
+                                    ? "heightInstallationSolution"
+                                    : normalizedPath === "/en/industries"
+                                      ? "industries"
+                                      : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -110,6 +122,21 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
           <Route path="/en/services/low-voltage-systems" element={page("lowVoltage", { locale: "en" })} />
           <Route path="/en/services/maintenance-and-service" element={page("maintenanceService", { locale: "en" })} />
           <Route path="/en/solutions" element={page("solutions", { locale: "en" })} />
+          <Route path="/en/solutions/new-production-site" element={page("newProductionSiteSolution", { locale: "en" })} />
+          <Route
+            path="/en/solutions/electrical-system-modernization"
+            element={page("electricalSystemModernizationSolution", { locale: "en" })}
+          />
+          <Route
+            path="/en/solutions/panels-and-automation-for-production-lines"
+            element={page("panelAutomationLineSolution", { locale: "en" })}
+          />
+          <Route
+            path="/en/solutions/cable-infrastructure-for-base"
+            element={page("cableInfrastructureBaseSolution", { locale: "en" })}
+          />
+          <Route path="/en/solutions/service-and-expansion" element={page("serviceExpansionSolution", { locale: "en" })} />
+          <Route path="/en/solutions/high-access-installation" element={page("heightInstallationSolution", { locale: "en" })} />
           <Route path="/en/industries" element={page("industries", { locale: "en" })} />
           <Route path="/" element={<Navigate to="/bg/" replace />} />
           <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />

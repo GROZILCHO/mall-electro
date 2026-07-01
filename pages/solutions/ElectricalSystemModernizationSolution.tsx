@@ -1,8 +1,30 @@
 import React from "react";
 import SolutionDetailLayout from "../../components/solutions/SolutionDetailLayout";
 import { solutionModernizationFaqItems } from "../../data/solutionModernizationFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-const ElectricalSystemModernizationSolution: React.FC = () => {
+interface ElectricalSystemModernizationSolutionProps {
+  locale?: "bg" | "en";
+}
+
+const ElectricalSystemModernizationSolution: React.FC<ElectricalSystemModernizationSolutionProps> = ({
+  locale = "bg",
+}) => {
+  if (locale === "en") {
+    const content = enContent.pages.solutionDetails?.modernization;
+
+    if (content) {
+      return (
+        <SolutionDetailLayout
+          {...content}
+          seoPage={content.seoPage as SeoPageKey}
+          contactCtaPrimaryHref="/en/contact"
+        />
+      );
+    }
+  }
+
   return (
     <SolutionDetailLayout
       seoPage="solutionModernization"

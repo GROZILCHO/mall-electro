@@ -10,6 +10,7 @@ import { Icons } from "../ui/LucideIcons";
 import FAQSection from "../shared/FAQSection";
 import ContactCTA from "../shared/ContactCTA";
 import type { FAQItem } from "../../data/faqTypes";
+import type { HomeFullContent } from "../../data/i18n/content";
 import type { SeoPageKey } from "../../seo/seoConfig";
 
 interface SolutionHero {
@@ -22,13 +23,15 @@ interface SolutionHero {
   primaryCtaHref: string;
   secondaryCtaText: string;
   secondaryCtaHref: string;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
 }
 
 interface TextListSection {
   badge: string;
   title: string;
   text?: string;
-  items: string[];
+  items: readonly string[];
 }
 
 interface LinkedCard {
@@ -46,7 +49,7 @@ interface ProcessStep {
 interface ProcessSection {
   badge: string;
   title: string;
-  steps: ProcessStep[];
+  steps: readonly ProcessStep[];
   image: string;
   imageAlt: string;
   imageKicker: string;
@@ -61,30 +64,30 @@ interface SolutionDetailLayoutProps {
     badge: string;
     title: string;
     text: string;
-    items: Array<{
+    items: readonly {
       title: string;
       text: string;
       icon: keyof typeof Icons;
-    }>;
+    }[];
   };
   services: {
     badge: string;
     title: string;
     text: string;
-    items: LinkedCard[];
+    items: readonly LinkedCard[];
   };
   industries: {
     badge: string;
     title: string;
     text: string;
-    items: LinkedCard[];
+    items: readonly LinkedCard[];
   };
   process: ProcessSection;
   technical: TextListSection;
   faq: {
     title: string;
     intro: string;
-    items: FAQItem[];
+    items: readonly FAQItem[];
   };
   cta?: {
     badge: string;
@@ -95,6 +98,8 @@ interface SolutionDetailLayoutProps {
     secondaryText: string;
     secondaryHref: string;
   };
+  contactCta?: HomeFullContent["contactCta"];
+  contactCtaPrimaryHref?: string;
 }
 
 const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
@@ -108,6 +113,8 @@ const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
   technical,
   faq,
   cta,
+  contactCta,
+  contactCtaPrimaryHref,
 }) => {
   const finalCta = cta ?? {
     badge: "Следваща стъпка",
@@ -139,6 +146,8 @@ const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
         secondaryCtaIcon="Factory"
         heroImage={hero.image}
         heroImageAlt={hero.imageAlt}
+        overlayProjectLabel={hero.overlayProjectLabel}
+        overlayStatusLabel={hero.overlayStatusLabel}
       />
 
       <section className="relative overflow-hidden bg-white py-24 lg:py-32">
@@ -382,7 +391,7 @@ const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
         </div>
       </section>
 
-      <ContactCTA />
+      <ContactCTA content={contactCta} primaryCtaHref={contactCtaPrimaryHref} />
     </main>
   );
 };

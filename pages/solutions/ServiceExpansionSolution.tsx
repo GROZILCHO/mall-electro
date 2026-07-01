@@ -1,8 +1,28 @@
 import React from "react";
 import SolutionDetailLayout from "../../components/solutions/SolutionDetailLayout";
 import { solutionServiceExpansionFaqItems } from "../../data/solutionServiceExpansionFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-const ServiceExpansionSolution: React.FC = () => {
+interface ServiceExpansionSolutionProps {
+  locale?: "bg" | "en";
+}
+
+const ServiceExpansionSolution: React.FC<ServiceExpansionSolutionProps> = ({ locale = "bg" }) => {
+  if (locale === "en") {
+    const content = enContent.pages.solutionDetails?.serviceExpansion;
+
+    if (content) {
+      return (
+        <SolutionDetailLayout
+          {...content}
+          seoPage={content.seoPage as SeoPageKey}
+          contactCtaPrimaryHref="/en/contact"
+        />
+      );
+    }
+  }
+
   return (
     <SolutionDetailLayout
       seoPage="solutionServiceExpansion"

@@ -17,6 +17,7 @@ export type ContentKey =
   | "serviceMaintenance"
   | "serviceDetails"
   | "solutionsOverview"
+  | "solutionDetails"
   | "solutionNewProductionSite"
   | "solutionModernization"
   | "solutionCableInfrastructureBase"
@@ -446,6 +447,110 @@ export interface SolutionsOverviewPageContent {
   contactCta: HomeFullContent["contactCta"];
 }
 
+export interface SolutionDetailHeroContent {
+  badgeText: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  primaryCtaText: string;
+  primaryCtaHref: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
+}
+
+export interface SolutionDetailTextListContent {
+  badge: string;
+  title: string;
+  text?: string;
+  items: readonly string[];
+}
+
+export interface SolutionDetailLinkedCardContent {
+  title: string;
+  text: string;
+  href: string;
+  icon: string;
+}
+
+export interface SolutionDetailIncludedItemContent {
+  title: string;
+  text: string;
+  icon: string;
+}
+
+export interface SolutionDetailProcessStepContent {
+  title: string;
+  text: string;
+}
+
+export interface SolutionDetailProcessContent {
+  badge: string;
+  title: string;
+  steps: readonly SolutionDetailProcessStepContent[];
+  image: string;
+  imageAlt: string;
+  imageKicker: string;
+  imageTitle: string;
+}
+
+export interface SolutionDetailFaqItemContent {
+  question: string;
+  answer: string;
+}
+
+export interface SolutionDetailPageContent {
+  seoPage: string;
+  hero: SolutionDetailHeroContent;
+  context: SolutionDetailTextListContent;
+  included: {
+    badge: string;
+    title: string;
+    text: string;
+    items: readonly SolutionDetailIncludedItemContent[];
+  };
+  services: {
+    badge: string;
+    title: string;
+    text: string;
+    items: readonly SolutionDetailLinkedCardContent[];
+  };
+  industries: {
+    badge: string;
+    title: string;
+    text: string;
+    items: readonly SolutionDetailLinkedCardContent[];
+  };
+  process: SolutionDetailProcessContent;
+  technical: SolutionDetailTextListContent;
+  faq: {
+    title: string;
+    intro: string;
+    items: readonly SolutionDetailFaqItemContent[];
+  };
+  cta?: {
+    badge: string;
+    title: string;
+    text: string;
+    primaryText: string;
+    primaryHref: string;
+    secondaryText: string;
+    secondaryHref: string;
+  };
+  contactCta: HomeFullContent["contactCta"];
+}
+
+export interface SolutionDetailsContent {
+  newProductionSite: SolutionDetailPageContent;
+  modernization: SolutionDetailPageContent;
+  panelAutomationLine: SolutionDetailPageContent;
+  cableInfrastructureBase: SolutionDetailPageContent;
+  serviceExpansion: SolutionDetailPageContent;
+  heightInstallation: SolutionDetailPageContent;
+}
+
 export interface IndustriesHeroContent extends PageHeroContent {
   subtitleParagraphs: readonly string[];
   primaryCtaHref: string;
@@ -678,6 +783,7 @@ export interface PagesContent {
   servicesOverview?: ServicesOverviewPageContent;
   serviceDetails?: ServiceDetailsContent;
   solutionsOverview?: SolutionsOverviewPageContent;
+  solutionDetails?: SolutionDetailsContent;
   industriesOverview?: IndustriesOverviewPageContent;
   contact: ContactPageContent;
 }

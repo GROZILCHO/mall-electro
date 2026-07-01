@@ -49,6 +49,12 @@ export type SeoPageKey =
   | "enAutomation"
   | "enLowVoltage"
   | "enMaintenanceService"
+  | "enSolutionNewProductionSite"
+  | "enSolutionModernization"
+  | "enSolutionCableInfrastructureBase"
+  | "enSolutionServiceExpansion"
+  | "enSolutionHeightInstallation"
+  | "enSolutionPanelAutomationLine"
   | "industries"
   | "industryHvp"
   | "industryZarnoprerabotka"
@@ -218,6 +224,66 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Mall Electro combines panels, cable routes, low voltage systems, automation and service into practical industrial electrical solutions.",
     ogImage: "/images/industrial/industrial-electrical-project-planning-production-hall-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enSolutionNewProductionSite",
+    path: "/en/solutions/new-production-site",
+    title: "Electrical infrastructure for a new production site",
+    description:
+      "Mall Electro plans and builds electrical infrastructure for new production, warehouse and technological facilities.",
+    ogImage: "/images/industrial/industrial-new-production-site-electrical-infrastructure-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enSolutionModernization",
+    path: "/en/solutions/electrical-system-modernization",
+    title: "Modernization of an industrial electrical system",
+    description:
+      "Mall Electro assesses and modernizes existing industrial electrical systems, panels, routes, supplies, automation and control points.",
+    ogImage: "/images/engineering/engineering-electrical-system-modernization-technical-room-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enSolutionPanelAutomationLine",
+    path: "/en/solutions/panels-and-automation-for-production-lines",
+    title: "Panels and automation for production lines",
+    description:
+      "Mall Electro combines electrical panels, control, sensors, cable routes and low voltage systems for production lines.",
+    ogImage: "/images/automation/automation-control-panel-technological-line-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enSolutionCableInfrastructureBase",
+    path: "/en/solutions/cable-infrastructure-for-base",
+    title: "Cable infrastructure for an industrial base",
+    description:
+      "Mall Electro organizes cable routes, power lines, low voltage systems and connections for industrial bases and warehouse zones.",
+    ogImage: "/images/cable-routing/cable-routing-industrial-base-overhead-trays-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enSolutionServiceExpansion",
+    path: "/en/solutions/service-and-expansion",
+    title: "Service and expansion of existing electrical systems",
+    description:
+      "Mall Electro supports diagnostics, maintenance, improvements and expansion of existing industrial electrical systems.",
+    ogImage: "/images/engineering/engineering-maintenance-diagnostics-control-cabinet-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enSolutionHeightInstallation",
+    path: "/en/solutions/high-access-installation",
+    title: "Electrical installation at height",
+    description:
+      "Mall Electro executes electrical installation work in high industrial zones, halls, warehouse bases and difficult access points.",
+    ogImage: "/images/industrial/industrial-electrical-installation-height-lift-01.png",
     noindex: true,
     includeInSitemap: false,
   },

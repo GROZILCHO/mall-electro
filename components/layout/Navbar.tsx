@@ -21,6 +21,15 @@ const enServiceDetailPaths: Partial<Record<RouteKey, string>> = {
   serviceMaintenance: "/en/services/maintenance-and-service",
 };
 
+const enSolutionDetailPaths: Partial<Record<RouteKey, string>> = {
+  solutionNewProductionSite: "/en/solutions/new-production-site",
+  solutionModernization: "/en/solutions/electrical-system-modernization",
+  solutionPanelAutomationLine: "/en/solutions/panels-and-automation-for-production-lines",
+  solutionCableInfrastructureBase: "/en/solutions/cable-infrastructure-for-base",
+  solutionServiceExpansion: "/en/solutions/service-and-expansion",
+  solutionHeightInstallation: "/en/solutions/high-access-installation",
+};
+
 const toNavigationItem = (
   routeKey: RouteKey,
   content: NavigationContent,
@@ -44,6 +53,8 @@ const toNavigationItem = (
         ? "/en/contact"
         : isEnglish && enServiceDetailPaths[routeKey]
           ? enServiceDetailPaths[routeKey]
+        : isEnglish && enSolutionDetailPaths[routeKey]
+          ? enSolutionDetailPaths[routeKey]
         : getLocalizedPath(routeKey, "bg"),
 });
 
