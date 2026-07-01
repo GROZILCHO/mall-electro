@@ -8,6 +8,8 @@ import Card from "../components/ui/Card";
 import FadeIn from "../components/ui/FadeIn";
 import { Icons } from "../components/ui/LucideIcons";
 import ContactCTA from "../components/shared/ContactCTA";
+import { enContent } from "../data/i18n/content";
+import type { SolutionsOverviewPageContent } from "../data/i18n/content";
 
 type LinkedItem = {
   title: string;
@@ -152,7 +154,262 @@ const processSteps = [
   "Поддръжка след пуск",
 ];
 
-const Solutions: React.FC = () => {
+interface EnglishSolutionsOverviewProps {
+  content: SolutionsOverviewPageContent;
+}
+
+const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ content }) => {
+  return (
+    <main>
+      <SEO page="solutions" />
+
+      <PageHero
+        title={content.hero.title}
+        subtitle={content.hero.subtitle}
+        theme="light"
+        badgeText={content.hero.badgeText}
+        badgeVariant="accent"
+        primaryCtaText={content.hero.primaryCtaText}
+        primaryCtaHref={content.hero.primaryCtaHref}
+        primaryCtaIcon="ChevronRight"
+        secondaryCtaText={content.hero.secondaryCtaText}
+        secondaryCtaHref={content.hero.secondaryCtaHref}
+        secondaryCtaVariant="dark"
+        secondaryCtaIcon="Factory"
+        heroImage="/images/industrial/industrial-electrical-project-planning-production-hall-01.png"
+        heroImageAlt={content.hero.heroImageAlt}
+        overlayProjectLabel={content.hero.overlayProjectLabel}
+        overlayStatusLabel={content.hero.overlayStatusLabel}
+      />
+
+      <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+        <div className="cad-grid-slate absolute inset-0 pointer-events-none opacity-[0.2]" />
+        <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-12">
+            <FadeIn className="lg:col-span-5">
+              <Badge text={content.scope.badge} variant="section-line" />
+              <h2 className="mb-6 font-sans text-3xl font-bold leading-tight text-[#1C2A39] lg:text-5xl">
+                {content.scope.heading}
+              </h2>
+              <p className="text-lg leading-relaxed text-[#56677A]">
+                {content.scope.body}
+              </p>
+            </FadeIn>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:col-span-7">
+              {content.scope.cards.map((card, index) => (
+                <FadeIn key={card.title} delay={index * 80}>
+                  <Card className="h-full">
+                    <span className="mb-5 block font-mono text-xs font-bold text-brand-orange">
+                      0{index + 1}
+                    </span>
+                    <h3 className="mb-3 text-xl font-bold text-[#1C2A39]">{card.title}</h3>
+                    <p className="text-sm leading-relaxed text-[#56677A]">{card.text}</p>
+                  </Card>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#F5F7FA] py-24 lg:py-32">
+        <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
+          <FadeIn>
+            <div className="mb-14 max-w-4xl">
+              <Badge text={content.scenarios.badge} variant="blueprint" />
+              <h2 className="mb-6 font-sans text-3xl font-bold leading-tight text-[#1C2A39] lg:text-5xl">
+                {content.scenarios.heading}
+              </h2>
+              <p className="text-lg leading-relaxed text-[#56677A]">
+                {content.scenarios.body}
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {content.scenarios.items.map((scenario, index) => {
+              const Icon = Icons[scenario.icon as keyof typeof Icons] ?? Icons.Zap;
+              const scenarioContent = (
+                <>
+                  <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
+                    <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
+                      {content.scenarios.cardPrefix} {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} />
+                    </div>
+                  </div>
+                  <h3 className="mb-4 text-xl font-bold text-[#1C2A39] transition-colors duration-300 group-hover:text-brand-blue">
+                    {scenario.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed text-[#56677A]">
+                    {scenario.description}
+                  </p>
+                  {scenario.href && (
+                    <div className="mt-6 border-t border-dashed border-gray-100 pt-5 text-sm font-medium text-brand-blue">
+                      <span className="inline-flex items-center">
+                        {content.scenarios.cardCta} <Icons.ChevronRight className="ml-2 h-4 w-4" />
+                      </span>
+                    </div>
+                  )}
+                </>
+              );
+
+              return (
+                <FadeIn key={scenario.title} delay={index * 80}>
+                  {scenario.href ? (
+                    <Link
+                      to={scenario.href}
+                      className="group block h-full rounded-xl border border-blue-100 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl"
+                    >
+                      {scenarioContent}
+                    </Link>
+                  ) : (
+                    <Card className="h-full">{scenarioContent}</Card>
+                  )}
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+        <div className="cad-grid-blue absolute inset-0 pointer-events-none opacity-[0.04]" />
+        <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
+          <FadeIn>
+            <div className="mb-14 max-w-4xl">
+              <Badge text={content.services.badge} variant="section-line" />
+              <h2 className="mb-6 font-sans text-3xl font-bold leading-tight text-[#1C2A39] lg:text-5xl">
+                {content.services.heading}
+              </h2>
+              <p className="text-lg leading-relaxed text-[#56677A]">
+                {content.services.body}
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {content.services.items.map((service, index) => {
+              const Icon = Icons[service.icon as keyof typeof Icons] ?? Icons.Zap;
+
+              return (
+                <FadeIn key={service.href} delay={index * 70}>
+                  <Link
+                    to={service.href}
+                    className="group block h-full border border-gray-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-lg"
+                  >
+                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded bg-brand-blue/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mb-3 text-lg font-bold text-[#1C2A39] transition-colors duration-300 group-hover:text-brand-blue">
+                      {service.title}
+                    </h3>
+                    <p className="text-sm leading-relaxed text-[#56677A]">{service.text}</p>
+                  </Link>
+                </FadeIn>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#1C2A39] py-24 text-white lg:py-32">
+        <div className="cad-grid-white absolute inset-0 pointer-events-none opacity-[0.05]" />
+        <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
+          <FadeIn>
+            <div className="mb-14 max-w-4xl">
+              <Badge text={content.industries.badge} variant="pill-dark" />
+              <h2 className="mb-6 font-sans text-3xl font-bold leading-tight lg:text-5xl">
+                {content.industries.heading}
+              </h2>
+              <p className="text-lg leading-relaxed text-white/70">
+                {content.industries.body}
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {content.industries.items.map((industry, index) => {
+              const Icon = Icons[industry.icon as keyof typeof Icons] ?? Icons.Factory;
+
+              return (
+                <FadeIn key={industry.href} delay={index * 70}>
+                  <Link
+                    to={industry.href}
+                    className="group block h-full border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06]"
+                  >
+                    <div className="mb-5 flex h-11 w-11 items-center justify-center rounded bg-white/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="mb-3 text-lg font-bold text-white">{industry.title}</h3>
+                    <p className="text-sm leading-relaxed text-white/70">{industry.text}</p>
+                  </Link>
+                </FadeIn>
+              );
+            })}
+          </div>
+
+          <FadeIn delay={200}>
+            <div className="mt-12">
+              <Button variant="ghost" icon="Factory" href={content.industries.ctaHref}>
+                {content.industries.cta}
+              </Button>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-white py-24 lg:py-32">
+        <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
+          <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-12">
+            <FadeIn className="lg:col-span-5">
+              <Badge text={content.process.badge} variant="blueprint" />
+              <h2 className="mb-6 font-sans text-3xl font-bold leading-tight text-[#1C2A39] lg:text-5xl">
+                {content.process.heading}
+              </h2>
+              <p className="text-lg leading-relaxed text-[#56677A]">
+                {content.process.body}
+              </p>
+            </FadeIn>
+
+            <div className="space-y-6 lg:col-span-7">
+              {content.process.steps.map((step, index) => (
+                <FadeIn key={step} delay={index * 80}>
+                  <div className="border-l-2 border-brand-orange bg-[#F5F7FA] p-6 pl-5">
+                    <span className="mb-2 block font-mono text-xs font-bold uppercase tracking-[0.2em] text-brand-orange">
+                      0{index + 1}
+                    </span>
+                    <h3 className="text-xl font-bold text-[#1C2A39]">{step}</h3>
+                  </div>
+                </FadeIn>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <ContactCTA content={content.contactCta} primaryCtaHref="/en/contact" />
+    </main>
+  );
+};
+
+interface SolutionsProps {
+  locale?: "bg" | "en";
+}
+
+const Solutions: React.FC<SolutionsProps> = ({ locale = "bg" }) => {
+  if (locale === "en") {
+    const content = enContent.pages.solutionsOverview;
+
+    if (!content) {
+      throw new Error("Missing English solutions overview content.");
+    }
+
+    return <EnglishSolutionsOverview content={content} />;
+  }
+
   return (
     <main>
       <SEO page="solutions" />

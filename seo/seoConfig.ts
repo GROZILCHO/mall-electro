@@ -146,6 +146,16 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industrial/industrial-electrical-project-planning-production-hall-01.png",
   },
   {
+    key: "solutions",
+    path: "/en/solutions",
+    title: "Solutions for industrial electrical systems",
+    description:
+      "Mall Electro combines panels, cable routes, low voltage systems, automation and service into practical industrial electrical solutions.",
+    ogImage: "/images/industrial/industrial-electrical-project-planning-production-hall-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
     ...createSeoRouteIdentity("solutionNewProductionSite"),
     title: "Електро инфраструктура за нов производствен обект | Mall Electro",
     description:

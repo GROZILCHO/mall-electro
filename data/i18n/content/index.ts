@@ -44,4 +44,8 @@ export type {
   ServicesOverviewPageContent,
   ServicesOverviewServiceContent,
   ServicesOverviewStepContent,
+  SolutionsOverviewCardContent,
+  SolutionsOverviewLinkedItemContent,
+  SolutionsOverviewPageContent,
+  SolutionsOverviewScenarioContent,
 } from "./types";

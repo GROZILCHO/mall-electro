@@ -289,6 +289,69 @@ export interface ServicesOverviewPageContent {
   contactCta: HomeFullContent["contactCta"];
 }
 
+export interface SolutionsOverviewCardContent {
+  title: string;
+  text: string;
+}
+
+export interface SolutionsOverviewLinkedItemContent {
+  title: string;
+  text: string;
+  href: string;
+  icon: string;
+}
+
+export interface SolutionsOverviewScenarioContent {
+  title: string;
+  description: string;
+  icon: string;
+  href?: string;
+}
+
+export interface SolutionsOverviewPageContent {
+  hero: PageHeroContent & {
+    primaryCtaHref: string;
+    secondaryCtaHref: string;
+    overlayProjectLabel: string;
+    overlayStatusLabel: string;
+  };
+  scope: {
+    badge: string;
+    heading: string;
+    body: string;
+    cards: readonly SolutionsOverviewCardContent[];
+  };
+  scenarios: {
+    badge: string;
+    heading: string;
+    body: string;
+    cardPrefix: string;
+    cardCta: string;
+    items: readonly SolutionsOverviewScenarioContent[];
+  };
+  services: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly SolutionsOverviewLinkedItemContent[];
+  };
+  industries: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly SolutionsOverviewLinkedItemContent[];
+    cta: string;
+    ctaHref: string;
+  };
+  process: {
+    badge: string;
+    heading: string;
+    body: string;
+    steps: readonly string[];
+  };
+  contactCta: HomeFullContent["contactCta"];
+}
+
 export interface HomeHeroContent extends PageHeroContent {
   highlightedTitle?: string;
   trustLabels?: readonly string[];
@@ -461,6 +524,7 @@ export interface PagesContent {
   home: HomePageContent;
   about?: AboutPageContent;
   servicesOverview?: ServicesOverviewPageContent;
+  solutionsOverview?: SolutionsOverviewPageContent;
   contact: ContactPageContent;
 }
 

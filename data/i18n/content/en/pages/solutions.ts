@@ -1,0 +1,222 @@
+import type { SolutionsOverviewPageContent } from "../../types";
+
+export const solutionsOverviewPageContent = {
+  hero: {
+    title: "Solutions for industrial electrical systems",
+    subtitle:
+      "We combine electrical panels, cable routes, low voltage systems, automation and service into complete solutions for new sites, modernization, technological lines and industrial infrastructure.",
+    badgeText: "Engineering solutions",
+    heroImageAlt:
+      "Industrial electrical project with panels, cable routes and technical planning",
+    primaryCtaText: "Discuss a project",
+    secondaryCtaText: "View services",
+    primaryCtaHref: "/en/contact",
+    secondaryCtaHref: "/en/services",
+    overlayProjectLabel: "PROJECT: #8842",
+    overlayStatusLabel: "TECHNICAL PLANNING",
+  },
+  scope: {
+    badge: "Solutions // scope",
+    heading: "What a solution means",
+    body:
+      "A solution is not a single service and it is not only an industrial sector. It is a practical scope around a specific client situation - a new facility, modernization, production line, cable infrastructure or service expansion.",
+    cards: [
+      {
+        title: "Services",
+        text:
+          "What we execute - panels, routes, low voltage systems, automation and service.",
+      },
+      {
+        title: "Industries",
+        text:
+          "Where we work - food processing, grain processing, mills, agro, logistics and manufacturing.",
+      },
+      {
+        title: "Solutions",
+        text:
+          "How we combine services for a specific project scenario.",
+      },
+    ],
+  },
+  scenarios: {
+    badge: "Typical scenarios",
+    heading: "Project situations where services work together",
+    body:
+      "Each scenario combines several work areas - from panels and routes to control, inspection and follow-up maintenance.",
+    cardPrefix: "Solution",
+    cardCta: "View solution",
+    items: [
+      {
+        title: "New production site",
+        description:
+          "Planning and execution of electrical infrastructure for new production, warehouse or technological facilities.",
+        icon: "Factory",
+        href: "/bg/reshenia/nov-proizvodstven-obekt",
+      },
+      {
+        title: "Electrical system modernization",
+        description:
+          "Assessment, replacement and expansion of existing panels, routes, power supply and control points.",
+        icon: "Settings",
+        href: "/bg/reshenia/modernizatsia-na-elektro-sistema",
+      },
+      {
+        title: "Panels and automation for production lines",
+        description:
+          "Combining electrical panels, control, sensors and automation for machines and technological lines.",
+        icon: "Cpu",
+        href: "/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii",
+      },
+      {
+        title: "Cable infrastructure for a base",
+        description:
+          "Organization of cable routes, low voltage systems and power supply for industrial bases, warehouses and production zones.",
+        icon: "Activity",
+        href: "/bg/reshenia/kabelna-infrastruktura-za-baza",
+      },
+      {
+        title: "Service and expansion",
+        description:
+          "Diagnostics, maintenance, improvements and expansion of existing industrial electrical systems.",
+        icon: "Wrench",
+        href: "/bg/reshenia/serviz-i-razshiryavane",
+      },
+      {
+        title: "Electrical installation at height",
+        description:
+          "Electrical installation work in high industrial zones, halls, warehouse bases and difficult installation points.",
+        icon: "HardHat",
+        href: "/bg/reshenia/elektromontazh-na-visochina-s-vishka",
+      },
+    ],
+  },
+  services: {
+    badge: "Services in combination",
+    heading: "How the services are combined",
+    body:
+      "The solution starts from the specific facility, but usually combines several technical areas into one organized scope.",
+    items: [
+      {
+        title: "Electrical panels",
+        text:
+          "Distribution panels, control cabinets and management panels.",
+        href: "/bg/uslugi/elektricheski-tabla",
+        icon: "LayoutDashboard",
+      },
+      {
+        title: "Cable routes",
+        text:
+          "Cable trays, routes and organized industrial cabling.",
+        href: "/bg/uslugi/kabelni-traseta",
+        icon: "Factory",
+      },
+      {
+        title: "Industrial electrical installations",
+        text:
+          "Power supply, power lines and connections between machines, panels and zones.",
+        href: "/bg/uslugi/industrialni-elektroinstalatsii",
+        icon: "HardHat",
+      },
+      {
+        title: "Automation",
+        text:
+          "Control, sensors, control circuits and process integration.",
+        href: "/bg/uslugi/avtomatizatsia",
+        icon: "Cpu",
+      },
+      {
+        title: "Low voltage systems",
+        text:
+          "Low voltage connections, power lines and related infrastructure.",
+        href: "/bg/uslugi/nisko-naprezhenie",
+        icon: "Zap",
+      },
+      {
+        title: "Maintenance and service",
+        text:
+          "Diagnostics, prevention and follow-up technical support.",
+        href: "/bg/uslugi/poddrazhka-i-serviz",
+        icon: "Wrench",
+      },
+    ],
+  },
+  industries: {
+    badge: "Industrial environments",
+    heading: "Where these solutions apply",
+    body:
+      "Electrical solutions are adapted to the environment, load, operating mode and access for installation and maintenance.",
+    items: [
+      {
+        title: "Food processing",
+        text:
+          "Production lines and food processing facilities.",
+        href: "/bg/industrii/hvp",
+        icon: "Factory",
+      },
+      {
+        title: "Grain processing",
+        text:
+          "Silo complexes, transport lines and drying systems.",
+        href: "/bg/industrii/zarnoprerabotka",
+        icon: "Wheat",
+      },
+      {
+        title: "Mills",
+        text:
+          "Flour production, aspiration and technological lines.",
+        href: "/bg/industrii/melnitsi",
+        icon: "Activity",
+      },
+      {
+        title: "Agro",
+        text:
+          "Farms, storage bases, drying systems and seasonal infrastructure.",
+        href: "/bg/industrii/agro",
+        icon: "Wheat",
+      },
+      {
+        title: "Logistics",
+        text:
+          "Warehouse complexes, cold rooms and loading zones.",
+        href: "/bg/industrii/logistika",
+        icon: "Warehouse",
+      },
+      {
+        title: "Manufacturing facilities",
+        text:
+          "Industrial halls, work zones, machines and processes.",
+        href: "/bg/industrii/proizvodstveni-predpriyatiya",
+        icon: "Settings",
+      },
+    ],
+    cta: "All industries",
+    ctaHref: "/bg/industrii",
+  },
+  process: {
+    badge: "Process",
+    heading: "From technical inspection to maintenance after commissioning",
+    body:
+      "The approach remains practical: first the real site conditions are clarified, then panels, routes, control, installation and checks are planned.",
+    steps: [
+      "Technical inspection",
+      "Scope clarification",
+      "Planning of panels, routes and control",
+      "Installation and checks",
+      "Maintenance after commissioning",
+    ],
+  },
+  contactCta: {
+    imageAlt: "Engineering project and electrical panel",
+    projectLabel: "PROJECT: #8842",
+    readyLabel: "SYSTEM READY",
+    badge: "READY TO TALK",
+    heading: "Let us build your",
+    highlightedHeading: "system together.",
+    body:
+      "Our engineering team is available for site inspection, design and execution.",
+    strongBody:
+      "We will review the inquiry and contact you to clarify the scope and next steps.",
+    primaryCta: "Send inquiry",
+    secondaryCta: "Speak with an engineer",
+  },
+} as const satisfies SolutionsOverviewPageContent;
