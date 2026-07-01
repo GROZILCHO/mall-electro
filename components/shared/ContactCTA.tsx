@@ -20,9 +20,10 @@ const defaultContent: HomeFullContent["contactCta"] = {
 
 interface ContactCTAProps {
   content?: HomeFullContent["contactCta"];
+  primaryCtaHref?: string;
 }
 
-const ContactCTA: React.FC<ContactCTAProps> = ({ content = defaultContent }) => {
+const ContactCTA: React.FC<ContactCTAProps> = ({ content = defaultContent, primaryCtaHref = "/bg/kontakti" }) => {
   return (
     <section className="relative overflow-hidden bg-[#E7EDF5] py-24 lg:py-32">
       <div className="contact-cta-grid absolute inset-0 pointer-events-none opacity-[0.03]" />
@@ -80,7 +81,7 @@ const ContactCTA: React.FC<ContactCTAProps> = ({ content = defaultContent }) => 
               </p>
 
               <div className="flex flex-col gap-5 sm:flex-row">
-                <Button variant="primary" size="md" icon="ArrowRight" href="/bg/kontakti">
+                <Button variant="primary" size="md" icon="ArrowRight" href={primaryCtaHref}>
                   {content.primaryCta}
                 </Button>
                 <Button variant="outline" size="md" icon="Phone" href={`tel:${SITE_PHONE_RAW}`}>

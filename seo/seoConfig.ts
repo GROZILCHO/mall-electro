@@ -129,6 +129,16 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industrial/industrial-electrical-workshop-technical-zone-01.png",
   },
   {
+    key: "services",
+    path: "/en/services",
+    title: "Services - industrial electrical systems and engineering",
+    description:
+      "Mall Electro provides industrial electrical services including panels, cable routes, installations, automation, low voltage systems and maintenance.",
+    ogImage: "/images/industrial/industrial-electrical-workshop-technical-zone-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
     ...createSeoRouteIdentity("solutions"),
     title: "Решения за индустриални електро системи | Mall Electro",
     description:

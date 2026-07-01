@@ -41,4 +41,7 @@ export type {
   PageHeroContent,
   PagesContent,
   PageSectionContent,
+  ServicesOverviewPageContent,
+  ServicesOverviewServiceContent,
+  ServicesOverviewStepContent,
 } from "./types";

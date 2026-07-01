@@ -233,6 +233,62 @@ export interface AboutPageContent {
   };
 }
 
+export interface ServicesOverviewServiceContent {
+  title: string;
+  description: string;
+  icon: string;
+  href?: string;
+  bullets: readonly string[];
+}
+
+export interface ServicesOverviewStepContent {
+  title: string;
+  text: string;
+}
+
+export interface ServicesOverviewPageContent {
+  hero: PageHeroContent & {
+    primaryCtaHref: string;
+    secondaryCtaHref: string;
+    overlayProjectLabel: string;
+    overlayStatusLabel: string;
+  };
+  overview: {
+    badge: string;
+    heading: string;
+    body: string;
+    steps: readonly ServicesOverviewStepContent[];
+  };
+  services: {
+    badge: string;
+    heading: string;
+    body: string;
+    cardPrefix: string;
+    cardCta: string;
+    items: readonly ServicesOverviewServiceContent[];
+  };
+  engineering: {
+    badge: string;
+    heading: string;
+    body: string;
+    bullets: readonly string[];
+    imageAlt: string;
+    imageLabel: string;
+    imageStatus: string;
+  };
+  projectTypes: {
+    badge: string;
+    heading: string;
+    body: string;
+    items: readonly string[];
+    primaryCta: string;
+    secondaryCta: string;
+    primaryCtaHref: string;
+    secondaryCtaHref: string;
+  };
+  contactCta: HomeFullContent["contactCta"];
+}
+
 export interface HomeHeroContent extends PageHeroContent {
   highlightedTitle?: string;
   trustLabels?: readonly string[];
@@ -404,6 +460,7 @@ export interface HomePageContent {
 export interface PagesContent {
   home: HomePageContent;
   about?: AboutPageContent;
+  servicesOverview?: ServicesOverviewPageContent;
   contact: ContactPageContent;
 }
 
