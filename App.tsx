@@ -56,11 +56,23 @@ export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
           ? "about"
         : normalizedPath === "/en/services"
           ? "services"
-        : normalizedPath === "/en/solutions"
-          ? "solutions"
-        : normalizedPath === "/en/industries"
-          ? "industries"
-        : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+          : normalizedPath === "/en/services/electrical-panels"
+            ? "electricPanels"
+            : normalizedPath === "/en/services/cable-routes"
+              ? "cableRoutes"
+              : normalizedPath === "/en/services/industrial-electrical-installations"
+                ? "industrialElectricalInstallations"
+                : normalizedPath === "/en/services/automation"
+                  ? "automation"
+                  : normalizedPath === "/en/services/low-voltage-systems"
+                    ? "lowVoltage"
+                    : normalizedPath === "/en/services/maintenance-and-service"
+                      ? "maintenanceService"
+                      : normalizedPath === "/en/solutions"
+                        ? "solutions"
+                        : normalizedPath === "/en/industries"
+                          ? "industries"
+                          : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -88,6 +100,15 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
           <Route path="/en/contact" element={page("contact", { locale: "en" })} />
           <Route path="/en/about" element={page("about", { locale: "en" })} />
           <Route path="/en/services" element={page("services", { locale: "en" })} />
+          <Route path="/en/services/electrical-panels" element={page("electricPanels", { locale: "en" })} />
+          <Route path="/en/services/cable-routes" element={page("cableRoutes", { locale: "en" })} />
+          <Route
+            path="/en/services/industrial-electrical-installations"
+            element={page("industrialElectricalInstallations", { locale: "en" })}
+          />
+          <Route path="/en/services/automation" element={page("automation", { locale: "en" })} />
+          <Route path="/en/services/low-voltage-systems" element={page("lowVoltage", { locale: "en" })} />
+          <Route path="/en/services/maintenance-and-service" element={page("maintenanceService", { locale: "en" })} />
           <Route path="/en/solutions" element={page("solutions", { locale: "en" })} />
           <Route path="/en/industries" element={page("industries", { locale: "en" })} />
           <Route path="/" element={<Navigate to="/bg/" replace />} />

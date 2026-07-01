@@ -51,7 +51,7 @@ export const servicesOverviewPageContent = {
         description:
           "Design, manufacturing and commissioning of distribution panels, control cabinets and management panels.",
         icon: "LayoutDashboard",
-        href: "/bg/uslugi/elektricheski-tabla",
+        href: "/en/services/electrical-panels",
         bullets: [
           "Project documentation",
           "EN standards and protections",
@@ -63,7 +63,7 @@ export const servicesOverviewPageContent = {
         description:
           "Cable trays, routes and organized cabling for demanding industrial environments.",
         icon: "Factory",
-        href: "/bg/uslugi/kabelni-traseta",
+        href: "/en/services/cable-routes",
         bullets: [
           "Routes for machines and lines",
           "Clean on-site installation",
@@ -75,7 +75,7 @@ export const servicesOverviewPageContent = {
         description:
           "Complete electrical installation execution for production facilities, warehouses and technological lines.",
         icon: "HardHat",
-        href: "/bg/uslugi/industrialni-elektroinstalatsii",
+        href: "/en/services/industrial-electrical-installations",
         bullets: [
           "Power lines and supply",
           "On-site installation teams",
@@ -87,7 +87,7 @@ export const servicesOverviewPageContent = {
         description:
           "Integration of control systems, sensors, panels and communication between machines and processes.",
         icon: "Cpu",
-        href: "/bg/uslugi/avtomatizatsia",
+        href: "/en/services/automation",
         bullets: [
           "PLC and controllers",
           "Process signaling",
@@ -99,7 +99,7 @@ export const servicesOverviewPageContent = {
         description:
           "Cabling and connections between machines, panels and systems for reliable production operation.",
         icon: "Zap",
-        href: "/bg/uslugi/nisko-naprezhenie",
+        href: "/en/services/low-voltage-systems",
         bullets: [
           "Cables and connections",
           "Machines, panels and lines",
@@ -111,7 +111,7 @@ export const servicesOverviewPageContent = {
         description:
           "Response, system checks, repairs and technical support after execution.",
         icon: "Wrench",
-        href: "/bg/uslugi/poddrazhka-i-serviz",
+        href: "/en/services/maintenance-and-service",
         bullets: [
           "Inspection and diagnostics",
           "Repair and corrections",

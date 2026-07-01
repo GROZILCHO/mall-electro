@@ -43,6 +43,12 @@ export type SeoPageKey =
   | "automation"
   | "lowVoltage"
   | "maintenanceService"
+  | "enElectricPanels"
+  | "enCableRoutes"
+  | "enIndustrialElectricalInstallations"
+  | "enAutomation"
+  | "enLowVoltage"
+  | "enMaintenanceService"
   | "industries"
   | "industryHvp"
   | "industryZarnoprerabotka"
@@ -135,6 +141,66 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Mall Electro provides industrial electrical services including panels, cable routes, installations, automation, low voltage systems and maintenance.",
     ogImage: "/images/industrial/industrial-electrical-workshop-technical-zone-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enElectricPanels",
+    path: "/en/services/electrical-panels",
+    title: "Electrical panels and control cabinets for industrial facilities",
+    description:
+      "Mall Electro designs, builds, wires and tests electrical panels and control cabinets for production lines, machines, low voltage systems and automation.",
+    ogImage: "/images/electrical-panels/electrical-panels-control-cabinet-technical-room-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enCableRoutes",
+    path: "/en/services/cable-routes",
+    title: "Cable routes and industrial cabling",
+    description:
+      "Mall Electro builds cable routes, cable trays and organized industrial cabling for production facilities, warehouses and technological lines.",
+    ogImage: "/images/cable-routing/cable-routing-overhead-trays-industrial-hall-02.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustrialElectricalInstallations",
+    path: "/en/services/industrial-electrical-installations",
+    title: "Industrial electrical installations for production facilities",
+    description:
+      "Mall Electro executes industrial electrical installations for production lines, warehouse bases, machines and technological processes.",
+    ogImage: "/images/industrial/industrial-electrical-installation-production-zone-02.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enAutomation",
+    path: "/en/services/automation",
+    title: "Automation of industrial processes and control systems",
+    description:
+      "Mall Electro builds automation, control and management systems for production processes, machines and technological lines.",
+    ogImage: "/images/automation/automation-plc-control-system-production-line-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enLowVoltage",
+    path: "/en/services/low-voltage-systems",
+    title: "Low voltage systems for industrial facilities",
+    description:
+      "Mall Electro executes low voltage systems, supply lines and electrical connections for machines, panels and production zones.",
+    ogImage: "/images/electrical-panels/electrical-panels-low-voltage-distribution-technical-room-01.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enMaintenanceService",
+    path: "/en/services/maintenance-and-service",
+    title: "Maintenance and service of industrial electrical systems",
+    description:
+      "Mall Electro provides maintenance, diagnostics and service for electrical panels, cable routes, low voltage systems, automation and industrial electrical installations.",
+    ogImage: "/images/engineering/engineering-maintenance-diagnostics-control-cabinet-01.png",
     noindex: true,
     includeInSitemap: false,
   },

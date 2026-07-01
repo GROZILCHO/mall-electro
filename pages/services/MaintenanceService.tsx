@@ -1,8 +1,36 @@
 import React from "react";
 import ServiceDetailLayout from "../../components/services/ServiceDetailLayout";
 import { maintenanceServiceFaqItems } from "../../data/maintenanceServiceFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-const MaintenanceService: React.FC = () => {
+interface MaintenanceServiceProps {
+  locale?: "bg" | "en";
+}
+
+const MaintenanceService: React.FC<MaintenanceServiceProps> = ({ locale = "bg" }) => {
+  if (locale === "en") {
+    const content = enContent.pages.serviceDetails?.maintenanceService;
+
+    if (!content) {
+      throw new Error("Missing English maintenance and service detail content.");
+    }
+
+    return (
+      <ServiceDetailLayout
+        seoPage={content.seoPage as SeoPageKey}
+        hero={content.hero}
+        overview={content.overview}
+        suitability={content.suitability}
+        process={content.process}
+        faq={content.faq}
+        related={content.related}
+        contactCta={content.contactCta}
+        contactCtaPrimaryHref="/en/contact"
+      />
+    );
+  }
+
   return (
     <ServiceDetailLayout
       seoPage="maintenanceService"

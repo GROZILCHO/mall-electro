@@ -5,7 +5,7 @@ import type { FAQItem } from "../../data/faqTypes";
 interface FAQSectionProps {
   title: string;
   intro: string;
-  items: FAQItem[];
+  items: readonly FAQItem[];
 }
 
 const FAQSection: React.FC<FAQSectionProps> = ({ title, intro, items }) => {

@@ -1,8 +1,36 @@
 import React from "react";
 import ServiceDetailLayout from "../../components/services/ServiceDetailLayout";
 import { industrialElectricalInstallationsFaqItems } from "../../data/industrialElectricalInstallationsFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-const IndustrialElectricalInstallations: React.FC = () => {
+interface IndustrialElectricalInstallationsProps {
+  locale?: "bg" | "en";
+}
+
+const IndustrialElectricalInstallations: React.FC<IndustrialElectricalInstallationsProps> = ({ locale = "bg" }) => {
+  if (locale === "en") {
+    const content = enContent.pages.serviceDetails?.industrialElectricalInstallations;
+
+    if (!content) {
+      throw new Error("Missing English industrial electrical installations service detail content.");
+    }
+
+    return (
+      <ServiceDetailLayout
+        seoPage={content.seoPage as SeoPageKey}
+        hero={content.hero}
+        overview={content.overview}
+        suitability={content.suitability}
+        process={content.process}
+        faq={content.faq}
+        related={content.related}
+        contactCta={content.contactCta}
+        contactCtaPrimaryHref="/en/contact"
+      />
+    );
+  }
+
   return (
     <ServiceDetailLayout
       seoPage="industrialElectricalInstallations"

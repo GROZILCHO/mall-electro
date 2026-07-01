@@ -11,6 +11,7 @@ import ContactCTA from "../shared/ContactCTA";
 import FAQSection from "../shared/FAQSection";
 import type { FAQItem } from "../../data/faqTypes";
 import type { SeoPageKey } from "../../seo/seoConfig";
+import type { HomeFullContent } from "../../data/i18n/content";
 
 type ButtonVariant = "primary" | "secondary" | "dark" | "ghost" | "outline" | "tertiary" | "monochrome";
 
@@ -26,19 +27,21 @@ interface ServiceDetailHero {
   secondaryCtaText: string;
   secondaryCtaHref: string;
   secondaryCtaIcon?: keyof typeof Icons;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
 }
 
 interface OverviewSection {
   badge: string;
   title: string;
   text: string;
-  items: string[];
+  items: readonly string[];
 }
 
 interface SuitabilitySection {
   badge: string;
   title: string;
-  items: string[];
+  items: readonly string[];
 }
 
 interface ProcessStep {
@@ -49,7 +52,7 @@ interface ProcessStep {
 interface ProcessSection {
   badge: string;
   title: string;
-  steps: ProcessStep[];
+  steps: readonly ProcessStep[];
   image: string;
   imageAlt: string;
   imageKicker: string;
@@ -66,7 +69,7 @@ interface RelatedSection {
   badge: string;
   title: string;
   text: string;
-  items: RelatedItem[];
+  items: readonly RelatedItem[];
   primaryCtaText: string;
   primaryCtaHref: string;
   primaryCtaIcon?: keyof typeof Icons;
@@ -85,9 +88,11 @@ interface ServiceDetailLayoutProps {
   faq: {
     title: string;
     intro: string;
-    items: FAQItem[];
+    items: readonly FAQItem[];
   };
   related: RelatedSection;
+  contactCta?: HomeFullContent["contactCta"];
+  contactCtaPrimaryHref?: string;
 }
 
 const ServiceDetailLayout: React.FC<ServiceDetailLayoutProps> = ({
@@ -98,6 +103,8 @@ const ServiceDetailLayout: React.FC<ServiceDetailLayoutProps> = ({
   process,
   faq,
   related,
+  contactCta,
+  contactCtaPrimaryHref,
 }) => {
   return (
     <div>
@@ -118,6 +125,8 @@ const ServiceDetailLayout: React.FC<ServiceDetailLayoutProps> = ({
         secondaryCtaIcon={hero.secondaryCtaIcon}
         heroImage={hero.image}
         heroImageAlt={hero.imageAlt}
+        overlayProjectLabel={hero.overlayProjectLabel}
+        overlayStatusLabel={hero.overlayStatusLabel}
       />
 
       <section className="relative overflow-hidden bg-white py-24 lg:py-32">
@@ -273,7 +282,7 @@ const ServiceDetailLayout: React.FC<ServiceDetailLayoutProps> = ({
         </div>
       </section>
 
-      <ContactCTA />
+      <ContactCTA content={contactCta} primaryCtaHref={contactCtaPrimaryHref} />
     </div>
   );
 };

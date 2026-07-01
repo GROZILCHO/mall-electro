@@ -1,8 +1,36 @@
 import React from "react";
 import ServiceDetailLayout from "../../components/services/ServiceDetailLayout";
 import { automationFaqItems } from "../../data/automationFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-const Automation: React.FC = () => {
+interface AutomationProps {
+  locale?: "bg" | "en";
+}
+
+const Automation: React.FC<AutomationProps> = ({ locale = "bg" }) => {
+  if (locale === "en") {
+    const content = enContent.pages.serviceDetails?.automation;
+
+    if (!content) {
+      throw new Error("Missing English automation service detail content.");
+    }
+
+    return (
+      <ServiceDetailLayout
+        seoPage={content.seoPage as SeoPageKey}
+        hero={content.hero}
+        overview={content.overview}
+        suitability={content.suitability}
+        process={content.process}
+        faq={content.faq}
+        related={content.related}
+        contactCta={content.contactCta}
+        contactCtaPrimaryHref="/en/contact"
+      />
+    );
+  }
+
   return (
     <ServiceDetailLayout
       seoPage="automation"

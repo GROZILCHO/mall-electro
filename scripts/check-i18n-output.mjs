@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 34;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 40;
 const EXPECTED_SITEMAP_URL_COUNT = 27;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -57,6 +57,30 @@ assertPathExists(path.join(distDir, "en", "index.html"), "dist/en/index.html");
 assertPathExists(path.join(distDir, "en", "contact", "index.html"), "dist/en/contact/index.html");
 assertPathExists(path.join(distDir, "en", "about", "index.html"), "dist/en/about/index.html");
 assertPathExists(path.join(distDir, "en", "services", "index.html"), "dist/en/services/index.html");
+assertPathExists(
+  path.join(distDir, "en", "services", "electrical-panels", "index.html"),
+  "dist/en/services/electrical-panels/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "services", "cable-routes", "index.html"),
+  "dist/en/services/cable-routes/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "services", "industrial-electrical-installations", "index.html"),
+  "dist/en/services/industrial-electrical-installations/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "services", "automation", "index.html"),
+  "dist/en/services/automation/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "services", "low-voltage-systems", "index.html"),
+  "dist/en/services/low-voltage-systems/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "services", "maintenance-and-service", "index.html"),
+  "dist/en/services/maintenance-and-service/index.html"
+);
 assertPathExists(path.join(distDir, "en", "solutions", "index.html"), "dist/en/solutions/index.html");
 assertPathExists(path.join(distDir, "en", "industries", "index.html"), "dist/en/industries/index.html");
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
@@ -70,6 +94,12 @@ const allowedEnHtmlFiles = new Set([
   "dist/en/contact/index.html",
   "dist/en/about/index.html",
   "dist/en/services/index.html",
+  "dist/en/services/electrical-panels/index.html",
+  "dist/en/services/cable-routes/index.html",
+  "dist/en/services/industrial-electrical-installations/index.html",
+  "dist/en/services/automation/index.html",
+  "dist/en/services/low-voltage-systems/index.html",
+  "dist/en/services/maintenance-and-service/index.html",
   "dist/en/solutions/index.html",
   "dist/en/industries/index.html",
 ]);
@@ -79,7 +109,7 @@ const unexpectedEnHtmlFiles = enHtmlFiles
 
 if (enHtmlFiles.length !== allowedEnHtmlFiles.size || unexpectedEnHtmlFiles.length > 0) {
   fail(
-    `Expected only dist/en/index.html, dist/en/contact/index.html, dist/en/about/index.html, dist/en/services/index.html, dist/en/solutions/index.html and dist/en/industries/index.html for EN output, found: ${
+    `Expected only approved EN overview and service detail output, found: ${
       enHtmlFiles.map(relativePath).join(", ") || "none"
     }.`
   );
@@ -138,6 +168,6 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN output: dist/en/index.html, dist/en/contact/index.html, dist/en/about/index.html, dist/en/services/index.html, dist/en/solutions/index.html and dist/en/industries/index.html only");
+console.log("- EN output: approved overview and service detail routes only");
 console.log("- RO output: absent");
 console.log("- hreflang: absent");

@@ -11,6 +11,15 @@ import {
 } from "../../utils/siteConfig";
 import { Icons } from "../ui/LucideIcons";
 
+const enServiceDetailPaths: Partial<Record<RouteKey, string>> = {
+  serviceElectricPanels: "/en/services/electrical-panels",
+  serviceCableRoutes: "/en/services/cable-routes",
+  serviceIndustrialElectricalInstallations: "/en/services/industrial-electrical-installations",
+  serviceAutomation: "/en/services/automation",
+  serviceLowVoltage: "/en/services/low-voltage-systems",
+  serviceMaintenance: "/en/services/maintenance-and-service",
+};
+
 const toFooterLink = (
   routeKey: RouteKey,
   activeFooterContent: FooterContent,
@@ -32,6 +41,8 @@ const toFooterLink = (
         ? "/en/industries"
       : routeKey === "contact" && isEnglish
         ? "/en/contact"
+        : isEnglish && enServiceDetailPaths[routeKey]
+          ? enServiceDetailPaths[routeKey]
         : getLocalizedPath(routeKey, "bg"),
 });
 

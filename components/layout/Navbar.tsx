@@ -12,6 +12,15 @@ interface NavigationItem {
   href: string;
 }
 
+const enServiceDetailPaths: Partial<Record<RouteKey, string>> = {
+  serviceElectricPanels: "/en/services/electrical-panels",
+  serviceCableRoutes: "/en/services/cable-routes",
+  serviceIndustrialElectricalInstallations: "/en/services/industrial-electrical-installations",
+  serviceAutomation: "/en/services/automation",
+  serviceLowVoltage: "/en/services/low-voltage-systems",
+  serviceMaintenance: "/en/services/maintenance-and-service",
+};
+
 const toNavigationItem = (
   routeKey: RouteKey,
   content: NavigationContent,
@@ -33,6 +42,8 @@ const toNavigationItem = (
         ? "/en/industries"
       : routeKey === "contact" && isEnglish
         ? "/en/contact"
+        : isEnglish && enServiceDetailPaths[routeKey]
+          ? enServiceDetailPaths[routeKey]
         : getLocalizedPath(routeKey, "bg"),
 });
 

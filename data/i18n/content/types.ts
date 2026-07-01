@@ -15,6 +15,7 @@ export type ContentKey =
   | "serviceAutomation"
   | "serviceLowVoltage"
   | "serviceMaintenance"
+  | "serviceDetails"
   | "solutionsOverview"
   | "solutionNewProductionSite"
   | "solutionModernization"
@@ -287,6 +288,99 @@ export interface ServicesOverviewPageContent {
     secondaryCtaHref: string;
   };
   contactCta: HomeFullContent["contactCta"];
+}
+
+export interface ServiceDetailHeroContent {
+  badgeText: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  primaryCtaText: string;
+  primaryCtaHref: string;
+  primaryCtaIcon?: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  secondaryCtaIcon?: string;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
+}
+
+export interface ServiceDetailOverviewContent {
+  badge: string;
+  title: string;
+  text: string;
+  items: readonly string[];
+}
+
+export interface ServiceDetailSuitabilityContent {
+  badge: string;
+  title: string;
+  items: readonly string[];
+}
+
+export interface ServiceDetailProcessStepContent {
+  title: string;
+  text: string;
+}
+
+export interface ServiceDetailProcessContent {
+  badge: string;
+  title: string;
+  steps: readonly ServiceDetailProcessStepContent[];
+  image: string;
+  imageAlt: string;
+  imageKicker: string;
+  imageTitle: string;
+}
+
+export interface ServiceDetailFaqItemContent {
+  question: string;
+  answer: string;
+}
+
+export interface ServiceDetailRelatedItemContent {
+  title: string;
+  text: string;
+  href?: string;
+}
+
+export interface ServiceDetailRelatedContent {
+  badge: string;
+  title: string;
+  text: string;
+  items: readonly ServiceDetailRelatedItemContent[];
+  primaryCtaText: string;
+  primaryCtaHref: string;
+  primaryCtaIcon?: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  secondaryCtaIcon?: string;
+  secondaryCtaVariant?: string;
+}
+
+export interface ServiceDetailPageContent {
+  seoPage: string;
+  hero: ServiceDetailHeroContent;
+  overview: ServiceDetailOverviewContent;
+  suitability: ServiceDetailSuitabilityContent;
+  process: ServiceDetailProcessContent;
+  faq: {
+    title: string;
+    intro: string;
+    items: readonly ServiceDetailFaqItemContent[];
+  };
+  related: ServiceDetailRelatedContent;
+  contactCta: HomeFullContent["contactCta"];
+}
+
+export interface ServiceDetailsContent {
+  electricPanels: ServiceDetailPageContent;
+  cableRoutes: ServiceDetailPageContent;
+  industrialElectricalInstallations: ServiceDetailPageContent;
+  automation: ServiceDetailPageContent;
+  lowVoltage: ServiceDetailPageContent;
+  maintenanceService: ServiceDetailPageContent;
 }
 
 export interface SolutionsOverviewCardContent {
@@ -582,6 +676,7 @@ export interface PagesContent {
   home: HomePageContent;
   about?: AboutPageContent;
   servicesOverview?: ServicesOverviewPageContent;
+  serviceDetails?: ServiceDetailsContent;
   solutionsOverview?: SolutionsOverviewPageContent;
   industriesOverview?: IndustriesOverviewPageContent;
   contact: ContactPageContent;
