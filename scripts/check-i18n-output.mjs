@@ -3,7 +3,42 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const EXPECTED_PRERENDER_ROUTE_COUNT = 52;
-const EXPECTED_SITEMAP_URL_COUNT = 27;
+const EXPECTED_SITEMAP_URL_COUNT = 51;
+const EXPECTED_EN_SITEMAP_URL_COUNT = 24;
+const SITE_URL = "https://mallelectro.com";
+
+const approvedBgEnPairs = [
+  ["/bg/", "/en/"],
+  ["/bg/kontakti", "/en/contact"],
+  ["/bg/za-nas", "/en/about"],
+  ["/bg/uslugi", "/en/services"],
+  ["/bg/reshenia", "/en/solutions"],
+  ["/bg/industrii", "/en/industries"],
+  ["/bg/uslugi/elektricheski-tabla", "/en/services/electrical-panels"],
+  ["/bg/uslugi/kabelni-traseta", "/en/services/cable-routes"],
+  ["/bg/uslugi/industrialni-elektroinstalatsii", "/en/services/industrial-electrical-installations"],
+  ["/bg/uslugi/avtomatizatsia", "/en/services/automation"],
+  ["/bg/uslugi/nisko-naprezhenie", "/en/services/low-voltage-systems"],
+  ["/bg/uslugi/poddrazhka-i-serviz", "/en/services/maintenance-and-service"],
+  ["/bg/reshenia/nov-proizvodstven-obekt", "/en/solutions/new-production-site"],
+  ["/bg/reshenia/modernizatsia-na-elektro-sistema", "/en/solutions/electrical-system-modernization"],
+  ["/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii", "/en/solutions/panels-and-automation-for-production-lines"],
+  ["/bg/reshenia/kabelna-infrastruktura-za-baza", "/en/solutions/cable-infrastructure-for-base"],
+  ["/bg/reshenia/serviz-i-razshiryavane", "/en/solutions/service-and-expansion"],
+  ["/bg/reshenia/elektromontazh-na-visochina-s-vishka", "/en/solutions/high-access-installation"],
+  ["/bg/industrii/agro", "/en/industries/agriculture"],
+  ["/bg/industrii/hvp", "/en/industries/food-industry"],
+  ["/bg/industrii/zarnoprerabotka", "/en/industries/grain-processing"],
+  ["/bg/industrii/melnitsi", "/en/industries/mills"],
+  ["/bg/industrii/logistika", "/en/industries/logistics"],
+  ["/bg/industrii/proizvodstveni-predpriyatiya", "/en/industries/manufacturing-companies"],
+];
+
+const bgLegalRoutes = [
+  "/bg/politika-za-poveritelnost",
+  "/bg/politika-za-biskvitki",
+  "/bg/usloviya-za-polzvane",
+];
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
@@ -15,6 +50,24 @@ const failures = [];
 const fail = (message) => {
   failures.push(message);
 };
+
+const normalizeRoute = (routePath) => (routePath.length > 1 ? routePath.replace(/\/$/, "") : routePath);
+
+const canonicalUrl = (routePath) => {
+  const normalizedPath = routePath === "/" ? "/" : `${routePath.replace(/\/$/, "")}/`;
+  return `${SITE_URL}${normalizedPath}`;
+};
+
+const routeToHtmlPath = (routePath) => {
+  if (routePath === "/") {
+    return path.join(distDir, "index.html");
+  }
+
+  const trimmedPath = routePath.replace(/^\/|\/$/g, "");
+  return path.join(distDir, ...trimmedPath.split("/"), "index.html");
+};
+
+const relativePath = (targetPath) => path.relative(projectRoot, targetPath).replace(/\\/g, "/");
 
 const assertPathExists = (targetPath, label) => {
   if (!fs.existsSync(targetPath)) {
@@ -49,120 +102,38 @@ const walkFiles = (dir, predicate, results = []) => {
   return results;
 };
 
-const relativePath = (targetPath) => path.relative(projectRoot, targetPath).replace(/\\/g, "/");
+const assertHtmlIncludes = (html, expected, label, filePath) => {
+  if (!html.includes(expected)) {
+    fail(`${label} missing in ${relativePath(filePath)}.`);
+  }
+};
+
+const assertHtmlExcludes = (html, unexpected, label, filePath) => {
+  if (html.includes(unexpected)) {
+    fail(`${label} found in ${relativePath(filePath)}.`);
+  }
+};
 
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
-assertPathExists(path.join(distDir, "en", "index.html"), "dist/en/index.html");
-assertPathExists(path.join(distDir, "en", "contact", "index.html"), "dist/en/contact/index.html");
-assertPathExists(path.join(distDir, "en", "about", "index.html"), "dist/en/about/index.html");
-assertPathExists(path.join(distDir, "en", "services", "index.html"), "dist/en/services/index.html");
-assertPathExists(
-  path.join(distDir, "en", "services", "electrical-panels", "index.html"),
-  "dist/en/services/electrical-panels/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "services", "cable-routes", "index.html"),
-  "dist/en/services/cable-routes/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "services", "industrial-electrical-installations", "index.html"),
-  "dist/en/services/industrial-electrical-installations/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "services", "automation", "index.html"),
-  "dist/en/services/automation/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "services", "low-voltage-systems", "index.html"),
-  "dist/en/services/low-voltage-systems/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "services", "maintenance-and-service", "index.html"),
-  "dist/en/services/maintenance-and-service/index.html"
-);
-assertPathExists(path.join(distDir, "en", "solutions", "index.html"), "dist/en/solutions/index.html");
-assertPathExists(
-  path.join(distDir, "en", "solutions", "new-production-site", "index.html"),
-  "dist/en/solutions/new-production-site/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "solutions", "electrical-system-modernization", "index.html"),
-  "dist/en/solutions/electrical-system-modernization/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "solutions", "panels-and-automation-for-production-lines", "index.html"),
-  "dist/en/solutions/panels-and-automation-for-production-lines/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "solutions", "cable-infrastructure-for-base", "index.html"),
-  "dist/en/solutions/cable-infrastructure-for-base/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "solutions", "service-and-expansion", "index.html"),
-  "dist/en/solutions/service-and-expansion/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "solutions", "high-access-installation", "index.html"),
-  "dist/en/solutions/high-access-installation/index.html"
-);
-assertPathExists(path.join(distDir, "en", "industries", "index.html"), "dist/en/industries/index.html");
-assertPathExists(
-  path.join(distDir, "en", "industries", "agriculture", "index.html"),
-  "dist/en/industries/agriculture/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "industries", "food-industry", "index.html"),
-  "dist/en/industries/food-industry/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "industries", "grain-processing", "index.html"),
-  "dist/en/industries/grain-processing/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "industries", "mills", "index.html"),
-  "dist/en/industries/mills/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "industries", "logistics", "index.html"),
-  "dist/en/industries/logistics/index.html"
-);
-assertPathExists(
-  path.join(distDir, "en", "industries", "manufacturing-companies", "index.html"),
-  "dist/en/industries/manufacturing-companies/index.html"
-);
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
+
+const approvedEnRoutes = approvedBgEnPairs.map(([, enPath]) => enPath);
+const allowedEnHtmlFiles = new Set(approvedEnRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
+
+for (const [bgPath, enPath] of approvedBgEnPairs) {
+  assertPathExists(routeToHtmlPath(bgPath), `${bgPath} HTML`);
+  assertPathExists(routeToHtmlPath(enPath), `${enPath} HTML`);
+}
+
+for (const legalPath of bgLegalRoutes) {
+  assertPathExists(routeToHtmlPath(legalPath), `${legalPath} HTML`);
+}
 
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
 const rootHtmlPath = path.join(distDir, "index.html");
 const prerenderedRouteHtmlFiles = htmlFiles.filter((filePath) => path.resolve(filePath) !== rootHtmlPath);
 const enHtmlFiles = htmlFiles.filter((filePath) => relativePath(filePath).startsWith("dist/en/"));
-const allowedEnHtmlFiles = new Set([
-  "dist/en/index.html",
-  "dist/en/contact/index.html",
-  "dist/en/about/index.html",
-  "dist/en/services/index.html",
-  "dist/en/services/electrical-panels/index.html",
-  "dist/en/services/cable-routes/index.html",
-  "dist/en/services/industrial-electrical-installations/index.html",
-  "dist/en/services/automation/index.html",
-  "dist/en/services/low-voltage-systems/index.html",
-  "dist/en/services/maintenance-and-service/index.html",
-  "dist/en/solutions/index.html",
-  "dist/en/solutions/new-production-site/index.html",
-  "dist/en/solutions/electrical-system-modernization/index.html",
-  "dist/en/solutions/panels-and-automation-for-production-lines/index.html",
-  "dist/en/solutions/cable-infrastructure-for-base/index.html",
-  "dist/en/solutions/service-and-expansion/index.html",
-  "dist/en/solutions/high-access-installation/index.html",
-  "dist/en/industries/index.html",
-  "dist/en/industries/agriculture/index.html",
-  "dist/en/industries/food-industry/index.html",
-  "dist/en/industries/grain-processing/index.html",
-  "dist/en/industries/mills/index.html",
-  "dist/en/industries/logistics/index.html",
-  "dist/en/industries/manufacturing-companies/index.html",
-]);
 const unexpectedEnHtmlFiles = enHtmlFiles
   .map(relativePath)
   .filter((filePath) => !allowedEnHtmlFiles.has(filePath));
@@ -181,32 +152,105 @@ if (prerenderedRouteHtmlFiles.length !== EXPECTED_PRERENDER_ROUTE_COUNT) {
   );
 }
 
-const htmlDisallowedPatterns = [
-  { label: "hreflang", pattern: /hreflang/i },
-  { label: "RO URL", pattern: /(?:https?:\/\/[^"'\s<>]+)?\/ro\//i },
-];
-
 for (const htmlFile of htmlFiles) {
   const content = fs.readFileSync(htmlFile, "utf8");
 
-  for (const { label, pattern } of htmlDisallowedPatterns) {
-    if (pattern.test(content)) {
-      fail(`${label} output found in ${relativePath(htmlFile)}.`);
-    }
+  if (/(?:https?:\/\/[^"'\s<>]+)?\/ro\//i.test(content)) {
+    fail(`RO URL output found in ${relativePath(htmlFile)}.`);
   }
+}
+
+for (const [bgPath, enPath] of approvedBgEnPairs) {
+  const bgFile = routeToHtmlPath(bgPath);
+  const enFile = routeToHtmlPath(enPath);
+  const bgHtml = fs.existsSync(bgFile) ? fs.readFileSync(bgFile, "utf8") : "";
+  const enHtml = fs.existsSync(enFile) ? fs.readFileSync(enFile, "utf8") : "";
+  const bgUrl = canonicalUrl(bgPath);
+  const enUrl = canonicalUrl(enPath);
+
+  assertHtmlIncludes(bgHtml, `<link rel="canonical" href="${bgUrl}" />`, "BG self canonical", bgFile);
+  assertHtmlIncludes(enHtml, `<link rel="canonical" href="${enUrl}" />`, "EN self canonical", enFile);
+  assertHtmlExcludes(bgHtml, `<link rel="canonical" href="${enUrl}" />`, "cross-locale canonical", bgFile);
+  assertHtmlExcludes(enHtml, `<link rel="canonical" href="${bgUrl}" />`, "cross-locale canonical", enFile);
+
+  for (const html of [
+    { content: bgHtml, filePath: bgFile },
+    { content: enHtml, filePath: enFile },
+  ]) {
+    assertHtmlIncludes(
+      html.content,
+      `<link rel="alternate" hreflang="bg" href="${bgUrl}" />`,
+      "BG hreflang",
+      html.filePath
+    );
+    assertHtmlIncludes(
+      html.content,
+      `<link rel="alternate" hreflang="en" href="${enUrl}" />`,
+      "EN hreflang",
+      html.filePath
+    );
+    assertHtmlIncludes(
+      html.content,
+      `<link rel="alternate" hreflang="x-default" href="${bgUrl}" />`,
+      "x-default hreflang",
+      html.filePath
+    );
+  }
+
+  assertHtmlExcludes(enHtml, `<meta name="robots" content="noindex, follow" />`, "EN noindex", enFile);
+  assertHtmlIncludes(bgHtml, `<meta property="og:locale" content="bg_BG" />`, "BG og:locale", bgFile);
+  assertHtmlIncludes(enHtml, `<meta property="og:locale" content="en_US" />`, "EN og:locale", enFile);
+}
+
+for (const legalPath of bgLegalRoutes) {
+  const legalFile = routeToHtmlPath(legalPath);
+  const legalHtml = fs.existsSync(legalFile) ? fs.readFileSync(legalFile, "utf8") : "";
+
+  assertHtmlIncludes(
+    legalHtml,
+    `<link rel="canonical" href="${canonicalUrl(legalPath)}" />`,
+    "BG legal self canonical",
+    legalFile
+  );
+  assertHtmlExcludes(legalHtml, "hreflang=", "legal hreflang", legalFile);
+  assertHtmlExcludes(legalHtml, "/en/", "EN legal equivalent", legalFile);
+}
+
+const notFoundPath = path.join(distDir, "404", "index.html");
+assertPathExists(notFoundPath, "404 HTML");
+
+if (fs.existsSync(notFoundPath)) {
+  const notFoundHtml = fs.readFileSync(notFoundPath, "utf8");
+  assertHtmlExcludes(notFoundHtml, "hreflang=", "404 hreflang", notFoundPath);
+  assertHtmlIncludes(notFoundHtml, `<meta name="robots" content="noindex, follow" />`, "404 noindex", notFoundPath);
 }
 
 if (fs.existsSync(sitemapPath)) {
   const sitemap = fs.readFileSync(sitemapPath, "utf8");
   const sitemapUrlCount = [...sitemap.matchAll(/<loc>/g)].length;
+  const enSitemapUrlCount = [...sitemap.matchAll(/<loc>https:\/\/mallelectro\.com\/en\//g)].length;
 
   if (sitemapUrlCount !== EXPECTED_SITEMAP_URL_COUNT) {
     fail(`Expected ${EXPECTED_SITEMAP_URL_COUNT} sitemap URLs, found ${sitemapUrlCount}.`);
   }
 
+  if (enSitemapUrlCount !== EXPECTED_EN_SITEMAP_URL_COUNT) {
+    fail(`Expected ${EXPECTED_EN_SITEMAP_URL_COUNT} EN sitemap URLs, found ${enSitemapUrlCount}.`);
+  }
+
+  for (const [bgPath, enPath] of approvedBgEnPairs) {
+    assertHtmlIncludes(sitemap, `<loc>${canonicalUrl(bgPath)}</loc>`, "BG sitemap URL", sitemapPath);
+    assertHtmlIncludes(sitemap, `<loc>${canonicalUrl(enPath)}</loc>`, "EN sitemap URL", sitemapPath);
+  }
+
+  for (const legalPath of bgLegalRoutes) {
+    assertHtmlIncludes(sitemap, `<loc>${canonicalUrl(legalPath)}</loc>`, "BG legal sitemap URL", sitemapPath);
+  }
+
   const sitemapDisallowedPatterns = [
-    { label: "EN sitemap URL", pattern: /\/en\//i },
+    { label: "EN legal sitemap URL", pattern: /\/en\/(?:privacy-policy|cookie-policy|terms-of-use)\//i },
     { label: "RO sitemap URL", pattern: /\/ro\//i },
+    { label: "404 sitemap URL", pattern: /\/404\//i },
     { label: "hreflang sitemap output", pattern: /hreflang/i },
   ];
 
@@ -228,6 +272,7 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN output: approved overview, service detail, solution detail and industry detail routes only");
+console.log(`- EN sitemap URLs: ${EXPECTED_EN_SITEMAP_URL_COUNT}`);
+console.log("- hreflang: present on approved BG/EN mapped pages only");
+console.log("- legal pages: BG-only without hreflang");
 console.log("- RO output: absent");
-console.log("- hreflang: absent");

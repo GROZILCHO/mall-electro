@@ -7,7 +7,7 @@ export interface LanguageSwitchOption {
   isActive: boolean;
 }
 
-const routePairs = [
+export const bgEnRoutePairs = [
   ["/bg/", "/en/"],
   ["/bg/kontakti", "/en/contact"],
   ["/bg/za-nas", "/en/about"],
@@ -33,6 +33,8 @@ const routePairs = [
   ["/bg/industrii/logistika", "/en/industries/logistics"],
   ["/bg/industrii/proizvodstveni-predpriyatiya", "/en/industries/manufacturing-companies"],
 ] as const;
+
+const routePairs = bgEnRoutePairs;
 
 const normalizePath = (path: string): string => (path.length > 1 ? path.replace(/\/$/, "") : path);
 

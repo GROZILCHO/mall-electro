@@ -4,10 +4,14 @@ import App, { loadSsrPagesForPath } from "./App";
 import {
   DEFAULT_OG_IMAGE,
   getAbsoluteAssetUrl,
+  getAlternateLinksForPath,
   getCanonicalUrl,
+  getOgLocaleForPath,
   getSchemasForRoute,
   getSeoRouteByPath,
   seoRoutes,
+  shouldIncludeRouteInSitemap,
+  shouldNoindexRoute,
   SITE_NAME,
   SITE_URL,
   type SeoRoute,
@@ -32,13 +36,18 @@ export const renderHeadTags = (route: SeoRoute) => {
   const canonicalUrl = getCanonicalUrl(route.path);
   const imageUrl = getAbsoluteAssetUrl(route.ogImage ?? DEFAULT_OG_IMAGE);
   const schemas = getSchemasForRoute(route);
+  const alternates = getAlternateLinksForPath(route.path);
 
   return [
     `<title>${escapeHtml(route.title)}</title>`,
     `<meta name="description" content="${escapeHtml(route.description)}" />`,
-    ...(route.noindex ? [`<meta name="robots" content="noindex, follow" />`] : []),
+    ...(shouldNoindexRoute(route) ? [`<meta name="robots" content="noindex, follow" />`] : []),
     `<link rel="canonical" href="${canonicalUrl}" />`,
-    `<meta property="og:locale" content="bg_BG" />`,
+    ...alternates.map(
+      (alternate) =>
+        `<link rel="alternate" hreflang="${alternate.hreflang}" href="${alternate.href}" />`
+    ),
+    `<meta property="og:locale" content="${getOgLocaleForPath(route.path)}" />`,
     `<meta property="og:type" content="website" />`,
     `<meta property="og:site_name" content="${escapeHtml(SITE_NAME)}" />`,
     `<meta property="og:title" content="${escapeHtml(route.title)}" />`,
@@ -53,4 +62,4 @@ export const renderHeadTags = (route: SeoRoute) => {
   ].join("\n    ");
 };
 
-export { getSeoRouteByPath, seoRoutes, SITE_URL };
+export { getSeoRouteByPath, seoRoutes, shouldIncludeRouteInSitemap, SITE_URL };

@@ -17,6 +17,7 @@ import { solutionModernizationFaqItems } from "../data/solutionModernizationFaq"
 import { solutionCableInfrastructureBaseFaqItems } from "../data/solutionCableInfrastructureBaseFaq";
 import { solutionServiceExpansionFaqItems } from "../data/solutionServiceExpansionFaq";
 import { solutionHeightInstallationFaqItems } from "../data/solutionHeightInstallationFaq";
+import { bgEnRoutePairs } from "../data/i18n/languageSwitchRoutes";
 import { getBgSeoRouteEntry } from "../data/i18n/seoRuntimeRoutes";
 import type { RouteKey } from "../data/i18n/types";
 import type { FAQItem } from "../data/faqTypes";
@@ -84,6 +85,11 @@ export interface SeoRoute {
   includeInSitemap?: boolean;
 }
 
+export interface HreflangAlternate {
+  hreflang: "bg" | "en" | "x-default";
+  href: string;
+}
+
 const createSeoRouteIdentity = (routeKey: RouteKey): Pick<SeoRoute, "key" | "path" | "includeInSitemap"> => {
   const route = getBgSeoRouteEntry(routeKey);
 
@@ -92,6 +98,46 @@ const createSeoRouteIdentity = (routeKey: RouteKey): Pick<SeoRoute, "key" | "pat
     path: route.path,
     ...(route.includeInSitemap ? {} : { includeInSitemap: false }),
   };
+};
+
+const normalizeSeoPath = (path: string): string => (path.length > 1 ? path.replace(/\/$/, "") : path);
+
+const bgEnSeoPathPairs = bgEnRoutePairs.map(([bgPath, enPath]) => ({
+  bgPath: normalizeSeoPath(bgPath),
+  enPath: normalizeSeoPath(enPath),
+}));
+
+const approvedEnSeoPaths = new Set(bgEnSeoPathPairs.map((pair) => pair.enPath));
+
+export const isApprovedEnSeoPath = (path: string): boolean => approvedEnSeoPaths.has(normalizeSeoPath(path));
+
+export const shouldNoindexRoute = (route: SeoRoute): boolean =>
+  Boolean(route.noindex) && !isApprovedEnSeoPath(route.path);
+
+export const shouldIncludeRouteInSitemap = (route: SeoRoute): boolean =>
+  route.includeInSitemap !== false || isApprovedEnSeoPath(route.path);
+
+export const getOgLocaleForPath = (path: string): "bg_BG" | "en_US" =>
+  normalizeSeoPath(path).startsWith("/en") ? "en_US" : "bg_BG";
+
+export const getAlternateLinksForPath = (path: string): readonly HreflangAlternate[] => {
+  const normalizedPath = normalizeSeoPath(path);
+  const pair = bgEnSeoPathPairs.find(
+    (entry) => entry.bgPath === normalizedPath || entry.enPath === normalizedPath
+  );
+
+  if (!pair) {
+    return [];
+  }
+
+  const bgUrl = getCanonicalUrl(pair.bgPath);
+  const enUrl = getCanonicalUrl(pair.enPath);
+
+  return [
+    { hreflang: "bg", href: bgUrl },
+    { hreflang: "en", href: enUrl },
+    { hreflang: "x-default", href: bgUrl },
+  ];
 };
 
 export const seoRoutes: SeoRoute[] = [
