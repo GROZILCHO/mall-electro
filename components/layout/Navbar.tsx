@@ -5,6 +5,7 @@ import type { NavigationContent } from "../../data/i18n/content";
 import { getLocalizedPath } from "../../data/i18n/routes";
 import type { RouteKey } from "../../data/i18n/types";
 import { Icons } from "../ui/LucideIcons";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 interface NavigationItem {
   routeKey: RouteKey;
@@ -379,6 +380,7 @@ export default function Navbar() {
               </Link>
             )
           ))}
+          <LanguageSwitcher />
         </div>
 
         <button
@@ -463,6 +465,9 @@ export default function Navbar() {
                 </Link>
               )
             )}
+            <div className="mt-4 border-t border-white/10 pt-4">
+              <LanguageSwitcher onNavigate={() => setMobileMenuOpen(false)} />
+            </div>
           </div>
         </div>
       )}
