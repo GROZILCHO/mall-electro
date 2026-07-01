@@ -84,7 +84,19 @@ export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
                                     ? "heightInstallationSolution"
                                     : normalizedPath === "/en/industries"
                                       ? "industries"
-                                      : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+                                      : normalizedPath === "/en/industries/agriculture"
+                                        ? "agroIndustry"
+                                        : normalizedPath === "/en/industries/food-industry"
+                                          ? "hvpIndustry"
+                                          : normalizedPath === "/en/industries/grain-processing"
+                                            ? "zarnoprerabotkaIndustry"
+                                            : normalizedPath === "/en/industries/mills"
+                                              ? "melnitsiIndustry"
+                                              : normalizedPath === "/en/industries/logistics"
+                                                ? "logistikaIndustry"
+                                                : normalizedPath === "/en/industries/manufacturing-companies"
+                                                  ? "proizvodstveniPredpriyatiyaIndustry"
+                                                  : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -138,6 +150,15 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
           <Route path="/en/solutions/service-and-expansion" element={page("serviceExpansionSolution", { locale: "en" })} />
           <Route path="/en/solutions/high-access-installation" element={page("heightInstallationSolution", { locale: "en" })} />
           <Route path="/en/industries" element={page("industries", { locale: "en" })} />
+          <Route path="/en/industries/agriculture" element={page("agroIndustry", { locale: "en" })} />
+          <Route path="/en/industries/food-industry" element={page("hvpIndustry", { locale: "en" })} />
+          <Route path="/en/industries/grain-processing" element={page("zarnoprerabotkaIndustry", { locale: "en" })} />
+          <Route path="/en/industries/mills" element={page("melnitsiIndustry", { locale: "en" })} />
+          <Route path="/en/industries/logistics" element={page("logistikaIndustry", { locale: "en" })} />
+          <Route
+            path="/en/industries/manufacturing-companies"
+            element={page("proizvodstveniPredpriyatiyaIndustry", { locale: "en" })}
+          />
           <Route path="/" element={<Navigate to="/bg/" replace />} />
           <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />
           <Route path="/about" element={<Navigate to="/bg/za-nas" replace />} />

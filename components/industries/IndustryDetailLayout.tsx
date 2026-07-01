@@ -10,6 +10,7 @@ import { Icons } from "../ui/LucideIcons";
 import FAQSection from "../shared/FAQSection";
 import ContactCTA from "../shared/ContactCTA";
 import type { FAQItem } from "../../data/faqTypes";
+import type { HomeFullContent } from "../../data/i18n/content";
 import type { SeoPageKey } from "../../seo/seoConfig";
 
 interface IndustryHero {
@@ -23,13 +24,15 @@ interface IndustryHero {
   secondaryCtaText: string;
   secondaryCtaHref: string;
   secondaryCtaIcon?: keyof typeof Icons;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
 }
 
 interface TextListSection {
   badge: string;
   title: string;
   text?: string;
-  items: string[];
+  items: readonly string[];
 }
 
 interface ServiceLink {
@@ -58,13 +61,13 @@ interface IndustryDetailLayoutProps {
     badge: string;
     title: string;
     text: string;
-    services: ServiceLink[];
+    services: readonly ServiceLink[];
   };
   projectNeeds: TextListSection;
   process: {
     badge: string;
     title: string;
-    steps: ProcessStep[];
+    steps: readonly ProcessStep[];
     image: string;
     imageAlt: string;
     imageKicker: string;
@@ -73,15 +76,20 @@ interface IndustryDetailLayoutProps {
   faq?: {
     title: string;
     intro: string;
-    items: FAQItem[];
+    items: readonly FAQItem[];
   };
   relatedIndustries: {
     badge: string;
     title: string;
     text: string;
     ctaText?: string;
-    items: RelatedIndustry[];
+    items: readonly RelatedIndustry[];
   };
+  relatedPrimaryHref?: string;
+  relatedSecondaryText?: string;
+  relatedSecondaryHref?: string;
+  contactCta?: HomeFullContent["contactCta"];
+  contactCtaPrimaryHref?: string;
 }
 
 const IndustryDetailLayout: React.FC<IndustryDetailLayoutProps> = ({
@@ -93,6 +101,11 @@ const IndustryDetailLayout: React.FC<IndustryDetailLayoutProps> = ({
   process,
   faq,
   relatedIndustries,
+  relatedPrimaryHref = "/bg/kontakti",
+  relatedSecondaryText = "Всички индустрии",
+  relatedSecondaryHref = "/bg/industrii",
+  contactCta,
+  contactCtaPrimaryHref,
 }) => {
   return (
     <main>
@@ -113,6 +126,8 @@ const IndustryDetailLayout: React.FC<IndustryDetailLayoutProps> = ({
         secondaryCtaHref={hero.secondaryCtaHref}
         secondaryCtaVariant="dark"
         secondaryCtaIcon={hero.secondaryCtaIcon ?? "Factory"}
+        overlayProjectLabel={hero.overlayProjectLabel}
+        overlayStatusLabel={hero.overlayStatusLabel}
       />
 
       <section className="relative overflow-hidden bg-white py-24 lg:py-32">
@@ -295,18 +310,18 @@ const IndustryDetailLayout: React.FC<IndustryDetailLayoutProps> = ({
 
           <FadeIn delay={200}>
             <div className="mt-12 flex flex-wrap gap-4">
-              <Button variant="primary" icon="ChevronRight" href="/bg/kontakti">
+              <Button variant="primary" icon="ChevronRight" href={relatedPrimaryHref}>
                 {relatedIndustries.ctaText ?? hero.primaryCtaText}
               </Button>
-              <Button variant="ghost" icon="Factory" href="/bg/industrii">
-                Всички индустрии
+              <Button variant="ghost" icon="Factory" href={relatedSecondaryHref}>
+                {relatedSecondaryText}
               </Button>
             </div>
           </FadeIn>
         </div>
       </section>
 
-      <ContactCTA />
+      <ContactCTA content={contactCta} primaryCtaHref={contactCtaPrimaryHref} />
     </main>
   );
 };

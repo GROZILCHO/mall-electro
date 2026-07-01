@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 46;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 52;
 const EXPECTED_SITEMAP_URL_COUNT = 27;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -107,6 +107,30 @@ assertPathExists(
   "dist/en/solutions/high-access-installation/index.html"
 );
 assertPathExists(path.join(distDir, "en", "industries", "index.html"), "dist/en/industries/index.html");
+assertPathExists(
+  path.join(distDir, "en", "industries", "agriculture", "index.html"),
+  "dist/en/industries/agriculture/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "industries", "food-industry", "index.html"),
+  "dist/en/industries/food-industry/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "industries", "grain-processing", "index.html"),
+  "dist/en/industries/grain-processing/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "industries", "mills", "index.html"),
+  "dist/en/industries/mills/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "industries", "logistics", "index.html"),
+  "dist/en/industries/logistics/index.html"
+);
+assertPathExists(
+  path.join(distDir, "en", "industries", "manufacturing-companies", "index.html"),
+  "dist/en/industries/manufacturing-companies/index.html"
+);
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
 
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
@@ -132,6 +156,12 @@ const allowedEnHtmlFiles = new Set([
   "dist/en/solutions/service-and-expansion/index.html",
   "dist/en/solutions/high-access-installation/index.html",
   "dist/en/industries/index.html",
+  "dist/en/industries/agriculture/index.html",
+  "dist/en/industries/food-industry/index.html",
+  "dist/en/industries/grain-processing/index.html",
+  "dist/en/industries/mills/index.html",
+  "dist/en/industries/logistics/index.html",
+  "dist/en/industries/manufacturing-companies/index.html",
 ]);
 const unexpectedEnHtmlFiles = enHtmlFiles
   .map(relativePath)
@@ -139,7 +169,7 @@ const unexpectedEnHtmlFiles = enHtmlFiles
 
 if (enHtmlFiles.length !== allowedEnHtmlFiles.size || unexpectedEnHtmlFiles.length > 0) {
   fail(
-    `Expected only approved EN overview, service detail and solution detail output, found: ${
+    `Expected only approved EN overview, service detail, solution detail and industry detail output, found: ${
       enHtmlFiles.map(relativePath).join(", ") || "none"
     }.`
   );
@@ -198,6 +228,6 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN output: approved overview, service detail and solution detail routes only");
+console.log("- EN output: approved overview, service detail, solution detail and industry detail routes only");
 console.log("- RO output: absent");
 console.log("- hreflang: absent");

@@ -1,7 +1,30 @@
 import IndustryDetailLayout from "../../components/industries/IndustryDetailLayout";
 import { agroIndustryFaqItems } from "../../data/agroIndustryFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-export default function AgroIndustry() {
+interface AgroIndustryProps {
+  locale?: "bg" | "en";
+}
+
+export default function AgroIndustry({ locale = "bg" }: AgroIndustryProps) {
+  if (locale === "en") {
+    const content = enContent.pages.industryDetails?.agriculture;
+
+    if (content) {
+      return (
+        <IndustryDetailLayout
+          {...content}
+          seoPage={content.seoPage as SeoPageKey}
+          relatedPrimaryHref="/en/contact"
+          relatedSecondaryText="All industries"
+          relatedSecondaryHref="/en/industries"
+          contactCtaPrimaryHref="/en/contact"
+        />
+      );
+    }
+  }
+
   return (
     <IndustryDetailLayout
       seoPage="industryAgro"

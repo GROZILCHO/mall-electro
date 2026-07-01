@@ -76,7 +76,7 @@ export const industriesOverviewPageContent = {
         title: "Food processing industry",
         text:
           "Electrical panels, automation and control systems for production lines in food processing facilities - from raw material intake to packaging.",
-        href: "/bg/industrii/hvp",
+        href: "/en/industries/food-industry",
         image: "/images/industries/stainless-steel-production-line_2.png",
         imageAlt: "Food processing production line",
         icon: "Factory",
@@ -90,7 +90,7 @@ export const industriesOverviewPageContent = {
         title: "Grain processing",
         text:
           "Systems for drying, transport, cabling and automation of silo facilities and grain processing bases.",
-        href: "/bg/industrii/zarnoprerabotka",
+        href: "/en/industries/grain-processing",
         image: "/images/industries/wheat-close-up.png",
         imageAlt: "Grain processing",
         icon: "Wheat",
@@ -104,7 +104,7 @@ export const industriesOverviewPageContent = {
         title: "Mills",
         text:
           "Cabling and integration of process lines for milling and flour production facilities.",
-        href: "/bg/industrii/melnitsi",
+        href: "/en/industries/mills",
         image: "/images/industries/industrial-flour-milling-facility.png",
         imageAlt: "Mills",
         icon: "Settings",
@@ -118,7 +118,7 @@ export const industriesOverviewPageContent = {
         title: "Agro",
         text:
           "Industrial routes and electrical panels for storage bases, farms and specialized agricultural facilities.",
-        href: "/bg/industrii/agro",
+        href: "/en/industries/agriculture",
         image: "/images/industries/golden-farmland-aerial_2.png",
         imageAlt: "Agro",
         icon: "Warehouse",
@@ -132,7 +132,7 @@ export const industriesOverviewPageContent = {
         title: "Logistics and warehouse bases",
         text:
           "Electrical installations for logistics centers, cold rooms and high-rack warehouses.",
-        href: "/bg/industrii/logistika",
+        href: "/en/industries/logistics",
         image: "/images/industries/modern-warehouse-interior_1.png",
         imageAlt: "Logistics",
         icon: "Truck",
@@ -146,7 +146,7 @@ export const industriesOverviewPageContent = {
         title: "Manufacturing facilities",
         text:
           "Electrical infrastructure for industrial halls, technological lines, machines, work zones and production processes.",
-        href: "/bg/industrii/proizvodstveni-predpriyatiya",
+        href: "/en/industries/manufacturing-companies",
         image: "/images/industries/hero_industriy.png",
         imageAlt: "Manufacturing facilities",
         icon: "Factory",

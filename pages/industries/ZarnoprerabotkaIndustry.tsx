@@ -1,7 +1,30 @@
 import IndustryDetailLayout from "../../components/industries/IndustryDetailLayout";
 import { zarnoprerabotkaIndustryFaqItems } from "../../data/zarnoprerabotkaIndustryFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-export default function ZarnoprerabotkaIndustry() {
+interface ZarnoprerabotkaIndustryProps {
+  locale?: "bg" | "en";
+}
+
+export default function ZarnoprerabotkaIndustry({ locale = "bg" }: ZarnoprerabotkaIndustryProps) {
+  if (locale === "en") {
+    const content = enContent.pages.industryDetails?.grainProcessing;
+
+    if (content) {
+      return (
+        <IndustryDetailLayout
+          {...content}
+          seoPage={content.seoPage as SeoPageKey}
+          relatedPrimaryHref="/en/contact"
+          relatedSecondaryText="All industries"
+          relatedSecondaryHref="/en/industries"
+          contactCtaPrimaryHref="/en/contact"
+        />
+      );
+    }
+  }
+
   return (
     <IndustryDetailLayout
       seoPage="industryZarnoprerabotka"

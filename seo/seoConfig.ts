@@ -55,6 +55,12 @@ export type SeoPageKey =
   | "enSolutionServiceExpansion"
   | "enSolutionHeightInstallation"
   | "enSolutionPanelAutomationLine"
+  | "enIndustryAgriculture"
+  | "enIndustryFoodIndustry"
+  | "enIndustryGrainProcessing"
+  | "enIndustryMills"
+  | "enIndustryLogistics"
+  | "enIndustryManufacturingCompanies"
   | "industries"
   | "industryHvp"
   | "industryZarnoprerabotka"
@@ -385,6 +391,66 @@ export const seoRoutes: SeoRoute[] = [
     description:
       "Mall Electro builds industrial electrical systems, cable routes and automation for food processing, grain processing, mills, agro, logistics and manufacturing facilities.",
     ogImage: "/images/industries/hero_industriy.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustryAgriculture",
+    path: "/en/industries/agriculture",
+    title: "Electrical systems for agricultural facilities",
+    description:
+      "Mall Electro builds electrical infrastructure for agricultural facilities, farms, storage bases and technological zones.",
+    ogImage: "/images/industries/golden-farmland-aerial_2.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustryFoodIndustry",
+    path: "/en/industries/food-industry",
+    title: "Electrical systems for food processing facilities",
+    description:
+      "Mall Electro builds electrical panels, cable routes, low voltage systems and automation for food processing facilities.",
+    ogImage: "/images/industries/stainless-steel-production-line_2.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustryGrainProcessing",
+    path: "/en/industries/grain-processing",
+    title: "Electrical systems for grain processing facilities",
+    description:
+      "Mall Electro builds electrical infrastructure for grain processing bases, silo systems, dryers and transport lines.",
+    ogImage: "/images/industries/golden-hour-grain-complex.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustryMills",
+    path: "/en/industries/mills",
+    title: "Electrical systems for mills and flour production",
+    description:
+      "Mall Electro builds electrical infrastructure for mills, flour production lines, conveyors, dosing and aspiration systems.",
+    ogImage: "/images/industries/industrial-flour-milling-facility.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustryLogistics",
+    path: "/en/industries/logistics",
+    title: "Electrical systems for logistics and warehouse bases",
+    description:
+      "Mall Electro builds electrical infrastructure for logistics centers, warehouse bases, cold rooms and loading zones.",
+    ogImage: "/images/industries/modern-warehouse-interior_1.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
+    key: "enIndustryManufacturingCompanies",
+    path: "/en/industries/manufacturing-companies",
+    title: "Electrical systems for manufacturing companies",
+    description:
+      "Mall Electro builds electrical infrastructure for industrial halls, technological lines, machines and production processes.",
+    ogImage: "/images/industries/industries-heavy-industrial-electrical-infrastructure-01.png",
     noindex: true,
     includeInSitemap: false,
   },

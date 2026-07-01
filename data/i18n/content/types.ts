@@ -26,6 +26,7 @@ export type ContentKey =
   | "solutionPanelAutomationLine"
   | "about"
   | "industriesOverview"
+  | "industryDetails"
   | "industryHvp"
   | "industryZarnoprerabotka"
   | "industryMelnitsi"
@@ -609,6 +610,95 @@ export interface IndustriesOverviewPageContent {
   contactCta: HomeFullContent["contactCta"];
 }
 
+export interface IndustryDetailHeroContent {
+  badgeText: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  imageAlt: string;
+  primaryCtaText: string;
+  primaryCtaHref: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  secondaryCtaIcon?: string;
+  overlayProjectLabel?: string;
+  overlayStatusLabel?: string;
+}
+
+export interface IndustryDetailTextListContent {
+  badge: string;
+  title: string;
+  text?: string;
+  items: readonly string[];
+}
+
+export interface IndustryDetailServiceLinkContent {
+  title: string;
+  text: string;
+  href: string;
+  icon: string;
+}
+
+export interface IndustryDetailProcessStepContent {
+  title: string;
+  text: string;
+}
+
+export interface IndustryDetailRelatedItemContent {
+  title: string;
+  text: string;
+  href?: string;
+}
+
+export interface IndustryDetailFaqItemContent {
+  question: string;
+  answer: string;
+}
+
+export interface IndustryDetailPageContent {
+  seoPage: string;
+  hero: IndustryDetailHeroContent;
+  overview: IndustryDetailTextListContent;
+  systems: {
+    badge: string;
+    title: string;
+    text: string;
+    services: readonly IndustryDetailServiceLinkContent[];
+  };
+  projectNeeds: IndustryDetailTextListContent;
+  process: {
+    badge: string;
+    title: string;
+    steps: readonly IndustryDetailProcessStepContent[];
+    image: string;
+    imageAlt: string;
+    imageKicker: string;
+    imageTitle: string;
+  };
+  faq?: {
+    title: string;
+    intro: string;
+    items: readonly IndustryDetailFaqItemContent[];
+  };
+  relatedIndustries: {
+    badge: string;
+    title: string;
+    text: string;
+    ctaText?: string;
+    items: readonly IndustryDetailRelatedItemContent[];
+  };
+  contactCta: HomeFullContent["contactCta"];
+}
+
+export interface IndustryDetailsContent {
+  agriculture: IndustryDetailPageContent;
+  foodIndustry: IndustryDetailPageContent;
+  grainProcessing: IndustryDetailPageContent;
+  mills: IndustryDetailPageContent;
+  logistics: IndustryDetailPageContent;
+  manufacturingCompanies: IndustryDetailPageContent;
+}
+
 export interface HomeHeroContent extends PageHeroContent {
   highlightedTitle?: string;
   trustLabels?: readonly string[];
@@ -785,6 +875,7 @@ export interface PagesContent {
   solutionsOverview?: SolutionsOverviewPageContent;
   solutionDetails?: SolutionDetailsContent;
   industriesOverview?: IndustriesOverviewPageContent;
+  industryDetails?: IndustryDetailsContent;
   contact: ContactPageContent;
 }
 

@@ -1,7 +1,30 @@
 import IndustryDetailLayout from "../../components/industries/IndustryDetailLayout";
 import { logistikaIndustryFaqItems } from "../../data/logistikaIndustryFaq";
+import { enContent } from "../../data/i18n/content";
+import type { SeoPageKey } from "../../seo/seoConfig";
 
-export default function LogistikaIndustry() {
+interface LogistikaIndustryProps {
+  locale?: "bg" | "en";
+}
+
+export default function LogistikaIndustry({ locale = "bg" }: LogistikaIndustryProps) {
+  if (locale === "en") {
+    const content = enContent.pages.industryDetails?.logistics;
+
+    if (content) {
+      return (
+        <IndustryDetailLayout
+          {...content}
+          seoPage={content.seoPage as SeoPageKey}
+          relatedPrimaryHref="/en/contact"
+          relatedSecondaryText="All industries"
+          relatedSecondaryHref="/en/industries"
+          contactCtaPrimaryHref="/en/contact"
+        />
+      );
+    }
+  }
+
   return (
     <IndustryDetailLayout
       seoPage="industryLogistika"

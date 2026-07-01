@@ -30,6 +30,15 @@ const enSolutionDetailPaths: Partial<Record<RouteKey, string>> = {
   solutionHeightInstallation: "/en/solutions/high-access-installation",
 };
 
+const enIndustryDetailPaths: Partial<Record<RouteKey, string>> = {
+  industryAgro: "/en/industries/agriculture",
+  industryHvp: "/en/industries/food-industry",
+  industryZarnoprerabotka: "/en/industries/grain-processing",
+  industryMelnitsi: "/en/industries/mills",
+  industryLogistika: "/en/industries/logistics",
+  industryProizvodstveniPredpriyatiya: "/en/industries/manufacturing-companies",
+};
+
 const toNavigationItem = (
   routeKey: RouteKey,
   content: NavigationContent,
@@ -55,6 +64,8 @@ const toNavigationItem = (
           ? enServiceDetailPaths[routeKey]
         : isEnglish && enSolutionDetailPaths[routeKey]
           ? enSolutionDetailPaths[routeKey]
+        : isEnglish && enIndustryDetailPaths[routeKey]
+          ? enIndustryDetailPaths[routeKey]
         : getLocalizedPath(routeKey, "bg"),
 });
 
