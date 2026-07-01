@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 33;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 34;
 const EXPECTED_SITEMAP_URL_COUNT = 27;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -58,6 +58,7 @@ assertPathExists(path.join(distDir, "en", "contact", "index.html"), "dist/en/con
 assertPathExists(path.join(distDir, "en", "about", "index.html"), "dist/en/about/index.html");
 assertPathExists(path.join(distDir, "en", "services", "index.html"), "dist/en/services/index.html");
 assertPathExists(path.join(distDir, "en", "solutions", "index.html"), "dist/en/solutions/index.html");
+assertPathExists(path.join(distDir, "en", "industries", "index.html"), "dist/en/industries/index.html");
 assertPathMissing(path.join(distDir, "ro"), "dist/ro");
 
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
@@ -70,6 +71,7 @@ const allowedEnHtmlFiles = new Set([
   "dist/en/about/index.html",
   "dist/en/services/index.html",
   "dist/en/solutions/index.html",
+  "dist/en/industries/index.html",
 ]);
 const unexpectedEnHtmlFiles = enHtmlFiles
   .map(relativePath)
@@ -77,7 +79,7 @@ const unexpectedEnHtmlFiles = enHtmlFiles
 
 if (enHtmlFiles.length !== allowedEnHtmlFiles.size || unexpectedEnHtmlFiles.length > 0) {
   fail(
-    `Expected only dist/en/index.html, dist/en/contact/index.html, dist/en/about/index.html, dist/en/services/index.html and dist/en/solutions/index.html for EN output, found: ${
+    `Expected only dist/en/index.html, dist/en/contact/index.html, dist/en/about/index.html, dist/en/services/index.html, dist/en/solutions/index.html and dist/en/industries/index.html for EN output, found: ${
       enHtmlFiles.map(relativePath).join(", ") || "none"
     }.`
   );
@@ -136,6 +138,6 @@ if (failures.length > 0) {
 console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
-console.log("- EN output: dist/en/index.html, dist/en/contact/index.html, dist/en/about/index.html, dist/en/services/index.html and dist/en/solutions/index.html only");
+console.log("- EN output: dist/en/index.html, dist/en/contact/index.html, dist/en/about/index.html, dist/en/services/index.html, dist/en/solutions/index.html and dist/en/industries/index.html only");
 console.log("- RO output: absent");
 console.log("- hreflang: absent");

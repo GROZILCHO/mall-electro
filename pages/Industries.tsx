@@ -9,8 +9,73 @@ import FadeIn from "../components/ui/FadeIn";
 import GridContainer from "../components/layout/GridContainer";
 import SEO from "../components/seo/SEO";
 import { SITE_PHONE_RAW } from "../utils/siteConfig";
+import { enContent } from "../data/i18n/content";
+import type { IndustriesOverviewPageContent } from "../data/i18n/content";
 
-export default function IndustriesPage() {
+interface EnglishIndustriesPageProps {
+  content: IndustriesOverviewPageContent;
+}
+
+const EnglishIndustriesPage: React.FC<EnglishIndustriesPageProps> = ({ content }) => {
+  return (
+    <main className="pt-20">
+      <SEO page="industries" />
+      <PageHero
+        theme="light"
+        badgeText={content.hero.badgeText}
+        badgeVariant="accent"
+        title={content.hero.title}
+        subtitle={
+          <>
+            {content.hero.subtitleParagraphs.map((paragraph, index) => (
+              <p key={paragraph} className={index > 0 ? "mt-4" : undefined}>
+                {paragraph}
+              </p>
+            ))}
+          </>
+        }
+        heroImage="/images/industries/hero_industriy.png"
+        heroImageAlt={content.hero.heroImageAlt}
+        primaryCtaText={content.hero.primaryCtaText}
+        primaryCtaHref={content.hero.primaryCtaHref}
+        primaryCtaIcon="Search"
+        secondaryCtaText={content.hero.secondaryCtaText}
+        secondaryCtaHref={content.hero.secondaryCtaHref}
+        secondaryCtaVariant="dark"
+        secondaryCtaIcon="Phone"
+        overlayProjectLabel={content.hero.overlayProjectLabel}
+        overlayStatusLabel={content.hero.overlayStatusLabel}
+      />
+
+      <FadeIn>
+        <GridContainer className="py-12">
+          <IndustriesQuickNav content={content.quickNav} />
+        </GridContainer>
+      </FadeIn>
+
+      <IndustryOverview content={content.overview} />
+      <IndustriesPremium content={content.premium} />
+      <IndustriesCasesStrip content={content.cases} />
+      <ContactCTA content={content.contactCta} primaryCtaHref="/en/contact" />
+    </main>
+  );
+};
+
+interface IndustriesPageProps {
+  locale?: "bg" | "en";
+}
+
+export default function IndustriesPage({ locale = "bg" }: IndustriesPageProps) {
+  if (locale === "en") {
+    const content = enContent.pages.industriesOverview;
+
+    if (!content) {
+      throw new Error("Missing English industries overview content.");
+    }
+
+    return <EnglishIndustriesPage content={content} />;
+  }
+
   return (
     <main className="pt-20">
       <SEO page="industries" />

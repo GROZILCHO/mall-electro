@@ -352,6 +352,64 @@ export interface SolutionsOverviewPageContent {
   contactCta: HomeFullContent["contactCta"];
 }
 
+export interface IndustriesHeroContent extends PageHeroContent {
+  subtitleParagraphs: readonly string[];
+  primaryCtaHref: string;
+  secondaryCtaHref: string;
+  overlayProjectLabel: string;
+  overlayStatusLabel: string;
+}
+
+export interface IndustryOverviewFeatureContent {
+  label: string;
+  desc: string;
+  icon: string;
+}
+
+export interface IndustryOverviewContent {
+  badge: string;
+  heading: string;
+  subtitle: string;
+  imageAlt: string;
+  paragraphs: readonly string[];
+  features: readonly IndustryOverviewFeatureContent[];
+  cta: string;
+  ctaHref: string;
+}
+
+export interface IndustriesQuickNavLinkContent {
+  href: string;
+  label: string;
+  icon: string;
+}
+
+export interface IndustriesQuickNavContent {
+  badge: string;
+  links: readonly IndustriesQuickNavLinkContent[];
+}
+
+export interface IndustriesCaseStripItemContent {
+  title: string;
+  subtitle: string;
+  image: string;
+  tag: string;
+}
+
+export interface IndustriesCasesStripContent {
+  heading: string;
+  body: string;
+  items: readonly IndustriesCaseStripItemContent[];
+}
+
+export interface IndustriesOverviewPageContent {
+  hero: IndustriesHeroContent;
+  quickNav: IndustriesQuickNavContent;
+  overview: IndustryOverviewContent;
+  premium: HomeFullContent["industries"];
+  cases: IndustriesCasesStripContent;
+  contactCta: HomeFullContent["contactCta"];
+}
+
 export interface HomeHeroContent extends PageHeroContent {
   highlightedTitle?: string;
   trustLabels?: readonly string[];
@@ -525,6 +583,7 @@ export interface PagesContent {
   about?: AboutPageContent;
   servicesOverview?: ServicesOverviewPageContent;
   solutionsOverview?: SolutionsOverviewPageContent;
+  industriesOverview?: IndustriesOverviewPageContent;
   contact: ContactPageContent;
 }
 

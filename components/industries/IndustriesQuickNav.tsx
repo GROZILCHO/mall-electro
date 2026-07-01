@@ -3,6 +3,7 @@ import FadeIn from "../ui/FadeIn";
 import GridContainer from "../layout/GridContainer";
 import Badge from "../ui/Badge";
 import { Icons } from "../ui/LucideIcons";
+import type { IndustriesQuickNavContent } from "../../data/i18n/content";
 
 const links = [
   { href: "#industry-food", label: "ХВП", icon: "Factory" },
@@ -13,7 +14,14 @@ const links = [
   { href: "#industry-production", label: "Производствени предприятия", icon: "Factory" },
 ];
 
-const IndustriesQuickNav: React.FC = () => {
+interface IndustriesQuickNavProps {
+  content?: IndustriesQuickNavContent;
+}
+
+const IndustriesQuickNav: React.FC<IndustriesQuickNavProps> = ({ content }) => {
+  const activeLinks = content?.links ?? links;
+  const badgeText = content?.badge ?? "Сектори, в които работим";
+
   const handleSmoothScroll = (e: React.MouseEvent, href: string) => {
     e.preventDefault();
     const el = document.querySelector(href);
@@ -29,7 +37,7 @@ const IndustriesQuickNav: React.FC = () => {
         <FadeIn>
           <div className="flex justify-center mb-6">
             <Badge
-              text="Сектори, в които работим"
+              text={badgeText}
               variant="pill-light"
               align="center"
             />
@@ -41,8 +49,8 @@ const IndustriesQuickNav: React.FC = () => {
               lg:flex-nowrap w-full
             "
           >
-            {links.map((link) => {
-              const Icon = Icons[link.icon];
+            {activeLinks.map((link) => {
+              const Icon = Icons[link.icon as keyof typeof Icons];
               return (
                 <button
                   key={link.href}

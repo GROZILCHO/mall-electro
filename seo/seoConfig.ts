@@ -247,6 +247,16 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industries/hero_industriy.png",
   },
   {
+    key: "industries",
+    path: "/en/industries",
+    title: "Industries - industrial electrical systems by sector",
+    description:
+      "Mall Electro builds industrial electrical systems, cable routes and automation for food processing, grain processing, mills, agro, logistics and manufacturing facilities.",
+    ogImage: "/images/industries/hero_industriy.png",
+    noindex: true,
+    includeInSitemap: false,
+  },
+  {
     ...createSeoRouteIdentity("industryHvp"),
     title: "Електро системи за ХВП и хранително-вкусова промишленост | Mall Electro",
     description:

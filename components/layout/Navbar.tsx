@@ -29,6 +29,8 @@ const toNavigationItem = (
         ? "/en/services"
       : routeKey === "solutions" && isEnglish
         ? "/en/solutions"
+      : routeKey === "industries" && isEnglish
+        ? "/en/industries"
       : routeKey === "contact" && isEnglish
         ? "/en/contact"
         : getLocalizedPath(routeKey, "bg"),

@@ -1,4 +1,5 @@
 import GridContainer from "../layout/GridContainer";
+import type { IndustriesCasesStripContent } from "../../data/i18n/content";
 
 const items = [
   {
@@ -21,21 +22,27 @@ const items = [
   },
 ];
 
-export default function IndustriesCasesStrip() {
+interface IndustriesCasesStripProps {
+  content?: IndustriesCasesStripContent;
+}
+
+export default function IndustriesCasesStrip({ content }: IndustriesCasesStripProps) {
+  const activeItems = content?.items ?? items;
+
   return (
     <GridContainer>
       <section className="py-16">
         <h2 className="mb-6 text-center font-sans text-3xl font-bold text-brand-dark">
-          Типови индустриални сценарии
+          {content?.heading ?? "Типови индустриални сценарии"}
         </h2>
 
         <p className="mx-auto mb-14 max-w-3xl text-center text-base leading-relaxed text-gray-600 md:text-lg">
-          Примери за проектни ситуации, в които електрически табла, кабелни трасета, автоматизация и сервизна поддръжка
-          се комбинират според средата и работния режим на обекта.
+          {content?.body ??
+            "Примери за проектни ситуации, в които електрически табла, кабелни трасета, автоматизация и сервизна поддръжка се комбинират според средата и работния режим на обекта."}
         </p>
 
         <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
-          {items.map((item) => (
+          {activeItems.map((item) => (
             <article
               key={item.title}
               className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
