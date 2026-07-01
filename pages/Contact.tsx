@@ -26,7 +26,7 @@ const Contact: React.FC<ContactProps> = ({ locale = "bg" }) => {
         heroImage="/images/engineering/engineering-consultation-control-cabinet-industrial-hall-01.png"
         heroImageAlt={contactPageContent.hero.heroImageAlt}
         primaryCtaText={contactPageContent.hero.primaryCtaText}
-        primaryCtaHref="/bg/industrii"
+        primaryCtaHref={isEnglish ? "/en/industries" : "/bg/industrii"}
         secondaryCtaText={contactPageContent.hero.secondaryCtaText}
         secondaryCtaHref={`tel:${SITE_PHONE_RAW}`}
         secondaryCtaVariant="dark"

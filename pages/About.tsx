@@ -168,7 +168,7 @@ const About: React.FC<AboutProps> = ({ locale = "bg" }) => {
           heroImage="/images/about/hero-about.png"
           heroImageAlt={aboutContent.hero.heroImageAlt}
           primaryCtaText={aboutContent.hero.primaryCtaText}
-          primaryCtaHref="/bg/industrii"
+          primaryCtaHref="/en/industries"
           secondaryCtaText={aboutContent.hero.secondaryCtaText}
           secondaryCtaHref={`tel:${SITE_PHONE_RAW}`}
           secondaryCtaVariant="dark"
@@ -368,7 +368,7 @@ const About: React.FC<AboutProps> = ({ locale = "bg" }) => {
           </div>
         </section>
 
-        <ContactCTA content={enContent.pages.home.full?.contactCta} />
+        <ContactCTA content={enContent.pages.home.full?.contactCta} primaryCtaHref="/en/contact" />
       </main>
     );
   }

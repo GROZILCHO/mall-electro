@@ -11,7 +11,7 @@ export const servicesOverviewPageContent = {
     primaryCtaText: "Request consultation",
     secondaryCtaText: "View industries",
     primaryCtaHref: "/en/contact",
-    secondaryCtaHref: "/bg/industrii",
+    secondaryCtaHref: "/en/industries",
     overlayProjectLabel: "PROJECT: #8842",
     overlayStatusLabel: "SITE INSPECTION",
   },
@@ -150,7 +150,7 @@ export const servicesOverviewPageContent = {
     primaryCta: "Discuss your project",
     secondaryCta: "View industries",
     primaryCtaHref: "/en/contact",
-    secondaryCtaHref: "/bg/industrii",
+    secondaryCtaHref: "/en/industries",
   },
   contactCta: {
     imageAlt: "Engineering project and electrical panel",

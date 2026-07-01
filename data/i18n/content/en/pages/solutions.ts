@@ -100,42 +100,42 @@ export const solutionsOverviewPageContent = {
         title: "Electrical panels",
         text:
           "Distribution panels, control cabinets and management panels.",
-        href: "/bg/uslugi/elektricheski-tabla",
+        href: "/en/services/electrical-panels",
         icon: "LayoutDashboard",
       },
       {
         title: "Cable routes",
         text:
           "Cable trays, routes and organized industrial cabling.",
-        href: "/bg/uslugi/kabelni-traseta",
+        href: "/en/services/cable-routes",
         icon: "Factory",
       },
       {
         title: "Industrial electrical installations",
         text:
           "Power supply, power lines and connections between machines, panels and zones.",
-        href: "/bg/uslugi/industrialni-elektroinstalatsii",
+        href: "/en/services/industrial-electrical-installations",
         icon: "HardHat",
       },
       {
         title: "Automation",
         text:
           "Control, sensors, control circuits and process integration.",
-        href: "/bg/uslugi/avtomatizatsia",
+        href: "/en/services/automation",
         icon: "Cpu",
       },
       {
         title: "Low voltage systems",
         text:
           "Low voltage connections, power lines and related infrastructure.",
-        href: "/bg/uslugi/nisko-naprezhenie",
+        href: "/en/services/low-voltage-systems",
         icon: "Zap",
       },
       {
         title: "Maintenance and service",
         text:
           "Diagnostics, prevention and follow-up technical support.",
-        href: "/bg/uslugi/poddrazhka-i-serviz",
+        href: "/en/services/maintenance-and-service",
         icon: "Wrench",
       },
     ],
@@ -150,47 +150,47 @@ export const solutionsOverviewPageContent = {
         title: "Food processing",
         text:
           "Production lines and food processing facilities.",
-        href: "/bg/industrii/hvp",
+        href: "/en/industries/food-industry",
         icon: "Factory",
       },
       {
         title: "Grain processing",
         text:
           "Silo complexes, transport lines and drying systems.",
-        href: "/bg/industrii/zarnoprerabotka",
+        href: "/en/industries/grain-processing",
         icon: "Wheat",
       },
       {
         title: "Mills",
         text:
           "Flour production, aspiration and technological lines.",
-        href: "/bg/industrii/melnitsi",
+        href: "/en/industries/mills",
         icon: "Activity",
       },
       {
         title: "Agro",
         text:
           "Farms, storage bases, drying systems and seasonal infrastructure.",
-        href: "/bg/industrii/agro",
+        href: "/en/industries/agriculture",
         icon: "Wheat",
       },
       {
         title: "Logistics",
         text:
           "Warehouse complexes, cold rooms and loading zones.",
-        href: "/bg/industrii/logistika",
+        href: "/en/industries/logistics",
         icon: "Warehouse",
       },
       {
         title: "Manufacturing facilities",
         text:
           "Industrial halls, work zones, machines and processes.",
-        href: "/bg/industrii/proizvodstveni-predpriyatiya",
+        href: "/en/industries/manufacturing-companies",
         icon: "Settings",
       },
     ],
     cta: "All industries",
-    ctaHref: "/bg/industrii",
+    ctaHref: "/en/industries",
   },
   process: {
     badge: "Process",

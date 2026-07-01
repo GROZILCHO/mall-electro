@@ -50,7 +50,7 @@ export const homePageContent = {
           description:
             "Design, manufacturing and commissioning of electrical panels, control cabinets and management panels.",
           icon: "LayoutDashboard",
-          href: "/bg/uslugi/elektricheski-tabla",
+          href: "/en/services/electrical-panels",
         },
         {
           id: 2,
@@ -58,7 +58,7 @@ export const homePageContent = {
           description:
             "Cable trays, cable routes and organized industrial cabling for production facilities and process lines.",
           icon: "Factory",
-          href: "/bg/uslugi/kabelni-traseta",
+          href: "/en/services/cable-routes",
         },
         {
           id: 3,
@@ -66,7 +66,7 @@ export const homePageContent = {
           description:
             "Complete execution of electrical installations for production facilities, warehouses, machines and work zones.",
           icon: "HardHat",
-          href: "/bg/uslugi/industrialni-elektroinstalatsii",
+          href: "/en/services/industrial-electrical-installations",
         },
         {
           id: 4,
@@ -74,7 +74,7 @@ export const homePageContent = {
           description:
             "Integration of control systems, sensors, panels and machine or process management.",
           icon: "PenTool",
-          href: "/bg/uslugi/avtomatizatsia",
+          href: "/en/services/automation",
         },
         {
           id: 5,
@@ -82,7 +82,7 @@ export const homePageContent = {
           description:
             "Power lines, low-voltage connections and electrical infrastructure for machines, consumers and facilities.",
           icon: "Zap",
-          href: "/bg/uslugi/nisko-naprezhenie",
+          href: "/en/services/low-voltage-systems",
         },
         {
           id: 6,
@@ -90,7 +90,7 @@ export const homePageContent = {
           description:
             "Diagnostics, preventive checks, service activities and maintenance of industrial electrical systems.",
           icon: "Users",
-          href: "/bg/uslugi/poddrazhka-i-serviz",
+          href: "/en/services/maintenance-and-service",
         },
       ],
     },
@@ -106,37 +106,37 @@ export const homePageContent = {
         {
           title: "New production site",
           text: "Electrical infrastructure for new production, warehouse and technological facilities.",
-          href: "/bg/reshenia/nov-proizvodstven-obekt",
+          href: "/en/solutions/new-production-site",
           icon: "Factory",
         },
         {
           title: "Electrical system modernization",
           text: "Assessment, replacement and expansion of existing panels, routes and power supplies.",
-          href: "/bg/reshenia/modernizatsia-na-elektro-sistema",
+          href: "/en/solutions/electrical-system-modernization",
           icon: "Settings",
         },
         {
           title: "Panels and automation for production lines",
           text: "A combination of panels, control, sensors, routes and commissioning for machines or lines.",
-          href: "/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii",
+          href: "/en/solutions/panels-and-automation-for-production-lines",
           icon: "Cpu",
         },
         {
           title: "Cable infrastructure for a base",
           text: "Cable routes, low voltage systems and organized cabling for industrial bases.",
-          href: "/bg/reshenia/kabelna-infrastruktura-za-baza",
+          href: "/en/solutions/cable-infrastructure-for-base",
           icon: "Activity",
         },
         {
           title: "Service and expansion",
           text: "Diagnostics, maintenance, improvements and expansion of operating electrical systems.",
-          href: "/bg/reshenia/serviz-i-razshiryavane",
+          href: "/en/solutions/service-and-expansion",
           icon: "Wrench",
         },
         {
           title: "Electrical installation at height with a lift",
           text: "Electrical installation work in high halls, warehouses and hard-to-access points.",
-          href: "/bg/reshenia/elektromontazh-na-visochina-s-vishka",
+          href: "/en/solutions/high-access-installation",
           icon: "HardHat",
         },
       ],
@@ -243,7 +243,7 @@ export const homePageContent = {
           title: "Food processing industry",
           text:
             "Electrical panels, automation and production line control systems for food processing facilities - from raw material intake to packaging.",
-          href: "/bg/industrii/hvp",
+          href: "/en/industries/food-industry",
           image: "/images/industries/stainless-steel-production-line_2.png",
           imageAlt: "Food processing industry",
           icon: "Factory",
@@ -257,7 +257,7 @@ export const homePageContent = {
           title: "Grain processing",
           text:
             "Systems for drying, transport, cabling and automation of silo farms and grain processing bases.",
-          href: "/bg/industrii/zarnoprerabotka",
+          href: "/en/industries/grain-processing",
           image: "/images/industries/wheat-close-up.png",
           imageAlt: "Grain processing",
           icon: "Wheat",
@@ -271,7 +271,7 @@ export const homePageContent = {
           title: "Mills",
           text:
             "Cabling and integration of process lines for milling and flour production facilities.",
-          href: "/bg/industrii/melnitsi",
+          href: "/en/industries/mills",
           image: "/images/industries/industrial-flour-milling-facility.png",
           imageAlt: "Mills",
           icon: "Settings",
@@ -285,7 +285,7 @@ export const homePageContent = {
           title: "Agro",
           text:
             "Industrial routes and electrical panels for storage bases, farms and specialized agro facilities.",
-          href: "/bg/industrii/agro",
+          href: "/en/industries/agriculture",
           image: "/images/industries/golden-farmland-aerial_2.png",
           imageAlt: "Agro",
           icon: "Warehouse",
@@ -299,7 +299,7 @@ export const homePageContent = {
           title: "Logistics and warehouse bases",
           text:
             "Electrical installations for logistics centers, cold rooms and high-rack warehouses.",
-          href: "/bg/industrii/logistika",
+          href: "/en/industries/logistics",
           image: "/images/industries/modern-warehouse-interior_1.png",
           imageAlt: "Logistics",
           icon: "Truck",
@@ -313,7 +313,7 @@ export const homePageContent = {
           title: "Manufacturing facilities",
           text:
             "Electrical infrastructure for industrial halls, process lines, machines, work zones and production processes.",
-          href: "/bg/industrii/proizvodstveni-predpriyatiya",
+          href: "/en/industries/manufacturing-companies",
           image: "/images/industries/hero_industriy.png",
           imageAlt: "Manufacturing facilities",
           icon: "Factory",

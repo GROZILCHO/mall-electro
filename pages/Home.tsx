@@ -13,6 +13,7 @@ export default function Home({ locale = "bg" }: HomeProps) {
     <>
       <SEO page="home" />
       <HomePage
+        locale={locale}
         content={isEnglish ? enContent.pages.home.full : undefined}
         contactFormContent={isEnglish ? enContent.forms.contact : undefined}
       />
