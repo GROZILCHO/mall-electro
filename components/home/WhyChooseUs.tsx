@@ -29,9 +29,10 @@ const icons = [
 
 interface WhyChooseUsProps {
   content?: HomeFullContent["whyChooseUs"];
+  ctaHref?: string;
 }
 
-const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ content = defaultContent }) => {
+const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ content = defaultContent, ctaHref = "/bg/kontakti" }) => {
   return (
     <section className="relative overflow-hidden bg-[#FDF7F4] py-28 text-[#1C2A39] lg:py-32">
       <div className="container relative z-10 mx-auto max-w-screen-xl px-6 lg:px-12">
@@ -54,7 +55,7 @@ const WhyChooseUs: React.FC<WhyChooseUsProps> = ({ content = defaultContent }) =
                 {content.body}
               </p>
 
-              <Button variant="dark" size="md" icon="ChevronRight" href="/bg/kontakti">
+              <Button variant="dark" size="md" icon="ChevronRight" href={ctaHref}>
                 {content.cta}
               </Button>
             </FadeIn>

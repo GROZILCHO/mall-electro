@@ -26,9 +26,13 @@ const defaultContent: HomeFullContent["solutions"] = {
 
 interface SolutionsTeaserProps {
   content?: HomeFullContent["solutions"];
+  allCtaHref?: string;
 }
 
-const SolutionsTeaser: React.FC<SolutionsTeaserProps> = ({ content = defaultContent }) => {
+const SolutionsTeaser: React.FC<SolutionsTeaserProps> = ({
+  content = defaultContent,
+  allCtaHref = "/bg/reshenia",
+}) => {
   return (
     <section className="relative overflow-hidden bg-white py-24 lg:py-28">
       <div className="cad-grid-blue absolute inset-0 pointer-events-none opacity-[0.04]" />
@@ -45,7 +49,7 @@ const SolutionsTeaser: React.FC<SolutionsTeaserProps> = ({ content = defaultCont
           </FadeIn>
 
           <FadeIn className="lg:col-span-4 lg:text-right" delay={120}>
-            <Button variant="dark" size="md" icon="ChevronRight" href="/bg/reshenia">
+            <Button variant="dark" size="md" icon="ChevronRight" href={allCtaHref}>
               {content.allCta}
             </Button>
           </FadeIn>

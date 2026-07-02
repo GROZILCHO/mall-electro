@@ -21,9 +21,13 @@ const defaultContent: HomeFullContent["panelEngineering"] = {
 
 interface PanelEngineeringProps {
   content?: HomeFullContent["panelEngineering"];
+  ctaHref?: string;
 }
 
-const PanelEngineering: React.FC<PanelEngineeringProps> = ({ content = defaultContent }) => {
+const PanelEngineering: React.FC<PanelEngineeringProps> = ({
+  content = defaultContent,
+  ctaHref = "/bg/uslugi/elektricheski-tabla",
+}) => {
   return (
     <section className="py-28 lg:py-32 bg-white relative overflow-hidden">
       <div className="cad-grid-blue absolute inset-0 opacity-[0.04] pointer-events-none" />
@@ -60,7 +64,7 @@ const PanelEngineering: React.FC<PanelEngineeringProps> = ({ content = defaultCo
                 })}
               </ul>
 
-              <Link to="/bg/uslugi/elektricheski-tabla" className="inline-flex items-center gap-3 px-8 py-4 bg-[#1C2A39] text-white font-medium text-sm tracking-wide rounded hover:bg-black transition-all hover:gap-5 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-300">
+              <Link to={ctaHref} className="inline-flex items-center gap-3 px-8 py-4 bg-[#1C2A39] text-white font-medium text-sm tracking-wide rounded hover:bg-black transition-all hover:gap-5 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 duration-300">
                 <span>{content.cta}</span>
                 <Icons.ChevronRight className="w-4 h-4" />
               </Link>

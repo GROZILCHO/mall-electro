@@ -44,9 +44,10 @@ const TechSVG = () => (
 
 interface HeroProps {
   content?: HomeFullContent["hero"];
+  primaryCtaHref?: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ content = defaultContent }) => {
+const Hero: React.FC<HeroProps> = ({ content = defaultContent, primaryCtaHref = "/bg/uslugi" }) => {
   return (
     <section className="relative flex min-h-[95vh] w-full items-center overflow-hidden bg-[#0a1520]">
       <div className="absolute inset-0 z-0">
@@ -104,7 +105,7 @@ const Hero: React.FC<HeroProps> = ({ content = defaultContent }) => {
 
             <FadeIn delay={300}>
               <div className="mt-6 flex flex-col gap-8 sm:flex-row md:gap-10">
-                <Button variant="primary" size="md" icon="ChevronRight" href="/bg/uslugi">
+                <Button variant="primary" size="md" icon="ChevronRight" href={primaryCtaHref}>
                   {content.primaryCta}
                 </Button>
                 <Button variant="secondary" size="md" icon="Phone" href={`tel:${SITE_PHONE_RAW}`}>

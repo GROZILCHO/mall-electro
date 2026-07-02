@@ -86,9 +86,12 @@ const IndustriesPremium: React.FC<IndustriesPremiumProps> = ({ content = default
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[third, fourth, fifth].map((industry, index) => (
+            {[third, fourth, fifth].map((industry, index) => {
+              const sectionIds = ["industry-mills", "industry-agro", "industry-logistics"] as const;
+
+              return (
               <FadeIn key={industry.href} delay={300 + index * 100}>
-                <Link to={industry.href} className="bg-white rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.03)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group h-full block">
+                <Link to={industry.href} id={sectionIds[index]} className="bg-white rounded-2xl shadow-[0_8px_20px_rgba(0,0,0,0.03)] border-t-[3px] border-t-[#FF6D2E] border-x border-b border-gray-100 overflow-hidden hover:shadow-[0_8px_28px_rgba(0,0,0,0.08)] hover:-translate-y-2 transition-all duration-300 group h-full block">
                   <div className="h-40 relative overflow-hidden">
                     <img src={industry.image} loading="lazy" decoding="async" fetchPriority="low" className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" alt={industry.imageAlt} />
                   </div>
@@ -105,7 +108,8 @@ const IndustriesPremium: React.FC<IndustriesPremiumProps> = ({ content = default
                   </div>
                 </Link>
               </FadeIn>
-            ))}
+              );
+            })}
           </div>
 
           <FadeIn delay={600}>

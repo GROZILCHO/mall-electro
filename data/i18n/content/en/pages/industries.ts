@@ -13,7 +13,7 @@ export const industriesOverviewPageContent = {
     heroImageAlt:
       "Engineer performing final checks on an electrical panel in an industrial environment",
     primaryCtaText: "Explore sectors",
-    primaryCtaHref: "/en/industries",
+    primaryCtaHref: "#industry-food",
     secondaryCtaText: "Speak with an engineer",
     secondaryCtaHref: "tel:+359899015671",
     overlayProjectLabel: "PROJECT: #8842",
