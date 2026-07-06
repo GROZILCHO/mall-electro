@@ -64,7 +64,7 @@ export const industriesOverviewPageContent = {
       },
     ],
     cta: "View projects by industry",
-    ctaHref: "/en/industries",
+    ctaHref: "#industry-food",
   },
   premium: {
     heading: "Industries we serve",

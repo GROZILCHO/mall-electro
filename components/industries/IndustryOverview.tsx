@@ -192,7 +192,7 @@ const IndustryOverview: React.FC<IndustryOverviewProps> = ({ content }) => {
               </div>
 
               <div className="mt-12">
-                <Button variant="primary" size="lg" icon="ChevronRight" href="/bg/kontakti">
+                <Button variant="primary" size="lg" icon="ChevronRight" href="#industry-food">
                   Вижте проектите по индустрии
                 </Button>
               </div>
