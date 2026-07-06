@@ -122,6 +122,7 @@ const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ conte
         secondaryCtaText={content.hero.secondaryCtaText}
         secondaryCtaHref={content.hero.secondaryCtaHref}
         secondaryCtaVariant="dark"
+        secondaryCtaIcon="ChevronRight"
         heroImage="/images/industrial/industrial-electrical-workshop-technical-zone-01.png"
         heroImageAlt={content.hero.heroImageAlt}
         overlayProjectLabel={content.hero.overlayProjectLabel}
@@ -349,6 +350,7 @@ const Services: React.FC<ServicesProps> = ({ locale = "bg" }) => {
         secondaryCtaText="Виж индустриите"
         secondaryCtaHref="/bg/industrii"
         secondaryCtaVariant="dark"
+        secondaryCtaIcon="ChevronRight"
         heroImage="/images/industrial/industrial-electrical-workshop-technical-zone-01.png"
         heroImageAlt="Индустриална електро работилница с табла и кабелна инфраструктура"
       />
