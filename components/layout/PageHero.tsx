@@ -120,7 +120,7 @@ const PageHero: React.FC<PageHeroProps> = ({
 
       <div className="relative z-10 mx-auto max-w-[1280px] px-6 py-24 md:py-32">
         <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
-          <div className="order-2 lg:order-1">
+          <div className="order-1">
             <FadeIn delay={0}>
               {showBadge && <Badge text={badgeText} variant={badgeVariant} align={badgeAlign} />}
             </FadeIn>
@@ -163,7 +163,7 @@ const PageHero: React.FC<PageHeroProps> = ({
             </FadeIn>
           </div>
 
-          <div className="relative order-1 hidden lg:order-2 lg:block">
+          <div className="relative order-2">
             <div className="absolute -inset-4 rounded-md border-2 border-white/10"></div>
             <div
               className={`absolute -inset-4 pointer-events-none rounded-2xl animate-shift-lines ${
@@ -171,7 +171,7 @@ const PageHero: React.FC<PageHeroProps> = ({
               }`}
             ></div>
 
-            <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/50 shadow-2xl">
+            <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-white/50 shadow-2xl lg:aspect-[4/3]">
               <picture>
                 {optimizedBase && (
                   <>

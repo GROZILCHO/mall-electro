@@ -115,9 +115,9 @@ const Hero: React.FC<HeroProps> = ({ content = defaultContent, primaryCtaHref = 
             </FadeIn>
           </div>
 
-          <div className="perspective-1000 relative hidden lg:col-span-5 lg:block">
+          <div className="perspective-1000 relative lg:col-span-5">
             <FadeIn delay={400} direction="left">
-              <div className="relative aspect-[4/3] w-full rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 shadow-2xl backdrop-blur-sm">
+              <div className="relative aspect-[16/10] w-full rounded-lg border border-white/10 bg-gradient-to-br from-white/5 to-transparent p-6 shadow-2xl backdrop-blur-sm lg:aspect-[4/3]">
                 <div className="absolute left-0 top-0 h-4 w-4 border-l-2 border-t-2 border-brand-orange"></div>
                 <div className="absolute right-0 top-0 h-4 w-4 border-r-2 border-t-2 border-brand-blue"></div>
                 <div className="absolute bottom-0 left-0 h-4 w-4 border-b-2 border-l-2 border-brand-blue"></div>
