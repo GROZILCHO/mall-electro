@@ -41,7 +41,7 @@ export default function IndustriesCasesStrip({ content }: IndustriesCasesStripPr
             "Примери за проектни ситуации, в които електрически табла, кабелни трасета, автоматизация и сервизна поддръжка се комбинират според средата и работния режим на обекта."}
         </p>
 
-        <div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-8 lg:grid-cols-3">
           {activeItems.map((item) => (
             <article
               key={item.title}

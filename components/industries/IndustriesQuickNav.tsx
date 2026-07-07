@@ -45,8 +45,8 @@ const IndustriesQuickNav: React.FC<IndustriesQuickNavProps> = ({ content }) => {
 
           <div
             className="
-              flex justify-center gap-4 flex-wrap
-              lg:flex-nowrap w-full
+              grid w-full grid-cols-2 gap-3 sm:grid-cols-3
+              lg:flex lg:flex-nowrap lg:justify-center lg:gap-4
             "
           >
             {activeLinks.map((link) => {
@@ -57,7 +57,7 @@ const IndustriesQuickNav: React.FC<IndustriesQuickNavProps> = ({ content }) => {
                   onClick={(e) => handleSmoothScroll(e, link.href)}
                   className="
                     flex items-center gap-2
-                    px-5 py-3
+                    px-4 py-3
                     rounded-md
                     bg-white
                     border border-gray-200
@@ -69,8 +69,11 @@ const IndustriesQuickNav: React.FC<IndustriesQuickNavProps> = ({ content }) => {
                     hover:bg-orange-50/50
                     hover:shadow-md
                     transition-all duration-200
-                    min-w-[160px]
+                    min-w-0
                     justify-center
+                    text-sm
+                    md:text-base
+                    lg:min-w-[160px]
                   "
                 >
                   {Icon && <Icon className="w-4 h-4" />}

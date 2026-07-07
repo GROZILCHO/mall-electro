@@ -271,7 +271,7 @@ const SolutionDetailLayout: React.FC<SolutionDetailLayoutProps> = ({
                 <FadeIn key={industry.href} delay={index * 70}>
                   <Link
                     to={industry.href}
-                    className="group block h-full border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06]"
+                    className="group block h-full border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06] sm:p-6"
                   >
                     <div className="mb-5 flex h-11 w-11 items-center justify-center rounded bg-white/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
                       <Icon className="h-5 w-5" />

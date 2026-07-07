@@ -196,7 +196,7 @@ const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ con
               </p>
             </FadeIn>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:col-span-7">
+            <div className="grid grid-cols-1 gap-6 lg:col-span-7 lg:grid-cols-3">
               {content.scope.cards.map((card, index) => (
                 <FadeIn key={card.title} delay={index * 80}>
                   <Card className="h-full">
@@ -261,7 +261,7 @@ const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ con
                   {scenario.href ? (
                     <Link
                       to={scenario.href}
-                      className="group block h-full rounded-xl border border-blue-100 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl"
+                      className="group block h-full rounded-xl border border-blue-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl md:p-8"
                     >
                       {scenarioContent}
                     </Link>
@@ -338,7 +338,7 @@ const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ con
                 <FadeIn key={industry.href} delay={index * 70}>
                   <Link
                     to={industry.href}
-                    className="group block h-full border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06]"
+                    className="group block h-full border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06] sm:p-6"
                   >
                     <div className="mb-5 flex h-11 w-11 items-center justify-center rounded bg-white/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
                       <Icon className="h-5 w-5" />
@@ -448,7 +448,7 @@ const Solutions: React.FC<SolutionsProps> = ({ locale = "bg" }) => {
               </p>
             </FadeIn>
 
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:col-span-7">
+            <div className="grid grid-cols-1 gap-6 lg:col-span-7 lg:grid-cols-3">
               {[
                 ["Услуги", "Какво изпълняваме - табла, трасета, ниско напрежение, автоматизация и сервиз."],
                 ["Индустрии", "Къде работим - ХВП, зърнопреработка, мелници, агро, логистика и производство."],
@@ -518,7 +518,7 @@ const Solutions: React.FC<SolutionsProps> = ({ locale = "bg" }) => {
                   {scenario.href ? (
                     <Link
                       to={scenario.href}
-                      className="group block h-full rounded-xl border border-blue-100 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl"
+                      className="group block h-full rounded-xl border border-blue-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:border-brand-blue/40 hover:shadow-xl md:p-8"
                     >
                       {scenarioContent}
                     </Link>
@@ -597,7 +597,7 @@ const Solutions: React.FC<SolutionsProps> = ({ locale = "bg" }) => {
                 <FadeIn key={industry.href} delay={index * 70}>
                   <Link
                     to={industry.href}
-                    className="group block h-full border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06]"
+                    className="group block h-full border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06] sm:p-6"
                   >
                     <div className="mb-5 flex h-11 w-11 items-center justify-center rounded bg-white/10 text-brand-blue transition-colors duration-300 group-hover:bg-brand-orange group-hover:text-white">
                       <Icon className="h-5 w-5" />

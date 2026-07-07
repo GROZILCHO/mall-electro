@@ -144,7 +144,7 @@ const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ conte
             </div>
           </FadeIn>
 
-          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
             {content.overview.steps.map((step, index) => (
               <FadeIn key={step.title} delay={index * 100}>
                 <Card className="h-full">
@@ -180,7 +180,7 @@ const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ conte
 
               return (
                 <FadeIn key={service.title} delay={index * 100}>
-                  <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-8">
                     <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-gray-100 transition-colors duration-300 group-hover:border-brand-blue" />
                     <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
@@ -292,7 +292,7 @@ const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ conte
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {content.projectTypes.items.map((type, index) => (
               <FadeIn key={type} delay={index * 80}>
-                <div className="flex h-full items-start gap-4 border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60">
+                <div className="flex h-full items-start gap-4 border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-orange/60 sm:p-6">
                   <span className="font-mono text-xs font-bold text-brand-orange">
                     {String(index + 1).padStart(2, "0")}
                   </span>
@@ -370,7 +370,7 @@ const Services: React.FC<ServicesProps> = ({ locale = "bg" }) => {
             </div>
           </FadeIn>
 
-          <div className="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3">
+          <div className="mt-16 grid grid-cols-1 gap-8 lg:grid-cols-3">
             {[
               ["Оглед", "Проверяваме обекта, трасетата, натоварванията и реалните условия за монтаж."],
               ["Проект", "Подготвяме техническо решение, съобразено със системите и стандартите."],
@@ -409,7 +409,7 @@ const Services: React.FC<ServicesProps> = ({ locale = "bg" }) => {
 
               return (
                 <FadeIn key={service.title} delay={index * 100}>
-                  <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-8 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
+                  <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white p-6 shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-xl md:p-8">
                     <div className="absolute right-0 top-0 h-8 w-8 border-r-2 border-t-2 border-gray-100 transition-colors duration-300 group-hover:border-brand-blue" />
                     <div className="mb-8 flex items-start justify-between border-b border-gray-100 pb-6">
                       <span className="font-mono text-[10px] font-bold uppercase tracking-widest text-gray-400">
@@ -525,7 +525,7 @@ const Services: React.FC<ServicesProps> = ({ locale = "bg" }) => {
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {projectTypes.map((type, index) => (
               <FadeIn key={type} delay={index * 80}>
-                <div className="flex h-full items-start gap-4 border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60">
+                <div className="flex h-full items-start gap-4 border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-orange/60 sm:p-6">
                   <span className="font-mono text-xs font-bold text-brand-orange">
                     {String(index + 1).padStart(2, "0")}
                   </span>

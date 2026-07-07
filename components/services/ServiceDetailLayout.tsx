@@ -244,19 +244,19 @@ const ServiceDetailLayout: React.FC<ServiceDetailLayoutProps> = ({
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
             {related.items.map((item, index) => (
               <FadeIn key={item.title} delay={index * 90}>
                 {item.href ? (
                   <Link
                     to={item.href}
-                    className="block h-full border border-white/10 bg-white/[0.03] p-6 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06]"
+                    className="block h-full border border-white/10 bg-white/[0.03] p-5 transition-colors duration-300 hover:border-brand-orange/60 hover:bg-white/[0.06] sm:p-6"
                   >
                     <h3 className="mb-3 text-lg font-bold text-white">{item.title}</h3>
                     <p className="text-sm leading-relaxed text-white/70">{item.text}</p>
                   </Link>
                 ) : (
-                  <div className="h-full border border-white/10 bg-white/[0.03] p-6">
+                  <div className="h-full border border-white/10 bg-white/[0.03] p-5 sm:p-6">
                     <h3 className="mb-3 text-lg font-bold text-white">{item.title}</h3>
                     <p className="text-sm leading-relaxed text-white/70">{item.text}</p>
                   </div>
