@@ -638,7 +638,7 @@ export const solutionDetailsContent = {
       title: "Cable infrastructure for an industrial base",
       subtitle:
         "We organize cable routes, power lines, low voltage systems and connections for industrial bases, warehouses and production zones where clear routing and service access are essential.",
-      image: "/images/cable-routing/cable-routing-industrial-base-overhead-trays-01.png",
+      image: "/images/cable-routing/cable-routing-industrial-base-technical-corridor-01.png",
       imageAlt: "Cable infrastructure and overhead cable trays in an industrial base",
       primaryCtaText: "Discuss cable infrastructure",
       primaryCtaHref: "/en/contact",
@@ -1014,7 +1014,7 @@ export const solutionDetailsContent = {
       title: "Electrical installation at height",
       subtitle:
         "We execute electrical installation work in high industrial zones, halls, warehouse bases and difficult access points where safe access, route planning and clear execution are critical.",
-      image: "/images/industrial/industrial-electrical-installation-height-lift-01.png",
+      image: "/images/industrial/industrial-electrical-installation-aerial-lift-warehouse-01.png",
       imageAlt: "Electrical installation at height using access equipment in an industrial hall",
       primaryCtaText: "Discuss installation at height",
       primaryCtaHref: "/en/contact",
@@ -1149,7 +1149,7 @@ export const solutionDetailsContent = {
           text: "We prepare the installation for operation, inspection and future maintenance.",
         },
       ],
-      image: "/images/industrial/industrial-electrical-installation-high-access-technical-01.png",
+      image: "/images/industrial/industrial-electrical-installation-production-zone-02.png",
       imageAlt: "High access electrical installation in an industrial facility",
       imageKicker: "ACCESS CHECK",
       imageTitle: "READY FOR HANDOVER",

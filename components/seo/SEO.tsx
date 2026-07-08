@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   getAbsoluteAssetUrl,
   getAlternateLinksForPath,
@@ -21,6 +21,10 @@ const SEO: React.FC<SEOProps> = ({ page }) => {
   const imageUrl = getAbsoluteAssetUrl(route.ogImage);
   const schemas = getSchemasForRoute(route);
   const alternates = getAlternateLinksForPath(route.path);
+
+  useEffect(() => {
+    document.title = route.title;
+  }, [route.title]);
 
   return (
     <>
