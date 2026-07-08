@@ -44,6 +44,12 @@ export type SeoPageKey =
   | "automation"
   | "lowVoltage"
   | "maintenanceService"
+  | "enHome"
+  | "enAbout"
+  | "enServices"
+  | "enSolutions"
+  | "enIndustries"
+  | "enContact"
   | "enElectricPanels"
   | "enCableRoutes"
   | "enIndustrialElectricalInstallations"
@@ -149,9 +155,9 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
   },
   {
-    key: "home",
+    key: "enHome",
     path: "/en",
-    title: "Mall Electro - industrial electrical systems and installation services",
+    title: "Mall Electro - Industrial Electrical Systems and Installation Services",
     description:
       "Mall Electro designs, installs and maintains electrical panels, cable routes, low voltage systems and industrial electrical systems for Bulgaria and Romania.",
     ogImage: "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png",
@@ -159,7 +165,7 @@ export const seoRoutes: SeoRoute[] = [
     includeInSitemap: false,
   },
   {
-    key: "contact",
+    key: "enContact",
     path: "/en/contact",
     title: "Contact Mall Electro - engineering inquiry and consultation",
     description:
@@ -176,9 +182,9 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/about/hero-about.png",
   },
   {
-    key: "about",
+    key: "enAbout",
     path: "/en/about",
-    title: "About Mall Electro - engineering and industrial electrical expertise",
+    title: "About Mall Electro | Industrial Electrical Engineering Partner",
     description:
       "Learn about Mall Electro, our engineering approach, industrial electrical systems expertise, process, sectors and principles.",
     ogImage: "/images/about/hero-about.png",
@@ -193,9 +199,9 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industrial/industrial-electrical-workshop-technical-zone-01.png",
   },
   {
-    key: "services",
+    key: "enServices",
     path: "/en/services",
-    title: "Services - industrial electrical systems and engineering",
+    title: "Professional Electrical Services, Engineering and Automation | Mall Electro",
     description:
       "Mall Electro provides industrial electrical services including panels, cable routes, installations, automation, low voltage systems and maintenance.",
     ogImage: "/images/industrial/industrial-electrical-workshop-technical-zone-01.png",
@@ -270,9 +276,9 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industrial/industrial-electrical-project-planning-production-hall-01.png",
   },
   {
-    key: "solutions",
+    key: "enSolutions",
     path: "/en/solutions",
-    title: "Solutions for industrial electrical systems",
+    title: "Solutions for Industrial Electrical Systems | Mall Electro",
     description:
       "Mall Electro combines panels, cable routes, low voltage systems, automation and service into practical industrial electrical solutions.",
     ogImage: "/images/industrial/industrial-electrical-project-planning-production-hall-01.png",
@@ -431,9 +437,9 @@ export const seoRoutes: SeoRoute[] = [
     ogImage: "/images/industries/hero_industriy.png",
   },
   {
-    key: "industries",
+    key: "enIndustries",
     path: "/en/industries",
-    title: "Industries - industrial electrical systems by sector",
+    title: "Industries Where We Build Industrial Electrical Systems | Mall Electro",
     description:
       "Mall Electro builds industrial electrical systems, cable routes and automation for food processing, grain processing, mills, agro, logistics and manufacturing facilities.",
     ogImage: "/images/industries/hero_industriy.png",

@@ -19,7 +19,7 @@ interface EnglishIndustriesPageProps {
 const EnglishIndustriesPage: React.FC<EnglishIndustriesPageProps> = ({ content }) => {
   return (
     <main className="pt-20">
-      <SEO page="industries" />
+      <SEO page="enIndustries" />
       <PageHero
         theme="light"
         badgeText={content.hero.badgeText}

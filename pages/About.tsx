@@ -158,7 +158,7 @@ const About: React.FC<AboutProps> = ({ locale = "bg" }) => {
   if (isEnglish && aboutContent) {
     return (
       <main>
-        <SEO page="about" />
+        <SEO page="enAbout" />
         <PageHero
           title={aboutContent.hero.title}
           subtitle={aboutContent.hero.subtitle}

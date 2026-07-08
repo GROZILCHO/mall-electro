@@ -161,7 +161,7 @@ interface EnglishSolutionsOverviewProps {
 const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ content }) => {
   return (
     <main>
-      <SEO page="solutions" />
+      <SEO page="enSolutions" />
 
       <PageHero
         title={content.hero.title}

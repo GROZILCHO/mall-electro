@@ -11,7 +11,7 @@ export default function Home({ locale = "bg" }: HomeProps) {
 
   return (
     <>
-      <SEO page="home" />
+      <SEO page={isEnglish ? "enHome" : "home"} />
       <HomePage
         locale={locale}
         content={isEnglish ? enContent.pages.home.full : undefined}

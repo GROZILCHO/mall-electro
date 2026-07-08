@@ -16,7 +16,7 @@ const Contact: React.FC<ContactProps> = ({ locale = "bg" }) => {
 
   return (
     <div>
-      <SEO page="contact" />
+      <SEO page={isEnglish ? "enContact" : "contact"} />
       <PageHero
         title={contactPageContent.hero.title}
         subtitle={contactPageContent.hero.subtitle}
