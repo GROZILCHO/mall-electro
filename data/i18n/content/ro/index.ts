@@ -6,6 +6,7 @@ import { aboutPageContent } from "./pages/about";
 import { contactPageContent } from "./pages/contact";
 import { homePageContent } from "./pages/home";
 import { industriesOverviewPageContent } from "./pages/industries";
+import { industryDetailsContent } from "./pages/industryDetails";
 import { servicesOverviewPageContent } from "./pages/services";
 import { serviceDetailsContent } from "./pages/serviceDetails";
 import { solutionDetailsContent } from "./pages/solutionDetails";
@@ -25,6 +26,7 @@ export const roContent = {
     solutionsOverview: solutionsOverviewPageContent,
     solutionDetails: solutionDetailsContent,
     industriesOverview: industriesOverviewPageContent,
+    industryDetails: industryDetailsContent,
     contact: contactPageContent,
   },
 } as const;
@@ -37,6 +39,7 @@ export {
   formsContent,
   homePageContent,
   industriesOverviewPageContent,
+  industryDetailsContent,
   navigationContent,
   servicesOverviewPageContent,
   serviceDetailsContent,
