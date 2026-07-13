@@ -21,6 +21,8 @@ import { bgEnRoutePairs } from "../data/i18n/languageSwitchRoutes";
 import { getBgSeoRouteEntry } from "../data/i18n/seoRuntimeRoutes";
 import type { RouteKey } from "../data/i18n/types";
 import type { FAQItem } from "../data/faqTypes";
+import { roContent } from "../data/i18n/content/ro";
+import { getLocalizedPath } from "../data/i18n/routes";
 
 export const SITE_URL = "https://mallelectro.com";
 export const SITE_NAME = "Mall Electro";
@@ -28,6 +30,30 @@ export const DEFAULT_OG_IMAGE = "/images/home/hero-home.png";
 export const BG_HOME_PATH = "/bg";
 
 export type SeoPageKey =
+  | "roHome"
+  | "roAbout"
+  | "roServices"
+  | "roSolutions"
+  | "roIndustries"
+  | "roContact"
+  | "roElectricPanels"
+  | "roCableRoutes"
+  | "roIndustrialElectricalInstallations"
+  | "roAutomation"
+  | "roLowVoltage"
+  | "roMaintenanceService"
+  | "roSolutionNewProductionSite"
+  | "roSolutionModernization"
+  | "roSolutionCableInfrastructureBase"
+  | "roSolutionServiceExpansion"
+  | "roSolutionHeightInstallation"
+  | "roSolutionPanelAutomationLine"
+  | "roIndustryAgriculture"
+  | "roIndustryFoodIndustry"
+  | "roIndustryGrainProcessing"
+  | "roIndustryMills"
+  | "roIndustryLogistics"
+  | "roIndustryManufacturingCompanies"
   | "home"
   | "about"
   | "services"
@@ -123,8 +149,10 @@ export const shouldNoindexRoute = (route: SeoRoute): boolean =>
 export const shouldIncludeRouteInSitemap = (route: SeoRoute): boolean =>
   route.includeInSitemap !== false || isApprovedEnSeoPath(route.path);
 
-export const getOgLocaleForPath = (path: string): "bg_BG" | "en_US" =>
-  normalizeSeoPath(path).startsWith("/en") ? "en_US" : "bg_BG";
+export const getOgLocaleForPath = (path: string): "bg_BG" | "en_US" | "ro_RO" =>
+  normalizeSeoPath(path).startsWith("/en")
+    ? "en_US"
+    : normalizeSeoPath(path).startsWith("/ro") ? "ro_RO" : "bg_BG";
 
 export const getAlternateLinksForPath = (path: string): readonly HreflangAlternate[] => {
   const normalizedPath = normalizeSeoPath(path);
@@ -145,6 +173,54 @@ export const getAlternateLinksForPath = (path: string): readonly HreflangAlterna
     { hreflang: "x-default", href: bgUrl },
   ];
 };
+
+const createRoPreviewRoute = (
+  key: SeoPageKey,
+  routeKey: RouteKey,
+  title: string,
+  description: string,
+  ogImage?: string
+): SeoRoute => ({
+  key,
+  path: normalizeSeoPath(getLocalizedPath(routeKey, "ro")),
+  title: `${title} | Mall Electro`,
+  description,
+  ogImage,
+  noindex: true,
+  includeInSitemap: false,
+});
+
+const roPages = roContent.pages;
+const roServices = roPages.serviceDetails!;
+const roSolutions = roPages.solutionDetails!;
+const roIndustries = roPages.industryDetails!;
+
+const roPreviewSeoRoutes: SeoRoute[] = [
+  createRoPreviewRoute("roHome", "home", roPages.home.full!.hero.title, roPages.home.full!.hero.subtitle, "/images/industrial/industrial-electrical-infrastructure-homepage-hero-wide-01.png"),
+  createRoPreviewRoute("roAbout", "about", roPages.about!.hero.title, roPages.about!.hero.subtitle, "/images/about/hero-about.png"),
+  createRoPreviewRoute("roServices", "services", roPages.servicesOverview!.hero.title, roPages.servicesOverview!.hero.subtitle, "/images/industrial/industrial-electrical-workshop-technical-zone-01.png"),
+  createRoPreviewRoute("roSolutions", "solutions", roPages.solutionsOverview!.hero.title, roPages.solutionsOverview!.hero.subtitle, "/images/industrial/industrial-electrical-project-planning-production-hall-01.png"),
+  createRoPreviewRoute("roIndustries", "industries", roPages.industriesOverview!.hero.title, roPages.industriesOverview!.hero.subtitle, "/images/industries/hero_industriy.png"),
+  createRoPreviewRoute("roContact", "contact", roPages.contact.hero.title, roPages.contact.hero.subtitle, "/images/engineering/engineering-consultation-control-cabinet-industrial-hall-01.png"),
+  createRoPreviewRoute("roElectricPanels", "serviceElectricPanels", roServices.electricPanels.hero.title, roServices.electricPanels.hero.subtitle, roServices.electricPanels.hero.image),
+  createRoPreviewRoute("roCableRoutes", "serviceCableRoutes", roServices.cableRoutes.hero.title, roServices.cableRoutes.hero.subtitle, roServices.cableRoutes.hero.image),
+  createRoPreviewRoute("roIndustrialElectricalInstallations", "serviceIndustrialElectricalInstallations", roServices.industrialElectricalInstallations.hero.title, roServices.industrialElectricalInstallations.hero.subtitle, roServices.industrialElectricalInstallations.hero.image),
+  createRoPreviewRoute("roAutomation", "serviceAutomation", roServices.automation.hero.title, roServices.automation.hero.subtitle, roServices.automation.hero.image),
+  createRoPreviewRoute("roLowVoltage", "serviceLowVoltage", roServices.lowVoltage.hero.title, roServices.lowVoltage.hero.subtitle, roServices.lowVoltage.hero.image),
+  createRoPreviewRoute("roMaintenanceService", "serviceMaintenance", roServices.maintenanceService.hero.title, roServices.maintenanceService.hero.subtitle, roServices.maintenanceService.hero.image),
+  createRoPreviewRoute("roSolutionNewProductionSite", "solutionNewProductionSite", roSolutions.newProductionSite.hero.title, roSolutions.newProductionSite.hero.subtitle, roSolutions.newProductionSite.hero.image),
+  createRoPreviewRoute("roSolutionModernization", "solutionModernization", roSolutions.modernization.hero.title, roSolutions.modernization.hero.subtitle, roSolutions.modernization.hero.image),
+  createRoPreviewRoute("roSolutionPanelAutomationLine", "solutionPanelAutomationLine", roSolutions.panelAutomationLine.hero.title, roSolutions.panelAutomationLine.hero.subtitle, roSolutions.panelAutomationLine.hero.image),
+  createRoPreviewRoute("roSolutionCableInfrastructureBase", "solutionCableInfrastructureBase", roSolutions.cableInfrastructureBase.hero.title, roSolutions.cableInfrastructureBase.hero.subtitle, roSolutions.cableInfrastructureBase.hero.image),
+  createRoPreviewRoute("roSolutionServiceExpansion", "solutionServiceExpansion", roSolutions.serviceExpansion.hero.title, roSolutions.serviceExpansion.hero.subtitle, roSolutions.serviceExpansion.hero.image),
+  createRoPreviewRoute("roSolutionHeightInstallation", "solutionHeightInstallation", roSolutions.heightInstallation.hero.title, roSolutions.heightInstallation.hero.subtitle, roSolutions.heightInstallation.hero.image),
+  createRoPreviewRoute("roIndustryAgriculture", "industryAgro", roIndustries.agriculture.hero.title, roIndustries.agriculture.hero.subtitle, roIndustries.agriculture.hero.image),
+  createRoPreviewRoute("roIndustryFoodIndustry", "industryHvp", roIndustries.foodIndustry.hero.title, roIndustries.foodIndustry.hero.subtitle, roIndustries.foodIndustry.hero.image),
+  createRoPreviewRoute("roIndustryGrainProcessing", "industryZarnoprerabotka", roIndustries.grainProcessing.hero.title, roIndustries.grainProcessing.hero.subtitle, roIndustries.grainProcessing.hero.image),
+  createRoPreviewRoute("roIndustryMills", "industryMelnitsi", roIndustries.mills.hero.title, roIndustries.mills.hero.subtitle, roIndustries.mills.hero.image),
+  createRoPreviewRoute("roIndustryLogistics", "industryLogistika", roIndustries.logistics.hero.title, roIndustries.logistics.hero.subtitle, roIndustries.logistics.hero.image),
+  createRoPreviewRoute("roIndustryManufacturingCompanies", "industryProizvodstveniPredpriyatiya", roIndustries.manufacturingCompanies.hero.title, roIndustries.manufacturingCompanies.hero.subtitle, roIndustries.manufacturingCompanies.hero.image),
+];
 
 export const seoRoutes: SeoRoute[] = [
   {
@@ -585,6 +661,7 @@ export const seoRoutes: SeoRoute[] = [
     noindex: true,
     includeInSitemap: false,
   },
+  ...roPreviewSeoRoutes,
 ];
 
 export const getCanonicalUrl = (path: string) => {

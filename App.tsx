@@ -3,8 +3,12 @@ import { BrowserRouter, Navigate, Route, Routes, StaticRouter } from "react-rout
 import Layout from "./components/layout/Layout";
 import { bgRoutePageKeys, bgRuntimeRoutes } from "./data/i18n/runtimeRoutes";
 import type { RuntimePageKey } from "./data/i18n/types";
+import type { Locale } from "./data/i18n/content";
+import { getLocalizedPath } from "./data/i18n/routes";
+import { getPageKeyForRouteKey } from "./data/i18n/routeBridge";
+import type { RouteKey } from "./data/i18n/types";
 
-type PageComponent = ComponentType<{ locale?: "bg" | "en" }>;
+type PageComponent = ComponentType<{ locale?: Locale }>;
 type PageModule = { default: PageComponent };
 
 const pageLoaders = {
@@ -45,9 +49,27 @@ const clientPages = Object.fromEntries(
   (Object.entries(pageLoaders) as Array<[PageKey, () => Promise<PageModule>]>).map(([key, loader]) => [key, lazy(loader)])
 ) as Record<PageKey, LazyExoticComponent<PageComponent>>;
 
+const roRouteKeys = [
+  "home", "services", "serviceElectricPanels", "serviceCableRoutes",
+  "serviceIndustrialElectricalInstallations", "serviceAutomation", "serviceLowVoltage", "serviceMaintenance",
+  "solutions", "solutionNewProductionSite", "solutionModernization", "solutionCableInfrastructureBase",
+  "solutionServiceExpansion", "solutionHeightInstallation", "solutionPanelAutomationLine", "about", "industries",
+  "industryHvp", "industryZarnoprerabotka", "industryMelnitsi", "industryAgro", "industryLogistika",
+  "industryProizvodstveniPredpriyatiya", "contact",
+] as const satisfies readonly RouteKey[];
+
+const normalizePath = (path: string) => (path.length > 1 ? path.replace(/\/$/, "") : path);
+const roRuntimeRoutes = roRouteKeys.map((routeKey) => ({
+  routeKey,
+  path: normalizePath(getLocalizedPath(routeKey, "ro")),
+  pageKey: getPageKeyForRouteKey(routeKey),
+}));
+const roRoutePageKeys = Object.fromEntries(roRuntimeRoutes.map((route) => [route.path, route.pageKey])) as Record<string, RuntimePageKey>;
+
 export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
   const normalizedPath = path.length > 1 ? path.replace(/\/$/, "") : path;
-  const pageKey =
+  const roPageKey = roRoutePageKeys[normalizedPath];
+  const pageKey = roPageKey ?? (
     normalizedPath === "/en"
       ? "home"
       : normalizedPath === "/en/contact"
@@ -96,7 +118,8 @@ export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
                                                 ? "logistikaIndustry"
                                                 : normalizedPath === "/en/industries/manufacturing-companies"
                                                   ? "proizvodstveniPredpriyatiyaIndustry"
-                                                  : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound";
+                                                  : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound"
+  );
   const module = await pageLoaders[pageKey]();
 
   return { [pageKey]: module.default };
@@ -108,7 +131,7 @@ interface AppProps {
 }
 
 const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
-  const page = (key: PageKey, props: { locale?: "bg" | "en" } = {}) => {
+  const page = (key: PageKey, props: { locale?: Locale } = {}) => {
     const Component = ssrPages[key] ?? clientPages[key];
     return <Component {...props} />;
   };
@@ -119,6 +142,9 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
         <Routes>
           {bgRuntimeRoutes.map((route) => (
             <Route key={route.routeKey} path={route.path} element={page(route.pageKey)} />
+          ))}
+          {roRuntimeRoutes.map((route) => (
+            <Route key={`ro-${route.routeKey}`} path={route.path} element={page(route.pageKey, { locale: "ro" })} />
           ))}
           <Route path="/en/" element={page("home", { locale: "en" })} />
           <Route path="/en/contact" element={page("contact", { locale: "en" })} />

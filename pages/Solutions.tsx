@@ -8,8 +8,9 @@ import Card from "../components/ui/Card";
 import FadeIn from "../components/ui/FadeIn";
 import { Icons } from "../components/ui/LucideIcons";
 import ContactCTA from "../components/shared/ContactCTA";
-import { enContent } from "../data/i18n/content";
-import type { SolutionsOverviewPageContent } from "../data/i18n/content";
+import { enContent, roContent } from "../data/i18n/content";
+import type { Locale, SolutionsOverviewPageContent } from "../data/i18n/content";
+import type { SeoPageKey } from "../seo/seoConfig";
 
 type LinkedItem = {
   title: string;
@@ -156,12 +157,14 @@ const processSteps = [
 
 interface EnglishSolutionsOverviewProps {
   content: SolutionsOverviewPageContent;
+  seoPage: SeoPageKey;
+  contactHref: string;
 }
 
-const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ content }) => {
+const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ content, seoPage, contactHref }) => {
   return (
     <main>
-      <SEO page="enSolutions" />
+      <SEO page={seoPage} />
 
       <PageHero
         title={content.hero.title}
@@ -390,24 +393,24 @@ const EnglishSolutionsOverview: React.FC<EnglishSolutionsOverviewProps> = ({ con
         </div>
       </section>
 
-      <ContactCTA content={content.contactCta} primaryCtaHref="/en/contact" />
+      <ContactCTA content={content.contactCta} primaryCtaHref={contactHref} />
     </main>
   );
 };
 
 interface SolutionsProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 const Solutions: React.FC<SolutionsProps> = ({ locale = "bg" }) => {
-  if (locale === "en") {
-    const content = enContent.pages.solutionsOverview;
+  if (locale !== "bg") {
+    const content = (locale === "ro" ? roContent : enContent).pages.solutionsOverview;
 
     if (!content) {
       throw new Error("Missing English solutions overview content.");
     }
 
-    return <EnglishSolutionsOverview content={content} />;
+    return <EnglishSolutionsOverview content={content} seoPage={locale === "ro" ? "roSolutions" : "enSolutions"} contactHref={locale === "ro" ? "/ro/contact" : "/en/contact"} />;
   }
 
   return (

@@ -1,25 +1,26 @@
 import IndustryDetailLayout from "../../components/industries/IndustryDetailLayout";
 import { agroIndustryFaqItems } from "../../data/agroIndustryFaq";
-import { enContent } from "../../data/i18n/content";
+import { enContent, roContent } from "../../data/i18n/content";
+import type { Locale } from "../../data/i18n/content";
 import type { SeoPageKey } from "../../seo/seoConfig";
 
 interface AgroIndustryProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 export default function AgroIndustry({ locale = "bg" }: AgroIndustryProps) {
-  if (locale === "en") {
-    const content = enContent.pages.industryDetails?.agriculture;
+  if (locale !== "bg") {
+    const content = ((locale === "ro" ? roContent : enContent) as unknown as typeof enContent).pages.industryDetails?.agriculture;
 
     if (content) {
       return (
         <IndustryDetailLayout
           {...content}
-          seoPage={content.seoPage as SeoPageKey}
-          relatedPrimaryHref="/en/contact"
-          relatedSecondaryText="All industries"
-          relatedSecondaryHref="/en/industries"
-          contactCtaPrimaryHref="/en/contact"
+          seoPage={(locale === "ro" ? "roIndustryAgriculture" : content.seoPage) as SeoPageKey}
+          relatedPrimaryHref={locale === "ro" ? "/ro/contact" : "/en/contact"}
+          relatedSecondaryText={locale === "ro" ? "Toate industriile" : "All industries"}
+          relatedSecondaryHref={locale === "ro" ? "/ro/industrii" : "/en/industries"}
+          contactCtaPrimaryHref={locale === "ro" ? "/ro/contact" : "/en/contact"}
         />
       );
     }

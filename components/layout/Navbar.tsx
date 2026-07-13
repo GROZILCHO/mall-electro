@@ -1,7 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import { enContent, navigationContent } from "../../data/i18n/content";
-import type { NavigationContent } from "../../data/i18n/content";
+import { enContent, navigationContent, roContent } from "../../data/i18n/content";
+import type { Locale, NavigationContent } from "../../data/i18n/content";
 import { getLocalizedPath } from "../../data/i18n/routes";
 import type { RouteKey } from "../../data/i18n/types";
 import { Icons } from "../ui/LucideIcons";
@@ -44,53 +44,59 @@ const toNavigationItem = (
   routeKey: RouteKey,
   content: NavigationContent,
   labelResolver: (routeKey: RouteKey) => string,
-  isEnglish: boolean
+  locale: Locale
 ): NavigationItem => ({
   routeKey,
   label: labelResolver(routeKey),
   href:
-    routeKey === "home" && isEnglish
+    locale === "ro"
+      ? getLocalizedPath(routeKey, "ro")
+      : routeKey === "home" && locale === "en"
       ? "/en/"
-      : routeKey === "about" && isEnglish
+      : routeKey === "about" && locale === "en"
         ? "/en/about"
-      : routeKey === "services" && isEnglish
+      : routeKey === "services" && locale === "en"
         ? "/en/services"
-      : routeKey === "solutions" && isEnglish
+      : routeKey === "solutions" && locale === "en"
         ? "/en/solutions"
-      : routeKey === "industries" && isEnglish
+      : routeKey === "industries" && locale === "en"
         ? "/en/industries"
-      : routeKey === "contact" && isEnglish
+      : routeKey === "contact" && locale === "en"
         ? "/en/contact"
-        : isEnglish && enServiceDetailPaths[routeKey]
+        : locale === "en" && enServiceDetailPaths[routeKey]
           ? enServiceDetailPaths[routeKey]
-        : isEnglish && enSolutionDetailPaths[routeKey]
+        : locale === "en" && enSolutionDetailPaths[routeKey]
           ? enSolutionDetailPaths[routeKey]
-        : isEnglish && enIndustryDetailPaths[routeKey]
+        : locale === "en" && enIndustryDetailPaths[routeKey]
           ? enIndustryDetailPaths[routeKey]
         : getLocalizedPath(routeKey, "bg"),
 });
 
 export default function Navbar() {
   const location = useLocation();
-  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
-  const activeNavigationContent: NavigationContent = isEnglish
+  const locale: Locale = location.pathname === "/en" || location.pathname.startsWith("/en/")
+    ? "en"
+    : location.pathname === "/ro" || location.pathname.startsWith("/ro/")
+      ? "ro"
+      : "bg";
+  const activeNavigationContent: NavigationContent = locale === "en"
     ? enContent.navigation
-    : navigationContent;
+    : locale === "ro" ? roContent.navigation : navigationContent;
   const getNavigationLabel = (routeKey: RouteKey): string =>
     activeNavigationContent.labels[routeKey] ?? routeKey;
   const getDropdownLabel = (routeKey: RouteKey): string =>
     activeNavigationContent.groupOverviewLabels[routeKey] ?? getNavigationLabel(routeKey);
   const navItems = activeNavigationContent.groups.main.map((routeKey) =>
-    toNavigationItem(routeKey, activeNavigationContent, getNavigationLabel, isEnglish)
+    toNavigationItem(routeKey, activeNavigationContent, getNavigationLabel, locale)
   );
   const serviceLinks = activeNavigationContent.groups.services.map((routeKey) =>
-    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, isEnglish)
+    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, locale)
   );
   const solutionLinks = activeNavigationContent.groups.solutions.map((routeKey) =>
-    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, isEnglish)
+    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, locale)
   );
   const industryLinks = activeNavigationContent.groups.industries.map((routeKey) =>
-    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, isEnglish)
+    toNavigationItem(routeKey, activeNavigationContent, getDropdownLabel, locale)
   );
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -190,7 +196,7 @@ export default function Navbar() {
   return (
     <nav className={`${baseClasses} ${stateClasses}`}>
       <div className="container mx-auto flex items-center justify-between px-6 lg:px-12">
-        <Link to={isEnglish ? "/en/" : "/bg/"} className="flex items-center gap-2">
+        <Link to={locale === "bg" ? "/bg/" : `/${locale}/`} className="flex items-center gap-2">
           <div className="flex h-10 w-10 items-center justify-center rounded bg-brand-blue text-white">
             <Icons.Zap className="h-6 w-6" />
           </div>

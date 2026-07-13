@@ -1,23 +1,24 @@
 import React from "react";
 import SolutionDetailLayout from "../../components/solutions/SolutionDetailLayout";
 import { solutionPanelAutomationLineFaqItems } from "../../data/solutionPanelAutomationLineFaq";
-import { enContent } from "../../data/i18n/content";
+import { enContent, roContent } from "../../data/i18n/content";
+import type { Locale } from "../../data/i18n/content";
 import type { SeoPageKey } from "../../seo/seoConfig";
 
 interface PanelAutomationLineSolutionProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 const PanelAutomationLineSolution: React.FC<PanelAutomationLineSolutionProps> = ({ locale = "bg" }) => {
-  if (locale === "en") {
-    const content = enContent.pages.solutionDetails?.panelAutomationLine;
+  if (locale !== "bg") {
+    const content = ((locale === "ro" ? roContent : enContent) as unknown as typeof enContent).pages.solutionDetails?.panelAutomationLine;
 
     if (content) {
       return (
         <SolutionDetailLayout
           {...content}
-          seoPage={content.seoPage as SeoPageKey}
-          contactCtaPrimaryHref="/en/contact"
+          seoPage={(locale === "ro" ? "roSolutionPanelAutomationLine" : content.seoPage) as SeoPageKey}
+          contactCtaPrimaryHref={locale === "ro" ? "/ro/contact" : "/en/contact"}
         />
       );
     }

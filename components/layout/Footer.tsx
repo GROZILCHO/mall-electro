@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import { enContent, footerContent, navigationContent } from "../../data/i18n/content";
-import type { FooterContent, NavigationContent } from "../../data/i18n/content";
+import { enContent, footerContent, navigationContent, roContent } from "../../data/i18n/content";
+import type { FooterContent, Locale, NavigationContent } from "../../data/i18n/content";
 import { getLocalizedPath } from "../../data/i18n/routes";
 import type { RouteKey } from "../../data/i18n/types";
 import {
@@ -42,45 +42,53 @@ const toFooterLink = (
   routeKey: RouteKey,
   activeFooterContent: FooterContent,
   activeNavigationContent: NavigationContent,
-  isEnglish: boolean
+  locale: Locale
 ) => ({
   routeKey,
   label: activeFooterContent.legalLabels[routeKey] ?? activeNavigationContent.labels[routeKey] ?? routeKey,
   href:
-    routeKey === "home" && isEnglish
+    locale === "ro" && activeFooterContent.legalRouteKeys.includes(routeKey)
+      ? getLocalizedPath(routeKey, "bg")
+      : locale === "ro"
+        ? getLocalizedPath(routeKey, "ro")
+      : routeKey === "home" && locale === "en"
       ? "/en/"
-      : routeKey === "about" && isEnglish
+      : routeKey === "about" && locale === "en"
         ? "/en/about"
-      : routeKey === "services" && isEnglish
+      : routeKey === "services" && locale === "en"
         ? "/en/services"
-      : routeKey === "solutions" && isEnglish
+      : routeKey === "solutions" && locale === "en"
         ? "/en/solutions"
-      : routeKey === "industries" && isEnglish
+      : routeKey === "industries" && locale === "en"
         ? "/en/industries"
-      : routeKey === "contact" && isEnglish
+      : routeKey === "contact" && locale === "en"
         ? "/en/contact"
-        : isEnglish && enServiceDetailPaths[routeKey]
+        : locale === "en" && enServiceDetailPaths[routeKey]
           ? enServiceDetailPaths[routeKey]
-        : isEnglish && enSolutionDetailPaths[routeKey]
+        : locale === "en" && enSolutionDetailPaths[routeKey]
           ? enSolutionDetailPaths[routeKey]
-        : isEnglish && enIndustryDetailPaths[routeKey]
+        : locale === "en" && enIndustryDetailPaths[routeKey]
           ? enIndustryDetailPaths[routeKey]
         : getLocalizedPath(routeKey, "bg"),
 });
 
 const Footer: React.FC = () => {
   const location = useLocation();
-  const isEnglish = location.pathname === "/en" || location.pathname.startsWith("/en/");
-  const activeFooterContent: FooterContent = isEnglish ? enContent.footer : footerContent;
-  const activeNavigationContent: NavigationContent = isEnglish ? enContent.navigation : navigationContent;
+  const locale: Locale = location.pathname === "/en" || location.pathname.startsWith("/en/")
+    ? "en"
+    : location.pathname === "/ro" || location.pathname.startsWith("/ro/")
+      ? "ro"
+      : "bg";
+  const activeFooterContent: FooterContent = locale === "en" ? enContent.footer : locale === "ro" ? roContent.footer : footerContent;
+  const activeNavigationContent: NavigationContent = locale === "en" ? enContent.navigation : locale === "ro" ? roContent.navigation : navigationContent;
   const menuLinks = activeFooterContent.menuRouteKeys.map((routeKey) =>
-    toFooterLink(routeKey, activeFooterContent, activeNavigationContent, isEnglish)
+    toFooterLink(routeKey, activeFooterContent, activeNavigationContent, locale)
   );
   const serviceLinks = activeFooterContent.serviceRouteKeys.map((routeKey) =>
-    toFooterLink(routeKey, activeFooterContent, activeNavigationContent, isEnglish)
+    toFooterLink(routeKey, activeFooterContent, activeNavigationContent, locale)
   );
   const legalLinks = activeFooterContent.legalRouteKeys.map((routeKey) =>
-    toFooterLink(routeKey, activeFooterContent, activeNavigationContent, isEnglish)
+    toFooterLink(routeKey, activeFooterContent, activeNavigationContent, locale)
   );
 
   return (

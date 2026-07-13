@@ -2,9 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 52;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 76;
 const EXPECTED_SITEMAP_URL_COUNT = 51;
 const EXPECTED_EN_SITEMAP_URL_COUNT = 24;
+const EXPECTED_RO_PREVIEW_ROUTE_COUNT = 24;
 const SITE_URL = "https://mallelectro.com";
 
 const approvedBgEnPairs = [
@@ -40,6 +41,40 @@ const bgLegalRoutes = [
   "/bg/usloviya-za-polzvane",
 ];
 
+const approvedRoPreviewRoutes = [
+  "/ro/",
+  "/ro/servicii",
+  "/ro/servicii/tablouri-electrice",
+  "/ro/servicii/trasee-de-cabluri",
+  "/ro/servicii/instalatii-electrice-industriale",
+  "/ro/servicii/automatizare",
+  "/ro/servicii/sisteme-de-joasa-tensiune",
+  "/ro/servicii/mentenanta-si-service",
+  "/ro/solutii",
+  "/ro/solutii/unitate-noua-de-productie",
+  "/ro/solutii/modernizare-sistem-electric",
+  "/ro/solutii/infrastructura-de-cabluri-pentru-baza",
+  "/ro/solutii/service-si-extindere",
+  "/ro/solutii/instalatii-electrice-la-inaltime",
+  "/ro/solutii/tablouri-si-automatizare-pentru-linii-tehnologice",
+  "/ro/despre-noi",
+  "/ro/industrii",
+  "/ro/industrii/industria-alimentara",
+  "/ro/industrii/procesarea-cerealelor",
+  "/ro/industrii/mori",
+  "/ro/industrii/agro",
+  "/ro/industrii/logistica",
+  "/ro/industrii/unitati-de-productie",
+  "/ro/contact",
+];
+
+const blockedRoRoutes = [
+  "/ro/politica-de-confidentialitate",
+  "/ro/politica-cookie",
+  "/ro/termeni-de-utilizare",
+  "/ro/404",
+];
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const projectRoot = path.resolve(__dirname, "..");
 const distDir = path.join(projectRoot, "dist");
@@ -52,6 +87,8 @@ const fail = (message) => {
 };
 
 const normalizeRoute = (routePath) => (routePath.length > 1 ? routePath.replace(/\/$/, "") : routePath);
+const approvedRoRouteSet = new Set(approvedRoPreviewRoutes.map((routePath) => normalizeRoute(routePath)));
+const bgLegalRouteSet = new Set(bgLegalRoutes.map((routePath) => normalizeRoute(routePath)));
 
 const canonicalUrl = (routePath) => {
   const normalizedPath = routePath === "/" ? "/" : `${routePath.replace(/\/$/, "")}/`;
@@ -116,10 +153,10 @@ const assertHtmlExcludes = (html, unexpected, label, filePath) => {
 
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
-assertPathMissing(path.join(distDir, "ro"), "dist/ro");
 
 const approvedEnRoutes = approvedBgEnPairs.map(([, enPath]) => enPath);
 const allowedEnHtmlFiles = new Set(approvedEnRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
+const allowedRoHtmlFiles = new Set(approvedRoPreviewRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
 
 for (const [bgPath, enPath] of approvedBgEnPairs) {
   assertPathExists(routeToHtmlPath(bgPath), `${bgPath} HTML`);
@@ -130,18 +167,38 @@ for (const legalPath of bgLegalRoutes) {
   assertPathExists(routeToHtmlPath(legalPath), `${legalPath} HTML`);
 }
 
+for (const roPath of approvedRoPreviewRoutes) {
+  assertPathExists(routeToHtmlPath(roPath), `${roPath} HTML`);
+}
+
+for (const blockedRoPath of blockedRoRoutes) {
+  assertPathMissing(routeToHtmlPath(blockedRoPath), `${blockedRoPath} HTML`);
+}
+
 const htmlFiles = walkFiles(distDir, (filePath) => filePath.endsWith(".html"));
 const rootHtmlPath = path.join(distDir, "index.html");
 const prerenderedRouteHtmlFiles = htmlFiles.filter((filePath) => path.resolve(filePath) !== rootHtmlPath);
 const enHtmlFiles = htmlFiles.filter((filePath) => relativePath(filePath).startsWith("dist/en/"));
+const roHtmlFiles = htmlFiles.filter((filePath) => relativePath(filePath).startsWith("dist/ro/"));
 const unexpectedEnHtmlFiles = enHtmlFiles
   .map(relativePath)
   .filter((filePath) => !allowedEnHtmlFiles.has(filePath));
+const unexpectedRoHtmlFiles = roHtmlFiles
+  .map(relativePath)
+  .filter((filePath) => !allowedRoHtmlFiles.has(filePath));
 
 if (enHtmlFiles.length !== allowedEnHtmlFiles.size || unexpectedEnHtmlFiles.length > 0) {
   fail(
     `Expected only approved EN overview, service detail, solution detail and industry detail output, found: ${
       enHtmlFiles.map(relativePath).join(", ") || "none"
+    }.`
+  );
+}
+
+if (roHtmlFiles.length !== EXPECTED_RO_PREVIEW_ROUTE_COUNT || unexpectedRoHtmlFiles.length > 0) {
+  fail(
+    `Expected only ${EXPECTED_RO_PREVIEW_ROUTE_COUNT} approved RO preview outputs, found: ${
+      roHtmlFiles.map(relativePath).join(", ") || "none"
     }.`
   );
 }
@@ -152,12 +209,17 @@ if (prerenderedRouteHtmlFiles.length !== EXPECTED_PRERENDER_ROUTE_COUNT) {
   );
 }
 
-for (const htmlFile of htmlFiles) {
+for (const htmlFile of htmlFiles.filter((filePath) => !relativePath(filePath).startsWith("dist/ro/"))) {
   const content = fs.readFileSync(htmlFile, "utf8");
 
   if (/(?:https?:\/\/[^"'\s<>]+)?\/ro\//i.test(content)) {
     fail(`RO URL output found in ${relativePath(htmlFile)}.`);
   }
+}
+
+for (const htmlFile of prerenderedRouteHtmlFiles) {
+  const content = fs.readFileSync(htmlFile, "utf8");
+  assertHtmlExcludes(content, "Switched to client rendering", "SSR client-render fallback", htmlFile);
 }
 
 for (const [bgPath, enPath] of approvedBgEnPairs) {
@@ -200,6 +262,51 @@ for (const [bgPath, enPath] of approvedBgEnPairs) {
   assertHtmlExcludes(enHtml, `<meta name="robots" content="noindex, follow" />`, "EN noindex", enFile);
   assertHtmlIncludes(bgHtml, `<meta property="og:locale" content="bg_BG" />`, "BG og:locale", bgFile);
   assertHtmlIncludes(enHtml, `<meta property="og:locale" content="en_US" />`, "EN og:locale", enFile);
+}
+
+for (const roPath of approvedRoPreviewRoutes) {
+  const roFile = routeToHtmlPath(roPath);
+  const roHtml = fs.existsSync(roFile) ? fs.readFileSync(roFile, "utf8") : "";
+
+  assertHtmlIncludes(roHtml, `<link rel="canonical" href="${canonicalUrl(roPath)}" />`, "RO self canonical", roFile);
+  assertHtmlIncludes(roHtml, `<meta name="robots" content="noindex, follow" />`, "RO preview noindex", roFile);
+  assertHtmlIncludes(roHtml, `<meta property="og:locale" content="ro_RO" />`, "RO og:locale", roFile);
+  assertHtmlExcludes(roHtml, "hreflang=", "RO preview hreflang", roFile);
+  assertHtmlExcludes(roHtml, ">RO</", "visible RO language switcher option", roFile);
+
+  for (const match of roHtml.matchAll(/<img[^>]+src="([^"]+)"/g)) {
+    const imageSource = match[1];
+    if (imageSource.startsWith("/") && !fs.existsSync(path.join(distDir, imageSource.slice(1)))) {
+      fail(`Missing RO image ${imageSource} referenced by ${relativePath(roFile)}.`);
+    }
+  }
+
+  for (const match of roHtml.matchAll(/href="([^"]+)"/g)) {
+    const href = match[1];
+
+    if (href.startsWith("#")) {
+      const anchor = href.slice(1);
+      if (anchor && !roHtml.includes(`id="${anchor}"`)) {
+        fail(`Missing local anchor target ${href} in ${relativePath(roFile)}.`);
+      }
+      continue;
+    }
+
+    if (!href.startsWith("/")) {
+      continue;
+    }
+
+    const hrefPath = normalizeRoute(href.split(/[?#]/, 1)[0]);
+    if (hrefPath.startsWith("/ro") && !approvedRoRouteSet.has(hrefPath)) {
+      fail(`Unapproved or missing RO internal route ${href} in ${relativePath(roFile)}.`);
+    }
+    if (hrefPath.startsWith("/bg") && !bgLegalRouteSet.has(hrefPath)) {
+      fail(`Unexpected BG internal route ${href} in ${relativePath(roFile)}.`);
+    }
+    if (hrefPath.startsWith("/en")) {
+      fail(`Unexpected EN internal route ${href} in ${relativePath(roFile)}.`);
+    }
+  }
 }
 
 for (const legalPath of bgLegalRoutes) {
@@ -275,4 +382,7 @@ console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
 console.log(`- EN sitemap URLs: ${EXPECTED_EN_SITEMAP_URL_COUNT}`);
 console.log("- hreflang: present on approved BG/EN mapped pages only");
 console.log("- legal pages: BG-only without hreflang");
-console.log("- RO output: absent");
+console.log(`- RO preview routes: ${EXPECTED_RO_PREVIEW_ROUTE_COUNT}`);
+console.log("- RO sitemap URLs: absent");
+console.log("- RO hreflang: absent");
+console.log("- RO legal output: absent");

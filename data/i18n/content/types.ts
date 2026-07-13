@@ -888,5 +888,7 @@ export interface LocaleContent {
   pages: PagesContent;
 }
 
+export type Locale = SupportedLocale;
 export type BgContent = LocaleContent & { locale: "bg" };
 export type EnContent = LocaleContent & { locale: "en" };
+export type RoContent = LocaleContent & { locale: "ro" };
