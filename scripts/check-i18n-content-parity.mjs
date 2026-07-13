@@ -90,6 +90,21 @@ const parseExports = (filePath) => {
   return exports;
 };
 
+const evaluateExports = (filePath) => {
+  const source = fs.readFileSync(filePath, "utf8");
+  const javascript = ts.transpileModule(source, {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
+    fileName: filePath,
+  }).outputText;
+  const module = { exports: {} };
+  const requireTypeOnly = (specifier) => {
+    throw new Error(`Runtime import "${specifier}" is not supported in parity content files.`);
+  };
+
+  new Function("exports", "module", "require", javascript)(module.exports, module, requireTypeOnly);
+  return new Map(Object.entries(module.exports));
+};
+
 const getPlannedRoPaths = () => {
   const routesFile = path.join(projectRoot, "data", "i18n", "routes.ts");
   const exports = parseExports(routesFile);
@@ -140,7 +155,7 @@ const isAllowlistedExactCopy = (value, valuePath) => {
   if (value.length < 18) return true;
   if (/^(?:https?:|mailto:|tel:|\/|#)/i.test(value)) return true;
   if (/\.(?:png|jpe?g|webp|avif|svg)$/i.test(value)) return true;
-  if (/(?:^|\.)(?:icon|id|key|groups|menuRouteKeys|serviceRouteKeys|legalRouteKeys)(?:\.|\[|$)/.test(valuePath)) {
+  if (/(?:^|\.)(?:icon|id|key|seoPage|groups|menuRouteKeys|serviceRouteKeys|legalRouteKeys)(?:\.|\[|$)/.test(valuePath)) {
     return true;
   }
   if (/^(?:CAD_|PROJECT:|SYSTEM STATUS:)/.test(value)) return true;
@@ -266,6 +281,52 @@ const compareNodes = (enNode, roNode, valuePath, filePath) => {
   }
 };
 
+const compareRuntimeValues = (en, ro, valuePath, filePath) => {
+  if (Array.isArray(en)) {
+    if (!Array.isArray(ro)) {
+      fail("arrayMismatches", `Expected array at ${relativePath(filePath)}:${valuePath}.`);
+      return;
+    }
+    if (en.length !== ro.length) {
+      fail("arrayMismatches", `Array length mismatch at ${relativePath(filePath)}:${valuePath} (${en.length} EN / ${ro.length} RO).`);
+    }
+    en.slice(0, ro.length).forEach((value, index) =>
+      compareRuntimeValues(value, ro[index], `${valuePath}[${index}]`, filePath)
+    );
+    return;
+  }
+
+  if (en && typeof en === "object") {
+    if (!ro || typeof ro !== "object" || Array.isArray(ro)) {
+      fail("missingKeys", `Expected object at ${relativePath(filePath)}:${valuePath}.`);
+      return;
+    }
+    for (const key of Object.keys(en)) {
+      const childPath = valuePath ? `${valuePath}.${key}` : key;
+      if (!(key in ro)) fail("missingKeys", `Missing Romanian key at ${relativePath(filePath)}:${childPath}.`);
+      else compareRuntimeValues(en[key], ro[key], childPath, filePath);
+    }
+    for (const key of Object.keys(ro)) {
+      if (!(key in en)) fail("missingKeys", `Unexpected Romanian key at ${relativePath(filePath)}:${valuePath}.${key}.`);
+    }
+    return;
+  }
+
+  if (typeof en === "string") {
+    if (typeof ro !== "string") {
+      fail("missingKeys", `Expected Romanian string at ${relativePath(filePath)}:${valuePath}.`);
+      return;
+    }
+    inspectRomanianString(ro, valuePath, filePath);
+    if (en === ro && !isAllowlistedExactCopy(ro, valuePath)) {
+      fail("untranslatedStrings", `Suspicious untranslated EN string at ${relativePath(filePath)}:${valuePath}: "${ro}".`);
+    }
+    return;
+  }
+
+  if (typeof en !== typeof ro) fail("missingKeys", `Value shape mismatch at ${relativePath(filePath)}:${valuePath}.`);
+};
+
 const filesToCompare = [...requiredFiles];
 for (const relativeFile of futureDetailFiles) {
   if (fs.existsSync(path.join(roRoot, relativeFile))) {
@@ -303,7 +364,13 @@ for (const relativeFile of filesToCompare) {
       continue;
     }
 
-    compareNodes(enValue, roValue, exportName, roFile);
+    if (!futureDetailFiles.includes(relativeFile) && (ts.isObjectLiteralExpression(unwrap(roValue)) || ts.isArrayLiteralExpression(unwrap(roValue)))) {
+      compareNodes(enValue, roValue, exportName, roFile);
+    } else {
+      const enRuntime = evaluateExports(enFile).get(exportName);
+      const roRuntime = evaluateExports(roFile).get(exportName);
+      compareRuntimeValues(enRuntime, roRuntime, exportName, roFile);
+    }
   }
 }
 

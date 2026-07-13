@@ -7,6 +7,8 @@ import { contactPageContent } from "./pages/contact";
 import { homePageContent } from "./pages/home";
 import { industriesOverviewPageContent } from "./pages/industries";
 import { servicesOverviewPageContent } from "./pages/services";
+import { serviceDetailsContent } from "./pages/serviceDetails";
+import { solutionDetailsContent } from "./pages/solutionDetails";
 import { solutionsOverviewPageContent } from "./pages/solutions";
 
 export const roContent = {
@@ -19,7 +21,9 @@ export const roContent = {
     home: homePageContent,
     about: aboutPageContent,
     servicesOverview: servicesOverviewPageContent,
+    serviceDetails: serviceDetailsContent,
     solutionsOverview: solutionsOverviewPageContent,
+    solutionDetails: solutionDetailsContent,
     industriesOverview: industriesOverviewPageContent,
     contact: contactPageContent,
   },
@@ -35,5 +39,7 @@ export {
   industriesOverviewPageContent,
   navigationContent,
   servicesOverviewPageContent,
+  serviceDetailsContent,
+  solutionDetailsContent,
   solutionsOverviewPageContent,
 };
