@@ -1,16 +1,17 @@
 import React from "react";
 import ServiceDetailLayout from "../../components/services/ServiceDetailLayout";
 import { lowVoltageFaqItems } from "../../data/lowVoltageFaq";
-import { enContent } from "../../data/i18n/content";
+import { enContent, roContent } from "../../data/i18n/content";
+import type { Locale } from "../../data/i18n/content";
 import type { SeoPageKey } from "../../seo/seoConfig";
 
 interface LowVoltageProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 const LowVoltage: React.FC<LowVoltageProps> = ({ locale = "bg" }) => {
-  if (locale === "en") {
-    const content = enContent.pages.serviceDetails?.lowVoltage;
+  if (locale !== "bg") {
+    const content = ((locale === "ro" ? roContent : enContent) as unknown as typeof enContent).pages.serviceDetails?.lowVoltage;
 
     if (!content) {
       throw new Error("Missing English low voltage service detail content.");
@@ -18,7 +19,7 @@ const LowVoltage: React.FC<LowVoltageProps> = ({ locale = "bg" }) => {
 
     return (
       <ServiceDetailLayout
-        seoPage={content.seoPage as SeoPageKey}
+        seoPage={(locale === "ro" ? "roLowVoltage" : content.seoPage) as SeoPageKey}
         hero={content.hero}
         overview={content.overview}
         suitability={content.suitability}
@@ -26,7 +27,7 @@ const LowVoltage: React.FC<LowVoltageProps> = ({ locale = "bg" }) => {
         faq={content.faq}
         related={content.related}
         contactCta={content.contactCta}
-        contactCtaPrimaryHref="/en/contact"
+        contactCtaPrimaryHref={locale === "ro" ? "/ro/contact" : "/en/contact"}
       />
     );
   }

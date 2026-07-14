@@ -7,7 +7,9 @@ import Card from "../components/ui/Card";
 import FadeIn from "../components/ui/FadeIn";
 import { Icons } from "../components/ui/LucideIcons";
 import ContactCTA from "../components/shared/ContactCTA";
-import { enContent } from "../data/i18n/content";
+import { enContent, roContent } from "../data/i18n/content";
+import type { Locale } from "../data/i18n/content";
+import { getLocalizedPath } from "../data/i18n/routes";
 import { SITE_PHONE_RAW } from "../utils/siteConfig";
 
 type LinkedItem = {
@@ -141,24 +143,26 @@ const taxonomyLinks = [
 ];
 
 interface AboutProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 const getIcon = (icon: string): keyof typeof Icons => icon as keyof typeof Icons;
 
 const About: React.FC<AboutProps> = ({ locale = "bg" }) => {
   const isEnglish = locale === "en";
-  const aboutContent = enContent.pages.about;
-  const activeServiceLinks = isEnglish ? aboutContent?.services.items ?? serviceLinks : serviceLinks;
-  const activeProcessSteps = isEnglish ? aboutContent?.process.steps ?? processSteps : processSteps;
-  const activeIndustryLinks = isEnglish ? aboutContent?.industries.items ?? industryLinks : industryLinks;
-  const activeValuePoints = isEnglish ? aboutContent?.principles.items ?? valuePoints : valuePoints;
-  const activeTaxonomyLinks = isEnglish ? aboutContent?.taxonomy.items ?? taxonomyLinks : taxonomyLinks;
+  const isLocalized = locale !== "bg";
+  const localizedContent = locale === "ro" ? roContent : enContent;
+  const aboutContent = localizedContent.pages.about;
+  const activeServiceLinks = isLocalized ? aboutContent?.services.items ?? serviceLinks : serviceLinks;
+  const activeProcessSteps = isLocalized ? aboutContent?.process.steps ?? processSteps : processSteps;
+  const activeIndustryLinks = isLocalized ? aboutContent?.industries.items ?? industryLinks : industryLinks;
+  const activeValuePoints = isLocalized ? aboutContent?.principles.items ?? valuePoints : valuePoints;
+  const activeTaxonomyLinks = isLocalized ? aboutContent?.taxonomy.items ?? taxonomyLinks : taxonomyLinks;
 
-  if (isEnglish && aboutContent) {
+  if (isLocalized && aboutContent) {
     return (
       <main>
-        <SEO page="enAbout" />
+        <SEO page={locale === "ro" ? "roAbout" : "enAbout"} />
         <PageHero
           title={aboutContent.hero.title}
           subtitle={aboutContent.hero.subtitle}
@@ -168,7 +172,7 @@ const About: React.FC<AboutProps> = ({ locale = "bg" }) => {
           heroImage="/images/about/hero-about.png"
           heroImageAlt={aboutContent.hero.heroImageAlt}
           primaryCtaText={aboutContent.hero.primaryCtaText}
-          primaryCtaHref="/en/industries"
+          primaryCtaHref={getLocalizedPath("industries", locale)}
           secondaryCtaText={aboutContent.hero.secondaryCtaText}
           secondaryCtaHref={`tel:${SITE_PHONE_RAW}`}
           secondaryCtaVariant="dark"
@@ -368,7 +372,7 @@ const About: React.FC<AboutProps> = ({ locale = "bg" }) => {
           </div>
         </section>
 
-        <ContactCTA content={enContent.pages.home.full?.contactCta} primaryCtaHref="/en/contact" />
+        <ContactCTA content={localizedContent.pages.home.full?.contactCta} primaryCtaHref={getLocalizedPath("contact", locale)} />
       </main>
     );
   }

@@ -7,6 +7,7 @@ export {
   pagesContent,
 } from "./bg";
 export { enContent } from "./en";
+export { roContent } from "./ro";
 export type {
   AboutLinkedItemContent,
   AboutPageContent,
@@ -53,7 +54,9 @@ export type {
   IndustryOverviewContent,
   IndustryOverviewFeatureContent,
   LocaleContent,
+  Locale,
   NavigationContent,
+  RoContent,
   PageHeroContent,
   PagesContent,
   PageSectionContent,

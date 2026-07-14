@@ -7,8 +7,9 @@ import Card from "../components/ui/Card";
 import FadeIn from "../components/ui/FadeIn";
 import { Icons } from "../components/ui/LucideIcons";
 import ContactCTA from "../components/shared/ContactCTA";
-import { enContent } from "../data/i18n/content";
-import type { ServicesOverviewPageContent } from "../data/i18n/content";
+import { enContent, roContent } from "../data/i18n/content";
+import type { Locale, ServicesOverviewPageContent } from "../data/i18n/content";
+import type { SeoPageKey } from "../seo/seoConfig";
 
 type Service = {
   title: string;
@@ -104,12 +105,14 @@ const projectTypes = [
 
 interface EnglishServicesOverviewProps {
   content: ServicesOverviewPageContent;
+  seoPage: SeoPageKey;
+  contactHref: string;
 }
 
-const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ content }) => {
+const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ content, seoPage, contactHref }) => {
   return (
     <div>
-      <SEO page="enServices" />
+      <SEO page={seoPage} />
 
       <PageHero
         title={content.hero.title}
@@ -315,24 +318,24 @@ const EnglishServicesOverview: React.FC<EnglishServicesOverviewProps> = ({ conte
         </div>
       </section>
 
-      <ContactCTA content={content.contactCta} primaryCtaHref="/en/contact" />
+      <ContactCTA content={content.contactCta} primaryCtaHref={contactHref} />
     </div>
   );
 };
 
 interface ServicesProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 const Services: React.FC<ServicesProps> = ({ locale = "bg" }) => {
-  if (locale === "en") {
-    const content = enContent.pages.servicesOverview;
+  if (locale !== "bg") {
+    const content = (locale === "ro" ? roContent : enContent).pages.servicesOverview;
 
     if (!content) {
       throw new Error("Missing English services overview content.");
     }
 
-    return <EnglishServicesOverview content={content} />;
+    return <EnglishServicesOverview content={content} seoPage={locale === "ro" ? "roServices" : "enServices"} contactHref={locale === "ro" ? "/ro/contact" : "/en/contact"} />;
   }
 
   return (

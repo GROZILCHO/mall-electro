@@ -1,16 +1,17 @@
 import React from "react";
 import ServiceDetailLayout from "../../components/services/ServiceDetailLayout";
 import { electricPanelsFaqItems } from "../../data/electricPanelsFaq";
-import { enContent } from "../../data/i18n/content";
+import { enContent, roContent } from "../../data/i18n/content";
+import type { Locale } from "../../data/i18n/content";
 import type { SeoPageKey } from "../../seo/seoConfig";
 
 interface ElectricPanelsProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 const ElectricPanels: React.FC<ElectricPanelsProps> = ({ locale = "bg" }) => {
-  if (locale === "en") {
-    const content = enContent.pages.serviceDetails?.electricPanels;
+  if (locale !== "bg") {
+    const content = ((locale === "ro" ? roContent : enContent) as unknown as typeof enContent).pages.serviceDetails?.electricPanels;
 
     if (!content) {
       throw new Error("Missing English electric panels service detail content.");
@@ -18,7 +19,7 @@ const ElectricPanels: React.FC<ElectricPanelsProps> = ({ locale = "bg" }) => {
 
     return (
       <ServiceDetailLayout
-        seoPage={content.seoPage as SeoPageKey}
+        seoPage={(locale === "ro" ? "roElectricPanels" : content.seoPage) as SeoPageKey}
         hero={content.hero}
         overview={content.overview}
         suitability={content.suitability}
@@ -26,7 +27,7 @@ const ElectricPanels: React.FC<ElectricPanelsProps> = ({ locale = "bg" }) => {
         faq={content.faq}
         related={content.related}
         contactCta={content.contactCta}
-        contactCtaPrimaryHref="/en/contact"
+        contactCtaPrimaryHref={locale === "ro" ? "/ro/contact" : "/en/contact"}
       />
     );
   }

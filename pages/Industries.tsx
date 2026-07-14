@@ -9,17 +9,20 @@ import FadeIn from "../components/ui/FadeIn";
 import GridContainer from "../components/layout/GridContainer";
 import SEO from "../components/seo/SEO";
 import { SITE_PHONE_RAW } from "../utils/siteConfig";
-import { enContent } from "../data/i18n/content";
-import type { IndustriesOverviewPageContent } from "../data/i18n/content";
+import { enContent, roContent } from "../data/i18n/content";
+import type { IndustriesOverviewPageContent, Locale } from "../data/i18n/content";
+import type { SeoPageKey } from "../seo/seoConfig";
 
 interface EnglishIndustriesPageProps {
   content: IndustriesOverviewPageContent;
+  seoPage: SeoPageKey;
+  contactHref: string;
 }
 
-const EnglishIndustriesPage: React.FC<EnglishIndustriesPageProps> = ({ content }) => {
+const EnglishIndustriesPage: React.FC<EnglishIndustriesPageProps> = ({ content, seoPage, contactHref }) => {
   return (
     <main className="pt-20">
-      <SEO page="enIndustries" />
+      <SEO page={seoPage} />
       <PageHero
         theme="light"
         badgeText={content.hero.badgeText}
@@ -56,24 +59,24 @@ const EnglishIndustriesPage: React.FC<EnglishIndustriesPageProps> = ({ content }
       <IndustryOverview content={content.overview} />
       <IndustriesPremium content={content.premium} />
       <IndustriesCasesStrip content={content.cases} />
-      <ContactCTA content={content.contactCta} primaryCtaHref="/en/contact" />
+      <ContactCTA content={content.contactCta} primaryCtaHref={contactHref} />
     </main>
   );
 };
 
 interface IndustriesPageProps {
-  locale?: "bg" | "en";
+  locale?: Locale;
 }
 
 export default function IndustriesPage({ locale = "bg" }: IndustriesPageProps) {
-  if (locale === "en") {
-    const content = enContent.pages.industriesOverview;
+  if (locale !== "bg") {
+    const content = (locale === "ro" ? roContent : enContent).pages.industriesOverview;
 
     if (!content) {
       throw new Error("Missing English industries overview content.");
     }
 
-    return <EnglishIndustriesPage content={content} />;
+    return <EnglishIndustriesPage content={content} seoPage={locale === "ro" ? "roIndustries" : "enIndustries"} contactHref={locale === "ro" ? "/ro/contact" : "/en/contact"} />;
   }
 
   return (
