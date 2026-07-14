@@ -9,30 +9,30 @@ const EXPECTED_RO_PREVIEW_ROUTE_COUNT = 24;
 const SITE_URL = "https://mallelectro.com";
 
 const approvedBgEnPairs = [
-  ["/bg/", "/en/"],
-  ["/bg/kontakti", "/en/contact"],
-  ["/bg/za-nas", "/en/about"],
-  ["/bg/uslugi", "/en/services"],
-  ["/bg/reshenia", "/en/solutions"],
-  ["/bg/industrii", "/en/industries"],
-  ["/bg/uslugi/elektricheski-tabla", "/en/services/electrical-panels"],
-  ["/bg/uslugi/kabelni-traseta", "/en/services/cable-routes"],
-  ["/bg/uslugi/industrialni-elektroinstalatsii", "/en/services/industrial-electrical-installations"],
-  ["/bg/uslugi/avtomatizatsia", "/en/services/automation"],
-  ["/bg/uslugi/nisko-naprezhenie", "/en/services/low-voltage-systems"],
-  ["/bg/uslugi/poddrazhka-i-serviz", "/en/services/maintenance-and-service"],
-  ["/bg/reshenia/nov-proizvodstven-obekt", "/en/solutions/new-production-site"],
-  ["/bg/reshenia/modernizatsia-na-elektro-sistema", "/en/solutions/electrical-system-modernization"],
-  ["/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii", "/en/solutions/panels-and-automation-for-production-lines"],
-  ["/bg/reshenia/kabelna-infrastruktura-za-baza", "/en/solutions/cable-infrastructure-for-base"],
-  ["/bg/reshenia/serviz-i-razshiryavane", "/en/solutions/service-and-expansion"],
-  ["/bg/reshenia/elektromontazh-na-visochina-s-vishka", "/en/solutions/high-access-installation"],
-  ["/bg/industrii/agro", "/en/industries/agriculture"],
-  ["/bg/industrii/hvp", "/en/industries/food-industry"],
-  ["/bg/industrii/zarnoprerabotka", "/en/industries/grain-processing"],
-  ["/bg/industrii/melnitsi", "/en/industries/mills"],
-  ["/bg/industrii/logistika", "/en/industries/logistics"],
-  ["/bg/industrii/proizvodstveni-predpriyatiya", "/en/industries/manufacturing-companies"],
+  ["/bg/", "/en/", "/ro/"],
+  ["/bg/kontakti", "/en/contact", "/ro/contact"],
+  ["/bg/za-nas", "/en/about", "/ro/despre-noi"],
+  ["/bg/uslugi", "/en/services", "/ro/servicii"],
+  ["/bg/reshenia", "/en/solutions", "/ro/solutii"],
+  ["/bg/industrii", "/en/industries", "/ro/industrii"],
+  ["/bg/uslugi/elektricheski-tabla", "/en/services/electrical-panels", "/ro/servicii/tablouri-electrice"],
+  ["/bg/uslugi/kabelni-traseta", "/en/services/cable-routes", "/ro/servicii/trasee-de-cabluri"],
+  ["/bg/uslugi/industrialni-elektroinstalatsii", "/en/services/industrial-electrical-installations", "/ro/servicii/instalatii-electrice-industriale"],
+  ["/bg/uslugi/avtomatizatsia", "/en/services/automation", "/ro/servicii/automatizare"],
+  ["/bg/uslugi/nisko-naprezhenie", "/en/services/low-voltage-systems", "/ro/servicii/sisteme-de-joasa-tensiune"],
+  ["/bg/uslugi/poddrazhka-i-serviz", "/en/services/maintenance-and-service", "/ro/servicii/mentenanta-si-service"],
+  ["/bg/reshenia/nov-proizvodstven-obekt", "/en/solutions/new-production-site", "/ro/solutii/unitate-noua-de-productie"],
+  ["/bg/reshenia/modernizatsia-na-elektro-sistema", "/en/solutions/electrical-system-modernization", "/ro/solutii/modernizare-sistem-electric"],
+  ["/bg/reshenia/tabla-i-avtomatizatsia-za-tehnologichni-linii", "/en/solutions/panels-and-automation-for-production-lines", "/ro/solutii/tablouri-si-automatizare-pentru-linii-tehnologice"],
+  ["/bg/reshenia/kabelna-infrastruktura-za-baza", "/en/solutions/cable-infrastructure-for-base", "/ro/solutii/infrastructura-de-cabluri-pentru-baza"],
+  ["/bg/reshenia/serviz-i-razshiryavane", "/en/solutions/service-and-expansion", "/ro/solutii/service-si-extindere"],
+  ["/bg/reshenia/elektromontazh-na-visochina-s-vishka", "/en/solutions/high-access-installation", "/ro/solutii/instalatii-electrice-la-inaltime"],
+  ["/bg/industrii/agro", "/en/industries/agriculture", "/ro/industrii/agro"],
+  ["/bg/industrii/hvp", "/en/industries/food-industry", "/ro/industrii/industria-alimentara"],
+  ["/bg/industrii/zarnoprerabotka", "/en/industries/grain-processing", "/ro/industrii/procesarea-cerealelor"],
+  ["/bg/industrii/melnitsi", "/en/industries/mills", "/ro/industrii/mori"],
+  ["/bg/industrii/logistika", "/en/industries/logistics", "/ro/industrii/logistica"],
+  ["/bg/industrii/proizvodstveni-predpriyatiya", "/en/industries/manufacturing-companies", "/ro/industrii/unitati-de-productie"],
 ];
 
 const bgLegalRoutes = [
@@ -41,32 +41,7 @@ const bgLegalRoutes = [
   "/bg/usloviya-za-polzvane",
 ];
 
-const approvedRoPreviewRoutes = [
-  "/ro/",
-  "/ro/servicii",
-  "/ro/servicii/tablouri-electrice",
-  "/ro/servicii/trasee-de-cabluri",
-  "/ro/servicii/instalatii-electrice-industriale",
-  "/ro/servicii/automatizare",
-  "/ro/servicii/sisteme-de-joasa-tensiune",
-  "/ro/servicii/mentenanta-si-service",
-  "/ro/solutii",
-  "/ro/solutii/unitate-noua-de-productie",
-  "/ro/solutii/modernizare-sistem-electric",
-  "/ro/solutii/infrastructura-de-cabluri-pentru-baza",
-  "/ro/solutii/service-si-extindere",
-  "/ro/solutii/instalatii-electrice-la-inaltime",
-  "/ro/solutii/tablouri-si-automatizare-pentru-linii-tehnologice",
-  "/ro/despre-noi",
-  "/ro/industrii",
-  "/ro/industrii/industria-alimentara",
-  "/ro/industrii/procesarea-cerealelor",
-  "/ro/industrii/mori",
-  "/ro/industrii/agro",
-  "/ro/industrii/logistica",
-  "/ro/industrii/unitati-de-productie",
-  "/ro/contact",
-];
+const approvedRoPreviewRoutes = approvedBgEnPairs.map(([, , roPath]) => roPath);
 
 const blockedRoRoutes = [
   "/ro/politica-de-confidentialitate",
@@ -151,6 +126,34 @@ const assertHtmlExcludes = (html, unexpected, label, filePath) => {
   }
 };
 
+const assertLanguageSwitcher = (routePaths) => {
+  const locales = ["BG", "EN", "RO"];
+
+  routePaths.forEach((currentPath, currentIndex) => {
+    const currentFile = routeToHtmlPath(currentPath);
+    const html = fs.existsSync(currentFile) ? fs.readFileSync(currentFile, "utf8") : "";
+    const activeLabels = [...html.matchAll(/<span[^>]*>(BG|EN|RO)<\/span>/g)].map((match) => match[1]);
+    const linkedOptions = new Map(
+      [...html.matchAll(/<a[^>]*href="([^"]+)"[^>]*>(BG|EN|RO)<\/a>/g)].map((match) => [match[2], match[1]])
+    );
+
+    if (activeLabels.length === 0 || activeLabels.some((label) => label !== locales[currentIndex])) {
+      fail(`Expected only ${locales[currentIndex]} to be active in every switcher in ${relativePath(currentFile)}.`);
+    }
+
+    routePaths.forEach((targetPath, targetIndex) => {
+      const targetLocale = locales[targetIndex];
+      if (targetIndex === currentIndex) {
+        if (linkedOptions.has(targetLocale)) {
+          fail(`Active ${targetLocale} switcher option must not be a link in ${relativePath(currentFile)}.`);
+        }
+      } else if (linkedOptions.get(targetLocale) !== targetPath) {
+        fail(`Expected ${targetLocale} switcher target ${targetPath} in ${relativePath(currentFile)}.`);
+      }
+    });
+  });
+};
+
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
 
@@ -161,6 +164,10 @@ const allowedRoHtmlFiles = new Set(approvedRoPreviewRoutes.map((routePath) => re
 for (const [bgPath, enPath] of approvedBgEnPairs) {
   assertPathExists(routeToHtmlPath(bgPath), `${bgPath} HTML`);
   assertPathExists(routeToHtmlPath(enPath), `${enPath} HTML`);
+}
+
+for (const routePaths of approvedBgEnPairs) {
+  assertLanguageSwitcher(routePaths);
 }
 
 for (const legalPath of bgLegalRoutes) {
@@ -209,14 +216,6 @@ if (prerenderedRouteHtmlFiles.length !== EXPECTED_PRERENDER_ROUTE_COUNT) {
   );
 }
 
-for (const htmlFile of htmlFiles.filter((filePath) => !relativePath(filePath).startsWith("dist/ro/"))) {
-  const content = fs.readFileSync(htmlFile, "utf8");
-
-  if (/(?:https?:\/\/[^"'\s<>]+)?\/ro\//i.test(content)) {
-    fail(`RO URL output found in ${relativePath(htmlFile)}.`);
-  }
-}
-
 for (const htmlFile of prerenderedRouteHtmlFiles) {
   const content = fs.readFileSync(htmlFile, "utf8");
   assertHtmlExcludes(content, "Switched to client rendering", "SSR client-render fallback", htmlFile);
@@ -257,6 +256,7 @@ for (const [bgPath, enPath] of approvedBgEnPairs) {
       "x-default hreflang",
       html.filePath
     );
+    assertHtmlExcludes(html.content, `hreflang="ro"`, "RO hreflang", html.filePath);
   }
 
   assertHtmlExcludes(enHtml, `<meta name="robots" content="noindex, follow" />`, "EN noindex", enFile);
@@ -267,13 +267,14 @@ for (const [bgPath, enPath] of approvedBgEnPairs) {
 for (const roPath of approvedRoPreviewRoutes) {
   const roFile = routeToHtmlPath(roPath);
   const roHtml = fs.existsSync(roFile) ? fs.readFileSync(roFile, "utf8") : "";
+  const routeGroup = approvedBgEnPairs.find(([, , approvedRoPath]) => approvedRoPath === roPath);
+  const allowedBgEquivalent = routeGroup?.[0];
+  const allowedEnEquivalent = routeGroup?.[1];
 
   assertHtmlIncludes(roHtml, `<link rel="canonical" href="${canonicalUrl(roPath)}" />`, "RO self canonical", roFile);
   assertHtmlIncludes(roHtml, `<meta name="robots" content="noindex, follow" />`, "RO preview noindex", roFile);
   assertHtmlIncludes(roHtml, `<meta property="og:locale" content="ro_RO" />`, "RO og:locale", roFile);
   assertHtmlExcludes(roHtml, "hreflang=", "RO preview hreflang", roFile);
-  assertHtmlExcludes(roHtml, ">RO</", "visible RO language switcher option", roFile);
-
   for (const match of roHtml.matchAll(/<img[^>]+src="([^"]+)"/g)) {
     const imageSource = match[1];
     if (imageSource.startsWith("/") && !fs.existsSync(path.join(distDir, imageSource.slice(1)))) {
@@ -300,10 +301,10 @@ for (const roPath of approvedRoPreviewRoutes) {
     if (hrefPath.startsWith("/ro") && !approvedRoRouteSet.has(hrefPath)) {
       fail(`Unapproved or missing RO internal route ${href} in ${relativePath(roFile)}.`);
     }
-    if (hrefPath.startsWith("/bg") && !bgLegalRouteSet.has(hrefPath)) {
+    if (hrefPath.startsWith("/bg") && !bgLegalRouteSet.has(hrefPath) && hrefPath !== normalizeRoute(allowedBgEquivalent ?? "")) {
       fail(`Unexpected BG internal route ${href} in ${relativePath(roFile)}.`);
     }
-    if (hrefPath.startsWith("/en")) {
+    if (hrefPath.startsWith("/en") && hrefPath !== normalizeRoute(allowedEnEquivalent ?? "")) {
       fail(`Unexpected EN internal route ${href} in ${relativePath(roFile)}.`);
     }
   }
@@ -321,6 +322,8 @@ for (const legalPath of bgLegalRoutes) {
   );
   assertHtmlExcludes(legalHtml, "hreflang=", "legal hreflang", legalFile);
   assertHtmlExcludes(legalHtml, "/en/", "EN legal equivalent", legalFile);
+  assertHtmlExcludes(legalHtml, ">EN</", "EN legal switcher option", legalFile);
+  assertHtmlExcludes(legalHtml, ">RO</", "RO legal switcher option", legalFile);
 }
 
 const notFoundPath = path.join(distDir, "404", "index.html");
@@ -330,6 +333,8 @@ if (fs.existsSync(notFoundPath)) {
   const notFoundHtml = fs.readFileSync(notFoundPath, "utf8");
   assertHtmlExcludes(notFoundHtml, "hreflang=", "404 hreflang", notFoundPath);
   assertHtmlIncludes(notFoundHtml, `<meta name="robots" content="noindex, follow" />`, "404 noindex", notFoundPath);
+  assertHtmlExcludes(notFoundHtml, ">EN</", "404 EN switcher option", notFoundPath);
+  assertHtmlExcludes(notFoundHtml, ">RO</", "404 RO switcher option", notFoundPath);
 }
 
 if (fs.existsSync(sitemapPath)) {
@@ -383,6 +388,7 @@ console.log(`- EN sitemap URLs: ${EXPECTED_EN_SITEMAP_URL_COUNT}`);
 console.log("- hreflang: present on approved BG/EN mapped pages only");
 console.log("- legal pages: BG-only without hreflang");
 console.log(`- RO preview routes: ${EXPECTED_RO_PREVIEW_ROUTE_COUNT}`);
+console.log(`- language switcher groups: ${approvedBgEnPairs.length} with BG/EN/RO parity`);
 console.log("- RO sitemap URLs: absent");
 console.log("- RO hreflang: absent");
 console.log("- RO legal output: absent");
