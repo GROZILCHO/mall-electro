@@ -7,7 +7,7 @@ export const homePageContent = {
       title: "Instalații și sisteme electrice industriale pentru",
       highlightedTitle: "producție fiabilă",
       subtitle:
-        "Mall Electro oferă soluții inginerești complete, de la proiectarea instalațiilor electrice și a tablourilor de comandă până la sisteme automatizate și trasee industriale de cabluri. Lucrăm conform standardelor consacrate și asigurăm siguranță, eficiență și fiabilitate pe termen lung pentru fiecare proces de producție.",
+        "Mall Electro oferă soluții inginerești complete, de la proiectarea instalațiilor electrice și a tablourilor de comandă până la sisteme automatizate și trasee de cabluri industriale. Lucrăm conform standardelor consacrate și asigurăm siguranță, eficiență și fiabilitate pe termen lung pentru fiecare proces de producție.",
       primaryCta: "Vezi serviciile noastre",
       secondaryCta: "Contactează un inginer",
       imageAlt: "Infrastructură electrică industrială într-un mediu de producție",
@@ -88,7 +88,7 @@ export const homePageContent = {
           id: 6,
           title: "Mentenanță și service",
           description:
-            "Diagnosticare, verificări preventive, activități de service și mentenanța sistemelor electrice industriale.",
+            "Diagnosticare, verificări preventive, activități de service și mentenanță pentru sistemele electrice industriale.",
           icon: "Users",
           href: "/ro/servicii/mentenanta-si-service",
         },
@@ -105,7 +105,7 @@ export const homePageContent = {
       items: [
         {
           title: "Unitate nouă de producție",
-          text: "Infrastructură electrică pentru unități noi de producție, depozitare și tehnologice.",
+          text: "Infrastructură electrică pentru unități noi de producție, depozite și obiective tehnologice.",
           href: "/ro/solutii/unitate-noua-de-productie",
           icon: "Factory",
         },
@@ -122,14 +122,14 @@ export const homePageContent = {
           icon: "Cpu",
         },
         {
-          title: "Infrastructură de cabluri pentru o bază",
+          title: "Infrastructură de cabluri pentru o bază industrială",
           text: "Trasee de cabluri, sisteme de joasă tensiune și cablare organizată pentru baze industriale.",
           href: "/ro/solutii/infrastructura-de-cabluri-pentru-baza",
           icon: "Activity",
         },
         {
           title: "Service și extindere",
-          text: "Diagnosticare, mentenanță, îmbunătățirea și extinderea sistemelor electrice în funcțiune.",
+          text: "Diagnosticare, mentenanță, îmbunătățiri și extinderea sistemelor electrice în funcțiune.",
           href: "/ro/solutii/service-si-extindere",
           icon: "Wrench",
         },
@@ -148,7 +148,7 @@ export const homePageContent = {
       badge: "Despre noi // 01",
       heading: "Cine suntem",
       paragraphs: [
-        "Mall Electro este o platformă de inginerie, parte a grupului Uni Company EOOD, specializată în echipamente electrice, tablouri electrice, automatizări industriale, trasee de cabluri și instalații electrice pentru industria alimentară, agricultură, construcții industriale și rezidențiale. Lucrăm în Bulgaria și România și realizăm proiecte conform standardelor europene EN consacrate.",
+        "Mall Electro este o platformă de inginerie, parte a grupului Uni Company EOOD, specializată în echipamente electrice, tablouri electrice, automatizări industriale, trasee de cabluri și instalații electrice pentru industria alimentară, agricultură, construcții industriale și rezidențiale. Lucrăm în Bulgaria și România și realizăm proiecte conform standardelor europene aplicabile.",
         "Cu experiență în zeci de unități industriale, combinăm gândirea inginerească și experiența practică, de la inspecția și proiectarea inițială până la instalare, punere în funcțiune și mentenanță.",
       ],
       advantages: [
@@ -320,7 +320,7 @@ export const homePageContent = {
           bullets: [
             "Alimentarea utilajelor, liniilor și zonelor de lucru",
             "Trasee de cabluri prin hale și încăperi tehnice",
-            "Automatizări, sisteme de joasă tensiune și asistență service",
+            "Automatizări, sisteme de joasă tensiune și asistență tehnică",
           ],
         },
       ],

@@ -17,7 +17,7 @@ import { solutionModernizationFaqItems } from "../data/solutionModernizationFaq"
 import { solutionCableInfrastructureBaseFaqItems } from "../data/solutionCableInfrastructureBaseFaq";
 import { solutionServiceExpansionFaqItems } from "../data/solutionServiceExpansionFaq";
 import { solutionHeightInstallationFaqItems } from "../data/solutionHeightInstallationFaq";
-import { bgEnRoutePairs } from "../data/i18n/languageSwitchRoutes";
+import { languageSwitchRouteKeys } from "../data/i18n/languageSwitchRoutes";
 import { getBgSeoRouteEntry } from "../data/i18n/seoRuntimeRoutes";
 import type { RouteKey } from "../data/i18n/types";
 import type { FAQItem } from "../data/faqTypes";
@@ -118,7 +118,7 @@ export interface SeoRoute {
 }
 
 export interface HreflangAlternate {
-  hreflang: "bg" | "en" | "x-default";
+  hreflang: "bg" | "en" | "ro" | "x-default";
   href: string;
 }
 
@@ -134,20 +134,23 @@ const createSeoRouteIdentity = (routeKey: RouteKey): Pick<SeoRoute, "key" | "pat
 
 const normalizeSeoPath = (path: string): string => (path.length > 1 ? path.replace(/\/$/, "") : path);
 
-const bgEnSeoPathPairs = bgEnRoutePairs.map(([bgPath, enPath]) => ({
-  bgPath: normalizeSeoPath(bgPath),
-  enPath: normalizeSeoPath(enPath),
+const localizedSeoPathGroups = languageSwitchRouteKeys.map((routeKey) => ({
+  bgPath: normalizeSeoPath(getLocalizedPath(routeKey, "bg")),
+  enPath: normalizeSeoPath(getLocalizedPath(routeKey, "en")),
+  roPath: normalizeSeoPath(getLocalizedPath(routeKey, "ro")),
 }));
 
-const approvedEnSeoPaths = new Set(bgEnSeoPathPairs.map((pair) => pair.enPath));
+const approvedEnSeoPaths = new Set(localizedSeoPathGroups.map((group) => group.enPath));
+const approvedRoSeoPaths = new Set(localizedSeoPathGroups.map((group) => group.roPath));
 
 export const isApprovedEnSeoPath = (path: string): boolean => approvedEnSeoPaths.has(normalizeSeoPath(path));
+export const isApprovedRoSeoPath = (path: string): boolean => approvedRoSeoPaths.has(normalizeSeoPath(path));
 
 export const shouldNoindexRoute = (route: SeoRoute): boolean =>
-  Boolean(route.noindex) && !isApprovedEnSeoPath(route.path);
+  Boolean(route.noindex) && !isApprovedEnSeoPath(route.path) && !isApprovedRoSeoPath(route.path);
 
 export const shouldIncludeRouteInSitemap = (route: SeoRoute): boolean =>
-  route.includeInSitemap !== false || isApprovedEnSeoPath(route.path);
+  route.includeInSitemap !== false || isApprovedEnSeoPath(route.path) || isApprovedRoSeoPath(route.path);
 
 export const getOgLocaleForPath = (path: string): "bg_BG" | "en_US" | "ro_RO" =>
   normalizeSeoPath(path).startsWith("/en")
@@ -156,20 +159,23 @@ export const getOgLocaleForPath = (path: string): "bg_BG" | "en_US" | "ro_RO" =>
 
 export const getAlternateLinksForPath = (path: string): readonly HreflangAlternate[] => {
   const normalizedPath = normalizeSeoPath(path);
-  const pair = bgEnSeoPathPairs.find(
-    (entry) => entry.bgPath === normalizedPath || entry.enPath === normalizedPath
+  const group = localizedSeoPathGroups.find(
+    (entry) =>
+      entry.bgPath === normalizedPath || entry.enPath === normalizedPath || entry.roPath === normalizedPath
   );
 
-  if (!pair) {
+  if (!group) {
     return [];
   }
 
-  const bgUrl = getCanonicalUrl(pair.bgPath);
-  const enUrl = getCanonicalUrl(pair.enPath);
+  const bgUrl = getCanonicalUrl(group.bgPath);
+  const enUrl = getCanonicalUrl(group.enPath);
+  const roUrl = getCanonicalUrl(group.roPath);
 
   return [
     { hreflang: "bg", href: bgUrl },
     { hreflang: "en", href: enUrl },
+    { hreflang: "ro", href: roUrl },
     { hreflang: "x-default", href: bgUrl },
   ];
 };
@@ -186,8 +192,6 @@ const createRoPreviewRoute = (
   title: `${title} | Mall Electro`,
   description,
   ogImage,
-  noindex: true,
-  includeInSitemap: false,
 });
 
 const roPages = roContent.pages;

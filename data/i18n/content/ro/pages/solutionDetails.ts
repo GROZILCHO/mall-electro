@@ -15,7 +15,7 @@ const serviceLinks = [
   ["Instalații electrice industriale", "Legături între tablouri, utilaje și zone.", "/ro/servicii/instalatii-electrice-industriale", "HardHat"],
   ["Automatizări", "Comandă, senzori și integrarea proceselor.", "/ro/servicii/automatizare", "Cpu"],
   ["Sisteme de joasă tensiune", "Alimentări, distribuție și legături auxiliare.", "/ro/servicii/sisteme-de-joasa-tensiune", "Zap"],
-  ["Mentenanță și service", "Diagnosticare, prevenție și suport tehnic.", "/ro/servicii/mentenanta-si-service", "Wrench"],
+  ["Mentenanță și service", "Diagnosticare, mentenanță preventivă și suport tehnic.", "/ro/servicii/mentenanta-si-service", "Wrench"],
 ] as const;
 
 const industries = [
@@ -46,7 +46,7 @@ const createSolution = (c: Config): SolutionDetailPageContent => ({
       { title: "Automatizări și puncte de control", text: "Senzori, semnale, comandă și pregătire pentru integrare.", icon: "Cpu" },
       { title: "Verificări și punere în funcțiune", text: "Controlul conexiunilor, protecțiilor și pregătirea pentru service.", icon: "Wrench" },
     ] },
-  services: { badge: "Servicii conexe", title: "Servicii incluse în soluție", text: "Soluția reunește disciplinele electrice necesare într-un domeniu coordonat.",
+  services: { badge: "Servicii conexe", title: "Servicii incluse în soluție", text: "Soluția reunește disciplinele electrice necesare într-un ansamblu tehnic coordonat.",
     items: serviceLinks.map(([title, text, href, icon]) => ({ title, text, href, icon })) },
   industries: { badge: "Aplicații", title: "Industrii în care se aplică soluția", text: "Soluția se adaptează mediului, regimului de lucru și cerințelor fiecărei unități.",
     items: industries.map(([title, text, icon]) => ({ title, text, href: "/ro/industrii", icon })) },
@@ -59,7 +59,7 @@ const createSolution = (c: Config): SolutionDetailPageContent => ({
       { title: "Punere în funcțiune și suport", text: "Facem corecțiile finale și pregătim sistemul pentru exploatare și service." },
     ], image: c.processImage, imageAlt: c.processAlt, imageKicker: "VERIFICARE TEHNICĂ", imageTitle: "PREGĂTIT PENTRU PREDARE" },
   technical: { badge: "Accent tehnic", title: "Ce se planifică în avans", text: "Planificarea coerentă reduce modificările costisitoare și simplifică exploatarea ulterioară.",
-    items: ["Distribuția corectă a alimentărilor către utilaje și zone.", "Protecțiile și separarea circuitelor de putere și comandă.", "Accesul pentru diagnosticare, prevenție și service.", "Etichetarea, marcarea și documentația tehnică de bază.", "Rezervele pentru extinderea viitoare a sistemului.", "Coordonarea cu utilajele și celelalte echipe din unitate."].slice(0, c.technicalItemCount ?? 6) },
+    items: ["Distribuția corectă a alimentărilor către utilaje și zone.", "Protecțiile și separarea circuitelor de putere și comandă.", "Accesul pentru diagnosticare, mentenanță preventivă și service.", "Etichetarea, marcarea și documentația tehnică de bază.", "Rezervele pentru extinderea viitoare a sistemului.", "Coordonarea cu utilajele și celelalte echipe din unitate."].slice(0, c.technicalItemCount ?? 6) },
   faq: { title: "Întrebări frecvente", intro: "Răspunsuri scurte despre planificare, execuție și extindere.", items: [
     { question: "Soluția poate fi executată în etape?", answer: "Da, atunci când starea unității și prioritățile permit o etapizare sigură." },
     { question: "Poate fi aplicată într-o unitate existentă?", answer: "Da. Sistemele și limitările actuale sunt analizate înainte de stabilirea domeniului." },

@@ -5,9 +5,9 @@ export const industriesOverviewPageContent = {
     badgeText: "Soluții industriale",
     title: "Industrii în care construim sisteme electrice industriale",
     subtitle:
-      "Mall Electro proiectează și implementează sisteme electrice fiabile, automatizări, trasee industriale și tablouri de comandă în sectoare de producție diverse.",
+      "Mall Electro proiectează și implementează sisteme electrice fiabile, automatizări, trasee de cabluri industriale și tablouri de comandă în sectoare de producție diverse.",
     subtitleParagraphs: [
-      "Mall Electro proiectează și implementează sisteme electrice fiabile, automatizări, trasee industriale și tablouri de comandă în sectoare de producție diverse.",
+      "Mall Electro proiectează și implementează sisteme electrice fiabile, automatizări, trasee de cabluri industriale și tablouri de comandă în sectoare de producție diverse.",
       "Combinăm experiența inginerească și procesele standardizate pentru a asigura siguranță, eficiență și un nivel ridicat de control în fiecare proiect industrial, de la industria alimentară și mori până la agricultură, logistică și unități de producție.",
     ],
     heroImageAlt:
@@ -38,7 +38,7 @@ export const industriesOverviewPageContent = {
       "Combinăm proiectarea, automatizările industriale și instalarea conform standardelor pentru a construi sisteme electrice fiabile pentru toate tipurile de procese de producție.",
     imageAlt: "Tablouri electrice industriale și automatizări",
     paragraphs: [
-      "Lucrăm în industria alimentară, procesarea cerealelor, agricultură, logistică și producție industrială. Fiecare proiect începe cu o analiză inginerească detaliată și se încheie cu un sistem electric sigur, eficient și rațional, executat conform standardelor europene.",
+      "Lucrăm în industria alimentară, procesarea cerealelor, agricultură, logistică și producție industrială. Fiecare proiect începe cu o analiză inginerească detaliată și se încheie cu un sistem electric sigur, eficient și bine organizat, executat conform standardelor europene.",
       "De la trasee de cabluri și tablouri până la sisteme inteligente de control, oferim predictibilitate, planificare clară, documentație tehnică și asistență pe termen lung.",
     ],
     features: [
@@ -153,7 +153,7 @@ export const industriesOverviewPageContent = {
         bullets: [
           "Alimentarea utilajelor, liniilor și zonelor de lucru",
           "Trasee de cabluri prin hale și încăperi tehnice",
-          "Automatizări, sisteme de joasă tensiune și asistență service",
+          "Automatizări, sisteme de joasă tensiune și asistență tehnică",
         ],
       },
     ],

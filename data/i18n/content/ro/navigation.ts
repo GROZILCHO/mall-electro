@@ -20,7 +20,7 @@ export const navigationContent = {
     solutionNewProductionSite: "Unitate nouă de producție",
     solutionModernization: "Modernizarea sistemului electric",
     solutionPanelAutomationLine: "Tablouri și automatizări pentru linii de producție",
-    solutionCableInfrastructureBase: "Infrastructură de cabluri pentru o bază",
+    solutionCableInfrastructureBase: "Infrastructură de cabluri pentru o bază industrială",
     solutionServiceExpansion: "Service și extindere",
     solutionHeightInstallation: "Instalații electrice la înălțime",
     industryHvp: "Industria alimentară",

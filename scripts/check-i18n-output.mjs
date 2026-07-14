@@ -3,9 +3,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const EXPECTED_PRERENDER_ROUTE_COUNT = 76;
-const EXPECTED_SITEMAP_URL_COUNT = 51;
+const EXPECTED_SITEMAP_URL_COUNT = 75;
 const EXPECTED_EN_SITEMAP_URL_COUNT = 24;
-const EXPECTED_RO_PREVIEW_ROUTE_COUNT = 24;
+const EXPECTED_RO_ROUTE_COUNT = 24;
+const EXPECTED_RO_SITEMAP_URL_COUNT = 24;
 const SITE_URL = "https://mallelectro.com";
 
 const approvedBgEnPairs = [
@@ -41,7 +42,7 @@ const bgLegalRoutes = [
   "/bg/usloviya-za-polzvane",
 ];
 
-const approvedRoPreviewRoutes = approvedBgEnPairs.map(([, , roPath]) => roPath);
+const approvedRoRoutes = approvedBgEnPairs.map(([, , roPath]) => roPath);
 
 const blockedRoRoutes = [
   "/ro/politica-de-confidentialitate",
@@ -62,7 +63,7 @@ const fail = (message) => {
 };
 
 const normalizeRoute = (routePath) => (routePath.length > 1 ? routePath.replace(/\/$/, "") : routePath);
-const approvedRoRouteSet = new Set(approvedRoPreviewRoutes.map((routePath) => normalizeRoute(routePath)));
+const approvedRoRouteSet = new Set(approvedRoRoutes.map((routePath) => normalizeRoute(routePath)));
 const bgLegalRouteSet = new Set(bgLegalRoutes.map((routePath) => normalizeRoute(routePath)));
 
 const canonicalUrl = (routePath) => {
@@ -159,7 +160,7 @@ assertPathExists(sitemapPath, "sitemap.xml");
 
 const approvedEnRoutes = approvedBgEnPairs.map(([, enPath]) => enPath);
 const allowedEnHtmlFiles = new Set(approvedEnRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
-const allowedRoHtmlFiles = new Set(approvedRoPreviewRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
+const allowedRoHtmlFiles = new Set(approvedRoRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
 
 for (const [bgPath, enPath] of approvedBgEnPairs) {
   assertPathExists(routeToHtmlPath(bgPath), `${bgPath} HTML`);
@@ -174,7 +175,7 @@ for (const legalPath of bgLegalRoutes) {
   assertPathExists(routeToHtmlPath(legalPath), `${legalPath} HTML`);
 }
 
-for (const roPath of approvedRoPreviewRoutes) {
+for (const roPath of approvedRoRoutes) {
   assertPathExists(routeToHtmlPath(roPath), `${roPath} HTML`);
 }
 
@@ -202,9 +203,9 @@ if (enHtmlFiles.length !== allowedEnHtmlFiles.size || unexpectedEnHtmlFiles.leng
   );
 }
 
-if (roHtmlFiles.length !== EXPECTED_RO_PREVIEW_ROUTE_COUNT || unexpectedRoHtmlFiles.length > 0) {
+if (roHtmlFiles.length !== EXPECTED_RO_ROUTE_COUNT || unexpectedRoHtmlFiles.length > 0) {
   fail(
-    `Expected only ${EXPECTED_RO_PREVIEW_ROUTE_COUNT} approved RO preview outputs, found: ${
+    `Expected only ${EXPECTED_RO_ROUTE_COUNT} approved RO outputs, found: ${
       roHtmlFiles.map(relativePath).join(", ") || "none"
     }.`
   );
@@ -221,22 +222,31 @@ for (const htmlFile of prerenderedRouteHtmlFiles) {
   assertHtmlExcludes(content, "Switched to client rendering", "SSR client-render fallback", htmlFile);
 }
 
-for (const [bgPath, enPath] of approvedBgEnPairs) {
+for (const [bgPath, enPath, roPath] of approvedBgEnPairs) {
   const bgFile = routeToHtmlPath(bgPath);
   const enFile = routeToHtmlPath(enPath);
+  const roFile = routeToHtmlPath(roPath);
   const bgHtml = fs.existsSync(bgFile) ? fs.readFileSync(bgFile, "utf8") : "";
   const enHtml = fs.existsSync(enFile) ? fs.readFileSync(enFile, "utf8") : "";
+  const roHtml = fs.existsSync(roFile) ? fs.readFileSync(roFile, "utf8") : "";
   const bgUrl = canonicalUrl(bgPath);
   const enUrl = canonicalUrl(enPath);
+  const roUrl = canonicalUrl(roPath);
 
   assertHtmlIncludes(bgHtml, `<link rel="canonical" href="${bgUrl}" />`, "BG self canonical", bgFile);
   assertHtmlIncludes(enHtml, `<link rel="canonical" href="${enUrl}" />`, "EN self canonical", enFile);
+  assertHtmlIncludes(roHtml, `<link rel="canonical" href="${roUrl}" />`, "RO self canonical", roFile);
   assertHtmlExcludes(bgHtml, `<link rel="canonical" href="${enUrl}" />`, "cross-locale canonical", bgFile);
   assertHtmlExcludes(enHtml, `<link rel="canonical" href="${bgUrl}" />`, "cross-locale canonical", enFile);
+  assertHtmlExcludes(bgHtml, `<link rel="canonical" href="${roUrl}" />`, "cross-locale canonical", bgFile);
+  assertHtmlExcludes(enHtml, `<link rel="canonical" href="${roUrl}" />`, "cross-locale canonical", enFile);
+  assertHtmlExcludes(roHtml, `<link rel="canonical" href="${bgUrl}" />`, "cross-locale canonical", roFile);
+  assertHtmlExcludes(roHtml, `<link rel="canonical" href="${enUrl}" />`, "cross-locale canonical", roFile);
 
   for (const html of [
     { content: bgHtml, filePath: bgFile },
     { content: enHtml, filePath: enFile },
+    { content: roHtml, filePath: roFile },
   ]) {
     assertHtmlIncludes(
       html.content,
@@ -252,19 +262,26 @@ for (const [bgPath, enPath] of approvedBgEnPairs) {
     );
     assertHtmlIncludes(
       html.content,
+      `<link rel="alternate" hreflang="ro" href="${roUrl}" />`,
+      "RO hreflang",
+      html.filePath
+    );
+    assertHtmlIncludes(
+      html.content,
       `<link rel="alternate" hreflang="x-default" href="${bgUrl}" />`,
       "x-default hreflang",
       html.filePath
     );
-    assertHtmlExcludes(html.content, `hreflang="ro"`, "RO hreflang", html.filePath);
   }
 
   assertHtmlExcludes(enHtml, `<meta name="robots" content="noindex, follow" />`, "EN noindex", enFile);
+  assertHtmlExcludes(roHtml, `<meta name="robots" content="noindex, follow" />`, "RO noindex", roFile);
   assertHtmlIncludes(bgHtml, `<meta property="og:locale" content="bg_BG" />`, "BG og:locale", bgFile);
   assertHtmlIncludes(enHtml, `<meta property="og:locale" content="en_US" />`, "EN og:locale", enFile);
+  assertHtmlIncludes(roHtml, `<meta property="og:locale" content="ro_RO" />`, "RO og:locale", roFile);
 }
 
-for (const roPath of approvedRoPreviewRoutes) {
+for (const roPath of approvedRoRoutes) {
   const roFile = routeToHtmlPath(roPath);
   const roHtml = fs.existsSync(roFile) ? fs.readFileSync(roFile, "utf8") : "";
   const routeGroup = approvedBgEnPairs.find(([, , approvedRoPath]) => approvedRoPath === roPath);
@@ -272,9 +289,8 @@ for (const roPath of approvedRoPreviewRoutes) {
   const allowedEnEquivalent = routeGroup?.[1];
 
   assertHtmlIncludes(roHtml, `<link rel="canonical" href="${canonicalUrl(roPath)}" />`, "RO self canonical", roFile);
-  assertHtmlIncludes(roHtml, `<meta name="robots" content="noindex, follow" />`, "RO preview noindex", roFile);
+  assertHtmlExcludes(roHtml, `<meta name="robots" content="noindex, follow" />`, "RO noindex", roFile);
   assertHtmlIncludes(roHtml, `<meta property="og:locale" content="ro_RO" />`, "RO og:locale", roFile);
-  assertHtmlExcludes(roHtml, "hreflang=", "RO preview hreflang", roFile);
   for (const match of roHtml.matchAll(/<img[^>]+src="([^"]+)"/g)) {
     const imageSource = match[1];
     if (imageSource.startsWith("/") && !fs.existsSync(path.join(distDir, imageSource.slice(1)))) {
@@ -341,6 +357,7 @@ if (fs.existsSync(sitemapPath)) {
   const sitemap = fs.readFileSync(sitemapPath, "utf8");
   const sitemapUrlCount = [...sitemap.matchAll(/<loc>/g)].length;
   const enSitemapUrlCount = [...sitemap.matchAll(/<loc>https:\/\/mallelectro\.com\/en\//g)].length;
+  const roSitemapUrlCount = [...sitemap.matchAll(/<loc>https:\/\/mallelectro\.com\/ro\//g)].length;
 
   if (sitemapUrlCount !== EXPECTED_SITEMAP_URL_COUNT) {
     fail(`Expected ${EXPECTED_SITEMAP_URL_COUNT} sitemap URLs, found ${sitemapUrlCount}.`);
@@ -350,9 +367,14 @@ if (fs.existsSync(sitemapPath)) {
     fail(`Expected ${EXPECTED_EN_SITEMAP_URL_COUNT} EN sitemap URLs, found ${enSitemapUrlCount}.`);
   }
 
-  for (const [bgPath, enPath] of approvedBgEnPairs) {
+  if (roSitemapUrlCount !== EXPECTED_RO_SITEMAP_URL_COUNT) {
+    fail(`Expected ${EXPECTED_RO_SITEMAP_URL_COUNT} RO sitemap URLs, found ${roSitemapUrlCount}.`);
+  }
+
+  for (const [bgPath, enPath, roPath] of approvedBgEnPairs) {
     assertHtmlIncludes(sitemap, `<loc>${canonicalUrl(bgPath)}</loc>`, "BG sitemap URL", sitemapPath);
     assertHtmlIncludes(sitemap, `<loc>${canonicalUrl(enPath)}</loc>`, "EN sitemap URL", sitemapPath);
+    assertHtmlIncludes(sitemap, `<loc>${canonicalUrl(roPath)}</loc>`, "RO sitemap URL", sitemapPath);
   }
 
   for (const legalPath of bgLegalRoutes) {
@@ -361,7 +383,7 @@ if (fs.existsSync(sitemapPath)) {
 
   const sitemapDisallowedPatterns = [
     { label: "EN legal sitemap URL", pattern: /\/en\/(?:privacy-policy|cookie-policy|terms-of-use)\//i },
-    { label: "RO sitemap URL", pattern: /\/ro\//i },
+    { label: "RO legal sitemap URL", pattern: /\/ro\/(?:politica-de-confidentialitate|politica-cookie|termeni-de-utilizare)\//i },
     { label: "404 sitemap URL", pattern: /\/404\//i },
     { label: "hreflang sitemap output", pattern: /hreflang/i },
   ];
@@ -385,10 +407,10 @@ console.log("I18N output safety guard passed.");
 console.log(`- prerendered route HTML files: ${EXPECTED_PRERENDER_ROUTE_COUNT}`);
 console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
 console.log(`- EN sitemap URLs: ${EXPECTED_EN_SITEMAP_URL_COUNT}`);
-console.log("- hreflang: present on approved BG/EN mapped pages only");
+console.log(`- RO sitemap URLs: ${EXPECTED_RO_SITEMAP_URL_COUNT}`);
+console.log("- hreflang: present on approved BG/EN/RO mapped pages only");
 console.log("- legal pages: BG-only without hreflang");
-console.log(`- RO preview routes: ${EXPECTED_RO_PREVIEW_ROUTE_COUNT}`);
+console.log(`- RO routes: ${EXPECTED_RO_ROUTE_COUNT}`);
 console.log(`- language switcher groups: ${approvedBgEnPairs.length} with BG/EN/RO parity`);
-console.log("- RO sitemap URLs: absent");
-console.log("- RO hreflang: absent");
+console.log("- RO noindex: absent on approved routes");
 console.log("- RO legal output: absent");

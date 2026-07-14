@@ -19,7 +19,7 @@ export const solutionsOverviewPageContent = {
     badge: "Soluții // domeniu",
     heading: "Ce înseamnă o soluție",
     body:
-      "O soluție nu este un singur serviciu și nici doar un sector industrial. Este un domeniu practic construit în jurul unei situații concrete a clientului: o unitate nouă, o modernizare, o linie de producție, infrastructură de cabluri sau extinderea serviciilor.",
+      "O soluție nu este un singur serviciu și nici doar un sector industrial. Este un ansamblu practic construit în jurul unei situații concrete a clientului: o unitate nouă, o modernizare, o linie de producție, infrastructură de cabluri sau extinderea serviciilor.",
     cards: [
       {
         title: "Servicii",
@@ -49,7 +49,7 @@ export const solutionsOverviewPageContent = {
       {
         title: "Unitate nouă de producție",
         description:
-          "Planificarea și execuția infrastructurii electrice pentru unități noi de producție, depozitare sau tehnologice.",
+          "Planificarea și execuția infrastructurii electrice pentru unități noi de producție, depozite sau obiective tehnologice.",
         icon: "Factory",
         href: "/ro/solutii/unitate-noua-de-productie",
       },
@@ -68,7 +68,7 @@ export const solutionsOverviewPageContent = {
         href: "/ro/solutii/tablouri-si-automatizare-pentru-linii-tehnologice",
       },
       {
-        title: "Infrastructură de cabluri pentru o bază",
+        title: "Infrastructură de cabluri pentru o bază industrială",
         description:
           "Organizarea traseelor de cabluri, sistemelor de joasă tensiune și alimentării pentru baze industriale, depozite și zone de producție.",
         icon: "Activity",
@@ -77,7 +77,7 @@ export const solutionsOverviewPageContent = {
       {
         title: "Service și extindere",
         description:
-          "Diagnosticare, mentenanță, îmbunătățirea și extinderea sistemelor electrice industriale existente.",
+          "Diagnosticare, mentenanță, îmbunătățiri și extinderea sistemelor electrice industriale existente.",
         icon: "Wrench",
         href: "/ro/solutii/service-si-extindere",
       },
@@ -134,7 +134,7 @@ export const solutionsOverviewPageContent = {
       {
         title: "Mentenanță și service",
         text:
-          "Diagnosticare, prevenție și asistență tehnică ulterioară.",
+          "Diagnosticare, mentenanță preventivă și asistență tehnică ulterioară.",
         href: "/ro/servicii/mentenanta-si-service",
         icon: "Wrench",
       },
