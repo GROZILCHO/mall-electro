@@ -2,10 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-const EXPECTED_PRERENDER_ROUTE_COUNT = 76;
+const EXPECTED_PRERENDER_ROUTE_COUNT = 82;
 const EXPECTED_SITEMAP_URL_COUNT = 75;
 const EXPECTED_EN_SITEMAP_URL_COUNT = 24;
-const EXPECTED_RO_ROUTE_COUNT = 24;
+const EXPECTED_RO_ROUTE_COUNT = 27;
 const EXPECTED_RO_SITEMAP_URL_COUNT = 24;
 const SITE_URL = "https://mallelectro.com";
 
@@ -42,12 +42,22 @@ const bgLegalRoutes = [
   "/bg/usloviya-za-polzvane",
 ];
 
-const approvedRoRoutes = approvedBgEnPairs.map(([, , roPath]) => roPath);
+const legalRouteGroups = [
+  ["/bg/politika-za-poveritelnost", "/en/privacy-policy", "/ro/politica-de-confidentialitate"],
+  ["/bg/politika-za-biskvitki", "/en/cookie-policy", "/ro/politica-cookie"],
+  ["/bg/usloviya-za-polzvane", "/en/terms-of-use", "/ro/termeni-de-utilizare"],
+];
+
+const enLegalRoutes = legalRouteGroups.map(([, enPath]) => enPath);
+const roLegalRoutes = legalRouteGroups.map(([, , roPath]) => roPath);
+
+const approvedRoPublicRoutes = approvedBgEnPairs.map(([, , roPath]) => roPath);
+const approvedRoRoutes = [
+  ...approvedRoPublicRoutes,
+  ...roLegalRoutes,
+];
 
 const blockedRoRoutes = [
-  "/ro/politica-de-confidentialitate",
-  "/ro/politica-cookie",
-  "/ro/termeni-de-utilizare",
   "/ro/404",
 ];
 
@@ -155,10 +165,44 @@ const assertLanguageSwitcher = (routePaths) => {
   });
 };
 
+const legalRoutesByLocale = {
+  bg: bgLegalRoutes,
+  en: enLegalRoutes,
+  ro: roLegalRoutes,
+};
+
+const assertLocaleCorrectLegalFooter = (routePath, locale) => {
+  const filePath = routeToHtmlPath(routePath);
+  const html = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+  const footer = html.match(/<footer[\s\S]*?<\/footer>/)?.[0] ?? "";
+
+  if (!footer) {
+    fail(`Footer missing in ${relativePath(filePath)}.`);
+    return;
+  }
+
+  for (const legalPath of legalRoutesByLocale[locale]) {
+    assertHtmlIncludes(footer, `href="${legalPath}"`, `${locale.toUpperCase()} legal footer link`, filePath);
+  }
+
+  for (const [otherLocale, legalPaths] of Object.entries(legalRoutesByLocale)) {
+    if (otherLocale === locale) {
+      continue;
+    }
+
+    for (const legalPath of legalPaths) {
+      assertHtmlExcludes(footer, `href="${legalPath}"`, `wrong-locale ${otherLocale.toUpperCase()} legal footer link`, filePath);
+    }
+  }
+};
+
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
 
-const approvedEnRoutes = approvedBgEnPairs.map(([, enPath]) => enPath);
+const approvedEnRoutes = [
+  ...approvedBgEnPairs.map(([, enPath]) => enPath),
+  ...enLegalRoutes,
+];
 const allowedEnHtmlFiles = new Set(approvedEnRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
 const allowedRoHtmlFiles = new Set(approvedRoRoutes.map((routePath) => relativePath(routeToHtmlPath(routePath))));
 
@@ -169,6 +213,16 @@ for (const [bgPath, enPath] of approvedBgEnPairs) {
 
 for (const routePaths of approvedBgEnPairs) {
   assertLanguageSwitcher(routePaths);
+}
+
+for (const routePaths of legalRouteGroups) {
+  assertLanguageSwitcher(routePaths);
+}
+
+for (const routePaths of [...approvedBgEnPairs, ...legalRouteGroups]) {
+  routePaths.forEach((routePath, localeIndex) => {
+    assertLocaleCorrectLegalFooter(routePath, ["bg", "en", "ro"][localeIndex]);
+  });
 }
 
 for (const legalPath of bgLegalRoutes) {
@@ -281,7 +335,7 @@ for (const [bgPath, enPath, roPath] of approvedBgEnPairs) {
   assertHtmlIncludes(roHtml, `<meta property="og:locale" content="ro_RO" />`, "RO og:locale", roFile);
 }
 
-for (const roPath of approvedRoRoutes) {
+for (const roPath of approvedRoPublicRoutes) {
   const roFile = routeToHtmlPath(roPath);
   const roHtml = fs.existsSync(roFile) ? fs.readFileSync(roFile, "utf8") : "";
   const routeGroup = approvedBgEnPairs.find(([, , approvedRoPath]) => approvedRoPath === roPath);
@@ -337,9 +391,52 @@ for (const legalPath of bgLegalRoutes) {
     legalFile
   );
   assertHtmlExcludes(legalHtml, "hreflang=", "legal hreflang", legalFile);
-  assertHtmlExcludes(legalHtml, "/en/", "EN legal equivalent", legalFile);
-  assertHtmlExcludes(legalHtml, ">EN</", "EN legal switcher option", legalFile);
-  assertHtmlExcludes(legalHtml, ">RO</", "RO legal switcher option", legalFile);
+  assertHtmlExcludes(legalHtml, `<meta name="robots" content="noindex, follow" />`, "BG legal noindex", legalFile);
+}
+
+for (const [bgPath, enPath, roPath] of legalRouteGroups) {
+  const previewRoutes = [
+    { locale: "en", path: enPath },
+    { locale: "ro", path: roPath },
+  ];
+
+  for (const preview of previewRoutes) {
+    const previewFile = routeToHtmlPath(preview.path);
+    const previewHtml = fs.existsSync(previewFile) ? fs.readFileSync(previewFile, "utf8") : "";
+
+    assertPathExists(previewFile, `${preview.path} HTML`);
+    assertHtmlIncludes(
+      previewHtml,
+      `<meta name="robots" content="noindex, follow" />`,
+      `${preview.locale.toUpperCase()} legal noindex`,
+      previewFile
+    );
+    assertHtmlIncludes(
+      previewHtml,
+      `<link rel="canonical" href="${canonicalUrl(preview.path)}" />`,
+      `${preview.locale.toUpperCase()} legal self canonical`,
+      previewFile
+    );
+    assertHtmlExcludes(previewHtml, "hreflang=", `${preview.locale.toUpperCase()} legal hreflang`, previewFile);
+    if (/[А-Яа-я]/.test(previewHtml)) {
+      fail(`Bulgarian visible text found in ${relativePath(previewFile)}.`);
+    }
+
+    for (const legalPath of preview.locale === "en" ? enLegalRoutes : roLegalRoutes) {
+      assertHtmlIncludes(
+        previewHtml,
+        `href="${legalPath}"`,
+        `${preview.locale.toUpperCase()} locale-correct legal footer link`,
+        previewFile
+      );
+    }
+  }
+
+  const bgFile = routeToHtmlPath(bgPath);
+  const bgHtml = fs.existsSync(bgFile) ? fs.readFileSync(bgFile, "utf8") : "";
+  for (const legalPath of bgLegalRoutes) {
+    assertHtmlIncludes(bgHtml, `href="${legalPath}"`, "BG locale-correct legal footer link", bgFile);
+  }
 }
 
 const notFoundPath = path.join(distDir, "404", "index.html");
@@ -409,8 +506,8 @@ console.log(`- sitemap URLs: ${EXPECTED_SITEMAP_URL_COUNT}`);
 console.log(`- EN sitemap URLs: ${EXPECTED_EN_SITEMAP_URL_COUNT}`);
 console.log(`- RO sitemap URLs: ${EXPECTED_RO_SITEMAP_URL_COUNT}`);
 console.log("- hreflang: present on approved BG/EN/RO mapped pages only");
-console.log("- legal pages: BG-only without hreflang");
+console.log("- legal pages: 3 BG indexable + 6 EN/RO noindex previews, all without hreflang");
 console.log(`- RO routes: ${EXPECTED_RO_ROUTE_COUNT}`);
-console.log(`- language switcher groups: ${approvedBgEnPairs.length} with BG/EN/RO parity`);
+console.log(`- language switcher groups: ${approvedBgEnPairs.length + legalRouteGroups.length} with BG/EN/RO parity`);
 console.log("- RO noindex: absent on approved routes");
-console.log("- RO legal output: absent");
+console.log("- EN/RO legal sitemap URLs: absent");

@@ -55,7 +55,7 @@ const roRouteKeys = [
   "solutions", "solutionNewProductionSite", "solutionModernization", "solutionCableInfrastructureBase",
   "solutionServiceExpansion", "solutionHeightInstallation", "solutionPanelAutomationLine", "about", "industries",
   "industryHvp", "industryZarnoprerabotka", "industryMelnitsi", "industryAgro", "industryLogistika",
-  "industryProizvodstveniPredpriyatiya", "contact",
+  "industryProizvodstveniPredpriyatiya", "contact", "privacyPolicy", "cookiePolicy", "termsOfUse",
 ] as const satisfies readonly RouteKey[];
 
 const normalizePath = (path: string) => (path.length > 1 ? path.replace(/\/$/, "") : path);
@@ -118,7 +118,13 @@ export const loadSsrPagesForPath = async (path: string): Promise<SsrPages> => {
                                                 ? "logistikaIndustry"
                                                 : normalizedPath === "/en/industries/manufacturing-companies"
                                                   ? "proizvodstveniPredpriyatiyaIndustry"
-                                                  : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound"
+                                                  : normalizedPath === "/en/privacy-policy"
+                                                    ? "privacyPolicy"
+                                                    : normalizedPath === "/en/cookie-policy"
+                                                      ? "cookiePolicy"
+                                                      : normalizedPath === "/en/terms-of-use"
+                                                        ? "termsOfUse"
+                                                        : bgRoutePageKeys[path] ?? bgRoutePageKeys[normalizedPath] ?? "notFound"
   );
   const module = await pageLoaders[pageKey]();
 
@@ -185,6 +191,9 @@ const AppRoutes = ({ ssrPages = {} }: { ssrPages?: SsrPages }) => {
             path="/en/industries/manufacturing-companies"
             element={page("proizvodstveniPredpriyatiyaIndustry", { locale: "en" })}
           />
+          <Route path="/en/privacy-policy" element={page("privacyPolicy", { locale: "en" })} />
+          <Route path="/en/cookie-policy" element={page("cookiePolicy", { locale: "en" })} />
+          <Route path="/en/terms-of-use" element={page("termsOfUse", { locale: "en" })} />
           <Route path="/" element={<Navigate to="/bg/" replace />} />
           <Route path="/services" element={<Navigate to="/bg/uslugi" replace />} />
           <Route path="/about" element={<Navigate to="/bg/za-nas" replace />} />

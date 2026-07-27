@@ -35,7 +35,7 @@ export const localizedRoutes = {
     termsOfUse: active("/bg/usloviya-za-polzvane"),
     notFound: active("/404"),
   },
-  // Future inactive route data only. EN detail slugs are planned architecture placeholders, not approved published copy.
+  // EN legal routes are active noindex previews; existing published EN routes retain their current registry status.
   en: {
     home: planned("/en/"),
     services: planned("/en/services"),
@@ -61,12 +61,12 @@ export const localizedRoutes = {
     industryLogistika: planned("/en/industries/logistics"),
     industryProizvodstveniPredpriyatiya: planned("/en/industries/manufacturing-companies"),
     contact: planned("/en/contact"),
-    privacyPolicy: planned("/en/privacy-policy"),
-    cookiePolicy: planned("/en/cookie-policy"),
-    termsOfUse: planned("/en/terms-of-use"),
+    privacyPolicy: active("/en/privacy-policy"),
+    cookiePolicy: active("/en/cookie-policy"),
+    termsOfUse: active("/en/terms-of-use"),
     notFound: planned("/en/404"),
   },
-  // Approved RO preview routes are active; legal and system routes remain blocked.
+  // Approved RO public routes and legal noindex previews are active; the system route remains blocked.
   ro: {
     home: active("/ro/"),
     services: active("/ro/servicii"),
@@ -92,9 +92,9 @@ export const localizedRoutes = {
     industryLogistika: active("/ro/industrii/logistica"),
     industryProizvodstveniPredpriyatiya: active("/ro/industrii/unitati-de-productie"),
     contact: active("/ro/contact"),
-    privacyPolicy: planned("/ro/politica-de-confidentialitate"),
-    cookiePolicy: planned("/ro/politica-cookie"),
-    termsOfUse: planned("/ro/termeni-de-utilizare"),
+    privacyPolicy: active("/ro/politica-de-confidentialitate"),
+    cookiePolicy: active("/ro/politica-cookie"),
+    termsOfUse: active("/ro/termeni-de-utilizare"),
     notFound: planned("/ro/404"),
   },
 } as const satisfies LocalizedRoutes;

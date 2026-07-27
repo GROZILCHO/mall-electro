@@ -19,6 +19,7 @@ export const languageSwitchRouteKeys = [
   "solutionCableInfrastructureBase", "solutionServiceExpansion", "solutionHeightInstallation",
   "industryAgro", "industryHvp", "industryZarnoprerabotka", "industryMelnitsi",
   "industryLogistika", "industryProizvodstveniPredpriyatiya",
+  "privacyPolicy", "cookiePolicy", "termsOfUse",
 ] as const satisfies readonly RouteKey[];
 
 const switchableRouteKeys = new Set<RouteKey>(languageSwitchRouteKeys);
