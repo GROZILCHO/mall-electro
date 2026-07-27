@@ -26,8 +26,19 @@ interface ServicesProps {
 
 const Services: React.FC<ServicesProps> = ({ content = defaultContent }) => {
   const isEnglish = content.badge === "System capabilities";
-  const serviceLabel = isEnglish ? "Service" : "Услуга";
-  const detailLabel = isEnglish ? "View details" : "ВИЖ ПОДРОБНОСТИ";
+  const isRomanian = content.badge === "Capabilitățile sistemului";
+
+  const serviceLabel = isEnglish
+    ? "Service"
+    : isRomanian
+      ? "Serviciu"
+      : "Услуга";
+
+  const detailLabel = isEnglish
+    ? "View details"
+    : isRomanian
+      ? "Vezi detalii"
+      : "ВИЖ ПОДРОБНОСТИ";
 
   return (
     <section id="services" className="py-28 bg-[#F3F6FB] relative overflow-hidden">
