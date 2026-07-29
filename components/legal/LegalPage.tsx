@@ -75,6 +75,11 @@ const LegalPage: React.FC<LegalPageProps> = ({ locale, pageKey }) => {
     ? details.pendingPublication
     : LEGAL_PUBLICATION_DATE;
 
+  const secondaryCtaIcon =
+    pageKey === "privacyPolicy"
+      ? "FileCheck"
+      : "ShieldCheck";
+
   return (
     <div>
       <SEO page={legalSeoPages[locale][pageKey]} />
@@ -91,6 +96,7 @@ const LegalPage: React.FC<LegalPageProps> = ({ locale, pageKey }) => {
         secondaryCtaText={hero.secondaryCtaText}
         secondaryCtaHref={getLocalizedPath(hero.secondaryCtaRouteKey, locale)}
         secondaryCtaVariant="dark"
+        secondaryCtaIcon={secondaryCtaIcon}
         overlayProjectLabel={hero.overlayProjectLabel}
         overlayStatusLabel={hero.overlayStatusLabel}
       />

@@ -22,6 +22,22 @@ const EXPECTED_LEGAL_ENTITY_BY_LOCALE = {
 };
 const EXPECTED_COMPANY_NUMBER = "205154709";
 const EXPECTED_VAT_NUMBER = "BG205154709";
+const BLOCKED_EXTERNAL_FONT_MARKERS = [
+  "fonts.googleapis.com",
+  "fonts.gstatic.com",
+  "Google Fonts",
+];
+const EXPECTED_LOCAL_FONT_ASSET_STEMS = [
+  "inter-cyrillic-wght-normal",
+  "inter-latin-ext-wght-normal",
+  "inter-latin-wght-normal",
+  "roboto-cyrillic-wght-normal",
+  "roboto-latin-ext-wght-normal",
+  "roboto-latin-wght-normal",
+  "roboto-cyrillic-wght-italic",
+  "roboto-latin-ext-wght-italic",
+  "roboto-latin-wght-italic",
+];
 
 const approvedBgEnPairs = [
   ["/bg/", "/en/", "/ro/"],
@@ -224,6 +240,24 @@ const assertLegalDocumentFacts = (routePath, locale) => {
 
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
+
+const searchableOutputFiles = walkFiles(
+  distDir,
+  (filePath) => /\.(?:css|html|js|json|map|svg|txt|webmanifest|xml)$/i.test(filePath)
+);
+for (const filePath of searchableOutputFiles) {
+  const output = fs.readFileSync(filePath, "utf8");
+  for (const marker of BLOCKED_EXTERNAL_FONT_MARKERS) {
+    assertHtmlExcludes(output, marker, `blocked external font marker ${marker}`, filePath);
+  }
+}
+
+const localFontAssets = walkFiles(distDir, (filePath) => filePath.endsWith(".woff2"));
+for (const assetStem of EXPECTED_LOCAL_FONT_ASSET_STEMS) {
+  if (!localFontAssets.some((filePath) => path.basename(filePath).includes(assetStem))) {
+    fail(`Required local WOFF2 font asset missing for ${assetStem}.`);
+  }
+}
 
 const approvedEnRoutes = [
   ...approvedBgEnPairs.map(([, enPath]) => enPath),
