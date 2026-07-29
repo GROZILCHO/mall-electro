@@ -1,6 +1,15 @@
 import React, { type ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { legalContent, type LegalPageKey, type LegalTextPart } from "../../data/i18n/legalContent";
+import {
+  LEGAL_COMPANY_NUMBER,
+  LEGAL_DOCUMENT_VERSION,
+  LEGAL_PUBLICATION_DATE,
+  LEGAL_VAT_NUMBER,
+  legalContent,
+  legalDocumentDetails,
+  type LegalPageKey,
+  type LegalTextPart,
+} from "../../data/i18n/legalContent";
 import { getLocalizedPath } from "../../data/i18n/routes";
 import type { SupportedLocale } from "../../data/i18n/types";
 import { SITE_EMAIL, SITE_PHONE_DISPLAY } from "../../utils/siteConfig";
@@ -61,6 +70,10 @@ const renderTextPart = (part: LegalTextPart, locale: SupportedLocale, key: numbe
 const LegalPage: React.FC<LegalPageProps> = ({ locale, pageKey }) => {
   const content = legalContent[locale][pageKey];
   const hero = content.hero;
+  const details = legalDocumentDetails[locale];
+  const publicationDate = LEGAL_PUBLICATION_DATE === "YYYY-MM-DD"
+    ? details.pendingPublication
+    : LEGAL_PUBLICATION_DATE;
 
   return (
     <div>
@@ -85,6 +98,28 @@ const LegalPage: React.FC<LegalPageProps> = ({ locale, pageKey }) => {
       <section className="bg-white py-20">
         <div className="container mx-auto max-w-4xl px-6 lg:px-12">
           <div className="space-y-10 text-[#1C2A39]">
+            <div className="grid gap-6 rounded border border-[#E7EDF5] bg-[#F5F7FA] p-6 md:grid-cols-2">
+              <div>
+                <h2 className="mb-4 text-xl font-bold">{details.companyDetailsHeading}</h2>
+                <dl className="space-y-3 text-sm text-[#1C2A39]/80">
+                  <div><dt className="font-semibold">{details.legalEntityLabel}</dt><dd>{details.legalEntity}</dd></div>
+                  <div><dt className="font-semibold">{details.companyNumberLabel}</dt><dd>{LEGAL_COMPANY_NUMBER}</dd></div>
+                  <div><dt className="font-semibold">{details.vatNumberLabel}</dt><dd>{LEGAL_VAT_NUMBER}</dd></div>
+                  <div><dt className="font-semibold">{details.registeredOfficeLabel}</dt><dd>{details.registeredOffice}</dd></div>
+                  <div><dt className="font-semibold">{details.tradeNameLabel}</dt><dd>{details.tradeName}</dd></div>
+                  <div>
+                    <dt className="font-semibold">{details.contactEmailLabel}</dt>
+                    <dd><a className="text-[#4A90E2] hover:text-[#FF6D2E]" href={`mailto:${SITE_EMAIL}`}>{SITE_EMAIL}</a></dd>
+                  </div>
+                </dl>
+              </div>
+              <dl className="space-y-3 text-sm text-[#1C2A39]/80 md:border-l md:border-[#E7EDF5] md:pl-6">
+                <div><dt className="font-semibold">{details.versionLabel}</dt><dd>{LEGAL_DOCUMENT_VERSION}</dd></div>
+                <div><dt className="font-semibold">{details.effectiveDateLabel}</dt><dd>{publicationDate}</dd></div>
+                <div><dt className="font-semibold">{details.lastUpdatedLabel}</dt><dd>{publicationDate}</dd></div>
+              </dl>
+            </div>
+
             {content.notice && (
               <div className="rounded border border-[#E7EDF5] bg-[#F5F7FA] p-6">
                 <p className="text-sm leading-relaxed text-[#1C2A39]/80">{content.notice}</p>

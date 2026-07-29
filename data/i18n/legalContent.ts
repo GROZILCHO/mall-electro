@@ -1,5 +1,61 @@
 import type { RouteKey, SupportedLocale } from "./types";
 
+export const LEGAL_DOCUMENT_VERSION = "1.0";
+export const LEGAL_PUBLICATION_DATE = "YYYY-MM-DD";
+export const LEGAL_COMPANY_NUMBER = "205154709";
+export const LEGAL_VAT_NUMBER = "BG205154709";
+
+export const legalDocumentDetails = {
+  bg: {
+    pendingPublication: "Предстои публикуване",
+    versionLabel: "Версия",
+    effectiveDateLabel: "В сила от",
+    lastUpdatedLabel: "Последна актуализация",
+    companyDetailsHeading: "Данни за дружеството",
+    legalEntityLabel: "Юридическо лице",
+    legalEntity: "УНИ КОМПАНИ ЕООД",
+    companyNumberLabel: "ЕИК",
+    vatNumberLabel: "ДДС номер",
+    registeredOfficeLabel: "Седалище и адрес на управление",
+    registeredOffice: "Република България, 1000 София, район Оборище, ул. „Дунав“ № 9, офис 1",
+    tradeNameLabel: "Търговско представяне на сайта",
+    tradeName: "Mall Electro",
+    contactEmailLabel: "Имейл за контакт",
+  },
+  en: {
+    pendingPublication: "Pending publication",
+    versionLabel: "Version",
+    effectiveDateLabel: "Effective date",
+    lastUpdatedLabel: "Last updated",
+    companyDetailsHeading: "Company details",
+    legalEntityLabel: "Legal entity",
+    legalEntity: "UNI COMPANI EOOD",
+    companyNumberLabel: "Company number / EIK",
+    vatNumberLabel: "VAT number",
+    registeredOfficeLabel: "Registered office",
+    registeredOffice: "9 Dunav Street, Office 1, Oborishte District, 1000 Sofia, Republic of Bulgaria",
+    tradeNameLabel: "Website/trade presentation name",
+    tradeName: "Mall Electro",
+    contactEmailLabel: "Contact email",
+  },
+  ro: {
+    pendingPublication: "În așteptarea publicării",
+    versionLabel: "Versiune",
+    effectiveDateLabel: "Data intrării în vigoare",
+    lastUpdatedLabel: "Ultima actualizare",
+    companyDetailsHeading: "Datele societății",
+    legalEntityLabel: "Persoană juridică",
+    legalEntity: "UNI COMPANI EOOD",
+    companyNumberLabel: "Număr companie / EIK",
+    vatNumberLabel: "Cod de TVA",
+    registeredOfficeLabel: "Sediu social",
+    registeredOffice: "Strada Dunav nr. 9, biroul 1, districtul Oborishte, 1000 Sofia, Republica Bulgaria",
+    tradeNameLabel: "Denumire de prezentare comercială a site-ului",
+    tradeName: "Mall Electro",
+    contactEmailLabel: "E-mail de contact",
+  },
+} as const satisfies Record<SupportedLocale, Record<string, string>>;
+
 export type LegalPageKey = "privacyPolicy" | "cookiePolicy" | "termsOfUse";
 
 export type LegalTextPart =
@@ -51,19 +107,23 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
       sections: [
         {
           heading: "Администратор на лични данни",
-          paragraphs: [["Администратор на личните данни е Mall Electro. За въпроси, свързани с поверителността и обработването на лични данни, можете да се свържете с нас на ", { type: "email" }, " или на телефон ", { type: "phone" }, "."]],
+          paragraphs: [["Администратор на личните данни е УНИ КОМПАНИ ЕООД, което представя дейността си на сайта под името Mall Electro. За въпроси, свързани с поверителността и обработването на лични данни, можете да се свържете с нас на ", { type: "email" }, " или на телефон ", { type: "phone" }, "."]],
         },
         {
           heading: "Какви данни може да събираме",
           items: [
-            "Име, фирма, телефон и имейл, когато изпратите запитване.",
-            "Информация за проект, обект или техническо задание, предоставена от вас.",
-            "Технически данни, нужни за нормалната работа и сигурност на сайта.",
+            "Име, телефон и имейл, въведени във формата за контакт.",
+            "Избран тип проект и текст на съобщението, включително информация за проект, обект или техническо задание, която предоставите.",
+            "Технически данни от заявките към сайта, които могат да бъдат обработвани от хостинг или защитна инфраструктура за доставка, сигурност и диагностика; конкретните логове и срокове подлежат на проверка в хостинг средата.",
           ],
         },
         {
           heading: "Цели и правни основания",
-          paragraphs: [["Данните се обработват за отговор на запитвания, подготовка на оферти, комуникация по проекти, изпълнение на договорни или преддоговорни отношения, счетоводни и законови задължения, както и за защита на легитимни интереси, свързани със сигурността на сайта и коректната бизнес комуникация."]],
+          paragraphs: [["Данните от запитвания се обработват, за да се предприемат стъпки по ваше искане преди сключване на договор, включително отговор, техническо уточнение и подготовка на оферта. Когато е приложимо, обработването може да е необходимо за изпълнение на договор или законово задължение. Легитимен интерес може да бъде основание за сигурността на сайта, предотвратяване на злоупотреби и коректна бизнес комуникация. Съгласие се използва само когато е поискано отделно и не е общо основание за всяко запитване."]],
+        },
+        {
+          heading: "Начин на изпращане на формата",
+          paragraphs: [["Формата се обработва в браузъра и подготвя имейл до ", { type: "email" }, " чрез функцията mailto. Сайтът не изпраща съдържанието на формата към собствен backend или към външен form processor. Реалното изпращане се извършва от избрания от вас имейл клиент и може да включва обработване от вашия и от нашия доставчик на електронна поща."]],
         },
         {
           heading: "Срокове за съхранение",
@@ -71,8 +131,9 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         },
         {
           heading: "Получатели и обработващи лица",
-          paragraphs: [["Достъп до данни може да имат доставчици на хостинг, имейл, техническа поддръжка, счетоводни или правни услуги, когато това е необходимо за дейността и при подходящи мерки за защита. Данни могат да бъдат предоставени и на държавни органи, когато това се изисква по закон."]],
+          paragraphs: [["Съобщенията се получават чрез използваните доставчици на електронна поща. Доставчици на хостинг, сигурност и техническа поддръжка могат да обработват технически данни от заявките към сайта. Счетоводни или правни доставчици могат да получат данни само когато това е необходимо за конкретни отношения. Данни могат да бъдат предоставени и на държавни органи, когато това се изисква по закон. Конкретните доставчици и договорни роли изискват оперативно потвърждение преди публикуване."]],
         },
+        { heading: "Технически услуги, международни трансфери и профилиране", paragraphs: [["Генерираният сайт прави заявки към Google Fonts. Доставчикът, местоположението на обработването и евентуалните механизми за международен трансфер трябва да бъдат потвърдени чрез преглед на живия сайт и договорните настройки преди публикуване. Във frontend реализацията не са открити автоматизирано вземане на решения или профилиране."]] },
         {
           heading: "Вашите права",
           paragraphs: [
@@ -99,11 +160,12 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         overlayProjectLabel: "ПРОЕКТ: #8842",
         overlayStatusLabel: "ПРЕГЛЕД НА ОБЕКТА",
       },
-      notice: "Към момента сайтът не използва добавени аналитични или маркетингови скриптове. Ако такива бъдат въведени по-късно, политиката ще бъде актуализирана и ще се приложи подходящ механизъм за съгласие.",
+      notice: "При одита на frontend изходния код и генерирания build не са открити аналитични или маркетингови скриптове. Това е техническа констатация, а не потвърждение за поведението на хостинг, CDN, защитна стена или други услуги в реалната среда.",
       sections: [
         { heading: "Какво са бисквитките", paragraphs: [["Бисквитките са малки файлове или записи, които сайтът може да съхранява в браузъра, за да поддържа основна функционалност, сигурност, предпочитания или статистика."]] },
-        { heading: "Текущо използване", paragraphs: [["Сайтът може да използва техническо съхранение, необходимо за нормално зареждане, сигурност, кеширане и коректна работа на статичните страници. Не са добавени отделни аналитични, рекламни или поведенчески проследяващи бисквитки."]] },
-        { heading: "Аналитични и маркетингови бисквитки", paragraphs: [["Ако в бъдеще бъдат добавени аналитични или маркетингови инструменти, те ще бъдат описани тук и ще се използват само при спазване на приложимите изисквания за информираност и съгласие."]] },
+        { heading: "Фактически инвентар и статус", items: ["Проверено в чиста Chrome Incognito сесия: не са открити first-party бисквитки от mallelectro.com.", "Browser storage: не са открити Local Storage, Session Storage или IndexedDB записи.", "Опционални аналитични и маркетингови технологии: не са открити Google Analytics, Google Tag Manager, gtag, analytics/collect, Facebook tracker, DoubleClick, Hotjar или Microsoft Clarity.", "Вградено съдържание и CAPTCHA: не са открити YouTube, Google Maps или reCAPTCHA.", "Трети страни: генерираният HTML зарежда Google Fonts като външен технически ресурс. Бисквитката __Secure-ENID е наблюдавана само за домейн .google.com и не е first-party бисквитка на Mall Electro; няма доказателство, че е зададена от сайта.", "Google Search Console: конфигуриран е чрез DNS/domain verification за индексиране и наблюдение на резултатите от търсене; не е вграден аналитичен скрипт или first-party бисквитка.", "Изисква проверка на живо след всяка инфраструктурна промяна: Set-Cookie headers, hosting/CDN/WAF механизми и реални network requests."] },
+        { heading: "Текущо използване", paragraphs: [["При проверената конфигурация не са открити first-party бисквитки или browser storage на Mall Electro. Хостинг или защитна инфраструктура може да обработва server request logs за доставка, сигурност и диагностика; server logs не са browser cookies и конкретното им съдържание и срокове изискват потвърждение от доставчика."]] },
+        { heading: "Аналитични и маркетингови бисквитки", paragraphs: [["Ако в бъдеще бъдат добавени опционални аналитични, маркетингови или други third-party tracking технологии, политиката и всеки необходим механизъм за съгласие ще бъдат актуализирани преди активирането им."]] },
         { heading: "Управление на бисквитки", paragraphs: [["Можете да управлявате или изтривате бисквитки от настройките на браузъра си. Ограничаването на технически файлове може да повлияе на начина, по който някои сайтове се зареждат или функционират."]] },
         { heading: "Връзка с поверителността", paragraphs: [["Повече информация за обработването на лични данни е налична в ", { type: "routeLink", routeKey: "privacyPolicy", label: "Политиката за поверителност" }, "."]] },
       ],
@@ -123,7 +185,7 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
       },
       sections: [
         { heading: "Информационен характер", paragraphs: [["Съдържанието на сайта е предоставено с информационна цел и описва общо направление на дейности, услуги и индустриални приложения. То не представлява техническо задание, проектна документация или индивидуална консултация."]] },
-        { heading: "Оферти и договори", paragraphs: [["Публикуваната информация не представлява автоматична оферта или договорно предложение. Всеки проект, оглед, техническо задание, срок и цена се уточняват индивидуално според конкретния обект, обхват и изисквания."]] },
+        { heading: "Оферти и договори", paragraphs: [["Публикуваната информация не представлява автоматична оферта или договорно предложение. Конкретна услуга изисква запитване и техническо уточнение, а параметрите на проекта се потвърждават индивидуално. Офертата и договорът, когато са приложими, са отделни от информацията на сайта."]] },
         { heading: "Интелектуална собственост", paragraphs: [["Текстовете, структурата, изображенията, графичните елементи и другото съдържание на сайта са защитени. Използване, копиране или публикуване извън обичайното разглеждане на сайта е допустимо само при приложимо право или предварително съгласие."]] },
         { heading: "Допустимо използване", paragraphs: [["Не се допуска използване на сайта по начин, който нарушава закона, засяга сигурността, претоварва инфраструктурата, въвежда зловреден код или възпрепятства нормалното му функциониране."]] },
         { heading: "Ограничаване на отговорността", paragraphs: [["Mall Electro полага усилия информацията на сайта да бъде актуална и точна, но не гарантира, че всички материали са изчерпателни или приложими към всеки конкретен проект. Решенията за електро системи следва да се вземат след технически преглед и професионална оценка."]] },
@@ -147,11 +209,13 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
       },
       notice: "This text is for information purposes and is subject to final review by the company owner or legal counsel before official publication.",
       sections: [
-        { heading: "Personal data controller", paragraphs: [["The personal data controller is Mall Electro. For questions related to privacy and the processing of personal data, you can contact us at ", { type: "email" }, " or by telephone at ", { type: "phone" }, "."]] },
-        { heading: "Data we may collect", items: ["Name, company, telephone number and email address when you submit an inquiry.", "Information about a project, site or technical assignment provided by you.", "Technical data required for the normal operation and security of the website."] },
-        { heading: "Purposes and legal grounds", paragraphs: [["The data is processed to respond to inquiries, prepare quotations, communicate about projects, perform contractual or pre-contractual relations, comply with accounting and legal obligations, and protect legitimate interests related to website security and proper business communication."]] },
+        { heading: "Personal data controller", paragraphs: [["The personal data controller is UNI COMPANI EOOD, which presents its activities on the website under the name Mall Electro. For questions related to privacy and the processing of personal data, you can contact us at ", { type: "email" }, " or by telephone at ", { type: "phone" }, "."]] },
+        { heading: "Data we may collect", items: ["Name, telephone number and email address entered in the contact form.", "Selected project type and message text, including any project, site or technical assignment information that you provide.", "Technical request data that may be processed by hosting or security infrastructure for delivery, security and diagnostics; the specific logs and retention periods require verification in the hosting environment."] },
+        { heading: "Purposes and legal grounds", paragraphs: [["Inquiry data is processed to take steps at your request before entering into a contract, including responding, clarifying technical requirements and preparing a quotation. Where applicable, processing may be necessary for the performance of a contract or compliance with a legal obligation. Legitimate interests may provide a basis for website security, abuse prevention and proper business communication. Consent is used only where requested separately and is not the general basis for every inquiry."]] },
+        { heading: "How the form is sent", paragraphs: [["The form is processed in the browser and prepares an email to ", { type: "email" }, " through a mailto link. The website does not send the form content to its own backend or to an external form processor. The actual message is sent by your selected email client and may be processed by your email provider and ours."]] },
         { heading: "Retention periods", paragraphs: [["We retain personal data only for the period necessary for the relevant purpose or for the periods required by applicable law. Data from inquiries may be retained for subsequent communication about a specific project unless you request its deletion and there is no legal basis for longer retention."]] },
-        { heading: "Recipients and processors", paragraphs: [["Hosting, email, technical support, accounting or legal service providers may have access to data when this is necessary for the business and subject to appropriate safeguards. Data may also be provided to public authorities where required by law."]] },
+        { heading: "Recipients and processors", paragraphs: [["Messages are received through the email service providers in use. Hosting, security and technical support providers may process technical request data. Accounting or legal service providers may receive data only where necessary for a specific relationship. Data may also be provided to public authorities where required by law. The specific providers and contractual roles require operational confirmation before publication."]] },
+        { heading: "Technical services, international transfers and profiling", paragraphs: [["The generated website makes requests to Google Fonts. The provider, processing location and any applicable international transfer safeguards must be confirmed through live-site and contractual review before publication. No automated decision-making or profiling was detected in the frontend implementation."]] },
         { heading: "Your rights", paragraphs: [["You have the right of access, rectification, erasure, restriction of processing, objection, data portability and withdrawal of consent where processing is based on consent."], ["You have the right to lodge a complaint with the Commission for Personal Data Protection in the Republic of Bulgaria if you believe that the processing of your data infringes the applicable rules."]] },
         { heading: "Contact for requests", paragraphs: [["For requests related to personal data, write to ", { type: "email" }, ". For information about technical files and storage, see the ", { type: "routeLink", routeKey: "cookiePolicy", label: "Cookie Policy" }, "."]] },
       ],
@@ -169,11 +233,12 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         overlayProjectLabel: "PROJECT: #8842",
         overlayStatusLabel: "SITE REVIEW",
       },
-      notice: "The website currently does not use any added analytics or marketing scripts. If such scripts are introduced later, this policy will be updated and an appropriate consent mechanism will be implemented.",
+      notice: "The audit of the frontend source and generated build did not detect analytics or marketing scripts. This is a technical finding, not confirmation of the behaviour of hosting, CDN, firewall or other services in the live environment.",
       sections: [
         { heading: "What cookies are", paragraphs: [["Cookies are small files or records that a website may store in the browser to support basic functionality, security, preferences or statistics."]] },
-        { heading: "Current use", paragraphs: [["The website may use technical storage necessary for normal loading, security, caching and the proper operation of static pages. No separate analytics, advertising or behavioural tracking cookies have been added."]] },
-        { heading: "Analytics and marketing cookies", paragraphs: [["If analytics or marketing tools are added in the future, they will be described here and will only be used in compliance with the applicable information and consent requirements."]] },
+        { heading: "Factual inventory and status", items: ["Verified in a clean Chrome Incognito session: no first-party cookies from mallelectro.com were detected.", "Browser storage: no Local Storage, Session Storage or IndexedDB entries were detected.", "Optional analytics and marketing technologies: Google Analytics, Google Tag Manager, gtag, analytics/collect, Facebook tracker, DoubleClick, Hotjar and Microsoft Clarity were not detected.", "Embedded content and CAPTCHA: YouTube, Google Maps and reCAPTCHA were not detected.", "Third-party: the generated HTML loads Google Fonts as an external technical resource. The __Secure-ENID cookie was observed only under the .google.com domain and is not a Mall Electro first-party cookie; there is no evidence that it was set by the website.", "Google Search Console: configured through DNS/domain verification for search indexing and performance monitoring; it is not an embedded analytics script or a first-party cookie.", "Requires live verification after any infrastructure change: Set-Cookie headers, hosting/CDN/WAF mechanisms and actual network requests."] },
+        { heading: "Current use", paragraphs: [["In the verified configuration, no Mall Electro first-party cookies or browser storage were detected. Hosting or security infrastructure may process server request logs for delivery, security and diagnostics; server logs are not browser cookies, and their specific content and retention require provider confirmation."]] },
+        { heading: "Analytics and marketing cookies", paragraphs: [["If optional analytics, marketing or other third-party tracking technologies are introduced later, this policy and any required consent mechanism will be updated before activation."]] },
         { heading: "Managing cookies", paragraphs: [["You can manage or delete cookies through your browser settings. Restricting technical files may affect how some websites load or function."]] },
         { heading: "Relationship to privacy", paragraphs: [["More information about the processing of personal data is available in the ", { type: "routeLink", routeKey: "privacyPolicy", label: "Privacy Policy" }, "."]] },
       ],
@@ -193,7 +258,7 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
       },
       sections: [
         { heading: "Informational nature", paragraphs: [["The website content is provided for information purposes and gives a general description of activities, services and industrial applications. It does not constitute a technical assignment, project documentation or individual consultation."]] },
-        { heading: "Quotations and contracts", paragraphs: [["The published information does not constitute an automatic quotation or contractual offer. Each project, site inspection, technical assignment, deadline and price is agreed individually according to the specific site, scope and requirements."]] },
+        { heading: "Quotations and contracts", paragraphs: [["The published information does not constitute an automatic quotation or contractual offer. A specific service requires an inquiry and technical clarification, and project parameters are confirmed individually. Any applicable quotation and contract are separate from the information on the website."]] },
         { heading: "Intellectual property", paragraphs: [["The texts, structure, images, graphic elements and other website content are protected. Use, copying or publication beyond ordinary viewing of the website is permitted only where allowed by applicable law or with prior consent."]] },
         { heading: "Acceptable use", paragraphs: [["The website must not be used in a manner that violates the law, compromises security, overloads the infrastructure, introduces malicious code or prevents its normal operation."]] },
         { heading: "Limitation of liability", paragraphs: [["Mall Electro endeavours to keep the information on the website current and accurate, but does not guarantee that all materials are complete or applicable to every specific project. Decisions concerning electrical systems should be made following a technical review and professional assessment."]] },
@@ -217,11 +282,13 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
       },
       notice: "Prezentul text are caracter informativ și este supus unei verificări finale de către proprietarul societății sau de către un consultant juridic înainte de publicarea oficială.",
       sections: [
-        { heading: "Operatorul de date cu caracter personal", paragraphs: [["Operatorul datelor cu caracter personal este Mall Electro. Pentru întrebări privind confidențialitatea și prelucrarea datelor cu caracter personal, ne puteți contacta la ", { type: "email" }, " sau la numărul de telefon ", { type: "phone" }, "."]] },
-        { heading: "Ce date putem colecta", items: ["Numele, societatea, numărul de telefon și adresa de e-mail atunci când trimiteți o solicitare.", "Informații despre un proiect, un obiectiv sau o temă tehnică furnizate de dumneavoastră.", "Date tehnice necesare pentru funcționarea normală și securitatea site-ului."] },
-        { heading: "Scopuri și temeiuri juridice", paragraphs: [["Datele sunt prelucrate pentru a răspunde solicitărilor, a pregăti oferte, a comunica în legătură cu proiectele, a derula relații contractuale sau precontractuale, a respecta obligațiile contabile și legale, precum și pentru protejarea intereselor legitime legate de securitatea site-ului și de comunicarea comercială corectă."]] },
+        { heading: "Operatorul de date cu caracter personal", paragraphs: [["Operatorul datelor cu caracter personal este UNI COMPANI EOOD, care își prezintă activitatea pe site sub denumirea Mall Electro. Pentru întrebări privind confidențialitatea și prelucrarea datelor cu caracter personal, ne puteți contacta la ", { type: "email" }, " sau la numărul de telefon ", { type: "phone" }, "."]] },
+        { heading: "Ce date putem colecta", items: ["Numele, numărul de telefon și adresa de e-mail introduse în formularul de contact.", "Tipul de proiect selectat și textul mesajului, inclusiv informațiile despre un proiect, un obiectiv sau o temă tehnică pe care le furnizați.", "Date tehnice privind solicitările, care pot fi prelucrate de infrastructura de găzduire sau securitate pentru livrare, securitate și diagnosticare; jurnalele și perioadele de păstrare concrete necesită verificare în mediul de găzduire."] },
+        { heading: "Scopuri și temeiuri juridice", paragraphs: [["Datele din solicitări sunt prelucrate pentru efectuarea unor demersuri la cererea dumneavoastră înainte de încheierea unui contract, inclusiv pentru răspuns, clarificarea cerințelor tehnice și pregătirea unei oferte. După caz, prelucrarea poate fi necesară pentru executarea unui contract sau respectarea unei obligații legale. Interesele legitime pot constitui un temei pentru securitatea site-ului, prevenirea abuzurilor și comunicarea comercială corectă. Consimțământul este utilizat numai atunci când este solicitat separat și nu reprezintă temeiul general pentru fiecare solicitare."]] },
+        { heading: "Modul de trimitere a formularului", paragraphs: [["Formularul este prelucrat în browser și pregătește un e-mail către ", { type: "email" }, " prin intermediul unui link mailto. Site-ul nu trimite conținutul formularului către un backend propriu sau către un procesator extern de formulare. Mesajul efectiv este trimis de clientul de e-mail ales de dumneavoastră și poate fi prelucrat de furnizorul dumneavoastră de e-mail și de al nostru."]] },
         { heading: "Perioade de păstrare", paragraphs: [["Păstrăm datele cu caracter personal numai pe perioada necesară scopului respectiv sau pe perioadele impuse de legislația aplicabilă. Datele din solicitări pot fi păstrate pentru comunicări ulterioare privind un anumit proiect, cu excepția cazului în care solicitați ștergerea acestora și nu există un temei legal pentru o păstrare mai îndelungată."]] },
-        { heading: "Destinatari și persoane împuternicite", paragraphs: [["Furnizorii de găzduire, e-mail, asistență tehnică, servicii contabile sau juridice pot avea acces la date atunci când acest lucru este necesar pentru desfășurarea activității și sub rezerva unor măsuri de protecție adecvate. Datele pot fi furnizate și autorităților publice atunci când acest lucru este impus de lege."]] },
+        { heading: "Destinatari și persoane împuternicite", paragraphs: [["Mesajele sunt primite prin intermediul furnizorilor de servicii de e-mail utilizați. Furnizorii de găzduire, securitate și asistență tehnică pot prelucra date tehnice privind solicitările. Furnizorii de servicii contabile sau juridice pot primi date numai atunci când acest lucru este necesar pentru o relație concretă. Datele pot fi furnizate și autorităților publice atunci când acest lucru este impus de lege. Furnizorii concreți și rolurile contractuale necesită confirmare operațională înainte de publicare."]] },
+        { heading: "Servicii tehnice, transferuri internaționale și profilare", paragraphs: [["Site-ul generat efectuează solicitări către Google Fonts. Furnizorul, locul prelucrării și eventualele garanții aplicabile transferurilor internaționale trebuie confirmate prin verificarea site-ului live și a condițiilor contractuale înainte de publicare. În implementarea frontend nu au fost detectate procese decizionale automatizate sau profilare."]] },
         { heading: "Drepturile dumneavoastră", paragraphs: [["Aveți dreptul de acces, rectificare, ștergere, restricționare a prelucrării, opoziție, portabilitate a datelor și retragere a consimțământului atunci când prelucrarea se bazează pe consimțământ."], ["Aveți dreptul să depuneți o plângere la Comisia pentru Protecția Datelor cu Caracter Personal din Republica Bulgaria dacă apreciați că prelucrarea datelor dumneavoastră încalcă normele aplicabile."]] },
         { heading: "Contact pentru solicitări", paragraphs: [["Pentru solicitări privind datele cu caracter personal, scrieți la ", { type: "email" }, ". Pentru informații privind fișierele tehnice și stocarea, consultați ", { type: "routeLink", routeKey: "cookiePolicy", label: "Politica privind cookie-urile" }, "."]] },
       ],
@@ -239,11 +306,12 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         overlayProjectLabel: "PROIECT: #8842",
         overlayStatusLabel: "VERIFICARE LA FAȚA LOCULUI",
       },
-      notice: "În prezent, site-ul nu utilizează scripturi analitice sau de marketing adăugate. Dacă astfel de scripturi vor fi introduse ulterior, politica va fi actualizată și va fi aplicat un mecanism adecvat de consimțământ.",
+      notice: "Auditul sursei frontend și al build-ului generat nu a identificat scripturi analitice sau de marketing. Aceasta este o constatare tehnică, nu o confirmare a comportamentului serviciilor de găzduire, CDN, firewall sau al altor servicii din mediul live.",
       sections: [
         { heading: "Ce sunt cookie-urile", paragraphs: [["Cookie-urile sunt fișiere sau înregistrări de mici dimensiuni pe care site-ul le poate stoca în browser pentru a susține funcționalitatea de bază, securitatea, preferințele sau statisticile."]] },
-        { heading: "Utilizarea actuală", paragraphs: [["Site-ul poate utiliza stocare tehnică necesară pentru încărcarea normală, securitate, memorare în cache și funcționarea corectă a paginilor statice. Nu au fost adăugate cookie-uri analitice, publicitare sau de urmărire comportamentală distincte."]] },
-        { heading: "Cookie-uri analitice și de marketing", paragraphs: [["Dacă în viitor vor fi adăugate instrumente analitice sau de marketing, acestea vor fi descrise aici și vor fi utilizate numai cu respectarea cerințelor aplicabile privind informarea și consimțământul."]] },
+        { heading: "Inventar factual și statut", items: ["Verificat într-o sesiune Chrome Incognito curată: nu au fost detectate cookie-uri first-party de la mallelectro.com.", "Stocare în browser: nu au fost detectate înregistrări Local Storage, Session Storage sau IndexedDB.", "Tehnologii analitice și de marketing opționale: nu au fost detectate Google Analytics, Google Tag Manager, gtag, analytics/collect, Facebook tracker, DoubleClick, Hotjar sau Microsoft Clarity.", "Conținut încorporat și CAPTCHA: nu au fost detectate YouTube, Google Maps sau reCAPTCHA.", "Terțe părți: HTML-ul generat încarcă Google Fonts ca resursă tehnică externă. Cookie-ul __Secure-ENID a fost observat numai pentru domeniul .google.com și nu este un cookie first-party Mall Electro; nu există dovezi că a fost setat de site.", "Google Search Console: este configurat prin verificare DNS/domain pentru indexarea și monitorizarea performanței în căutare; nu este un script analitic încorporat sau un cookie first-party.", "Necesită verificare live după orice modificare a infrastructurii: antetele Set-Cookie, mecanismele de găzduire/CDN/WAF și solicitările reale de rețea."] },
+        { heading: "Utilizarea actuală", paragraphs: [["În configurația verificată nu au fost detectate cookie-uri first-party Mall Electro sau stocare în browser. Infrastructura de găzduire sau securitate poate prelucra jurnale de solicitări ale serverului pentru livrare, securitate și diagnosticare; jurnalele serverului nu sunt cookie-uri de browser, iar conținutul și perioadele lor concrete necesită confirmarea furnizorului."]] },
+        { heading: "Cookie-uri analitice și de marketing", paragraphs: [["Dacă în viitor vor fi introduse tehnologii opționale analitice, de marketing sau alte tehnologii third-party de urmărire, această politică și orice mecanism de consimțământ necesar vor fi actualizate înainte de activare."]] },
         { heading: "Gestionarea cookie-urilor", paragraphs: [["Puteți gestiona sau șterge cookie-urile din setările browserului dumneavoastră. Restricționarea fișierelor tehnice poate afecta modul în care anumite site-uri se încarcă sau funcționează."]] },
         { heading: "Legătura cu confidențialitatea", paragraphs: [["Mai multe informații despre prelucrarea datelor cu caracter personal sunt disponibile în ", { type: "routeLink", routeKey: "privacyPolicy", label: "Politica de confidențialitate" }, "."]] },
       ],
@@ -263,7 +331,7 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
       },
       sections: [
         { heading: "Caracter informativ", paragraphs: [["Conținutul site-ului este furnizat în scop informativ și descrie în linii generale activități, servicii și aplicații industriale. Acesta nu reprezintă o temă tehnică, documentație de proiect sau consultanță individuală."]] },
-        { heading: "Oferte și contracte", paragraphs: [["Informațiile publicate nu constituie o ofertă automată sau o propunere contractuală. Fiecare proiect, inspecție la fața locului, temă tehnică, termen și preț se stabilesc individual, în funcție de obiectivul, domeniul de aplicare și cerințele specifice."]] },
+        { heading: "Oferte și contracte", paragraphs: [["Informațiile publicate nu constituie o ofertă automată sau o propunere contractuală. Un serviciu concret necesită o solicitare și clarificări tehnice, iar parametrii proiectului se confirmă individual. Oferta și contractul, atunci când sunt aplicabile, sunt separate de informațiile de pe site."]] },
         { heading: "Proprietate intelectuală", paragraphs: [["Textele, structura, imaginile, elementele grafice și celelalte elemente de conținut ale site-ului sunt protejate. Utilizarea, copierea sau publicarea în afara vizualizării obișnuite a site-ului este permisă numai în temeiul legislației aplicabile sau cu acordul prealabil."]] },
         { heading: "Utilizare permisă", paragraphs: [["Nu este permisă utilizarea site-ului într-un mod care încalcă legea, afectează securitatea, supraîncarcă infrastructura, introduce cod rău intenționat sau împiedică funcționarea normală a acestuia."]] },
         { heading: "Limitarea răspunderii", paragraphs: [["Mall Electro depune eforturi pentru ca informațiile de pe site să fie actuale și corecte, dar nu garantează că toate materialele sunt exhaustive sau aplicabile fiecărui proiect concret. Deciziile privind sistemele electrice trebuie luate în urma unei analize tehnice și a unei evaluări profesionale."]] },

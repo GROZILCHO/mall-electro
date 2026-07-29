@@ -8,6 +8,20 @@ const EXPECTED_EN_SITEMAP_URL_COUNT = 24;
 const EXPECTED_RO_ROUTE_COUNT = 27;
 const EXPECTED_RO_SITEMAP_URL_COUNT = 24;
 const SITE_URL = "https://mallelectro.com";
+const EXPECTED_LEGAL_VERSION = "1.0";
+const LEGAL_PUBLICATION_DATE_PLACEHOLDER = "YYYY-MM-DD";
+const EXPECTED_LEGAL_PREVIEW_DATE_BY_LOCALE = {
+  bg: "Предстои публикуване",
+  en: "Pending publication",
+  ro: "În așteptarea publicării",
+};
+const EXPECTED_LEGAL_ENTITY_BY_LOCALE = {
+  bg: "УНИ КОМПАНИ ЕООД",
+  en: "UNI COMPANI EOOD",
+  ro: "UNI COMPANI EOOD",
+};
+const EXPECTED_COMPANY_NUMBER = "205154709";
+const EXPECTED_VAT_NUMBER = "BG205154709";
 
 const approvedBgEnPairs = [
   ["/bg/", "/en/", "/ro/"],
@@ -196,6 +210,18 @@ const assertLocaleCorrectLegalFooter = (routePath, locale) => {
   }
 };
 
+const assertLegalDocumentFacts = (routePath, locale) => {
+  const filePath = routeToHtmlPath(routePath);
+  const html = fs.existsSync(filePath) ? fs.readFileSync(filePath, "utf8") : "";
+
+  assertHtmlIncludes(html, EXPECTED_LEGAL_ENTITY_BY_LOCALE[locale], `${locale.toUpperCase()} legal entity`, filePath);
+  assertHtmlIncludes(html, EXPECTED_COMPANY_NUMBER, `${locale.toUpperCase()} company number`, filePath);
+  assertHtmlIncludes(html, EXPECTED_VAT_NUMBER, `${locale.toUpperCase()} VAT number`, filePath);
+  assertHtmlIncludes(html, EXPECTED_LEGAL_VERSION, `${locale.toUpperCase()} legal version`, filePath);
+  assertHtmlIncludes(html, EXPECTED_LEGAL_PREVIEW_DATE_BY_LOCALE[locale], `${locale.toUpperCase()} pending publication label`, filePath);
+  assertHtmlExcludes(html, LEGAL_PUBLICATION_DATE_PLACEHOLDER, `${locale.toUpperCase()} raw publication date placeholder`, filePath);
+};
+
 assertPathExists(distDir, "dist");
 assertPathExists(sitemapPath, "sitemap.xml");
 
@@ -222,6 +248,12 @@ for (const routePaths of legalRouteGroups) {
 for (const routePaths of [...approvedBgEnPairs, ...legalRouteGroups]) {
   routePaths.forEach((routePath, localeIndex) => {
     assertLocaleCorrectLegalFooter(routePath, ["bg", "en", "ro"][localeIndex]);
+  });
+}
+
+for (const routePaths of legalRouteGroups) {
+  routePaths.forEach((routePath, localeIndex) => {
+    assertLegalDocumentFacts(routePath, ["bg", "en", "ro"][localeIndex]);
   });
 }
 
