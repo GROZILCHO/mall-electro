@@ -47,9 +47,7 @@ const toFooterLink = (
   routeKey,
   label: activeFooterContent.legalLabels[routeKey] ?? activeNavigationContent.labels[routeKey] ?? routeKey,
   href:
-    locale === "ro" && activeFooterContent.legalRouteKeys.includes(routeKey)
-      ? getLocalizedPath(routeKey, "bg")
-      : locale === "ro"
+    locale === "ro"
         ? getLocalizedPath(routeKey, "ro")
       : routeKey === "home" && locale === "en"
       ? "/en/"
@@ -63,6 +61,8 @@ const toFooterLink = (
         ? "/en/industries"
       : routeKey === "contact" && locale === "en"
         ? "/en/contact"
+        : locale === "en" && activeFooterContent.legalRouteKeys.includes(routeKey)
+          ? getLocalizedPath(routeKey, "en")
         : locale === "en" && enServiceDetailPaths[routeKey]
           ? enServiceDetailPaths[routeKey]
         : locale === "en" && enSolutionDetailPaths[routeKey]
