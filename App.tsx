@@ -217,7 +217,7 @@ export default function App({ ssrPath, ssrPages }: AppProps) {
 
   return (
     <BrowserRouter>
-      <AppRoutes />
+      <AppRoutes ssrPages={ssrPages} />
     </BrowserRouter>
   );
 }
