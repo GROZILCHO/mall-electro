@@ -35,7 +35,7 @@ export const localizedRoutes = {
     termsOfUse: active("/bg/usloviya-za-polzvane"),
     notFound: active("/404"),
   },
-  // EN legal routes are active noindex previews; existing published EN routes retain their current registry status.
+  // EN public and legal routes are active; the system route remains blocked.
   en: {
     home: planned("/en/"),
     services: planned("/en/services"),
@@ -66,7 +66,7 @@ export const localizedRoutes = {
     termsOfUse: active("/en/terms-of-use"),
     notFound: planned("/en/404"),
   },
-  // Approved RO public routes and legal noindex previews are active; the system route remains blocked.
+  // Approved RO public and legal routes are active; the system route remains blocked.
   ro: {
     home: active("/ro/"),
     services: active("/ro/servicii"),

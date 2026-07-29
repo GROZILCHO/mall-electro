@@ -1,13 +1,26 @@
 import type { RouteKey, SupportedLocale } from "./types";
 
 export const LEGAL_DOCUMENT_VERSION = "1.0";
-export const LEGAL_PUBLICATION_DATE = "YYYY-MM-DD";
+export const LEGAL_LAST_UPDATED_DATE = "2026-07-29";
+export const LEGAL_EFFECTIVE_DATE = "2026-07-30";
 export const LEGAL_COMPANY_NUMBER = "205154709";
 export const LEGAL_VAT_NUMBER = "BG205154709";
 
+const legalMonthNames: Record<SupportedLocale, readonly string[]> = {
+  bg: ["януари", "февруари", "март", "април", "май", "юни", "юли", "август", "септември", "октомври", "ноември", "декември"],
+  en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+  ro: ["ianuarie", "februarie", "martie", "aprilie", "mai", "iunie", "iulie", "august", "septembrie", "octombrie", "noiembrie", "decembrie"],
+};
+
+export const formatLegalDate = (isoDate: string, locale: SupportedLocale): string => {
+  const [year, month, day] = isoDate.split("-").map(Number);
+  const formattedDate = `${day} ${legalMonthNames[locale][month - 1]} ${year}`;
+
+  return locale === "bg" ? `${formattedDate} г.` : formattedDate;
+};
+
 export const legalDocumentDetails = {
   bg: {
-    pendingPublication: "Предстои публикуване",
     versionLabel: "Версия",
     effectiveDateLabel: "В сила от",
     lastUpdatedLabel: "Последна актуализация",
@@ -23,7 +36,6 @@ export const legalDocumentDetails = {
     contactEmailLabel: "Имейл за контакт",
   },
   en: {
-    pendingPublication: "Pending publication",
     versionLabel: "Version",
     effectiveDateLabel: "Effective date",
     lastUpdatedLabel: "Last updated",
@@ -39,7 +51,6 @@ export const legalDocumentDetails = {
     contactEmailLabel: "Contact email",
   },
   ro: {
-    pendingPublication: "În așteptarea publicării",
     versionLabel: "Versiune",
     effectiveDateLabel: "Data intrării în vigoare",
     lastUpdatedLabel: "Ultima actualizare",
@@ -87,7 +98,6 @@ export interface LegalPageContent {
   sections: readonly LegalSectionContent[];
 }
 
-// Translation draft pending legal/native approval.
 export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPageContent>> = {
   bg: {
     privacyPolicy: {
@@ -103,7 +113,6 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         overlayProjectLabel: "ПРОЕКТ: #8842",
         overlayStatusLabel: "ПРЕГЛЕД НА ОБЕКТА",
       },
-      notice: "Настоящият текст има информационен характер и подлежи на финален преглед от собственика на дружеството или правен консултант преди официално публикуване.",
       sections: [
         {
           heading: "Администратор на лични данни",
@@ -207,7 +216,6 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         overlayProjectLabel: "PROJECT: #8842",
         overlayStatusLabel: "SITE REVIEW",
       },
-      notice: "This text is for information purposes and is subject to final review by the company owner or legal counsel before official publication.",
       sections: [
         { heading: "Personal data controller", paragraphs: [["The personal data controller is UNI COMPANI EOOD, which presents its activities on the website under the name Mall Electro. For questions related to privacy and the processing of personal data, you can contact us at ", { type: "email" }, " or by telephone at ", { type: "phone" }, "."]] },
         { heading: "Data we may collect", items: ["Name, telephone number and email address entered in the contact form.", "Selected project type and message text, including any project, site or technical assignment information that you provide.", "Technical request data that may be processed by hosting or security infrastructure for delivery, security and diagnostics; the specific logs and retention periods require verification in the hosting environment."] },
@@ -280,7 +288,6 @@ export const legalContent: Record<SupportedLocale, Record<LegalPageKey, LegalPag
         overlayProjectLabel: "PROIECT: #8842",
         overlayStatusLabel: "VERIFICARE LA FAȚA LOCULUI",
       },
-      notice: "Prezentul text are caracter informativ și este supus unei verificări finale de către proprietarul societății sau de către un consultant juridic înainte de publicarea oficială.",
       sections: [
         { heading: "Operatorul de date cu caracter personal", paragraphs: [["Operatorul datelor cu caracter personal este UNI COMPANI EOOD, care își prezintă activitatea pe site sub denumirea Mall Electro. Pentru întrebări privind confidențialitatea și prelucrarea datelor cu caracter personal, ne puteți contacta la ", { type: "email" }, " sau la numărul de telefon ", { type: "phone" }, "."]] },
         { heading: "Ce date putem colecta", items: ["Numele, numărul de telefon și adresa de e-mail introduse în formularul de contact.", "Tipul de proiect selectat și textul mesajului, inclusiv informațiile despre un proiect, un obiectiv sau o temă tehnică pe care le furnizați.", "Date tehnice privind solicitările, care pot fi prelucrate de infrastructura de găzduire sau securitate pentru livrare, securitate și diagnosticare; jurnalele și perioadele de păstrare concrete necesită verificare în mediul de găzduire."] },

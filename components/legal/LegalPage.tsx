@@ -3,8 +3,10 @@ import { Link } from "react-router-dom";
 import {
   LEGAL_COMPANY_NUMBER,
   LEGAL_DOCUMENT_VERSION,
-  LEGAL_PUBLICATION_DATE,
+  LEGAL_EFFECTIVE_DATE,
+  LEGAL_LAST_UPDATED_DATE,
   LEGAL_VAT_NUMBER,
+  formatLegalDate,
   legalContent,
   legalDocumentDetails,
   type LegalPageKey,
@@ -12,9 +14,11 @@ import {
 } from "../../data/i18n/legalContent";
 import { getLocalizedPath } from "../../data/i18n/routes";
 import type { SupportedLocale } from "../../data/i18n/types";
-import { SITE_EMAIL, SITE_PHONE_DISPLAY } from "../../utils/siteConfig";
+import { SITE_EMAIL } from "../../utils/siteConfig";
 import PageHero from "../layout/PageHero";
 import SEO from "../seo/SEO";
+
+const LEGAL_CONTACT_PHONE_DISPLAY = "+359 878 89 40 36";
 
 const legalSeoPages = {
   bg: {
@@ -53,7 +57,7 @@ const renderTextPart = (part: LegalTextPart, locale: SupportedLocale, key: numbe
   }
 
   if (part.type === "phone") {
-    return SITE_PHONE_DISPLAY;
+    return LEGAL_CONTACT_PHONE_DISPLAY;
   }
 
   return (
@@ -71,9 +75,8 @@ const LegalPage: React.FC<LegalPageProps> = ({ locale, pageKey }) => {
   const content = legalContent[locale][pageKey];
   const hero = content.hero;
   const details = legalDocumentDetails[locale];
-  const publicationDate = LEGAL_PUBLICATION_DATE === "YYYY-MM-DD"
-    ? details.pendingPublication
-    : LEGAL_PUBLICATION_DATE;
+  const effectiveDate = formatLegalDate(LEGAL_EFFECTIVE_DATE, locale);
+  const lastUpdatedDate = formatLegalDate(LEGAL_LAST_UPDATED_DATE, locale);
 
   const secondaryCtaIcon =
     pageKey === "privacyPolicy"
@@ -121,8 +124,8 @@ const LegalPage: React.FC<LegalPageProps> = ({ locale, pageKey }) => {
               </div>
               <dl className="space-y-3 text-sm text-[#1C2A39]/80 md:border-l md:border-[#E7EDF5] md:pl-6">
                 <div><dt className="font-semibold">{details.versionLabel}</dt><dd>{LEGAL_DOCUMENT_VERSION}</dd></div>
-                <div><dt className="font-semibold">{details.effectiveDateLabel}</dt><dd>{publicationDate}</dd></div>
-                <div><dt className="font-semibold">{details.lastUpdatedLabel}</dt><dd>{publicationDate}</dd></div>
+                <div><dt className="font-semibold">{details.effectiveDateLabel}</dt><dd>{effectiveDate}</dd></div>
+                <div><dt className="font-semibold">{details.lastUpdatedLabel}</dt><dd>{lastUpdatedDate}</dd></div>
               </dl>
             </div>
 

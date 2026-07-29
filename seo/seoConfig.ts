@@ -140,9 +140,7 @@ const createSeoRouteIdentity = (routeKey: RouteKey): Pick<SeoRoute, "key" | "pat
 
 const normalizeSeoPath = (path: string): string => (path.length > 1 ? path.replace(/\/$/, "") : path);
 
-const legalRouteKeys = new Set<RouteKey>(["privacyPolicy", "cookiePolicy", "termsOfUse"]);
 const localizedSeoPathGroups = languageSwitchRouteKeys
-  .filter((routeKey) => !legalRouteKeys.has(routeKey))
   .map((routeKey) => ({
   bgPath: normalizeSeoPath(getLocalizedPath(routeKey, "bg")),
   enPath: normalizeSeoPath(getLocalizedPath(routeKey, "en")),
@@ -235,15 +233,13 @@ const roPreviewSeoRoutes: SeoRoute[] = [
   createRoPreviewRoute("roIndustryManufacturingCompanies", "industryProizvodstveniPredpriyatiya", roIndustries.manufacturingCompanies.hero.title, roIndustries.manufacturingCompanies.hero.subtitle, roIndustries.manufacturingCompanies.hero.image),
 ];
 
-const legalPreviewSeoRoutes: SeoRoute[] = [
+const localizedLegalSeoRoutes: SeoRoute[] = [
   {
     key: "enPrivacyPolicy",
     path: getLocalizedPath("privacyPolicy", "en"),
     title: "Privacy Policy | Mall Electro",
     description: "Information about personal data processing, data subject rights, retention and privacy requests addressed to Mall Electro.",
     ogImage: "/images/about/hero-about.png",
-    noindex: true,
-    includeInSitemap: false,
   },
   {
     key: "enCookiePolicy",
@@ -251,8 +247,6 @@ const legalPreviewSeoRoutes: SeoRoute[] = [
     title: "Cookie Policy | Mall Electro",
     description: "Information about cookies, technical storage, browser controls and any future use of analytics or marketing tools.",
     ogImage: "/images/about/hero-about.png",
-    noindex: true,
-    includeInSitemap: false,
   },
   {
     key: "enTermsOfUse",
@@ -260,8 +254,6 @@ const legalPreviewSeoRoutes: SeoRoute[] = [
     title: "Terms of Use | Mall Electro",
     description: "Terms for using the Mall Electro website, the informational nature of its content, quotations, intellectual property and contact details.",
     ogImage: "/images/about/hero-about.png",
-    noindex: true,
-    includeInSitemap: false,
   },
   {
     key: "roPrivacyPolicy",
@@ -269,8 +261,6 @@ const legalPreviewSeoRoutes: SeoRoute[] = [
     title: "Politica de confidențialitate | Mall Electro",
     description: "Informații privind prelucrarea datelor cu caracter personal, drepturile persoanelor vizate, păstrarea datelor și solicitările adresate Mall Electro.",
     ogImage: "/images/about/hero-about.png",
-    noindex: true,
-    includeInSitemap: false,
   },
   {
     key: "roCookiePolicy",
@@ -278,8 +268,6 @@ const legalPreviewSeoRoutes: SeoRoute[] = [
     title: "Politica privind cookie-urile | Mall Electro",
     description: "Informații despre cookie-uri, stocarea tehnică, gestionarea în browser și eventuala utilizare viitoare a instrumentelor analitice sau de marketing.",
     ogImage: "/images/about/hero-about.png",
-    noindex: true,
-    includeInSitemap: false,
   },
   {
     key: "roTermsOfUse",
@@ -287,8 +275,6 @@ const legalPreviewSeoRoutes: SeoRoute[] = [
     title: "Termeni de utilizare | Mall Electro",
     description: "Termenii de utilizare a site-ului Mall Electro, caracterul informativ al conținutului, ofertele, proprietatea intelectuală și datele de contact.",
     ogImage: "/images/about/hero-about.png",
-    noindex: true,
-    includeInSitemap: false,
   },
 ];
 
@@ -731,7 +717,7 @@ export const seoRoutes: SeoRoute[] = [
     noindex: true,
     includeInSitemap: false,
   },
-  ...legalPreviewSeoRoutes,
+  ...localizedLegalSeoRoutes,
   ...roPreviewSeoRoutes,
 ];
 
