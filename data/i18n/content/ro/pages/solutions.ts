@@ -40,7 +40,7 @@ export const solutionsOverviewPageContent = {
   },
   scenarios: {
     badge: "Situații tipice",
-    heading: "Situații de proiect în care serviciile funcționează împreună",
+    heading: "Situații de proiect care necesită soluții integrate",
     body:
       "Fiecare situație combină mai multe domenii de lucru, de la tablouri și trasee până la control, inspecție și mentenanță ulterioară.",
     cardPrefix: "Soluție",
