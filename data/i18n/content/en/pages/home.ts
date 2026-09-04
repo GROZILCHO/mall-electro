@@ -148,7 +148,7 @@ export const homePageContent = {
       badge: "About us // 01",
       heading: "Who we are",
       paragraphs: [
-        "Mall Electro is an engineering platform, part of the Uni Company EOOD group, specialized in electrical equipment, electrical panels, industrial automation, cable routes and electrical installations for the food processing industry, agriculture, industrial and residential construction. We work across Bulgaria and Romania, delivering projects according to established European EN standards.",
+        "Mall Electro is an engineering platform of UNI COMPANI EOOD, specializing in electrical equipment, electrical panels, industrial automation, cable infrastructure and electrical installations for the food processing, agriculture and industrial sectors. We work across Bulgaria and Romania, delivering projects in accordance with applicable European standards.",
         "With experience across dozens of industrial facilities, we combine engineering thinking with practical expertise - from initial site inspection and design to installation, commissioning and maintenance.",
       ],
       advantages: [

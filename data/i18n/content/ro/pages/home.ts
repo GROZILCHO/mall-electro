@@ -148,7 +148,7 @@ export const homePageContent = {
       badge: "Despre noi // 01",
       heading: "Cine suntem",
       paragraphs: [
-        "Mall Electro este o platformă de inginerie, parte a grupului Uni Company EOOD, specializată în echipamente electrice, tablouri electrice, automatizări industriale, trasee de cabluri și instalații electrice pentru industria alimentară, agricultură, construcții industriale și rezidențiale. Lucrăm în Bulgaria și România și realizăm proiecte conform standardelor europene aplicabile.",
+        "Mall Electro este o platformă de inginerie a UNI COMPANI EOOD, specializată în echipamente electrice, tablouri electrice, automatizări industriale, trasee de cabluri și instalații electrice pentru industria alimentară, agricultură și construcții industriale. Lucrăm în Bulgaria și România și realizăm proiecte conform standardelor europene aplicabile.",
         "Cu experiență în zeci de unități industriale, combinăm gândirea inginerească și experiența practică, de la inspecția și proiectarea inițială până la instalare, punere în funcțiune și mentenanță.",
       ],
       advantages: [
@@ -160,7 +160,7 @@ export const homePageContent = {
       signature: "Experiență industrială",
     },
     kpi: {
-      heading: "Indicatori de inginerie",
+      heading: "Experiența noastră în cifre",
       labelPrefix: "Indicator //",
       metrics: [
         {
@@ -192,7 +192,7 @@ export const homePageContent = {
     whyChooseUs: {
       badge: "Avantajele noastre",
       heading: "De ce să alegeți Mall Electro?",
-      subheading: "Precizie inginerească",
+      subheading: "Expertiză tehnică",
       body:
         "Nu instalăm doar echipamente, ci realizăm sisteme durabile și eficiente, care susțin în mod fiabil activitatea dumneavoastră.",
       cta: "Solicită o ofertă",
